@@ -13,6 +13,8 @@
 		5361ED081C4D38970048F4AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED061C4D38970048F4AC /* Main.storyboard */; };
 		5361ED0A1C4D38970048F4AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED091C4D38970048F4AC /* Assets.xcassets */; };
 		5361ED0D1C4D38970048F4AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED0B1C4D38970048F4AC /* LaunchScreen.storyboard */; };
+		80670A048C3A75EE22D274C3 /* SKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 806708323B22EA3AC9563F84 /* SKModel.m */; };
+		80670C24C8B59B4D703D7AB7 /* SKErrorResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067096EB9758601578BDA42 /* SKErrorResponseModel.m */; };
 		89F8BC507E10477E85C8B773 /* Pods_StarterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD054AB3337EEEEED01F700 /* Pods_StarterKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,10 @@
 		5361ED0C1C4D38970048F4AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5361ED0E1C4D38970048F4AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6254A8EA7504FD72B443E7EF /* Pods-StarterKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarterKit.release.xcconfig"; path = "../Pods/Target Support Files/Pods-StarterKit/Pods-StarterKit.release.xcconfig"; sourceTree = "<group>"; };
+		80670170106455D20AEC64BA /* SKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKModel.h; sourceTree = "<group>"; };
+		80670621789D373F7E725B28 /* SKErrorResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKErrorResponseModel.h; sourceTree = "<group>"; };
+		806708323B22EA3AC9563F84 /* SKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKModel.m; sourceTree = "<group>"; };
+		8067096EB9758601578BDA42 /* SKErrorResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKErrorResponseModel.m; sourceTree = "<group>"; };
 		9AD054AB3337EEEEED01F700 /* Pods_StarterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -91,6 +97,11 @@
 				5361ED0B1C4D38970048F4AC /* LaunchScreen.storyboard */,
 				5361ED0E1C4D38970048F4AC /* Info.plist */,
 				5361ECFD1C4D38970048F4AC /* Supporting Files */,
+				8067050F87E85DBE6384E171 /* AppDelegate */,
+				8067008EAF4450DDD24ECE48 /* Core Data */,
+				806700413D1CB7350885287C /* Model */,
+				80670C99E2A6834A16ECCE58 /* UI */,
+				80670E3887EAD58FB139D032 /* Network */,
 			);
 			path = StarterKit;
 			sourceTree = "<group>";
@@ -101,6 +112,69 @@
 				5361ECFE1C4D38970048F4AC /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		806700413D1CB7350885287C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				806708323B22EA3AC9563F84 /* SKModel.m */,
+				80670170106455D20AEC64BA /* SKModel.h */,
+				8067096EB9758601578BDA42 /* SKErrorResponseModel.m */,
+				80670621789D373F7E725B28 /* SKErrorResponseModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8067008EAF4450DDD24ECE48 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		8067050F87E85DBE6384E171 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		8067056D02669A832D92DDC7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8067098C1CC74F5BCFDB9F0D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		80670C99E2A6834A16ECCE58 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8067056D02669A832D92DDC7 /* Views */,
+				8067098C1CC74F5BCFDB9F0D /* Controllers */,
+				80670E8692003F06B59080A2 /* Cells */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		80670E3887EAD58FB139D032 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		80670E8692003F06B59080A2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +301,8 @@
 				5361ED051C4D38970048F4AC /* ViewController.m in Sources */,
 				5361ED021C4D38970048F4AC /* AppDelegate.m in Sources */,
 				5361ECFF1C4D38970048F4AC /* main.m in Sources */,
+				80670A048C3A75EE22D274C3 /* SKModel.m in Sources */,
+				80670C24C8B59B4D703D7AB7 /* SKErrorResponseModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
