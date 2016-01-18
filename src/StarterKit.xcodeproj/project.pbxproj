@@ -13,8 +13,10 @@
 		5361ED081C4D38970048F4AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED061C4D38970048F4AC /* Main.storyboard */; };
 		5361ED0A1C4D38970048F4AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED091C4D38970048F4AC /* Assets.xcassets */; };
 		5361ED0D1C4D38970048F4AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED0B1C4D38970048F4AC /* LaunchScreen.storyboard */; };
+		8067079B30C26AE4EF814E55 /* SKManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067025C05A1A0E1FFD672BB /* SKManaged.m */; };
 		80670A048C3A75EE22D274C3 /* SKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 806708323B22EA3AC9563F84 /* SKModel.m */; };
 		80670C24C8B59B4D703D7AB7 /* SKErrorResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067096EB9758601578BDA42 /* SKErrorResponseModel.m */; };
+		80670E8E80EBB9C772FA53A9 /* SKNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670B05EB6026E26A3533A7 /* SKNetworkConfig.m */; };
 		89F8BC507E10477E85C8B773 /* Pods_StarterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD054AB3337EEEEED01F700 /* Pods_StarterKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,9 +34,13 @@
 		5361ED0E1C4D38970048F4AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6254A8EA7504FD72B443E7EF /* Pods-StarterKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarterKit.release.xcconfig"; path = "../Pods/Target Support Files/Pods-StarterKit/Pods-StarterKit.release.xcconfig"; sourceTree = "<group>"; };
 		80670170106455D20AEC64BA /* SKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKModel.h; sourceTree = "<group>"; };
+		80670256DE5D9456FA3DD851 /* SKNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKNetworkConfig.h; sourceTree = "<group>"; };
+		8067025C05A1A0E1FFD672BB /* SKManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKManaged.m; sourceTree = "<group>"; };
 		80670621789D373F7E725B28 /* SKErrorResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKErrorResponseModel.h; sourceTree = "<group>"; };
+		8067073293D94462F7A54BD3 /* SKManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKManaged.h; sourceTree = "<group>"; };
 		806708323B22EA3AC9563F84 /* SKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKModel.m; sourceTree = "<group>"; };
 		8067096EB9758601578BDA42 /* SKErrorResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKErrorResponseModel.m; sourceTree = "<group>"; };
+		80670B05EB6026E26A3533A7 /* SKNetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKNetworkConfig.m; sourceTree = "<group>"; };
 		9AD054AB3337EEEEED01F700 /* Pods_StarterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -128,6 +134,8 @@
 		8067008EAF4450DDD24ECE48 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				8067025C05A1A0E1FFD672BB /* SKManaged.m */,
+				8067073293D94462F7A54BD3 /* SKManaged.h */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -166,6 +174,8 @@
 		80670E3887EAD58FB139D032 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				80670B05EB6026E26A3533A7 /* SKNetworkConfig.m */,
+				80670256DE5D9456FA3DD851 /* SKNetworkConfig.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -303,6 +313,8 @@
 				5361ECFF1C4D38970048F4AC /* main.m in Sources */,
 				80670A048C3A75EE22D274C3 /* SKModel.m in Sources */,
 				80670C24C8B59B4D703D7AB7 /* SKErrorResponseModel.m in Sources */,
+				8067079B30C26AE4EF814E55 /* SKManaged.m in Sources */,
+				80670E8E80EBB9C772FA53A9 /* SKNetworkConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
