@@ -15,8 +15,10 @@
 		5361ED0D1C4D38970048F4AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED0B1C4D38970048F4AC /* LaunchScreen.storyboard */; };
 		8067079B30C26AE4EF814E55 /* SKManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067025C05A1A0E1FFD672BB /* SKManaged.m */; };
 		80670A048C3A75EE22D274C3 /* SKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 806708323B22EA3AC9563F84 /* SKModel.m */; };
+		80670BB06D2F51BFD0CCFC47 /* SKPaginator.m in Sources */ = {isa = PBXBuildFile; fileRef = 806702A30B59D5391EC4E59A /* SKPaginator.m */; };
 		80670C24C8B59B4D703D7AB7 /* SKErrorResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067096EB9758601578BDA42 /* SKErrorResponseModel.m */; };
 		80670E8E80EBB9C772FA53A9 /* SKNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670B05EB6026E26A3533A7 /* SKNetworkConfig.m */; };
+		80670F5B81BE4E3FAD484E77 /* SKManagedHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670C70131B3903EE575733 /* SKManagedHTTPSessionManager.m */; };
 		89F8BC507E10477E85C8B773 /* Pods_StarterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD054AB3337EEEEED01F700 /* Pods_StarterKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,14 +35,18 @@
 		5361ED0C1C4D38970048F4AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5361ED0E1C4D38970048F4AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6254A8EA7504FD72B443E7EF /* Pods-StarterKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarterKit.release.xcconfig"; path = "../Pods/Target Support Files/Pods-StarterKit/Pods-StarterKit.release.xcconfig"; sourceTree = "<group>"; };
+		806700A9380C702824925BA2 /* SKPaginator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPaginator.h; sourceTree = "<group>"; };
 		80670170106455D20AEC64BA /* SKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKModel.h; sourceTree = "<group>"; };
 		80670256DE5D9456FA3DD851 /* SKNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKNetworkConfig.h; sourceTree = "<group>"; };
 		8067025C05A1A0E1FFD672BB /* SKManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKManaged.m; sourceTree = "<group>"; };
+		806702A30B59D5391EC4E59A /* SKPaginator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPaginator.m; sourceTree = "<group>"; };
 		80670621789D373F7E725B28 /* SKErrorResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKErrorResponseModel.h; sourceTree = "<group>"; };
 		8067073293D94462F7A54BD3 /* SKManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKManaged.h; sourceTree = "<group>"; };
+		806707620AD3BFC4567DE5ED /* SKManagedHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKManagedHTTPSessionManager.h; sourceTree = "<group>"; };
 		806708323B22EA3AC9563F84 /* SKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKModel.m; sourceTree = "<group>"; };
 		8067096EB9758601578BDA42 /* SKErrorResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKErrorResponseModel.m; sourceTree = "<group>"; };
 		80670B05EB6026E26A3533A7 /* SKNetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKNetworkConfig.m; sourceTree = "<group>"; };
+		80670C70131B3903EE575733 /* SKManagedHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKManagedHTTPSessionManager.m; sourceTree = "<group>"; };
 		9AD054AB3337EEEEED01F700 /* Pods_StarterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -176,6 +182,10 @@
 			children = (
 				80670B05EB6026E26A3533A7 /* SKNetworkConfig.m */,
 				80670256DE5D9456FA3DD851 /* SKNetworkConfig.h */,
+				80670C70131B3903EE575733 /* SKManagedHTTPSessionManager.m */,
+				806707620AD3BFC4567DE5ED /* SKManagedHTTPSessionManager.h */,
+				806702A30B59D5391EC4E59A /* SKPaginator.m */,
+				806700A9380C702824925BA2 /* SKPaginator.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -315,6 +325,8 @@
 				80670C24C8B59B4D703D7AB7 /* SKErrorResponseModel.m in Sources */,
 				8067079B30C26AE4EF814E55 /* SKManaged.m in Sources */,
 				80670E8E80EBB9C772FA53A9 /* SKNetworkConfig.m in Sources */,
+				80670F5B81BE4E3FAD484E77 /* SKManagedHTTPSessionManager.m in Sources */,
+				80670BB06D2F51BFD0CCFC47 /* SKPaginator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
