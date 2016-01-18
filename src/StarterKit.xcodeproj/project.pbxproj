@@ -13,6 +13,7 @@
 		5361ED081C4D38970048F4AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED061C4D38970048F4AC /* Main.storyboard */; };
 		5361ED0A1C4D38970048F4AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED091C4D38970048F4AC /* Assets.xcassets */; };
 		5361ED0D1C4D38970048F4AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED0B1C4D38970048F4AC /* LaunchScreen.storyboard */; };
+		5361ED391C4D46590048F4AC /* AMTumblrHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 5361ED381C4D46590048F4AC /* AMTumblrHud.m */; };
 		806705DA2E97F74177066F4B /* SKFetchedResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670D551FBA8E6244041B01 /* SKFetchedResultsDataSource.m */; };
 		8067079B30C26AE4EF814E55 /* SKManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067025C05A1A0E1FFD672BB /* SKManaged.m */; };
 		806709F8F5D24DBCCD1F5CC2 /* SKFetchedResultsDataSourceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067071C11E689D3145E6DD4 /* SKFetchedResultsDataSourceBuilder.m */; };
@@ -37,6 +38,8 @@
 		5361ED091C4D38970048F4AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5361ED0C1C4D38970048F4AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5361ED0E1C4D38970048F4AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5361ED371C4D46590048F4AC /* AMTumblrHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTumblrHud.h; sourceTree = "<group>"; };
+		5361ED381C4D46590048F4AC /* AMTumblrHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTumblrHud.m; sourceTree = "<group>"; };
 		6254A8EA7504FD72B443E7EF /* Pods-StarterKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarterKit.release.xcconfig"; path = "../Pods/Target Support Files/Pods-StarterKit/Pods-StarterKit.release.xcconfig"; sourceTree = "<group>"; };
 		806700A9380C702824925BA2 /* SKPaginator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPaginator.h; sourceTree = "<group>"; };
 		80670170106455D20AEC64BA /* SKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKModel.h; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 		8067056D02669A832D92DDC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5361ED371C4D46590048F4AC /* AMTumblrHud.h */,
+				5361ED381C4D46590048F4AC /* AMTumblrHud.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5361ED391C4D46590048F4AC /* AMTumblrHud.m in Sources */,
 				5361ED051C4D38970048F4AC /* ViewController.m in Sources */,
 				5361ED021C4D38970048F4AC /* AppDelegate.m in Sources */,
 				5361ECFF1C4D38970048F4AC /* main.m in Sources */,
