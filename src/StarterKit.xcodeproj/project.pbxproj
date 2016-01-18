@@ -17,6 +17,7 @@
 		8067079B30C26AE4EF814E55 /* SKManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067025C05A1A0E1FFD672BB /* SKManaged.m */; };
 		806709F8F5D24DBCCD1F5CC2 /* SKFetchedResultsDataSourceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067071C11E689D3145E6DD4 /* SKFetchedResultsDataSourceBuilder.m */; };
 		80670A048C3A75EE22D274C3 /* SKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 806708323B22EA3AC9563F84 /* SKModel.m */; };
+		80670B397615A2A011E260A2 /* SKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067033B1E241F2E457F2EC7 /* SKTableViewCell.m */; };
 		80670BB06D2F51BFD0CCFC47 /* SKPaginator.m in Sources */ = {isa = PBXBuildFile; fileRef = 806702A30B59D5391EC4E59A /* SKPaginator.m */; };
 		80670C24C8B59B4D703D7AB7 /* SKErrorResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067096EB9758601578BDA42 /* SKErrorResponseModel.m */; };
 		80670E8E80EBB9C772FA53A9 /* SKNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670B05EB6026E26A3533A7 /* SKNetworkConfig.m */; };
@@ -43,6 +44,7 @@
 		80670256DE5D9456FA3DD851 /* SKNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKNetworkConfig.h; sourceTree = "<group>"; };
 		8067025C05A1A0E1FFD672BB /* SKManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKManaged.m; sourceTree = "<group>"; };
 		806702A30B59D5391EC4E59A /* SKPaginator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPaginator.m; sourceTree = "<group>"; };
+		8067033B1E241F2E457F2EC7 /* SKTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTableViewCell.m; sourceTree = "<group>"; };
 		8067052A4E12C58B1E5FC7A7 /* SKFetchedResultsDataSourceBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFetchedResultsDataSourceBuilder.h; sourceTree = "<group>"; };
 		80670621789D373F7E725B28 /* SKErrorResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKErrorResponseModel.h; sourceTree = "<group>"; };
 		8067071C11E689D3145E6DD4 /* SKFetchedResultsDataSourceBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFetchedResultsDataSourceBuilder.m; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 		80670B05EB6026E26A3533A7 /* SKNetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKNetworkConfig.m; sourceTree = "<group>"; };
 		80670C70131B3903EE575733 /* SKManagedHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKManagedHTTPSessionManager.m; sourceTree = "<group>"; };
 		80670D551FBA8E6244041B01 /* SKFetchedResultsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFetchedResultsDataSource.m; sourceTree = "<group>"; };
+		80670E086F60E3ECB4F2BCAB /* SKTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTableViewCell.h; sourceTree = "<group>"; };
 		9AD054AB3337EEEEED01F700 /* Pods_StarterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -211,6 +214,8 @@
 		80670E8692003F06B59080A2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8067033B1E241F2E457F2EC7 /* SKTableViewCell.m */,
+				80670E086F60E3ECB4F2BCAB /* SKTableViewCell.h */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				80670BB06D2F51BFD0CCFC47 /* SKPaginator.m in Sources */,
 				806709F8F5D24DBCCD1F5CC2 /* SKFetchedResultsDataSourceBuilder.m in Sources */,
 				806705DA2E97F74177066F4B /* SKFetchedResultsDataSource.m in Sources */,
+				80670B397615A2A011E260A2 /* SKTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
