@@ -9,14 +9,19 @@
 /* Begin PBXBuildFile section */
 		5361ED0A1C4D38970048F4AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED091C4D38970048F4AC /* Assets.xcassets */; };
 		5361ED391C4D46590048F4AC /* AMTumblrHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 5361ED381C4D46590048F4AC /* AMTumblrHud.m */; };
+		8067016B9439DFCDE4FA8195 /* SKPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067071387E0BA71D086E58A /* SKPageTableViewController.m */; };
 		806705DA2E97F74177066F4B /* SKFetchedResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670D551FBA8E6244041B01 /* SKFetchedResultsDataSource.m */; };
 		8067079B30C26AE4EF814E55 /* SKManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067025C05A1A0E1FFD672BB /* SKManaged.m */; };
+		806709045871ACE970CEE964 /* SKTableViewControllerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 806701F9434FB6855A0AFB6D /* SKTableViewControllerBuilder.m */; };
 		806709F8F5D24DBCCD1F5CC2 /* SKFetchedResultsDataSourceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067071C11E689D3145E6DD4 /* SKFetchedResultsDataSourceBuilder.m */; };
+		80670A02E7675B1E95024C88 /* SKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806706C24660BFD04E0D6425 /* SKViewController.m */; };
 		80670A048C3A75EE22D274C3 /* SKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 806708323B22EA3AC9563F84 /* SKModel.m */; };
 		80670B397615A2A011E260A2 /* SKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067033B1E241F2E457F2EC7 /* SKTableViewCell.m */; };
 		80670BB06D2F51BFD0CCFC47 /* SKPaginator.m in Sources */ = {isa = PBXBuildFile; fileRef = 806702A30B59D5391EC4E59A /* SKPaginator.m */; };
 		80670C24C8B59B4D703D7AB7 /* SKErrorResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067096EB9758601578BDA42 /* SKErrorResponseModel.m */; };
+		80670C7FE7ECB8DC219BBC41 /* SKKeyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670B0F562AE4EB6DA3CBC5 /* SKKeyTableViewController.m */; };
 		80670E8E80EBB9C772FA53A9 /* SKNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670B05EB6026E26A3533A7 /* SKNetworkConfig.m */; };
+		80670F0454AD8ECAB60F7509 /* SKTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670EDE889E3818B6096B67 /* SKTableViewController.m */; };
 		80670F5B81BE4E3FAD484E77 /* SKManagedHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670C70131B3903EE575733 /* SKManagedHTTPSessionManager.m */; };
 		89F8BC507E10477E85C8B773 /* Pods_StarterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD054AB3337EEEEED01F700 /* Pods_StarterKit.framework */; };
 /* End PBXBuildFile section */
@@ -29,24 +34,34 @@
 		5361ED371C4D46590048F4AC /* AMTumblrHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTumblrHud.h; sourceTree = "<group>"; };
 		5361ED381C4D46590048F4AC /* AMTumblrHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTumblrHud.m; sourceTree = "<group>"; };
 		6254A8EA7504FD72B443E7EF /* Pods-StarterKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarterKit.release.xcconfig"; path = "../Pods/Target Support Files/Pods-StarterKit/Pods-StarterKit.release.xcconfig"; sourceTree = "<group>"; };
+		8067001B0CAB292B976C36BA /* SKTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTableViewController.h; sourceTree = "<group>"; };
 		806700A9380C702824925BA2 /* SKPaginator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPaginator.h; sourceTree = "<group>"; };
 		80670170106455D20AEC64BA /* SKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKModel.h; sourceTree = "<group>"; };
+		806701F9434FB6855A0AFB6D /* SKTableViewControllerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTableViewControllerBuilder.m; sourceTree = "<group>"; };
 		806702284D784C043D2EB00F /* SKFetchedResultsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFetchedResultsDataSource.h; sourceTree = "<group>"; };
 		80670256DE5D9456FA3DD851 /* SKNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKNetworkConfig.h; sourceTree = "<group>"; };
 		8067025C05A1A0E1FFD672BB /* SKManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKManaged.m; sourceTree = "<group>"; };
 		806702A30B59D5391EC4E59A /* SKPaginator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPaginator.m; sourceTree = "<group>"; };
 		8067033B1E241F2E457F2EC7 /* SKTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTableViewCell.m; sourceTree = "<group>"; };
+		806703B3875EAA4ABFB55B03 /* SKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKViewController.h; sourceTree = "<group>"; };
+		80670492F326BA7937A584E5 /* SKTableViewControllerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTableViewControllerBuilder.h; sourceTree = "<group>"; };
 		8067052A4E12C58B1E5FC7A7 /* SKFetchedResultsDataSourceBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFetchedResultsDataSourceBuilder.h; sourceTree = "<group>"; };
 		80670621789D373F7E725B28 /* SKErrorResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKErrorResponseModel.h; sourceTree = "<group>"; };
+		806706C24660BFD04E0D6425 /* SKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKViewController.m; sourceTree = "<group>"; };
+		8067071387E0BA71D086E58A /* SKPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPageTableViewController.m; sourceTree = "<group>"; };
 		8067071C11E689D3145E6DD4 /* SKFetchedResultsDataSourceBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFetchedResultsDataSourceBuilder.m; sourceTree = "<group>"; };
 		8067073293D94462F7A54BD3 /* SKManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKManaged.h; sourceTree = "<group>"; };
+		8067073BD5E1D3B03CE89180 /* SKPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPageTableViewController.h; sourceTree = "<group>"; };
 		806707620AD3BFC4567DE5ED /* SKManagedHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKManagedHTTPSessionManager.h; sourceTree = "<group>"; };
 		806708323B22EA3AC9563F84 /* SKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKModel.m; sourceTree = "<group>"; };
 		8067096EB9758601578BDA42 /* SKErrorResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKErrorResponseModel.m; sourceTree = "<group>"; };
 		80670B05EB6026E26A3533A7 /* SKNetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKNetworkConfig.m; sourceTree = "<group>"; };
+		80670B0F562AE4EB6DA3CBC5 /* SKKeyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKKeyTableViewController.m; sourceTree = "<group>"; };
 		80670C70131B3903EE575733 /* SKManagedHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKManagedHTTPSessionManager.m; sourceTree = "<group>"; };
 		80670D551FBA8E6244041B01 /* SKFetchedResultsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFetchedResultsDataSource.m; sourceTree = "<group>"; };
+		80670D7ED95F9B476564F684 /* SKKeyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKKeyTableViewController.h; sourceTree = "<group>"; };
 		80670E086F60E3ECB4F2BCAB /* SKTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTableViewCell.h; sourceTree = "<group>"; };
+		80670EDE889E3818B6096B67 /* SKTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTableViewController.m; sourceTree = "<group>"; };
 		9AD054AB3337EEEEED01F700 /* Pods_StarterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -162,6 +177,16 @@
 		8067098C1CC74F5BCFDB9F0D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				806706C24660BFD04E0D6425 /* SKViewController.m */,
+				806703B3875EAA4ABFB55B03 /* SKViewController.h */,
+				80670EDE889E3818B6096B67 /* SKTableViewController.m */,
+				8067001B0CAB292B976C36BA /* SKTableViewController.h */,
+				806701F9434FB6855A0AFB6D /* SKTableViewControllerBuilder.m */,
+				80670492F326BA7937A584E5 /* SKTableViewControllerBuilder.h */,
+				8067071387E0BA71D086E58A /* SKPageTableViewController.m */,
+				8067073BD5E1D3B03CE89180 /* SKPageTableViewController.h */,
+				80670B0F562AE4EB6DA3CBC5 /* SKKeyTableViewController.m */,
+				80670D7ED95F9B476564F684 /* SKKeyTableViewController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -327,6 +352,11 @@
 				806709F8F5D24DBCCD1F5CC2 /* SKFetchedResultsDataSourceBuilder.m in Sources */,
 				806705DA2E97F74177066F4B /* SKFetchedResultsDataSource.m in Sources */,
 				80670B397615A2A011E260A2 /* SKTableViewCell.m in Sources */,
+				80670A02E7675B1E95024C88 /* SKViewController.m in Sources */,
+				80670F0454AD8ECAB60F7509 /* SKTableViewController.m in Sources */,
+				806709045871ACE970CEE964 /* SKTableViewControllerBuilder.m in Sources */,
+				8067016B9439DFCDE4FA8195 /* SKPageTableViewController.m in Sources */,
+				80670C7FE7ECB8DC219BBC41 /* SKKeyTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

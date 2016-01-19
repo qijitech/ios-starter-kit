@@ -23,7 +23,6 @@ pod 'Toast', '~> 3.0'
 pod 'UzysAnimatedGifLoadMore', '~> 0.9.2'
 pod 'UzysAnimatedGifPullToRefresh', '~> 0.9.7'
 pod 'FLEX', '~> 2.2.0'
-pod 'GBDeviceInfo', '~> 3.6.1'
 end
 
 target 'Examples', :exclusive => true do

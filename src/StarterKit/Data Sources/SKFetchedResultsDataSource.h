@@ -11,7 +11,7 @@ typedef void (^SKFetchedResultsDataSourceBuilderBlock)(SKFetchedResultsDataSourc
 
 @interface SKFetchedResultsDataSource : TGRFetchedResultsDataSource
 
-+ (instancetype)createWithBuilder:(SKFetchedResultsDataSourceBuilder *)block;
++ (instancetype)createWithBuilder:(SKFetchedResultsDataSourceBuilderBlock)block;
 - (instancetype)initWithBuilder:(SKFetchedResultsDataSourceBuilder *)builder;
 
 @end

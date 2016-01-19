@@ -3,6 +3,7 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
+#import <Mantle/MTLModel.h>
 #import <MTLManagedObjectAdapter/MTLManagedObjectAdapter.h>
 #import "SKFetchedResultsDataSource.h"
 #import "SKFetchedResultsDataSourceBuilder.h"
@@ -23,7 +24,7 @@ static NSString * const kIdentifierKey = @"identifier";
   return [MTLManagedObjectAdapter modelOfClass:self.modelOfClass fromManagedObject:item error:NULL];
 }
 
-+ (instancetype)createWithBuilder:(SKFetchedResultsDataSourceBuilderBlock *)block {
++ (instancetype)createWithBuilder:(SKFetchedResultsDataSourceBuilderBlock)block {
   NSParameterAssert(block);
   SKFetchedResultsDataSourceBuilder *builder = [[SKFetchedResultsDataSourceBuilder alloc] init];
   block(builder);
@@ -43,9 +44,11 @@ static NSString * const kIdentifierKey = @"identifier";
         sectionNameKeyPath:nil
                  cacheName:nil];
 
-  if (self =[super initWithFetchedResultsController:frc
-                                cellReuseIdentifier:builder.reuseIdentifier
-                                 configureCellBlock:builder.configureCellBlock]) {
+  if (self = [super initWithFetchedResultsController:frc
+                                 cellReuseIdentifier:builder.reuseIdentifier
+                                  configureCellBlock:builder.configureCellBlock]) {
     _modelOfClass = builder.modelOfClass;
   }
   return self;
+
+}
