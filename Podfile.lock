@@ -23,9 +23,6 @@ PODS:
   - AnimatedGIFImageSerialization (0.2.0)
   - DZNEmptyDataSet (1.7.3)
   - FLEX (2.2.0)
-  - GBDeviceInfo (3.6.1):
-    - GBDeviceInfo/Core (= 3.6.1)
-  - GBDeviceInfo/Core (3.6.1)
   - HexColors (3.0.0)
   - libextobjc (0.4.1):
     - libextobjc/EXTADT (= 0.4.1)
@@ -118,7 +115,6 @@ DEPENDENCIES:
   - AFNetworking
   - DZNEmptyDataSet (~> 1.7.3)
   - FLEX (~> 2.2.0)
-  - GBDeviceInfo (~> 3.6.1)
   - HexColors (~> 3.0.0)
   - libextobjc
   - Mantle (~> 2.0)
@@ -136,7 +132,6 @@ SPEC CHECKSUMS:
   AnimatedGIFImageSerialization: b0f0cfe71eac1ee45a3d57ae533c23b8e6f29501
   DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
   FLEX: bc8a4fb887ed5d3cdf7c2f3bd665f7bb1647cc58
-  GBDeviceInfo: d9267d7d7d2ee3e53e4ea64df392689a930607a4
   HexColors: 8b83e3fe90c0d466dae7b98c9d22da95799f99cb
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   Mantle: 299966b00759634931699f69cb6a30b9239b944d

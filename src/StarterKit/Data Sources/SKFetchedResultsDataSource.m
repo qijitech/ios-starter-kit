@@ -50,5 +50,6 @@ static NSString * const kIdentifierKey = @"identifier";
     _modelOfClass = builder.modelOfClass;
   }
   return self;
-
 }
+
+@end
