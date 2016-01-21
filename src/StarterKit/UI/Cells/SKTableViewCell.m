@@ -57,4 +57,8 @@
   [self setNeedsUpdateConstraints];
 }
 
++ (NSString * OVC__NONNULL)cellIdentifier {
+    return nil;
+}
+
 @end

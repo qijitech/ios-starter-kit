@@ -39,14 +39,14 @@
 
 @implementation SKTableViewController
 
-+ (instancetype)createWithBuilder:(SKTableViewControllerBuilderBlock)block {
++ (id)createWithBuilder:(SKTableViewControllerBuilderBlock)block {
   NSParameterAssert(block);
   SKTableViewControllerBuilder *builder = [[SKTableViewControllerBuilder alloc] init];
   block(builder);
   return [builder build];
 }
 
-- (instancetype)initWithBuilder:(SKTableViewControllerBuilder *)builder {
+- (id)initWithBuilder:(SKTableViewControllerBuilder *)builder {
   NSParameterAssert(builder);
   NSParameterAssert(builder.entityName);
   NSParameterAssert(builder.cellIdentifier);
@@ -190,8 +190,9 @@
   }
 }
 
-- (void)paginate:(NSDictionary *)parameters {
+- (AnyPromise *)paginate:(NSDictionary *)parameters {
   NSAssert(NO, @"必须指定API");
+  return nil;
 }
 
 #pragma mark - Load data

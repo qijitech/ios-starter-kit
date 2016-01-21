@@ -20,7 +20,7 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 - (void)refreshData;
 - (void)loadMoreData;
 
-+ (instancetype)createWithBuilder:(SKTableViewControllerBuilderBlock )block;
-- (instancetype)initWithBuilder:(SKTableViewControllerBuilder *)builder;
++ (id)createWithBuilder:(SKTableViewControllerBuilderBlock )block;
+- (id)initWithBuilder:(SKTableViewControllerBuilder *)builder;
 
 @end

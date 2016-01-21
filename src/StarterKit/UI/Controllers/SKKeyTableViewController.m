@@ -9,7 +9,7 @@
 
 @implementation SKKeyTableViewController
 
-+ (instancetype)createWithBuilder:(SKTableViewControllerBuilderBlock)block {
++ (id)createWithBuilder:(SKTableViewControllerBuilderBlock)block {
   NSParameterAssert(block);
   SKTableViewControllerBuilder *builder = [[SKTableViewControllerBuilder alloc] init];
   builder.paginator = [[SKKeyPaginator alloc] init];

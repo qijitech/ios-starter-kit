@@ -28,3 +28,13 @@ end
 target 'Examples', :exclusive => true do
 xcodeproj 'Examples/Examples'
 end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['ARCHS'] = 'armv7 armv7s arm64'
+            config.build_settings['VALID_ARCHS'] = 'armv6 armv7 armv7s arm64'
+            config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+        end
+    end
+end

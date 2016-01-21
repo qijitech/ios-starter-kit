@@ -13,7 +13,7 @@ OVCGenerics(Model) : UITableViewCell
 
 - (void)configureCellWithData:(OVC_NULLABLE OVCGenericType(Model, id))entity;
 
-+ (OVC__NONNULL NSString *)cellIdentifier;
++ (NSString * OVC__NONNULL)cellIdentifier;
 
 @end
 
