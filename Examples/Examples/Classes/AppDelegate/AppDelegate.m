@@ -6,7 +6,14 @@
 //  Copyright © 2016 奇迹空间. All rights reserved.
 //
 
+#import <StarterKit/SKNetworkConfig.h>
 #import "AppDelegate.h"
+#import "Profile.h"
+#import "KeyFeedViewController.h"
+
+#if DEBUG
+#import <FLEX/FLEXManager.h>
+#endif
 
 @interface AppDelegate ()
 
@@ -17,7 +24,33 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor grayColor];
+
+
+    // init network config
+    [SKNetworkConfig sharedInstance].baseUrl = kBaseURL;
+
+    KeyFeedViewController *controller = [[KeyFeedViewController alloc] init];
+
+    UINavigationController *rootController = [UINavigationController new];
+    [rootController addChildViewController:controller];
+
+    self.window.rootViewController = rootController;
+    [self.window makeKeyAndVisible];
+
+    [self setupFLEXManager];
+
     return YES;
+}
+
+// 初始化debug工具
+- (void)setupFLEXManager {
+#ifdef DEBUG
+    [[FLEXManager sharedManager] showExplorer];
+#endif
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

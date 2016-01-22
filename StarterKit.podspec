@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = "StarterKit"
   s.version          = "0.1.0"
-  s.summary          = "A short description of StarterKit."
+  s.summary          = "ios starter kit."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'StarterKit/Classes/**/*'
   s.resource_bundles = {
-    'StarterKit' => ['StarterKit/Assets/*.png']
+    'StarterKit' => ['StarterKit/Assets/*.png', 'StarterKit/Assets/*.gif']
   }
 
   s.public_header_files = 'StarterKit/Classes/**/*.h'
