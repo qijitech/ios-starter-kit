@@ -117,15 +117,15 @@
   [self.tableView addLoadMoreActionHandler:^{
         @strongify(self);
         [self loadMoreData];
-      } ProgressImagesGifName:@"spinner_dropbox@2x.gif"
-                      LoadingImagesGifName:@"Preloader_10@2x.gif"
+      } ProgressImagesGifName:@"Frameworks/StarterKit.framework/StarterKit.bundle/spinner_dropbox@2x.gif"
+                      LoadingImagesGifName:@"Frameworks/StarterKit.framework/StarterKit.bundle/Preloader_10@2x.gif"
                    ProgressScrollThreshold:60];
 
   [self.tableView addPullToRefreshActionHandler:^{
         @strongify(self);
         [self refreshData];
-      } ProgressImagesGifName:@"spinner_dropbox@2x.gif"
-                           LoadingImagesGifName:@"Preloader_10@2x.gif"
+      } ProgressImagesGifName:@"Frameworks/StarterKit.framework/StarterKit.bundle/spinner_dropbox@2x.gif"
+                           LoadingImagesGifName:@"Frameworks/StarterKit.framework/StarterKit.bundle/Preloader_10@2x.gif"
                         ProgressScrollThreshold:60
   ];
 
@@ -299,7 +299,7 @@
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-  NSString *imageName = @"placeholder";
+  NSString *imageName = @"Frameworks/StarterKit.framework/StarterKit.bundle/placeholder";
 
   return [UIImage imageNamed:imageName];
 }
@@ -332,7 +332,7 @@
 }
 
 - (UIImage *)buttonBackgroundImageForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
-  NSString *imageName = @"button_background_kickstarter";
+  NSString *imageName = @"Frameworks/StarterKit.framework/StarterKit.bundle/button_background_kickstarter";
 
   if (state == UIControlStateNormal) imageName = [imageName stringByAppendingString:@"_normal"];
   if (state == UIControlStateHighlighted) imageName = [imageName stringByAppendingString:@"_highlight"];

@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
   s.source_files = 'StarterKit/Classes/**/*'
 
   s.resource_bundles = {
-    'StarterKit' => ['StarterKit/Assets/**/*.{png,gif}']
+   'StarterKit' => ['StarterKit/Assets/*','StarterKit/Assets.bundle']
   }
 
   s.public_header_files = 'StarterKit/Classes/**/*.h'
