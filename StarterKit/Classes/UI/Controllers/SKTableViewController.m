@@ -200,21 +200,27 @@
 #pragma mark - Load data
 
 - (void)refreshData {
-  [self.paginator refresh].catch(^(NSError *error) {
-    [self setupNetworkError:error isRefresh:YES];
-  }).finally(^{
-    [self.tableView stopPullToRefreshAnimation];
-    [self.tableView reloadEmptyDataSet];
-    [self shoudShowShimmerHUD];
+  AnyPromise *promise = [self.paginator refresh];
+  if (promise) {
+    promise.catch(^(NSError *error) {
+      [self setupNetworkError:error isRefresh:YES];
+    }).finally(^{
+      [self.tableView stopPullToRefreshAnimation];
+      [self.tableView reloadEmptyDataSet];
+      [self shoudShowShimmerHUD];
   });
+  }
 }
 
 - (void)loadMoreData {
-  [self.paginator loadMore].catch(^(NSError *error) {
-    [self setupNetworkError:error isRefresh:NO];
-  }).finally(^{
-    [self.tableView stopLoadMoreAnimation];
-  });
+  AnyPromise *promise = [self.paginator loadMore];
+  if (promise) {
+    promise.catch(^(NSError *error) {
+      [self setupNetworkError:error isRefresh:NO];
+    }).finally(^{
+      [self.tableView stopLoadMoreAnimation];
+    });
+  }
 }
 
 - (void)setupNetworkError:(NSError *)error isRefresh:(BOOL)isRefresh {
