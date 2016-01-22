@@ -1,11 +1,4 @@
 PODS:
-  - AFNetworking (2.6.3):
-    - AFNetworking/NSURLConnection (= 2.6.3)
-    - AFNetworking/NSURLSession (= 2.6.3)
-    - AFNetworking/Reachability (= 2.6.3)
-    - AFNetworking/Security (= 2.6.3)
-    - AFNetworking/Serialization (= 2.6.3)
-    - AFNetworking/UIKit (= 2.6.3)
   - AFNetworking/NSURLConnection (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -17,9 +10,6 @@ PODS:
   - AFNetworking/Reachability (2.6.3)
   - AFNetworking/Security (2.6.3)
   - AFNetworking/Serialization (2.6.3)
-  - AFNetworking/UIKit (2.6.3):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
   - AnimatedGIFImageSerialization (0.2.0)
   - DZNEmptyDataSet (1.7.3)
   - FLEX (2.2.0)
@@ -68,6 +58,9 @@ PODS:
     - MTLManagedObjectAdapter/extobjc (= 1.0.0.1)
   - MTLManagedObjectAdapter/extobjc (1.0.0.1):
     - Mantle (~> 2.0)
+  - Overcoat (3.2.1):
+    - Overcoat/NSURLConnection (= 3.2.1)
+    - Overcoat/NSURLSession (= 3.2.1)
   - Overcoat/Core (3.2.1):
     - AFNetworking/Serialization
     - Mantle
@@ -103,6 +96,21 @@ PODS:
     - Overcoat/NSURLSession
     - PromiseKit/CorePromise (> 2)
   - PromiseKit/CorePromise (3.0.1)
+  - StarterKit (0.1.0):
+    - DZNEmptyDataSet (~> 1.7.3)
+    - FLEX
+    - HexColors (~> 3.0.0)
+    - libextobjc
+    - Mantle (~> 2.0)
+    - Masonry (~> 0.6.4)
+    - Overcoat
+    - Overcoat/CoreData
+    - Overcoat/PromiseKit
+    - TGRDataSource
+    - Toast (~> 3.0)
+    - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
+    - UzysAnimatedGifLoadMore (~> 0.9.2)
+    - UzysAnimatedGifPullToRefresh (~> 0.9.7)
   - TGRDataSource (0.2)
   - Toast (3.0)
   - UITableView+FDTemplateLayoutCell (1.4)
@@ -112,20 +120,11 @@ PODS:
     - AnimatedGIFImageSerialization (~> 0.2.0)
 
 DEPENDENCIES:
-  - AFNetworking
-  - DZNEmptyDataSet (~> 1.7.3)
-  - FLEX (~> 2.2.0)
-  - HexColors (~> 3.0.0)
-  - libextobjc
-  - Mantle (~> 2.0)
-  - Masonry (~> 0.6.4)
-  - Overcoat/CoreData
-  - Overcoat/PromiseKit
-  - TGRDataSource
-  - Toast (~> 3.0)
-  - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
-  - UzysAnimatedGifLoadMore (~> 0.9.2)
-  - UzysAnimatedGifPullToRefresh (~> 0.9.7)
+  - StarterKit (from `.`)
+
+EXTERNAL SOURCES:
+  StarterKit:
+    :path: .
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -139,6 +138,7 @@ SPEC CHECKSUMS:
   MTLManagedObjectAdapter: 2da4b0244ee66f87b43e5fe9e7cd47838dea83ae
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
   PromiseKit: 19d12914484a15c25a46f72fde38579204a5dac6
+  StarterKit: be6c59f8eeec287cc0b450d82c4430835a747d32
   TGRDataSource: 9ab4ed589fae145f94b234a0ca1094aba35af473
   Toast: 32c59229abfcf41850162b83bb9259dc84372473
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
