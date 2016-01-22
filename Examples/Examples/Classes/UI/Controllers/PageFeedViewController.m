@@ -1,20 +1,16 @@
 //
-// Created by Hammer on 1/22/16.
+// Created by Hammer on 1/23/16.
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
+#import "PageFeedViewController.h"
 #import <StarterKit/SKTableViewControllerBuilder.h>
-#import "KeyFeedViewController.h"
 #import "FeedTableViewCell.h"
 #import "Feed.h"
 #import "SKManagedHTTPSessionManager+Network.h"
 #import <libextobjc/EXTScope.h>
 
-@interface KeyFeedViewController ()
-
-@end
-
-@implementation KeyFeedViewController
+@implementation PageFeedViewController
 
 - (id)init {
   if (self = [super init]) {
@@ -26,21 +22,11 @@
       @weakify(self);
       builder.paginateBlock = ^(NSDictionary *parameters) {
         @strongify(self)
-        return [self.httpSessionManager fetchFeedsWithId:parameters];
+        return [self.httpSessionManager fetchFeeds:parameters];
       };
     }];
   }
   return self;
-}
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  // Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -109,6 +109,7 @@
 		53DC5E491C528D3E009A3CCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DC5E471C528D3E009A3CCD /* LaunchScreen.storyboard */; };
 		8067003FD0886C0EB5C7B3B4 /* KeyFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670BE07A9A96DDD5E606B3 /* KeyFeedViewController.m */; };
 		806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670EAC56A3AC0AC2618440 /* AppDelegate.m */; };
+		8067036617A5B87A664A55A4 /* PageFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670876A86DD784AB939172 /* PageFeedViewController.m */; };
 		806703E9ACC6B57B4E73FAFC /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670E873A00CD2A29C33FD3 /* Feed.m */; };
 		8067042026D440B51562BB17 /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670A561FA932E1C8BB50E2 /* FeedTableViewCell.m */; };
 		80670937B0A866667C9D90BA /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670139B1FE7F382A36FFB0 /* BaseModel.m */; };
@@ -230,6 +231,7 @@
 		806703E20CC2FDF0C2828389 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		806704D2E7242366FCAEE3C2 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		806706BB1D9A43F5AA487F24 /* KeyFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFeedViewController.h; sourceTree = "<group>"; };
+		80670876A86DD784AB939172 /* PageFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageFeedViewController.m; sourceTree = "<group>"; };
 		806709A72AEE249E44845C07 /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
 		806709C77690F46E2E3DE6EB /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
 		80670A561FA932E1C8BB50E2 /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		80670BE07A9A96DDD5E606B3 /* KeyFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyFeedViewController.m; sourceTree = "<group>"; };
 		80670C252006DCC5078C5C8D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		80670E873A00CD2A29C33FD3 /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		80670E9DDB0C0F049047B62B /* PageFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageFeedViewController.h; sourceTree = "<group>"; };
 		80670EAC56A3AC0AC2618440 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8A3429AD3E96A3B3E69FEEFD /* Pods-Examples.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Examples.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Examples/Pods-Examples.release.xcconfig"; sourceTree = "<group>"; };
 		99C4E5AEFC4EA7887301CA6E /* Pods_Examples.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Examples.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -457,6 +460,8 @@
 			children = (
 				80670BE07A9A96DDD5E606B3 /* KeyFeedViewController.m */,
 				806706BB1D9A43F5AA487F24 /* KeyFeedViewController.h */,
+				80670876A86DD784AB939172 /* PageFeedViewController.m */,
+				80670E9DDB0C0F049047B62B /* PageFeedViewController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -732,6 +737,7 @@
 				8067042026D440B51562BB17 /* FeedTableViewCell.m in Sources */,
 				8067003FD0886C0EB5C7B3B4 /* KeyFeedViewController.m in Sources */,
 				806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */,
+				8067036617A5B87A664A55A4 /* PageFeedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
