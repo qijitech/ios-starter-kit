@@ -197,6 +197,10 @@
   }
 }
 
+- (AnyPromise *)paginate:(NSDictionary *)parameters {
+  return nil;
+}
+
 #pragma mark - Load data
 
 - (void)refreshData {

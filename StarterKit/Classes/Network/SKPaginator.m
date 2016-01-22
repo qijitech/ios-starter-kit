@@ -93,20 +93,26 @@
 }
 
 - (AnyPromise *)paginate:(NSDictionary *)parameters {
-  @weakify(self);
-  return [self.delegate paginate:parameters]
-      .then(^(OVCResponse *response) {
-        @strongify(self);
-        NSArray *result = response.result;
-        if (result && result.count >= self.pageSize) {
-          self.hasDataLoaded = YES;
-          self.nextPage += 1;
-        }
-        return result;
-      }).finally(^ {
-    self.refresh = NO;
-    self.loading = NO;
-  });
+  if (!self.delegate || ![self.delegate respondsToSelector:@selector(paginate:)]) {
+    return nil;
+  }
+  AnyPromise *promise = [self.delegate paginate:parameters];
+  if (promise) {
+    @weakify(self);
+    return promise.then(^(OVCResponse *response) {
+          @strongify(self);
+          NSArray *result = response.result;
+          if (result && result.count >= self.pageSize) {
+            self.hasDataLoaded = YES;
+            self.nextPage += 1;
+          }
+          return result;
+        }).finally(^{
+      self.refresh = NO;
+      self.loading = NO;
+    });
+  }
+  return nil;
 }
 @end
 /////////////////////////////
@@ -171,11 +177,17 @@
 }
 
 - (AnyPromise *)paginate:(NSDictionary *)parameters {
-  return [self.delegate paginate:parameters]
-      .finally(^ {
-        self.refresh = NO;
-        self.loading = NO;
-      });
+  if (!self.delegate || ![self.delegate respondsToSelector:@selector(paginate:)]) {
+    return nil;
+  }
+  AnyPromise *promise = [self.delegate paginate:parameters];
+  if (promise) {
+    return promise.finally(^ {
+          self.refresh = NO;
+          self.loading = NO;
+        });
+  }
+  return nil;
 }
 @end
 /////////////////////////////
