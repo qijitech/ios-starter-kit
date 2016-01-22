@@ -138,7 +138,7 @@ SPEC CHECKSUMS:
   MTLManagedObjectAdapter: 2da4b0244ee66f87b43e5fe9e7cd47838dea83ae
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
   PromiseKit: 19d12914484a15c25a46f72fde38579204a5dac6
-  StarterKit: 8c0a99f84c28c1417093f332667bcfa95d120ce1
+  StarterKit: 2da4e043f32157984c64307b45c1aeabfef1e9c1
   TGRDataSource: 9ab4ed589fae145f94b234a0ca1094aba35af473
   Toast: 32c59229abfcf41850162b83bb9259dc84372473
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
