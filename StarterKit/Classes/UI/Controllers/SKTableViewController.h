@@ -13,7 +13,7 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 
 @interface SKTableViewController : TGRFetchedResultsTableViewController <SKPaginatorDelegate>
 
-@property(nonatomic, strong, readonly) SKManagedHTTPSessionManager *httpSessionManager;
+@property(nonatomic, strong) SKManagedHTTPSessionManager *httpSessionManager;
 
 - (void)setupTableView;
 
@@ -23,7 +23,7 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 - (void)refreshData;
 - (void)loadMoreData;
 
-+ (id)createWithBuilder:(SKTableViewControllerBuilderBlock )block;
-- (id)initWithBuilder:(SKTableViewControllerBuilder *)builder;
+- (void)createWithBuilder:(SKTableViewControllerBuilderBlock )block;
+- (void)initWithBuilder:(SKTableViewControllerBuilder *)builder;
 
 @end

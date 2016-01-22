@@ -9,12 +9,12 @@
 
 @implementation SKPageTableViewController
 
-+ (id)createWithBuilder:(SKTableViewControllerBuilderBlock)block {
+- (void)createWithBuilder:(SKTableViewControllerBuilderBlock)block {
   NSParameterAssert(block);
   SKTableViewControllerBuilder *builder = [[SKTableViewControllerBuilder alloc] init];
   builder.paginator = [[SKPagedPaginator alloc] init];
   block(builder);
-  return [builder build];
+  [self initWithBuilder:builder];  
 }
 
 @end

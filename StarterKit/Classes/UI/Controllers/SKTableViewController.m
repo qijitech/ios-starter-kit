@@ -34,19 +34,19 @@
 @property(nonatomic, strong) Class modelOfClass;
 @property(nonatomic, strong) Class cellClass;
 @property(nonatomic, strong) SKPaginator *paginator;
-@property(nonatomic, strong) SKManagedHTTPSessionManager *httpSessionManager;
+@property(nonatomic, strong) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
 @end
 
 @implementation SKTableViewController
 
-+ (id)createWithBuilder:(SKTableViewControllerBuilderBlock)block {
+- (void)createWithBuilder:(SKTableViewControllerBuilderBlock)block {
   NSParameterAssert(block);
   SKTableViewControllerBuilder *builder = [[SKTableViewControllerBuilder alloc] init];
   block(builder);
-  return [builder build];
+  [self initWithBuilder:builder];
 }
 
-- (id)initWithBuilder:(SKTableViewControllerBuilder *)builder {
+- (void)initWithBuilder:(SKTableViewControllerBuilder *)builder {
   NSParameterAssert(builder);
   NSParameterAssert(builder.entityName);
   NSParameterAssert(builder.cellIdentifier);
@@ -54,23 +54,20 @@
   NSParameterAssert(builder.cellClass);
   NSParameterAssert(builder.paginator);
 
-  if (self = [super init]) {
-    _entityName = builder.entityName;
-    _cellIdentifier = builder.cellIdentifier;
-    _modelOfClass = builder.modelOfClass;
-    _cellClass = builder.cellClass;
-    _paginator = builder.paginator;
-    _paginator.delegate = self;
-    
-    // for core data entity name
-    if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
-      ((SKKeyPaginator *)_paginator).entityName = builder.entityName;
-    }
-      
-    _httpSessionManager = [[SKManagedHTTPSessionManager alloc]
-                           initWithManagedObjectContext:[SKManaged sharedInstance].managedObjectContext];
+  _entityName = builder.entityName;
+  _cellIdentifier = builder.cellIdentifier;
+  _modelOfClass = builder.modelOfClass;
+  _cellClass = builder.cellClass;
+  _paginator = builder.paginator;
+  _paginator.delegate = self;
+
+  // for core data entity name
+  if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
+    ((SKKeyPaginator *) _paginator).entityName = builder.entityName;
   }
-  return self;
+  _paginateBlock = builder.paginateBlock;
+  _httpSessionManager = [[SKManagedHTTPSessionManager alloc]
+      initWithManagedObjectContext:[SKManaged sharedInstance].managedObjectContext];
 }
 
 - (void)viewDidLoad {
@@ -198,6 +195,9 @@
 }
 
 - (AnyPromise *)paginate:(NSDictionary *)parameters {
+  if (self.paginateBlock) {
+    return self.paginateBlock(parameters);
+  }
   return nil;
 }
 
@@ -227,9 +227,12 @@
 - (void)loadMoreData {
   AnyPromise *promise = [self.paginator loadMore];
   if (promise) {
+    @weakify(self);
     promise.catch(^(NSError *error) {
+      @strongify(self);
       [self setupNetworkError:error isRefresh:NO];
     }).finally(^{
+      @strongify(self);
       [self.tableView stopLoadMoreAnimation];
     });
     return;

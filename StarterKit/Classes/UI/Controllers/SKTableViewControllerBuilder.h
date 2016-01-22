@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SKTableViewController.h"
 
 @class SKTableViewController;
 @class SKPaginator;
@@ -17,6 +18,6 @@
 
 @property(nonatomic, strong) SKPaginator *paginator;
 
-- (SKTableViewController *)build;
+@property(nonatomic, strong) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
 
 @end

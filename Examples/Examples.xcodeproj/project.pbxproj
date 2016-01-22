@@ -105,8 +105,8 @@
 		5363E4121C524846002F946C /* Preloader_9_00080@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5363E3B61C524846002F946C /* Preloader_9_00080@2x.png */; };
 		5363E4131C524846002F946C /* Preloader_9_00081@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5363E3B71C524846002F946C /* Preloader_9_00081@2x.png */; };
 		5363E4141C524846002F946C /* Preloader_9_00082@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5363E3B81C524846002F946C /* Preloader_9_00082@2x.png */; };
-		5363E4161C52486B002F946C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5363E4151C52486B002F946C /* Default-568h@2x.png */; };
 		5363E4191C5249B3002F946C /* SKManagedHTTPSessionManager+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 5363E4181C5249B3002F946C /* SKManagedHTTPSessionManager+Network.m */; };
+		53DC5E491C528D3E009A3CCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DC5E471C528D3E009A3CCD /* LaunchScreen.storyboard */; };
 		8067003FD0886C0EB5C7B3B4 /* KeyFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670BE07A9A96DDD5E606B3 /* KeyFeedViewController.m */; };
 		806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670EAC56A3AC0AC2618440 /* AppDelegate.m */; };
 		806703E9ACC6B57B4E73FAFC /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670E873A00CD2A29C33FD3 /* Feed.m */; };
@@ -220,9 +220,9 @@
 		5363E3B61C524846002F946C /* Preloader_9_00080@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Preloader_9_00080@2x.png"; sourceTree = "<group>"; };
 		5363E3B71C524846002F946C /* Preloader_9_00081@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Preloader_9_00081@2x.png"; sourceTree = "<group>"; };
 		5363E3B81C524846002F946C /* Preloader_9_00082@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Preloader_9_00082@2x.png"; sourceTree = "<group>"; };
-		5363E4151C52486B002F946C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5363E4171C5249B3002F946C /* SKManagedHTTPSessionManager+Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKManagedHTTPSessionManager+Network.h"; sourceTree = "<group>"; };
 		5363E4181C5249B3002F946C /* SKManagedHTTPSessionManager+Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKManagedHTTPSessionManager+Network.m"; sourceTree = "<group>"; };
+		53DC5E481C528D3E009A3CCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		806700CE38456EF92CB6CC16 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		80670139B1FE7F382A36FFB0 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		806701E05F4FF849F88E2B91 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -269,7 +269,6 @@
 		5361ED141C4D38DB0048F4AC = {
 			isa = PBXGroup;
 			children = (
-				5363E4151C52486B002F946C /* Default-568h@2x.png */,
 				5318382F1C51FFC500A38298 /* Podspec Metadata */,
 				5361ED1F1C4D38DB0048F4AC /* Example for StarterKit */,
 				5361ED1E1C4D38DB0048F4AC /* Products */,
@@ -302,6 +301,7 @@
 		5361ED201C4D38DB0048F4AC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				53DC5E471C528D3E009A3CCD /* LaunchScreen.storyboard */,
 				5361ED211C4D38DB0048F4AC /* main.m */,
 			);
 			name = "Supporting Files";
@@ -633,6 +633,7 @@
 				5363E3D31C524846002F946C /* Preloader_9_00017@2x.png in Resources */,
 				5361ED2D1C4D38DB0048F4AC /* Assets.xcassets in Resources */,
 				5363E3E21C524846002F946C /* Preloader_9_00032@2x.png in Resources */,
+				53DC5E491C528D3E009A3CCD /* LaunchScreen.storyboard in Resources */,
 				531838311C51FFD000A38298 /* StarterKit.podspec in Resources */,
 				5363E3DC1C524846002F946C /* Preloader_9_00026@2x.png in Resources */,
 				5363E3C91C524846002F946C /* Preloader_9_00007@2x.png in Resources */,
@@ -643,7 +644,6 @@
 				5363E3E61C524846002F946C /* Preloader_9_00036@2x.png in Resources */,
 				5363E4121C524846002F946C /* Preloader_9_00080@2x.png in Resources */,
 				5363E3BE1C524846002F946C /* placeholder@2x.png in Resources */,
-				5363E4161C52486B002F946C /* Default-568h@2x.png in Resources */,
 				5363E3CC1C524846002F946C /* Preloader_9_00010@2x.png in Resources */,
 				5363E4021C524846002F946C /* Preloader_9_00064@2x.png in Resources */,
 				5363E3FE1C524846002F946C /* Preloader_9_00060@2x.png in Resources */,
@@ -736,6 +736,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		53DC5E471C528D3E009A3CCD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				53DC5E481C528D3E009A3CCD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5361ED321C4D38DB0048F4AC /* Debug */ = {

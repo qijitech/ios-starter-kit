@@ -108,8 +108,8 @@
           }
           return result;
         }).finally(^{
-      self.refresh = NO;
-      self.loading = NO;
+          self.refresh = NO;
+          self.loading = NO;
     });
   }
   return nil;

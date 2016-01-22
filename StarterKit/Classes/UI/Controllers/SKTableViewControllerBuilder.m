@@ -10,8 +10,4 @@
 
 @implementation SKTableViewControllerBuilder
 
-- (SKTableViewController *)build {
-  return [[SKTableViewController alloc] initWithBuilder:self];
-}
-
 @end

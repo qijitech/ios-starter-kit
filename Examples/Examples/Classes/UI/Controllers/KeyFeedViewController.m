@@ -9,6 +9,7 @@
 #import "FeedTableViewCell.h"
 #import "Feed.h"
 #import "SKManagedHTTPSessionManager+Network.h"
+#import <libextobjc/EXTScope.h>
 
 @interface KeyFeedViewController ()
 
@@ -17,16 +18,20 @@
 @implementation KeyFeedViewController
 
 - (id)init {
-  return [[self class] createWithBuilder:^(SKTableViewControllerBuilder *builder) {
-    builder.cellClass = [FeedTableViewCell class];
-    builder.cellIdentifier = [FeedTableViewCell cellIdentifier];
-    builder.entityName = @"Feed";
-    builder.modelOfClass = [Feed class];
-  }];
-}
-
-- (AnyPromise *)paginate:(NSDictionary *)parameters {
-    return [self.httpSessionManager fetchFeedsWithId:parameters];
+  if (self = [super init]) {
+    [self createWithBuilder:^(SKTableViewControllerBuilder *builder) {
+      builder.cellClass = [FeedTableViewCell class];
+      builder.cellIdentifier = [FeedTableViewCell cellIdentifier];
+      builder.entityName = @"Feed";
+      builder.modelOfClass = [Feed class];
+      @weakify(self);
+      builder.paginateBlock = ^(NSDictionary *parameters) {
+        @strongify(self)
+        return [self.httpSessionManager fetchFeedsWithId:parameters];
+      };
+    }];
+  }
+  return self;
 }
 
 - (void)viewDidLoad {
