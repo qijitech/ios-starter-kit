@@ -7,7 +7,6 @@
 
 @class SKTableViewController;
 @class SKPaginator;
-@class SKManagedHTTPSessionManager;
 
 @interface SKTableViewControllerBuilder : NSObject
 
@@ -17,7 +16,6 @@
 @property(nonatomic, strong) Class cellClass;
 
 @property(nonatomic, strong) SKPaginator *paginator;
-@property(nonatomic, strong) SKManagedHTTPSessionManager *httpSessionManager;
 
 - (SKTableViewController *)build;
 

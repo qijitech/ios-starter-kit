@@ -6,7 +6,6 @@
 #import "SKTableViewControllerBuilder.h"
 #import "SKTableViewController.h"
 #import "SKPaginator.h"
-#import "SKManagedHTTPSessionManager.h"
 
 
 @implementation SKTableViewControllerBuilder

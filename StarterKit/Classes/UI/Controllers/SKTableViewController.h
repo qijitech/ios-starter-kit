@@ -5,12 +5,15 @@
 
 #import <TGRDataSource/TGRFetchedResultsTableViewController.h>
 #import "SKPaginator.h"
+#import "SKManagedHTTPSessionManager.h"
 
 @class SKTableViewControllerBuilder;
 
 typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *builder);
 
 @interface SKTableViewController : TGRFetchedResultsTableViewController <SKPaginatorDelegate>
+
+@property(nonatomic, strong, readonly) SKManagedHTTPSessionManager *httpSessionManager;
 
 - (void)setupTableView;
 

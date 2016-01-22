@@ -30,6 +30,8 @@
 
 @interface SKKeyPaginator : SKPaginator
 
+@property(nonatomic, assign) NSString *entityName;
+
 - (instancetype)initWithEntityName:(NSString *)entityName;
 
 @end

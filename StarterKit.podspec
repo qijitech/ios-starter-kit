@@ -31,8 +31,9 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'StarterKit/Classes/**/*'
+
   s.resource_bundles = {
-    'StarterKit' => ['StarterKit/Assets/*.png', 'StarterKit/Assets/*.gif']
+    'StarterKit' => ['StarterKit/Assets/**/*.{png,gif}']
   }
 
   s.public_header_files = 'StarterKit/Classes/**/*.h'

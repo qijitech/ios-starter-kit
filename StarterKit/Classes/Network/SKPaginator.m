@@ -117,7 +117,6 @@
 /////////////////////////////
 /////////////////////////////
 @interface SKKeyPaginator ()
-@property(nonatomic, assign) NSString *entityName;
 @end
 
 @implementation SKKeyPaginator

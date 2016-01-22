@@ -14,13 +14,13 @@
 #import "SKFetchedResultsDataSource.h"
 #import "SKFetchedResultsDataSourceBuilder.h"
 #import "SKTableViewControllerBuilder.h"
-#import "SKManagedHTTPSessionManager.h"
 #import <libextobjc/EXTScope.h>
 #import <Overcoat/OVCResponse.h>
 #import <UzysAnimatedGifLoadMore/UIScrollView+UzysAnimatedGifLoadMore.h>
 #import <Toast/UIView+Toast.h>
 #import <HexColors/HexColors.h>
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
+#import "SKManaged.h"
 
 #define IS_IOS7 (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1 && floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1)
 #define IS_IOS8  ([[[UIDevice currentDevice] systemVersion] compare:@"8" options:NSNumericSearch] != NSOrderedAscending)
@@ -53,7 +53,6 @@
   NSParameterAssert(builder.modelOfClass);
   NSParameterAssert(builder.cellClass);
   NSParameterAssert(builder.paginator);
-  NSParameterAssert(builder.httpSessionManager);
 
   if (self = [super init]) {
     _entityName = builder.entityName;
@@ -61,7 +60,15 @@
     _modelOfClass = builder.modelOfClass;
     _cellClass = builder.cellClass;
     _paginator = builder.paginator;
-    _httpSessionManager = builder.httpSessionManager;
+    _paginator.delegate = self;
+    
+    // for core data entity name
+    if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
+      ((SKKeyPaginator *)_paginator).entityName = builder.entityName;
+    }
+      
+    _httpSessionManager = [[SKManagedHTTPSessionManager alloc]
+                           initWithManagedObjectContext:[SKManaged sharedInstance].managedObjectContext];
   }
   return self;
 }
@@ -188,11 +195,6 @@
   if (isRefresh) {
     [self shoudShowShimmerHUD];
   }
-}
-
-- (AnyPromise *)paginate:(NSDictionary *)parameters {
-  NSAssert(NO, @"必须指定API");
-  return nil;
 }
 
 #pragma mark - Load data

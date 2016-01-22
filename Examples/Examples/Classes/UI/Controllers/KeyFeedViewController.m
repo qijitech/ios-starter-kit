@@ -8,7 +8,7 @@
 #import "KeyFeedViewController.h"
 #import "FeedTableViewCell.h"
 #import "Feed.h"
-#import "Network.h"
+#import "SKManagedHTTPSessionManager+Network.h"
 
 @interface KeyFeedViewController ()
 
@@ -21,10 +21,12 @@
     builder.cellClass = [FeedTableViewCell class];
     builder.cellIdentifier = [FeedTableViewCell cellIdentifier];
     builder.entityName = @"Feed";
-    SKManaged *managed = [SKManaged sharedInstance];
-    builder.httpSessionManager = [[Network alloc] initWithManagedObjectContext:managed.managedObjectContext];
     builder.modelOfClass = [Feed class];
   }];
+}
+
+- (AnyPromise *)paginate:(NSDictionary *)parameters {
+    return [self.httpSessionManager fetchFeedsWithId:parameters];
 }
 
 - (void)viewDidLoad {
