@@ -205,11 +205,19 @@
     promise.catch(^(NSError *error) {
       [self setupNetworkError:error isRefresh:YES];
     }).finally(^{
-      [self.tableView stopPullToRefreshAnimation];
-      [self.tableView reloadEmptyDataSet];
-      [self shoudShowShimmerHUD];
-  });
+      [self endRefresh];
+    });
+    return;
   }
+  self.paginator.loading = NO;
+  self.paginator.refresh = NO;
+  [self endRefresh];
+}
+
+- (void)endRefresh {
+  [self.tableView stopPullToRefreshAnimation];
+  [self.tableView reloadEmptyDataSet];
+  [self shoudShowShimmerHUD];
 }
 
 - (void)loadMoreData {
@@ -220,6 +228,7 @@
     }).finally(^{
       [self.tableView stopLoadMoreAnimation];
     });
+    return;
   }
 }
 
