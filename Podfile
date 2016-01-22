@@ -8,7 +8,7 @@ inhibit_all_warnings!
 
 workspace 'StarterKit'
 
-target 'Examples', :exclusive => true do
+target 'Examples' do
   pod "StarterKit", :path => "."
 end
 

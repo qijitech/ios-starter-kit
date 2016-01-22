@@ -138,11 +138,13 @@ SPEC CHECKSUMS:
   MTLManagedObjectAdapter: 2da4b0244ee66f87b43e5fe9e7cd47838dea83ae
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
   PromiseKit: 19d12914484a15c25a46f72fde38579204a5dac6
-  StarterKit: 6c896cc847c4beb14708bbb8d16afb142e009c39
+  StarterKit: 88e395929fac330783a6ec3dacab63e742d21dfb
   TGRDataSource: 9ab4ed589fae145f94b234a0ca1094aba35af473
   Toast: 32c59229abfcf41850162b83bb9259dc84372473
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
   UzysAnimatedGifLoadMore: 50f9cc2edb1a1b5352f10095daa2e68ce1b06e61
   UzysAnimatedGifPullToRefresh: add7a5b1b0afbba7b374f95d2cc0a86545b4a1cd
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: b3593f6b1fb714fbc319f52adcd6f7a62ff9f1d2
+
+COCOAPODS: 1.0.0.beta.2
