@@ -53,6 +53,7 @@ PODS:
     - Mantle/extobjc (= 2.0.6)
   - Mantle/extobjc (2.0.6)
   - Masonry (0.6.4)
+  - MMPlaceHolder (1.9)
   - MTLManagedObjectAdapter (1.0.0.1):
     - Mantle (~> 2.0)
     - MTLManagedObjectAdapter/extobjc (= 1.0.0.1)
@@ -103,6 +104,7 @@ PODS:
     - libextobjc
     - Mantle (~> 2.0)
     - Masonry (~> 0.6.4)
+    - MMPlaceHolder
     - Overcoat
     - Overcoat/CoreData
     - Overcoat/PromiseKit
@@ -135,10 +137,11 @@ SPEC CHECKSUMS:
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MMPlaceHolder: 40212b9dfe8760134b1b2fce3232f0d46200178f
   MTLManagedObjectAdapter: 2da4b0244ee66f87b43e5fe9e7cd47838dea83ae
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
   PromiseKit: 19d12914484a15c25a46f72fde38579204a5dac6
-  StarterKit: 28148350810cc73c9139ec3cd1a8ffdb797db66f
+  StarterKit: 5b8911554170c44a860948a9b0ad6b556c89c6ca
   TGRDataSource: 9ab4ed589fae145f94b234a0ca1094aba35af473
   Toast: 32c59229abfcf41850162b83bb9259dc84372473
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030

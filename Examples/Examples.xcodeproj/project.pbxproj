@@ -24,6 +24,7 @@
 		8067095040B5B6759572AF7E /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670B123D183CE7A0F29B77 /* Image.m */; };
 		80670C463D5E71092139187B /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067022EE76DD957C0E3C4C2 /* BaseTableViewCell.m */; };
 		80670CCB829A2DA289202D70 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 806701E05F4FF849F88E2B91 /* User.m */; };
+		80670FD5D4C3ADDAC38E6FE9 /* MasonryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806708750105D94D0F09080B /* MasonryViewController.m */; };
 		E29066E7936A453BB96B67F5 /* Pods_Examples.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4E5AEFC4EA7887301CA6E /* Pods_Examples.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +47,9 @@
 		8067022EE76DD957C0E3C4C2 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		806703E20CC2FDF0C2828389 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		806704D2E7242366FCAEE3C2 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		80670501411CD9FB8777B2C3 /* MasonryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasonryViewController.h; sourceTree = "<group>"; };
 		806706BB1D9A43F5AA487F24 /* KeyFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFeedViewController.h; sourceTree = "<group>"; };
+		806708750105D94D0F09080B /* MasonryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasonryViewController.m; sourceTree = "<group>"; };
 		80670876A86DD784AB939172 /* PageFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageFeedViewController.m; sourceTree = "<group>"; };
 		806709A72AEE249E44845C07 /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
 		806709C77690F46E2E3DE6EB /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 				806706BB1D9A43F5AA487F24 /* KeyFeedViewController.h */,
 				80670876A86DD784AB939172 /* PageFeedViewController.m */,
 				80670E9DDB0C0F049047B62B /* PageFeedViewController.h */,
+				806708750105D94D0F09080B /* MasonryViewController.m */,
+				80670501411CD9FB8777B2C3 /* MasonryViewController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				8067003FD0886C0EB5C7B3B4 /* KeyFeedViewController.m in Sources */,
 				806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */,
 				8067036617A5B87A664A55A4 /* PageFeedViewController.m in Sources */,
+				80670FD5D4C3ADDAC38E6FE9 /* MasonryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

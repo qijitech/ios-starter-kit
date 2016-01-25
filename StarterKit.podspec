@@ -55,5 +55,6 @@ Pod::Spec.new do |s|
   s.dependency 'UzysAnimatedGifLoadMore', '~> 0.9.2'
   s.dependency 'UzysAnimatedGifPullToRefresh', '~> 0.9.7'
   s.dependency 'FLEX'
+  s.dependency 'MMPlaceHolder'
 
 end
