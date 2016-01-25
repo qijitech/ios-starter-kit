@@ -167,7 +167,9 @@
 }
 
 - (void)shoudShowShimmerHUD {
-  if (self.paginator.isRefresh && !self.paginator.hasDataLoaded) {
+  if (self.paginator.isRefresh &&
+      !self.paginator.hasDataLoaded &&
+      [self.dataSource.fetchedResultsController.fetchedObjects count] <= 0) {
     [self showShimmerHUD];
     return;
   }
