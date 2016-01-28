@@ -9,5 +9,7 @@
 @interface Image : BaseModel
 
 @property(nonatomic, strong) NSURL *url;
+@property(nonatomic, assign) NSUInteger width;
+@property(nonatomic, assign) NSUInteger height;
 
 @end

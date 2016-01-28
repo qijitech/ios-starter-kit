@@ -11,6 +11,8 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
       @"url" : @"url",
+      @"width" : @"width",
+      @"height" : @"height",
   }];
 }
 

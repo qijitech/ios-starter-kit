@@ -9,6 +9,8 @@
 #import "Image.h"
 
 static CGFloat const kSpace = 4;
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
 
 @interface SKPictureView ()
 @property(nonatomic, strong) NSArray *imageViews;
@@ -28,8 +30,8 @@ static CGFloat const kSpace = 4;
 
 - (void)updateConstraints {
   NSUInteger column = [self column:self.imageViews];
-  CGFloat itemW = [self itemWidthData:self.data];
-  CGFloat itemH = itemW;
+  CGFloat itemW = [self itemWidth];
+  CGFloat itemH = [self itemHeight];
 
   [self.imageViews enumerateObjectsUsingBlock:^(UIImageView *_Nonnull imageView, NSUInteger idx, BOOL *_Nonnull stop) {
     NSUInteger columnIndex = idx % column;
@@ -76,30 +78,62 @@ static CGFloat const kSpace = 4;
   return 1;
 }
 
-- (CGFloat)itemWidthData:(NSArray *)data {
-  if (data.count == 1) {
-    return 120;
-  } else {
-    return 80;
+static CGFloat const scaleFactor = 3 / 5.0;
+
+- (CGFloat)scaleFactorWithWidth:(CGFloat)width height:(CGFloat)height {
+  CGFloat scaleH = height / ScreenHeight;
+  CGFloat scaleW = width / ScreenWidth;
+  if (scaleH > scaleW) {
+    if (height > ScreenHeight) {
+      CGFloat pH = ScreenHeight * scaleFactor;
+      return pH / height;
+    }
+
+    if (height > ScreenHeight / 2) {
+      return 1 / 2.0;
+    }
+    return 1;
   }
+
+  if (width > ScreenWidth) {
+    CGFloat pH = ScreenWidth * scaleFactor;
+    return pH / width;
+  }
+
+  if (width > ScreenWidth / 2) {
+    return 1 / 2.0;
+  }
+  return 1;
+
+}
+
+- (CGFloat)itemWidth {
+  if (self.data.count == 1) {
+    for (Image *image in self.data) {
+      return image.width * [self scaleFactorWithWidth:image.width height:image.height];
+    }
+  }
+  return 80;
+}
+
+- (CGFloat)itemHeight {
+  if (self.data.count == 1) {
+    for (Image *image in self.data) {
+      return image.height * [self scaleFactorWithWidth:image.width height:image.height];
+    }
+  }
+  return 80;
 }
 
 - (CGFloat)height {
   NSUInteger count = self.data.count;
   NSUInteger row = count % 3 == 0 ? count / 3 : (count / 3 + 1);
-
-  CGFloat itemW = [self itemWidthData:self.data];
-  CGFloat itemH = itemW;
-
-  return row * itemH + (row - 1) * kSpace;
+  return row * [self itemHeight] + (row - 1) * kSpace;
 }
 
 - (CGFloat)width {
   NSUInteger column = [self column:self.imageViews];
-  CGFloat itemW = [self itemWidthData:self.data];
-  CGFloat itemH = itemW;
-
-  return column * itemH + (column - 1) * kSpace;
+  return column * [self itemWidth] + (column - 1) * kSpace;
 }
 
 @end
