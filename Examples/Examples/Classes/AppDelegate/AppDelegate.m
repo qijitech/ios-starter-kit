@@ -12,6 +12,7 @@
 #import "KeyFeedViewController.h"
 #import "PageFeedViewController.h"
 #import "MasonryViewController.h"
+#import "TestViewController.h"
 
 #if DEBUG
 #import <FLEX/FLEXManager.h>
@@ -34,9 +35,10 @@
     // init network config
     [SKNetworkConfig sharedInstance].baseUrl = kBaseURL;
 
-//    KeyFeedViewController *controller = [[KeyFeedViewController alloc] init];
+    KeyFeedViewController *controller = [[KeyFeedViewController alloc] init];
 //    PageFeedViewController *controller = [[PageFeedViewController alloc] init];
-    MasonryViewController *controller = [[MasonryViewController alloc] init];
+//    MasonryViewController *controller = [[MasonryViewController alloc] init];
+//    TestViewController *controller = [[TestViewController alloc] init];
 
     UINavigationController *rootController = [UINavigationController new];
     [rootController addChildViewController:controller];

@@ -11,6 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SKTableViewCell
 OVCGenerics(Model) : UITableViewCell
 
+- (void)setupViews;
+//- (void)updateConstraintsInternal;
+
 - (void)configureCellWithData:(OVC_NULLABLE OVCGenericType(Model, id))entity;
 
 + (NSString * OVC__NONNULL)cellIdentifier;

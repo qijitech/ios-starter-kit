@@ -11,10 +11,9 @@
 
 @interface SKTableViewControllerBuilder : NSObject
 
-@property(nonatomic, copy) NSString *cellIdentifier;
 @property(nonatomic, copy) NSString *entityName;
 @property(nonatomic, strong) Class modelOfClass;
-@property(nonatomic, strong) Class cellClass;
+@property (nonatomic, strong) NSArray *cellMetadata;
 
 @property(nonatomic, strong) SKPaginator *paginator;
 

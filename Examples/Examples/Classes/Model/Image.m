@@ -10,12 +10,11 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
-      @"type" : @"type",
       @"url" : @"url",
   }];
 }
 
-+ (NSValueTransformer *)avatarJSONTransformer {
++ (NSValueTransformer *)urlJSONTransformer {
   return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
@@ -26,12 +25,7 @@
 }
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {
-//  return [NSDictionary mtl_identityPropertyMapWithModel:self];
-  return @{
-      @"identifier" : @"identifier",
-      @"type" : @"type",
-  };
-
+  return [NSDictionary mtl_identityPropertyMapWithModel:self];
 }
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {

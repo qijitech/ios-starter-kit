@@ -19,12 +19,17 @@
 		806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670EAC56A3AC0AC2618440 /* AppDelegate.m */; };
 		8067036617A5B87A664A55A4 /* PageFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670876A86DD784AB939172 /* PageFeedViewController.m */; };
 		806703E9ACC6B57B4E73FAFC /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670E873A00CD2A29C33FD3 /* Feed.m */; };
-		8067042026D440B51562BB17 /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670A561FA932E1C8BB50E2 /* FeedTableViewCell.m */; };
+		8067084873D07CA944488073 /* SKFeedContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067098FAD997AA81BFE700D /* SKFeedContentView.m */; };
 		80670937B0A866667C9D90BA /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670139B1FE7F382A36FFB0 /* BaseModel.m */; };
+		80670944C5B1B0C135A23490 /* SKFeedPictureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 806703483087F6C8664BA2C0 /* SKFeedPictureTableViewCell.m */; };
+		8067094936B539FB124268C6 /* SKFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670676E6154E1CD042CB54 /* SKFeedTableViewCell.m */; };
 		8067095040B5B6759572AF7E /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670B123D183CE7A0F29B77 /* Image.m */; };
 		80670C463D5E71092139187B /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067022EE76DD957C0E3C4C2 /* BaseTableViewCell.m */; };
 		80670CCB829A2DA289202D70 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 806701E05F4FF849F88E2B91 /* User.m */; };
+		80670CCCCA2C2D485351EAB8 /* SKUserSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670728E5CEBAE3F31FE0B0 /* SKUserSimpleView.m */; };
+		80670F6D1EB110321EA184E8 /* SKPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670D4EAFD2A7A4CE530157 /* SKPictureView.m */; };
 		80670FD5D4C3ADDAC38E6FE9 /* MasonryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806708750105D94D0F09080B /* MasonryViewController.m */; };
+		80670FFAF9294D4BD45F4A5A /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806701E91C4BC7ED9FDBB707 /* TestViewController.m */; };
 		E29066E7936A453BB96B67F5 /* Pods_Examples.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4E5AEFC4EA7887301CA6E /* Pods_Examples.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,20 +49,30 @@
 		806700CE38456EF92CB6CC16 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		80670139B1FE7F382A36FFB0 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		806701E05F4FF849F88E2B91 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		806701E91C4BC7ED9FDBB707 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		8067022EE76DD957C0E3C4C2 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		806703483087F6C8664BA2C0 /* SKFeedPictureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFeedPictureTableViewCell.m; sourceTree = "<group>"; };
 		806703E20CC2FDF0C2828389 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		806704D2E7242366FCAEE3C2 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		806704DFE17FFCA49DC283A5 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		80670501411CD9FB8777B2C3 /* MasonryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasonryViewController.h; sourceTree = "<group>"; };
+		8067061B74E4DCF9F79204E6 /* SKFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFeedTableViewCell.h; sourceTree = "<group>"; };
+		80670676E6154E1CD042CB54 /* SKFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFeedTableViewCell.m; sourceTree = "<group>"; };
+		806706779E7D8E7A87C9B804 /* SKUserSimpleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKUserSimpleView.h; sourceTree = "<group>"; };
 		806706BB1D9A43F5AA487F24 /* KeyFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFeedViewController.h; sourceTree = "<group>"; };
+		80670728E5CEBAE3F31FE0B0 /* SKUserSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKUserSimpleView.m; sourceTree = "<group>"; };
+		8067079775885E0207E988CC /* SKFeedPictureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFeedPictureTableViewCell.h; sourceTree = "<group>"; };
 		806708750105D94D0F09080B /* MasonryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasonryViewController.m; sourceTree = "<group>"; };
 		80670876A86DD784AB939172 /* PageFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageFeedViewController.m; sourceTree = "<group>"; };
-		806709A72AEE249E44845C07 /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
+		8067098FAD997AA81BFE700D /* SKFeedContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFeedContentView.m; sourceTree = "<group>"; };
 		806709C77690F46E2E3DE6EB /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
-		80670A561FA932E1C8BB50E2 /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
 		80670ADC5F20F3D33878B41B /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		80670B123D183CE7A0F29B77 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		80670BE07A9A96DDD5E606B3 /* KeyFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyFeedViewController.m; sourceTree = "<group>"; };
+		80670C003387E7347F822701 /* SKFeedContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFeedContentView.h; sourceTree = "<group>"; };
 		80670C252006DCC5078C5C8D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		80670D05437C06894E7A544B /* SKPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPictureView.h; sourceTree = "<group>"; };
+		80670D4EAFD2A7A4CE530157 /* SKPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPictureView.m; sourceTree = "<group>"; };
 		80670E873A00CD2A29C33FD3 /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
 		80670E9DDB0C0F049047B62B /* PageFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageFeedViewController.h; sourceTree = "<group>"; };
 		80670EAC56A3AC0AC2618440 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -142,10 +157,20 @@
 			children = (
 				8067022EE76DD957C0E3C4C2 /* BaseTableViewCell.m */,
 				806704D2E7242366FCAEE3C2 /* BaseTableViewCell.h */,
-				80670A561FA932E1C8BB50E2 /* FeedTableViewCell.m */,
-				806709A72AEE249E44845C07 /* FeedTableViewCell.h */,
+				80670676E6154E1CD042CB54 /* SKFeedTableViewCell.m */,
+				8067061B74E4DCF9F79204E6 /* SKFeedTableViewCell.h */,
+				806703483087F6C8664BA2C0 /* SKFeedPictureTableViewCell.m */,
+				8067079775885E0207E988CC /* SKFeedPictureTableViewCell.h */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		806704233B176224AF562461 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				80670EDA7D07D6ACCEAA197C /* Feed */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		806705CBC3DFE2116228881C /* AppDelegate */ = {
@@ -162,6 +187,7 @@
 			children = (
 				806703DC15407B38856E2553 /* Cells */,
 				8067096C0B9AA2822B61B2F6 /* Controllers */,
+				806704233B176224AF562461 /* Views */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -175,6 +201,8 @@
 				80670E9DDB0C0F049047B62B /* PageFeedViewController.h */,
 				806708750105D94D0F09080B /* MasonryViewController.m */,
 				80670501411CD9FB8777B2C3 /* MasonryViewController.h */,
+				806701E91C4BC7ED9FDBB707 /* TestViewController.m */,
+				806704DFE17FFCA49DC283A5 /* TestViewController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -189,6 +217,19 @@
 				531838321C52324400A38298 /* Profile.h */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		80670EDA7D07D6ACCEAA197C /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				80670728E5CEBAE3F31FE0B0 /* SKUserSimpleView.m */,
+				806706779E7D8E7A87C9B804 /* SKUserSimpleView.h */,
+				8067098FAD997AA81BFE700D /* SKFeedContentView.m */,
+				80670C003387E7347F822701 /* SKFeedContentView.h */,
+				80670D4EAFD2A7A4CE530157 /* SKPictureView.m */,
+				80670D05437C06894E7A544B /* SKPictureView.h */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		80670EDD8717CF8305AADDFE /* Model */ = {
@@ -355,11 +396,16 @@
 				8067095040B5B6759572AF7E /* Image.m in Sources */,
 				531838381C5233E700A38298 /* README.md in Sources */,
 				80670C463D5E71092139187B /* BaseTableViewCell.m in Sources */,
-				8067042026D440B51562BB17 /* FeedTableViewCell.m in Sources */,
 				8067003FD0886C0EB5C7B3B4 /* KeyFeedViewController.m in Sources */,
 				806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */,
 				8067036617A5B87A664A55A4 /* PageFeedViewController.m in Sources */,
 				80670FD5D4C3ADDAC38E6FE9 /* MasonryViewController.m in Sources */,
+				80670CCCCA2C2D485351EAB8 /* SKUserSimpleView.m in Sources */,
+				8067084873D07CA944488073 /* SKFeedContentView.m in Sources */,
+				8067094936B539FB124268C6 /* SKFeedTableViewCell.m in Sources */,
+				80670F6D1EB110321EA184E8 /* SKPictureView.m in Sources */,
+				80670FFAF9294D4BD45F4A5A /* TestViewController.m in Sources */,
+				80670944C5B1B0C135A23490 /* SKFeedPictureTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

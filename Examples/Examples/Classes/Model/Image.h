@@ -8,7 +8,6 @@
 
 @interface Image : BaseModel
 
-@property(nonatomic, copy) NSString *type;
 @property(nonatomic, strong) NSURL *url;
 
 @end

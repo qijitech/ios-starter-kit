@@ -5,9 +5,10 @@
 
 #import <StarterKit/SKTableViewControllerBuilder.h>
 #import "KeyFeedViewController.h"
-#import "FeedTableViewCell.h"
 #import "Feed.h"
 #import "SKManagedHTTPSessionManager+Network.h"
+#import "SKFeedTableViewCell.h"
+#import "SKFeedPictureTableViewCell.h"
 #import <libextobjc/EXTScope.h>
 
 @interface KeyFeedViewController ()
@@ -19,8 +20,7 @@
 - (id)init {
   if (self = [super init]) {
     [self createWithBuilder:^(SKTableViewControllerBuilder *builder) {
-      builder.cellClass = [FeedTableViewCell class];
-      builder.cellIdentifier = [FeedTableViewCell cellIdentifier];
+      builder.cellMetadata = @[[SKFeedTableViewCell class], [SKFeedPictureTableViewCell class]];
       builder.entityName = @"Feed";
       builder.modelOfClass = [Feed class];
       @weakify(self);
@@ -33,14 +33,11 @@
   return self;
 }
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  // Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+- (NSString *)cellIdentifier:(Feed *)data {
+  if (data.images && data.images.count > 0) {
+    return [SKFeedPictureTableViewCell cellIdentifier];
+  }
+  return [SKFeedTableViewCell cellIdentifier];
 }
 
 @end

@@ -5,9 +5,9 @@
 
 #import "PageFeedViewController.h"
 #import <StarterKit/SKTableViewControllerBuilder.h>
-#import "FeedTableViewCell.h"
 #import "Feed.h"
 #import "SKManagedHTTPSessionManager+Network.h"
+#import "SKFeedTableViewCell.h"
 #import <libextobjc/EXTScope.h>
 
 @implementation PageFeedViewController
@@ -15,8 +15,7 @@
 - (id)init {
   if (self = [super init]) {
     [self createWithBuilder:^(SKTableViewControllerBuilder *builder) {
-      builder.cellClass = [FeedTableViewCell class];
-      builder.cellIdentifier = [FeedTableViewCell cellIdentifier];
+      builder.cellMetadata = @[[SKFeedTableViewCell class]];
       builder.entityName = @"Feed";
       builder.modelOfClass = [Feed class];
       @weakify(self);

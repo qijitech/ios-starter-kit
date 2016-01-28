@@ -25,13 +25,13 @@
   // Configure the view for the selected state
 }
 
-- (void)updateConstraints {
-  if (!self.didSetupConstraints) {
-    self.didSetupConstraints = YES;
-    [self updateConstraintsInternal];
-  }
-  [super updateConstraints];
-}
+//- (void)updateConstraints {
+//  if (!self.didSetupConstraints) {
+//    self.didSetupConstraints = YES;
+//    [self updateConstraintsInternal];
+//  }
+//  [super updateConstraints];
+//}
 
 - (void)layoutSubviews {
   [super layoutSubviews];
@@ -47,18 +47,18 @@
   // sub class implement
 }
 
-- (void)updateConstraintsInternal {
-  // sub class implement
-}
+//- (void)updateConstraintsInternal {
+// sub class implement
+//}
 
 - (void)configureCellWithData:(id)entity {
   // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-  [self updateConstraintsIfNeeded];
-  [self setNeedsUpdateConstraints];
-}
 
-+ (NSString * OVC__NONNULL)cellIdentifier {
-    return nil;
+  // 告诉self.view约束需要更新
+  [self updateConstraintsIfNeeded];
+
+  // 调用此方法告诉self.view检测是否需要更新约束，若需要则更新，下面添加动画效果才起作用
+  [self setNeedsUpdateConstraints];
 }
 
 @end

@@ -3,7 +3,7 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import <TGRDataSource/TGRDataSource.h>
+#import <TGRDataSource_qijitech/TGRDataSource.h>
 
 @class SKFetchedResultsDataSource;
 
@@ -11,8 +11,9 @@
 
 @property(nonatomic, strong) Class modelOfClass;
 @property(nonatomic, copy) NSString *entityName;
-@property(nonatomic, copy) NSString *reuseIdentifier;
-@property(nonatomic, assign) TGRDataSourceCellBlock configureCellBlock;
+@property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
+@property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
+
 - (SKFetchedResultsDataSource *)build;
 
 @end

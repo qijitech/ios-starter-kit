@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
   s.dependency 'Overcoat'
   s.dependency 'Overcoat/CoreData'
   s.dependency 'Overcoat/PromiseKit'
-  s.dependency 'TGRDataSource'
+  s.dependency 'TGRDataSource-qijitech'
   s.dependency 'libextobjc'
   s.dependency 'Mantle', '~> 2.0'
   s.dependency 'Masonry', '~> 0.6.4'
@@ -56,5 +56,6 @@ Pod::Spec.new do |s|
   s.dependency 'UzysAnimatedGifPullToRefresh', '~> 0.9.7'
   s.dependency 'FLEX'
   s.dependency 'MMPlaceHolder'
+  s.dependency 'SDWebImage', '~>3.7'
 
 end

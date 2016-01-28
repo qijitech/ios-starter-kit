@@ -34,7 +34,7 @@ static NSString * const kIdentifierKey = @"identifier";
 - (instancetype)initWithBuilder:(SKFetchedResultsDataSourceBuilder *)builder {
   NSParameterAssert(builder);
   NSParameterAssert(builder.entityName);
-  NSParameterAssert(builder.reuseIdentifier);
+  NSParameterAssert(builder.dequeueReusableCellBlock);
   NSParameterAssert(builder.configureCellBlock);
 
   SKManaged *managed = [SKManaged sharedInstance];
@@ -45,7 +45,7 @@ static NSString * const kIdentifierKey = @"identifier";
                  cacheName:nil];
 
   if (self = [super initWithFetchedResultsController:frc
-                                 cellReuseIdentifier:builder.reuseIdentifier
+                            dequeueReusableCellBlock:builder.dequeueReusableCellBlock
                                   configureCellBlock:builder.configureCellBlock]) {
     _modelOfClass = builder.modelOfClass;
   }

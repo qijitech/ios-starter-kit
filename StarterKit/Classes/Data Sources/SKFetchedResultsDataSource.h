@@ -3,7 +3,7 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import <TGRDataSource/TGRFetchedResultsDataSource.h>
+#import <TGRDataSource_qijitech/TGRFetchedResultsDataSource.h>
 
 @class SKFetchedResultsDataSourceBuilder;
 

@@ -31,15 +31,15 @@
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {
 //    NSLog(@"^%@==========", [NSDictionary mtl_identityPropertyMapWithModel:self]);
-//    return [NSDictionary mtl_identityPropertyMapWithModel:self];
-  return @{
-      @"identifier" : @"identifier",
-      @"phone" : @"phone",
-      @"nickname" : @"nickname",
-      @"realName" : @"realName",
-      @"sex" : @"sex",
-      @"token" : @"token"
-  };
+    return [NSDictionary mtl_identityPropertyMapWithModel:self];
+//  return @{
+//      @"identifier" : @"identifier",
+//      @"phone" : @"phone",
+//      @"nickname" : @"nickname",
+//      @"realName" : @"realName",
+//      @"sex" : @"sex",
+//      @"token" : @"token"
+//  };
 }
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {

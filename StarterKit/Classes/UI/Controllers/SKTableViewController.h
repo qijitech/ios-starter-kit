@@ -3,7 +3,7 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import <TGRDataSource/TGRFetchedResultsTableViewController.h>
+#import <TGRDataSource_qijitech/TGRFetchedResultsTableViewController.h>
 #import "SKPaginator.h"
 #import "SKManagedHTTPSessionManager.h"
 
@@ -25,5 +25,7 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 
 - (void)createWithBuilder:(SKTableViewControllerBuilderBlock )block;
 - (void)initWithBuilder:(SKTableViewControllerBuilder *)builder;
+
+- (NSString *)cellIdentifier:(id)data;
 
 @end

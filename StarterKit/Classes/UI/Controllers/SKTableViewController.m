@@ -30,9 +30,8 @@
 @property(nonatomic, strong) AMTumblrHud *shimmerHUD;
 
 @property(nonatomic, copy) NSString *entityName;
-@property(nonatomic, copy) NSString *cellIdentifier;
 @property(nonatomic, strong) Class modelOfClass;
-@property(nonatomic, strong) Class cellClass;
+@property(nonatomic, strong) NSArray *cellMetadata;
 @property(nonatomic, strong) SKPaginator *paginator;
 @property(nonatomic, strong) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
 @end
@@ -49,17 +48,15 @@
 - (void)initWithBuilder:(SKTableViewControllerBuilder *)builder {
   NSParameterAssert(builder);
   NSParameterAssert(builder.entityName);
-  NSParameterAssert(builder.cellIdentifier);
   NSParameterAssert(builder.modelOfClass);
-  NSParameterAssert(builder.cellClass);
+  NSParameterAssert(builder.cellMetadata);
   NSParameterAssert(builder.paginator);
 
   _entityName = builder.entityName;
-  _cellIdentifier = builder.cellIdentifier;
   _modelOfClass = builder.modelOfClass;
-  _cellClass = builder.cellClass;
   _paginator = builder.paginator;
   _paginator.delegate = self;
+  _cellMetadata = builder.cellMetadata;
 
   // for core data entity name
   if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
@@ -96,8 +93,12 @@
 - (void)setupTableView {
 
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  [self.tableView registerClass:[self cellClass]
-         forCellReuseIdentifier:[self cellIdentifier]];
+
+  for (Class clazz in self.cellMetadata) {
+    [self.tableView registerClass:clazz
+           forCellReuseIdentifier:[clazz cellIdentifier]];
+  }
+
   self.tableView.backgroundColor = [UIColor clearColor];
 
   self.tableView.emptyDataSetSource = self;
@@ -108,7 +109,9 @@
     @strongify(self);
     builder.modelOfClass = [self modelOfClass];
     builder.entityName = [self entityName];
-    builder.reuseIdentifier = [self cellIdentifier];
+    builder.dequeueReusableCellBlock = ^NSString *(id item) {
+      return [self cellIdentifier:item];
+    };
     builder.configureCellBlock = ^(SKTableViewCell *cell, id item) {
       [cell configureCellWithData:item];
     };
@@ -178,14 +181,21 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  id item = [self.dataSource itemAtIndexPath:indexPath];
   @weakify(self);
-  return [tableView fd_heightForCellWithIdentifier:[self cellIdentifier]
+  return [tableView fd_heightForCellWithIdentifier:[self cellIdentifier:item]
                                   cacheByIndexPath:indexPath
                                      configuration:^(SKTableViewCell *cell) {
     // 配置 cell 的数据源，和 "cellForRow" 干的事一致，比如：
     @strongify(self);
-    [cell configureCellWithData:[self.dataSource itemAtIndexPath:indexPath]];
+    [cell configureCellWithData:item];
   }];
+}
+
+- (NSString *)cellIdentifier:(id)data {
+  for (Class clazz in self.cellMetadata) {
+    return [clazz cellIdentifier];
+  }
 }
 
 # pragma mark - SKPaginatorDelegate
