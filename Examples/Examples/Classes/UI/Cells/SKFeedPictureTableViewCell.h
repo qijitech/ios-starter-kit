@@ -6,6 +6,5 @@
 #import <UIKit/UIKit.h>
 #import <StarterKit/SKTableViewCell.h>
 
-
 @interface SKFeedPictureTableViewCell : SKTableViewCell
 @end

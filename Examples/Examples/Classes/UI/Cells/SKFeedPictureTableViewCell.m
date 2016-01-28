@@ -60,14 +60,16 @@
     [self.feedPictureView mas_makeConstraints:^(MASConstraintMaker *make) {
       make.top.equalTo(self.feedContentView.mas_bottom);
       make.height.mas_equalTo(@([self.feedPictureView height]));
+      make.width.mas_equalTo(@([self.feedPictureView width]));
       make.left.right.and.bottom.equalTo(self.contentView).insets(UIEdgeInsetsMake(10, 10, 10, 10));
     }];
   }
-    
+
   [self.feedPictureView mas_updateConstraints:^(MASConstraintMaker *make) {
     make.height.mas_equalTo(@([self.feedPictureView height]));
+    make.width.mas_equalTo(@([self.feedPictureView width]));
   }];
-    
+
   [super updateConstraints];
 }
 

@@ -8,9 +8,9 @@
 #import "SKPictureView.h"
 #import "Image.h"
 
+static CGFloat const kSpace = 4;
 
 @interface SKPictureView ()
-@property BOOL didSetupConstraints;
 @property(nonatomic, strong) NSArray *imageViews;
 @end
 
@@ -27,48 +27,35 @@
 }
 
 - (void)updateConstraints {
-  if (!self.didSetupConstraints) {
+  NSUInteger column = [self column:self.imageViews];
+  CGFloat itemW = [self itemWidthData:self.data];
+  CGFloat itemH = itemW;
 
-    self.didSetupConstraints = YES;
-
-    NSUInteger column = [self column:self.imageViews];
-    CGFloat itemW = [self itemWidthData:self.data];
-    CGFloat itemH = itemW;
-
-    CGFloat margin = 10;
-    [self.imageViews enumerateObjectsUsingBlock:^(UIImageView *_Nonnull imageView, NSUInteger idx, BOOL *_Nonnull stop) {
-      NSUInteger columnIndex = idx % column;
-      NSUInteger rowIndex = idx / column;
-      [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(@(rowIndex * (margin + itemH)));
-        make.left.mas_equalTo(@(columnIndex * (margin + itemW)));
-        make.width.mas_equalTo(@(itemW));
-        make.height.mas_equalTo(@(itemH));
-      }];
+  [self.imageViews enumerateObjectsUsingBlock:^(UIImageView *_Nonnull imageView, NSUInteger idx, BOOL *_Nonnull stop) {
+    NSUInteger columnIndex = idx % column;
+    NSUInteger rowIndex = idx / column;
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.top.mas_equalTo(@(rowIndex * (kSpace + itemH)));
+      make.left.mas_equalTo(@(columnIndex * (kSpace + itemW)));
+      make.width.mas_equalTo(@(itemW));
+      make.height.mas_equalTo(@(itemH));
     }];
-  }
+  }];
   [super updateConstraints];
 }
 
 - (void)setData:(NSArray *)data {
   _data = data;
-  if (!_data || _data.count <= 0) {
-    for (UIView *view in self.subviews) {
-      [view removeFromSuperview];
-    }
-//    [self updateConstraintsIfNeeded];
-//    [self setNeedsUpdateConstraints];
-    return;
+  for (UIView *view in self.subviews) {
+    [view removeFromSuperview];
   }
-
   NSMutableArray *temp = [NSMutableArray new];
   [self.data enumerateObjectsUsingBlock:^(Image *image, NSUInteger idx, BOOL *stop) {
     UIImageView *imageView = [UIImageView new];
     [self addSubview:imageView];
     imageView.hidden = NO;
     imageView.userInteractionEnabled = YES;
-    [imageView sd_setImageWithURL:image.url
-                 placeholderImage:[UIImage imageNamed:@"avatar"]];
+    [imageView sd_setImageWithURL:image.url placeholderImage:[UIImage imageNamed:@"avatar"]];
     [temp addObject:imageView];
   }];
   self.imageViews = [temp copy];
@@ -103,9 +90,16 @@
 
   CGFloat itemW = [self itemWidthData:self.data];
   CGFloat itemH = itemW;
-  CGFloat margin = 10;
 
-  return row * itemH + (row - 1) * margin;
+  return row * itemH + (row - 1) * kSpace;
+}
+
+- (CGFloat)width {
+  NSUInteger column = [self column:self.imageViews];
+  CGFloat itemW = [self itemWidthData:self.data];
+  CGFloat itemH = itemW;
+
+  return column * itemH + (column - 1) * kSpace;
 }
 
 @end

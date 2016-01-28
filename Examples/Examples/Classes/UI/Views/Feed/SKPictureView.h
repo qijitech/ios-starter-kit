@@ -9,6 +9,7 @@
 @interface SKPictureView : UIView
 
 @property(nonatomic, strong) NSArray *data;
-@property(nonatomic, assign) CGFloat height ;
+@property(nonatomic, assign) CGFloat height;
+@property(nonatomic, assign) CGFloat width;
 
 @end
