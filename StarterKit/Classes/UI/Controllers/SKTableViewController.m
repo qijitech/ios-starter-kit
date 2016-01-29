@@ -218,7 +218,11 @@
 - (void)refreshData {
   AnyPromise *promise = [self.paginator refresh];
   if (promise) {
-    promise.catch(^(NSError *error) {
+    promise.then(^(NSArray *result) {
+      if (!result || result.count <=0) {
+        [self.navigationController.view makeToast:@"没有最新数据"];
+      }
+    }).catch(^(NSError *error) {
       [self setupNetworkError:error isRefresh:YES];
     }).finally(^{
       [self endRefresh];
@@ -240,7 +244,11 @@
   AnyPromise *promise = [self.paginator loadMore];
   if (promise) {
     @weakify(self);
-    promise.catch(^(NSError *error) {
+    promise.then(^(NSArray *result) {
+      if (!result || result.count <=0) {
+        [self.navigationController.view makeToast:@"没有更多数据"];
+      }
+    }).catch(^(NSError *error) {
       @strongify(self);
       [self setupNetworkError:error isRefresh:NO];
     }).finally(^{
@@ -253,9 +261,13 @@
 
 - (void)setupNetworkError:(NSError *)error isRefresh:(BOOL)isRefresh {
   NSDictionary *userInfo = [error userInfo];
+  if (userInfo[@"NSUnderlyingError"]) {
+    [self.navigationController.view makeToast:userInfo[@"NSLocalizedDescription"]];
+    return;
+  }
   OVCResponse *response = userInfo[@"OVCResponse"];
   SKErrorResponseModel *errorModel = response.result;
-  [self.navigationController.view makeToast:errorModel.message];
+  [self.view makeToast:errorModel.message];
 }
 
 #pragma mark - DZNEmptyDataSetSource Methods

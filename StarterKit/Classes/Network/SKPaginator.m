@@ -100,16 +100,16 @@
   if (promise) {
     @weakify(self);
     return promise.then(^(OVCResponse *response) {
-          @strongify(self);
-          NSArray *result = response.result;
-          if (result && result.count >= self.pageSize) {
-            self.hasDataLoaded = YES;
-            self.nextPage += 1;
-          }
-          return result;
-        }).finally(^{
-          self.refresh = NO;
-          self.loading = NO;
+      @strongify(self);
+      NSArray *result = response.result;
+      if (result && result.count >= self.pageSize) {
+        self.hasDataLoaded = YES;
+        self.nextPage += 1;
+      }
+      return result;
+    }).finally(^{
+      self.refresh = NO;
+      self.loading = NO;
     });
   }
   return nil;
@@ -182,10 +182,12 @@
   }
   AnyPromise *promise = [self.delegate paginate:parameters];
   if (promise) {
-    return promise.finally(^ {
-          self.refresh = NO;
-          self.loading = NO;
-        });
+    return promise.then(^(OVCResponse *response) {
+      return response.result;
+    }).finally(^{
+      self.refresh = NO;
+      self.loading = NO;
+    });
   }
   return nil;
 }
