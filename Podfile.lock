@@ -54,10 +54,10 @@ PODS:
   - Mantle/extobjc (2.0.6)
   - Masonry (0.6.4)
   - MMPlaceHolder (1.9)
-  - MTLManagedObjectAdapter (1.0.0.1):
+  - MTLManagedObjectAdapter (1.0.1):
     - Mantle (~> 2.0)
-    - MTLManagedObjectAdapter/extobjc (= 1.0.0.1)
-  - MTLManagedObjectAdapter/extobjc (1.0.0.1):
+    - MTLManagedObjectAdapter/extobjc (= 1.0.1)
+  - MTLManagedObjectAdapter/extobjc (1.0.1):
     - Mantle (~> 2.0)
   - Overcoat (3.2.1):
     - Overcoat/NSURLConnection (= 3.2.1)
@@ -142,7 +142,7 @@ SPEC CHECKSUMS:
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MMPlaceHolder: 40212b9dfe8760134b1b2fce3232f0d46200178f
-  MTLManagedObjectAdapter: 2da4b0244ee66f87b43e5fe9e7cd47838dea83ae
+  MTLManagedObjectAdapter: f369edc1226fde2061fe894bd87f256e60cd8f88
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
   PromiseKit: 19d12914484a15c25a46f72fde38579204a5dac6
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461

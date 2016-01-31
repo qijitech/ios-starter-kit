@@ -11,6 +11,7 @@
 		531838341C52335400A38298 /* Feed.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 531838331C52335400A38298 /* Feed.xcdatamodel */; };
 		531838371C5233E700A38298 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 531838351C5233E700A38298 /* LICENSE */; };
 		531838381C5233E700A38298 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 531838361C5233E700A38298 /* README.md */; };
+		535CD01E1C5DD433009FBE56 /* SKHTTPSessionManager+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = 535CD01D1C5DD433009FBE56 /* SKHTTPSessionManager+Auth.m */; };
 		5361ED221C4D38DB0048F4AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5361ED211C4D38DB0048F4AC /* main.m */; };
 		5361ED2D1C4D38DB0048F4AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED2C1C4D38DB0048F4AC /* Assets.xcassets */; };
 		5363E4191C5249B3002F946C /* SKManagedHTTPSessionManager+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 5363E4181C5249B3002F946C /* SKManagedHTTPSessionManager+Network.m */; };
@@ -24,6 +25,7 @@
 		80670944C5B1B0C135A23490 /* SKFeedPictureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 806703483087F6C8664BA2C0 /* SKFeedPictureTableViewCell.m */; };
 		8067094936B539FB124268C6 /* SKFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670676E6154E1CD042CB54 /* SKFeedTableViewCell.m */; };
 		8067095040B5B6759572AF7E /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670B123D183CE7A0F29B77 /* Image.m */; };
+		80670B2572297D47B613B712 /* AuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806709D2A0B7002551380F96 /* AuthController.m */; };
 		80670C463D5E71092139187B /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067022EE76DD957C0E3C4C2 /* BaseTableViewCell.m */; };
 		80670CCB829A2DA289202D70 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 806701E05F4FF849F88E2B91 /* User.m */; };
 		80670CCCCA2C2D485351EAB8 /* SKUserSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670728E5CEBAE3F31FE0B0 /* SKUserSimpleView.m */; };
@@ -39,6 +41,8 @@
 		531838331C52335400A38298 /* Feed.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Feed.xcdatamodel; sourceTree = "<group>"; };
 		531838351C5233E700A38298 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		531838361C5233E700A38298 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		535CD01C1C5DD433009FBE56 /* SKHTTPSessionManager+Auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKHTTPSessionManager+Auth.h"; sourceTree = "<group>"; };
+		535CD01D1C5DD433009FBE56 /* SKHTTPSessionManager+Auth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKHTTPSessionManager+Auth.m"; sourceTree = "<group>"; };
 		5361ED1D1C4D38DB0048F4AC /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5361ED211C4D38DB0048F4AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5361ED2C1C4D38DB0048F4AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 		80670876A86DD784AB939172 /* PageFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageFeedViewController.m; sourceTree = "<group>"; };
 		8067098FAD997AA81BFE700D /* SKFeedContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFeedContentView.m; sourceTree = "<group>"; };
 		806709C77690F46E2E3DE6EB /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
+		806709D2A0B7002551380F96 /* AuthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthController.m; sourceTree = "<group>"; };
 		80670ADC5F20F3D33878B41B /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		80670B123D183CE7A0F29B77 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		80670BE07A9A96DDD5E606B3 /* KeyFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyFeedViewController.m; sourceTree = "<group>"; };
@@ -73,6 +78,7 @@
 		80670C252006DCC5078C5C8D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		80670D05437C06894E7A544B /* SKPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPictureView.h; sourceTree = "<group>"; };
 		80670D4EAFD2A7A4CE530157 /* SKPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPictureView.m; sourceTree = "<group>"; };
+		80670DA20DA61A28215A9B0C /* AuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthController.h; sourceTree = "<group>"; };
 		80670E873A00CD2A29C33FD3 /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
 		80670E9DDB0C0F049047B62B /* PageFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageFeedViewController.h; sourceTree = "<group>"; };
 		80670EAC56A3AC0AC2618440 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -148,6 +154,8 @@
 			children = (
 				5363E4171C5249B3002F946C /* SKManagedHTTPSessionManager+Network.h */,
 				5363E4181C5249B3002F946C /* SKManagedHTTPSessionManager+Network.m */,
+				535CD01C1C5DD433009FBE56 /* SKHTTPSessionManager+Auth.h */,
+				535CD01D1C5DD433009FBE56 /* SKHTTPSessionManager+Auth.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -203,6 +211,8 @@
 				80670501411CD9FB8777B2C3 /* MasonryViewController.h */,
 				806701E91C4BC7ED9FDBB707 /* TestViewController.m */,
 				806704DFE17FFCA49DC283A5 /* TestViewController.h */,
+				806709D2A0B7002551380F96 /* AuthController.m */,
+				80670DA20DA61A28215A9B0C /* AuthController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -403,9 +413,11 @@
 				80670CCCCA2C2D485351EAB8 /* SKUserSimpleView.m in Sources */,
 				8067084873D07CA944488073 /* SKFeedContentView.m in Sources */,
 				8067094936B539FB124268C6 /* SKFeedTableViewCell.m in Sources */,
+				535CD01E1C5DD433009FBE56 /* SKHTTPSessionManager+Auth.m in Sources */,
 				80670F6D1EB110321EA184E8 /* SKPictureView.m in Sources */,
 				80670FFAF9294D4BD45F4A5A /* TestViewController.m in Sources */,
 				80670944C5B1B0C135A23490 /* SKFeedPictureTableViewCell.m in Sources */,
+				80670B2572297D47B613B712 /* AuthController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

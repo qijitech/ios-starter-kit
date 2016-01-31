@@ -13,6 +13,7 @@
 #import "PageFeedViewController.h"
 #import "MasonryViewController.h"
 #import "TestViewController.h"
+#import "AuthController.h"
 
 #if DEBUG
 #import <FLEX/FLEXManager.h>
@@ -35,7 +36,8 @@
     // init network config
     [SKNetworkConfig sharedInstance].baseUrl = kBaseURL;
 
-    KeyFeedViewController *controller = [[KeyFeedViewController alloc] init];
+    AuthController *controller = [[AuthController alloc] init];
+//    KeyFeedViewController *controller = [[KeyFeedViewController alloc] init];
 //    PageFeedViewController *controller = [[PageFeedViewController alloc] init];
 //    MasonryViewController *controller = [[MasonryViewController alloc] init];
 //    TestViewController *controller = [[TestViewController alloc] init];

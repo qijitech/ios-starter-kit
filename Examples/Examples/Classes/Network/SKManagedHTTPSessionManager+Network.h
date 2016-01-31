@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <StarterKit/SKManagedHTTPSessionManager.h>
+#import <Overcoat/OVCHTTPSessionManager+PromiseKit.h>
 
 @interface SKManagedHTTPSessionManager (Network)
 
