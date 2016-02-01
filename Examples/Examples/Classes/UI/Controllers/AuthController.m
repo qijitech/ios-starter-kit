@@ -4,11 +4,13 @@
 //
 
 #import <StarterKit/SKNetworkConfig.h>
+#import <StarterKit/SKAccountManager.h>
 #import "AuthController.h"
 
 #import "SKHTTPSessionManager+Auth.h"
+#import "User.h"
 
-@interface AuthController ()
+@interface AuthController () <SKAccountManagerDelegate>
 @property(nonatomic, strong) SKHTTPSessionManager *sessionManager;
 @end
 
@@ -20,14 +22,21 @@
   self.sessionManager = [[SKHTTPSessionManager alloc] initWithBaseURL:
       [NSURL URLWithString:[SKNetworkConfig sharedInstance].baseUrl]];
 
-  NSDictionary *parameters = @{@"phone": @"18612184602", @"password":@"123456"};
-  [self.sessionManager login:parameters].then(^(OVCResponse *response) {
-    NSLog(@"=====%@", response);
-  }).catch (^(NSError *error) {
+  NSDictionary *parameters = @{@"phone" : @"18612184602", @"password" : @"123456"};
+  SKAccountManager *accountManager = [SKAccountManager defaultAccountManager];
+  accountManager.delegate = self;
+  [accountManager login:parameters].then(^(User *user) {
+    NSLog(@"%@", user);
+  }).catch(^(NSError *error) {
     NSLog(@"=====%@", error);
-  }) .finally (^ {
+  }).finally(^{
     NSLog(@"=====finally");
   });
 }
+
+- (AnyPromise *)login:(NSDictionary *)parameters {
+  return [self.sessionManager login:parameters];
+}
+
 
 @end

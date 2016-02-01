@@ -5,9 +5,9 @@
 
 
 
-#import "BaseModel.h"
+#import <StarterKit/SKAccountModel.h>
 
-@interface User : BaseModel
+@interface User : SKAccountModel
 
 @property(nonatomic, copy) NSString *phone;
 @property(nonatomic, copy) NSString *nickname;

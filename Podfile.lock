@@ -96,7 +96,7 @@ PODS:
   - Overcoat/PromiseKit/NSURLSession (3.2.1):
     - Overcoat/NSURLSession
     - PromiseKit/CorePromise (> 2)
-  - PromiseKit/CorePromise (3.0.1)
+  - PromiseKit/CorePromise (3.0.2)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -144,7 +144,7 @@ SPEC CHECKSUMS:
   MMPlaceHolder: 40212b9dfe8760134b1b2fce3232f0d46200178f
   MTLManagedObjectAdapter: f369edc1226fde2061fe894bd87f256e60cd8f88
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
-  PromiseKit: 19d12914484a15c25a46f72fde38579204a5dac6
+  PromiseKit: ab1a380f7a30cf8cce663a2411e8b3580b10313d
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   StarterKit: 6e9f41de338cc2ed431cda7c11687e91bc6aafb3
   TGRDataSource-qijitech: 992d354048c624db8e524d0e763b21030a2e646e
