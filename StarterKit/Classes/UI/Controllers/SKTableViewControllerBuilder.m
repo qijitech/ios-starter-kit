@@ -4,10 +4,29 @@
 //
 
 #import "SKTableViewControllerBuilder.h"
-#import "SKTableViewController.h"
-#import "SKPaginator.h"
+#import "SKTableViewCell.h"
 
 
 @implementation SKTableViewControllerBuilder
+
+
+- (TGRDataSourceDequeueReusableCellBlock)dequeueReusableCellBlock {
+  if (!_dequeueReusableCellBlock) {
+    _dequeueReusableCellBlock = ^NSString *(id item) {
+      Class clazz = self.cellMetadata[0];
+      return [clazz cellIdentifier];
+    };
+  }
+  return _dequeueReusableCellBlock;
+}
+
+- (TGRDataSourceCellBlock)configureCellBlock {
+  if (!_configureCellBlock) {
+    _configureCellBlock = ^(SKTableViewCell *cell, id item) {
+      [cell configureCellWithData:item];
+    };
+  }
+  return _configureCellBlock;
+}
 
 @end

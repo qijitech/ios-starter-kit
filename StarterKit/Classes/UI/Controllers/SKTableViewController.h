@@ -26,6 +26,4 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 - (void)createWithBuilder:(SKTableViewControllerBuilderBlock )block;
 - (void)initWithBuilder:(SKTableViewControllerBuilder *)builder;
 
-- (NSString *)cellIdentifier:(id)data;
-
 @end

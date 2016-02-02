@@ -8,6 +8,7 @@
 #import "Feed.h"
 #import "SKManagedHTTPSessionManager+Network.h"
 #import "SKFeedTableViewCell.h"
+#import "SKFeedPictureTableViewCell.h"
 #import <libextobjc/EXTScope.h>
 
 @implementation PageFeedViewController
@@ -15,9 +16,17 @@
 - (id)init {
   if (self = [super init]) {
     [self createWithBuilder:^(SKTableViewControllerBuilder *builder) {
-      builder.cellMetadata = @[[SKFeedTableViewCell class]];
+      builder.cellMetadata = @[[SKFeedTableViewCell class], [SKFeedPictureTableViewCell class]];
       builder.entityName = @"Feed";
       builder.modelOfClass = [Feed class];
+
+      builder.dequeueReusableCellBlock = ^NSString *(Feed *item) {
+        if (item.images && item.images.count > 0) {
+          return [SKFeedPictureTableViewCell cellIdentifier];
+        }
+        return [SKFeedTableViewCell cellIdentifier];
+      };
+
       @weakify(self);
       builder.paginateBlock = ^(NSDictionary *parameters) {
         @strongify(self)

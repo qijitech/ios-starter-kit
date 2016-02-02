@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <TGRDataSource_qijitech/TGRDataSource.h>
 #import "SKTableViewController.h"
 
 @class SKTableViewController;
@@ -11,12 +12,16 @@
 
 @interface SKTableViewControllerBuilder : NSObject
 
+// required
 @property(nonatomic, copy) NSString *entityName;
 @property(nonatomic, strong) Class modelOfClass;
 @property (nonatomic, strong) NSArray *cellMetadata;
-
-@property(nonatomic, strong) SKPaginator *paginator;
-
 @property(nonatomic, strong) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
+
+// optional
+@property(nonatomic, strong) SKPaginator *paginator;
+@property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
+@property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
+
 
 @end

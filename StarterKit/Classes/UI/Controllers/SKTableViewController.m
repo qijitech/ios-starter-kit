@@ -34,6 +34,11 @@
 @property(nonatomic, strong) NSArray *cellMetadata;
 @property(nonatomic, strong) SKPaginator *paginator;
 @property(nonatomic, strong) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
+
+// optional
+@property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
+@property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
+
 @end
 
 @implementation SKTableViewController
@@ -52,16 +57,23 @@
   NSParameterAssert(builder.cellMetadata);
   NSParameterAssert(builder.paginator);
 
+  NSParameterAssert(builder.dequeueReusableCellBlock);
+  NSParameterAssert(builder.configureCellBlock);
+
   _entityName = builder.entityName;
   _modelOfClass = builder.modelOfClass;
   _paginator = builder.paginator;
   _paginator.delegate = self;
   _cellMetadata = builder.cellMetadata;
 
+  _dequeueReusableCellBlock = builder.dequeueReusableCellBlock;
+  _configureCellBlock = builder.configureCellBlock;
+
   // for core data entity name
   if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
     ((SKKeyPaginator *) _paginator).entityName = builder.entityName;
   }
+
   _paginateBlock = builder.paginateBlock;
   _httpSessionManager = [[SKManagedHTTPSessionManager alloc]
       initWithManagedObjectContext:[SKManaged sharedInstance].managedObjectContext];
@@ -109,12 +121,8 @@
     @strongify(self);
     builder.modelOfClass = [self modelOfClass];
     builder.entityName = [self entityName];
-    builder.dequeueReusableCellBlock = ^NSString *(id item) {
-      return [self cellIdentifier:item];
-    };
-    builder.configureCellBlock = ^(SKTableViewCell *cell, id item) {
-      [cell configureCellWithData:item];
-    };
+    builder.dequeueReusableCellBlock = self.dequeueReusableCellBlock;
+    builder.configureCellBlock = self.configureCellBlock;
   }];
 
   [self.tableView addLoadMoreActionHandler:^{
@@ -182,8 +190,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   id item = [self.dataSource itemAtIndexPath:indexPath];
+  NSString *cellIdentifier = self.dequeueReusableCellBlock(item);
   @weakify(self);
-  return [tableView fd_heightForCellWithIdentifier:[self cellIdentifier:item]
+  return [tableView fd_heightForCellWithIdentifier:cellIdentifier
                                   cacheByIndexPath:indexPath
                                      configuration:^(SKTableViewCell *cell) {
     // 配置 cell 的数据源，和 "cellForRow" 干的事一致，比如：
@@ -192,11 +201,6 @@
   }];
 }
 
-- (NSString *)cellIdentifier:(id)data {
-  for (Class clazz in self.cellMetadata) {
-    return [clazz cellIdentifier];
-  }
-}
 
 # pragma mark - SKPaginatorDelegate
 
