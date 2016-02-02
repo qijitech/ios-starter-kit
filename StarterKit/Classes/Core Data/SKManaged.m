@@ -90,7 +90,9 @@ static NSString *const kIdentifierKey = @"identifier";
 - (OVCManagedStore *)store {
   if (!_store) {
     // 这里看怎么设置比较好，暂时以当前类名来设置
-    _store = [OVCManagedStore managedStoreWithCacheName:NSStringFromClass([self class])];
+    NSString *cacheName = [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleExecutableKey]
+        ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleIdentifierKey];
+    _store = [OVCManagedStore managedStoreWithCacheName:cacheName];
   }
   return _store;
 }

@@ -6,13 +6,14 @@
 #import "SKManagedHTTPSessionManager.h"
 #import "SKNetworkConfig.h"
 #import "SkErrorResponseModel.h"
+#import "SKSessionConfiguration.h"
 
 @implementation SKManagedHTTPSessionManager
 
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)context {
   if (self = [super initWithBaseURL:[NSURL URLWithString:[SKNetworkConfig sharedInstance].baseUrl]
                managedObjectContext:context
-               sessionConfiguration:NULL]) {
+               sessionConfiguration:[SKSessionConfiguration defaultSessionConfiguration]]) {
 
   }
   return self;

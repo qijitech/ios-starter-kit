@@ -4,13 +4,14 @@
 
 #import "SKHTTPSessionManager.h"
 #import "SKErrorResponseModel.h"
-
+#import "SKSessionConfiguration.h"
 
 @implementation SKHTTPSessionManager
 
-- (instancetype)initWithBaseURL:(NSURL *)url
-           sessionConfiguration:(NSURLSessionConfiguration *)configuration {
-  if (self = [super initWithBaseURL:url sessionConfiguration:configuration]) {
+- (instancetype)initWithBaseURL:(NSString *)url {
+
+  if (self = [super initWithBaseURL:[NSURL URLWithString:url]
+               sessionConfiguration:[SKSessionConfiguration defaultSessionConfiguration]]) {
 
   }
   return self;

@@ -31,4 +31,6 @@
 
 - (BOOL)logout;
 
+- (NSString *)token;
+
 @end

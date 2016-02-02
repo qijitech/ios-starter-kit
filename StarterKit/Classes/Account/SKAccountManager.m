@@ -68,6 +68,10 @@ static NSString *kAccountDefaultsKey = @"Account";
   return [defaults synchronize];
 }
 
+- (NSString *)token {
+  if (![self isLoggedIn]) return nil;
+  return [self currentAccount].token;
+}
 
 - (SKAccountModel *)currentAccount {
   if (!_currentAccount) {

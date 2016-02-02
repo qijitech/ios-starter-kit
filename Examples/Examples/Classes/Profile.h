@@ -13,5 +13,6 @@
 #define DEBUG 1
 
 static NSString *const kBaseURL = @"http://fakerapi.qiji.tech/";
+static NSString *const kAccept = @"application/vnd.fakerapi.v1+json";
 
 #endif /* Profile_h */

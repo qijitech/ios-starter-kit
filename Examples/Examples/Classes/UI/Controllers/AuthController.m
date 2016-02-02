@@ -19,8 +19,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.sessionManager = [[SKHTTPSessionManager alloc] initWithBaseURL:
-      [NSURL URLWithString:[SKNetworkConfig sharedInstance].baseUrl]];
+  self.sessionManager = [[SKHTTPSessionManager alloc] initWithBaseURL:[SKNetworkConfig sharedInstance].baseUrl];
 
   NSDictionary *parameters = @{@"phone" : @"18612184602", @"password" : @"123456"};
   SKAccountManager *accountManager = [SKAccountManager defaultAccountManager];  

@@ -10,6 +10,7 @@
 
 @property (nonatomic, copy) NSString *baseUrl;
 @property (nonatomic, assign) NSUInteger perPage;
+@property (nonatomic, copy) NSString *accept;
 
 + (SKNetworkConfig *)sharedInstance;
 

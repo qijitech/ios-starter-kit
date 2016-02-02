@@ -7,7 +7,6 @@
 
 @interface SKHTTPSessionManager : OVCHTTPSessionManager
 
-- (instancetype)initWithBaseURL:(NSURL *)url
-           sessionConfiguration:(NSURLSessionConfiguration *)configuration;
+- (instancetype)initWithBaseURL:(NSString *)url;
 
 @end

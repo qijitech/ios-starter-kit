@@ -36,10 +36,11 @@
 
     // init network config
     [SKNetworkConfig sharedInstance].baseUrl = kBaseURL;
+    [SKNetworkConfig sharedInstance].accept = kBaseURL;
 
 //    AuthController *controller = [[AuthController alloc] init];
-//    KeyFeedViewController *controller = [[KeyFeedViewController alloc] init];
-    PageFeedViewController *controller = [[PageFeedViewController alloc] init];
+    KeyFeedViewController *controller = [[KeyFeedViewController alloc] init];
+//    PageFeedViewController *controller = [[PageFeedViewController alloc] init];
 //    MasonryViewController *controller = [[MasonryViewController alloc] init];
 //    TestViewController *controller = [[TestViewController alloc] init];
 
