@@ -57,5 +57,6 @@ Pod::Spec.new do |s|
   s.dependency 'FLEX'
   s.dependency 'MMPlaceHolder'
   s.dependency 'SDWebImage', '~>3.7'
+  s.dependency 'AFNetworkActivityLogger', '~> 2.0.4'
 
 end

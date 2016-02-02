@@ -17,6 +17,7 @@
 
 #if DEBUG
 #import <FLEX/FLEXManager.h>
+#import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
 #endif
 
 @interface AppDelegate ()
@@ -49,6 +50,11 @@
     [self.window makeKeyAndVisible];
 
     [self setupFLEXManager];
+
+#ifdef DEBUG
+    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
+#endif
 
     return YES;
 }
