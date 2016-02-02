@@ -5,5 +5,8 @@
 
 #import "SKModel.h"
 
-@interface SKAccountModel : SKModel
+@interface SKAccountModel : SKModel <NSCoding>
+
+@property(nonatomic, copy) NSString *token;
+
 @end

@@ -8,6 +8,12 @@
 #import "SKAccountManager.h"
 #import "SKAccountModel.h"
 
+static NSString *kAccountDefaultsKey = @"Account";
+
+@interface SKAccountManager ()
+@property(nonatomic, strong) SKAccountModel *currentAccount;
+@end
+
 @implementation SKAccountManager
 
 + (SKAccountManager *)defaultAccountManager {
@@ -21,7 +27,7 @@
 
 - (instancetype)init {
   if (self = [super init]) {
-
+    _currentAccount = [self restoreAccount];
   }
   return self;
 }
@@ -44,11 +50,30 @@
   return nil;
 }
 
+- (BOOL)updateAccount:(SKAccountModel *)accountModel {
+  return [self storeAccount:accountModel];
+}
+
 - (BOOL)isLoggedIn {
+  if (self.currentAccount) {
+    return self.currentAccount.token != nil;
+  }
   return NO;
 }
 
-- (void)logout {
+- (BOOL)logout {
+  _currentAccount = nil;
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  [defaults removeObjectForKey:kAccountDefaultsKey];
+  return [defaults synchronize];
+}
+
+
+- (SKAccountModel *)currentAccount {
+  if (!_currentAccount) {
+    _currentAccount = [self restoreAccount];
+  }
+  return _currentAccount;
 }
 
 #pragma mark - Private properties
@@ -61,6 +86,7 @@
       SKAccountModel *account = response.result;
       if (account) {
         // save account
+        [self storeAccount:account];
       }
       return account;
     }).finally(^{
@@ -69,6 +95,20 @@
   }
   self.request = NO;
   return nil;
+}
+
+- (SKAccountModel *)restoreAccount {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  NSData *data = [defaults objectForKey:kAccountDefaultsKey];
+  return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
+- (BOOL)storeAccount:(SKAccountModel *)accountModel {
+  _currentAccount = accountModel;
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  NSData *data = [NSKeyedArchiver archivedDataWithRootObject:accountModel];
+  [defaults setObject:data forKey:kAccountDefaultsKey];
+  return [defaults synchronize];
 }
 
 @end

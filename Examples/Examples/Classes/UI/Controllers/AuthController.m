@@ -23,7 +23,7 @@
       [NSURL URLWithString:[SKNetworkConfig sharedInstance].baseUrl]];
 
   NSDictionary *parameters = @{@"phone" : @"18612184602", @"password" : @"123456"};
-  SKAccountManager *accountManager = [SKAccountManager defaultAccountManager];
+  SKAccountManager *accountManager = [SKAccountManager defaultAccountManager];  
   accountManager.delegate = self;
   [accountManager login:parameters].then(^(User *user) {
     NSLog(@"%@", user);
@@ -32,6 +32,12 @@
   }).finally(^{
     NSLog(@"=====finally");
   });
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  [self.sessionManager invalidateSessionCancelingTasks:YES];
+  _sessionManager = nil;
 }
 
 - (AnyPromise *)login:(NSDictionary *)parameters {

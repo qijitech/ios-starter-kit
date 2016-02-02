@@ -15,7 +15,6 @@
       @"avatar" : @"avatar",
       @"realName" : @"real_name",
       @"sex" : @"sex",
-      @"token" : @"token"
   }];
 }
 
@@ -30,20 +29,33 @@
 }
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {
-//    NSLog(@"^%@==========", [NSDictionary mtl_identityPropertyMapWithModel:self]);
-    return [NSDictionary mtl_identityPropertyMapWithModel:self];
-//  return @{
-//      @"identifier" : @"identifier",
-//      @"phone" : @"phone",
-//      @"nickname" : @"nickname",
-//      @"realName" : @"realName",
-//      @"sex" : @"sex",
-//      @"token" : @"token"
-//  };
+  return [NSDictionary mtl_identityPropertyMapWithModel:self];
 }
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {
   return [NSSet setWithObject:@"identifier"];
+}
+
+#pragma mark - NSCoding support
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+  [super encodeWithCoder:encoder];
+  [encoder encodeObject:self.identifier forKey:@"identifier"];
+  [encoder encodeObject:self.nickname forKey:@"nickname"];
+  [encoder encodeObject:self.avatar forKey:@"avatar"];
+  [encoder encodeObject:self.realName forKey:@"realName"];
+  [encoder encodeObject:self.sex forKey:@"sex"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)decoder {
+  if (self = [super initWithCoder:decoder]) {
+    self.identifier = [decoder decodeObjectForKey:@"identifier"];
+    self.nickname = [decoder decodeObjectForKey:@"nickname"];
+    self.avatar = [decoder decodeObjectForKey:@"avatar"];
+    self.realName = [decoder decodeObjectForKey:@"realName"];
+    self.sex = [decoder decodeObjectForKey:@"sex"];
+  }
+  return self;
 }
 
 @end

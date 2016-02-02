@@ -14,6 +14,5 @@
 @property(nonatomic, copy) NSString *realName;
 @property(nonatomic, copy) NSString *sex;
 @property(nonatomic, strong) NSURL *avatar;
-@property(nonatomic, copy) NSString *token;
 
 @end

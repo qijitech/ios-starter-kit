@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 
 @class AnyPromise;
+@class SKAccountModel;
 
 @protocol SKAccountManagerDelegate <NSObject>
 @optional
@@ -16,6 +17,7 @@
 
 @property(nonatomic, weak) id <SKAccountManagerDelegate> delegate;
 @property(nonatomic, assign, getter=isRequesting) BOOL request;
+@property (nonatomic, strong, readonly) SKAccountModel *currentAccount;
 
 + (SKAccountManager *)defaultAccountManager;
 
@@ -23,8 +25,10 @@
 
 - (AnyPromise *)register:(NSDictionary *)parameters;
 
+- (BOOL)updateAccount:(SKAccountModel *)accountModel;
+
 - (BOOL)isLoggedIn;
 
-- (void)logout;
+- (BOOL)logout;
 
 @end
