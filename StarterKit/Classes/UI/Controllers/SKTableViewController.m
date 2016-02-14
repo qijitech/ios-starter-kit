@@ -191,12 +191,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   id item = [self.dataSource itemAtIndexPath:indexPath];
   NSString *cellIdentifier = self.dequeueReusableCellBlock(item);
-  @weakify(self);
+//  @weakify(self);
   return [tableView fd_heightForCellWithIdentifier:cellIdentifier
                                   cacheByIndexPath:indexPath
                                      configuration:^(SKTableViewCell *cell) {
     // 配置 cell 的数据源，和 "cellForRow" 干的事一致，比如：
-    @strongify(self);
+//    @strongify(self);
     [cell configureCellWithData:item];
   }];
 }
