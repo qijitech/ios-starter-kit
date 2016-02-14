@@ -4,7 +4,6 @@
 //
 
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
-#import <UzysAnimatedGifPullToRefresh/UIScrollView+UzysAnimatedGifPullToRefresh.h>
 #import <Masonry/MASConstraintMaker.h>
 #import <Masonry/View+MASAdditions.h>
 #import "SKTableViewController.h"
@@ -16,11 +15,12 @@
 #import "SKTableViewControllerBuilder.h"
 #import <libextobjc/EXTScope.h>
 #import <Overcoat/OVCResponse.h>
-#import <UzysAnimatedGifLoadMore/UIScrollView+UzysAnimatedGifLoadMore.h>
-#import <Toast/UIView+Toast.h>
+#import "UIScrollView+UzysAnimatedGifLoadMore.h"
 #import <HexColors/HexColors.h>
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "SKManaged.h"
+#import "UIScrollView+UzysAnimatedGifPullToRefresh.h"
+#import <RKDropdownAlert/RKDropdownAlert.h>
 
 #define IS_IOS7 (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1 && floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1)
 #define IS_IOS8  ([[[UIDevice currentDevice] systemVersion] compare:@"8" options:NSNumericSearch] != NSOrderedAscending)
@@ -224,7 +224,7 @@
   if (promise) {
     promise.then(^(NSArray *result) {
       if (!result || result.count <=0) {
-        [self.navigationController.view makeToast:@"没有最新数据"];
+        [RKDropdownAlert title:@"" message:@"没有最新数据"];
       }
     }).catch(^(NSError *error) {
       [self setupNetworkError:error isRefresh:YES];
@@ -250,7 +250,7 @@
     @weakify(self);
     promise.then(^(NSArray *result) {
       if (!result || result.count <=0) {
-        [self.navigationController.view makeToast:@"没有更多数据"];
+        [RKDropdownAlert title:@"" message:@"没有更多数据"];
       }
     }).catch(^(NSError *error) {
       @strongify(self);
@@ -266,12 +266,12 @@
 - (void)setupNetworkError:(NSError *)error isRefresh:(BOOL)isRefresh {
   NSDictionary *userInfo = [error userInfo];
   if (userInfo[@"NSUnderlyingError"]) {
-    [self.navigationController.view makeToast:userInfo[@"NSLocalizedDescription"]];
+    [RKDropdownAlert title:@"" message:userInfo[@"NSLocalizedDescription"]];
     return;
   }
   OVCResponse *response = userInfo[@"OVCResponse"];
   SKErrorResponseModel *errorModel = response.result;
-  [self.view makeToast:errorModel.message];
+  [RKDropdownAlert title:@"" message:errorModel.message];
 }
 
 #pragma mark - DZNEmptyDataSetSource Methods
