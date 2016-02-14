@@ -134,7 +134,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   StarterKit:
-    :path: .
+    :path: "."
 
 SPEC CHECKSUMS:
   AFNetworkActivityLogger: 121486778117d53b3ab1c61d264b88081d0c3eee
@@ -160,4 +160,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f4f5ecaaa410f6266c54d7307a1b40ba1fd51e19
 
-COCOAPODS: 1.0.0.beta.2
+COCOAPODS: 1.0.0.beta.3
