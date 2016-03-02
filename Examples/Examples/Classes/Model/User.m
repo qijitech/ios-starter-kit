@@ -8,6 +8,8 @@
 
 @implementation User
 
+#pragma mark MTLJSONSerializing
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
       @"phone" : @"phone",
@@ -40,7 +42,6 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
   [super encodeWithCoder:encoder];
-  [encoder encodeObject:self.identifier forKey:@"identifier"];
   [encoder encodeObject:self.nickname forKey:@"nickname"];
   [encoder encodeObject:self.avatar forKey:@"avatar"];
   [encoder encodeObject:self.realName forKey:@"realName"];
@@ -49,7 +50,6 @@
 
 - (instancetype)initWithCoder:(NSCoder *)decoder {
   if (self = [super initWithCoder:decoder]) {
-    self.identifier = [decoder decodeObjectForKey:@"identifier"];
     self.nickname = [decoder decodeObjectForKey:@"nickname"];
     self.avatar = [decoder decodeObjectForKey:@"avatar"];
     self.realName = [decoder decodeObjectForKey:@"realName"];

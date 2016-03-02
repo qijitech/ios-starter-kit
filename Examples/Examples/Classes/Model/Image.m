@@ -8,6 +8,8 @@
 
 @implementation Image
 
+#pragma mark MTLJSONSerializing
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
       @"url" : @"url",

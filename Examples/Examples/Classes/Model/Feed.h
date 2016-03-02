@@ -19,9 +19,5 @@
 
 @property(nonatomic, strong) NSArray *images;
 
-//@property(nonatomic, assign) NSUInteger thumbContainerWidth;
-//@property(nonatomic, assign) NSUInteger thumbContainerHeight;
-//@property(nonatomic, assign) NSUInteger row;
-//@property(nonatomic, assign) NSUInteger column;
 
 @end
