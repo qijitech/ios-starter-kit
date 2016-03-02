@@ -16,6 +16,9 @@
 + (NSFetchRequest *)fetchRequestEntityName:(NSString *)entityName;
 
 + (NSFetchRequest *)fetchRequestWithPredicate:(NSPredicate *)predicate
+                                   entityName:(NSString *)entityName;
+
++ (NSFetchRequest *)fetchRequestWithPredicate:(NSPredicate *)predicate
                                    entityName:(NSString *)entityName
                                fetchBatchSize:(NSUInteger)fetchBatchSize;
 

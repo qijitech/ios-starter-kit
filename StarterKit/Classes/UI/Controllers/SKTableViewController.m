@@ -38,6 +38,7 @@
 // optional
 @property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
 @property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
+@property(nonatomic, copy) NSPredicate *predicate;
 
 @end
 
@@ -65,7 +66,8 @@
   _paginator = builder.paginator;
   _paginator.delegate = self;
   _cellMetadata = builder.cellMetadata;
-
+  _predicate = builder.predicate;
+    
   _dequeueReusableCellBlock = builder.dequeueReusableCellBlock;
   _configureCellBlock = builder.configureCellBlock;
 
@@ -121,6 +123,7 @@
     @strongify(self);
     builder.modelOfClass = [self modelOfClass];
     builder.entityName = [self entityName];
+    builder.predicate = [self predicate];
     builder.dequeueReusableCellBlock = self.dequeueReusableCellBlock;
     builder.configureCellBlock = self.configureCellBlock;
   }];

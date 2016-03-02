@@ -39,7 +39,7 @@ static NSString * const kIdentifierKey = @"identifier";
 
   SKManaged *managed = [SKManaged sharedInstance];
   NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
-      initWithFetchRequest:[[SKManaged class] fetchRequestEntityName:builder.entityName]
+      initWithFetchRequest:[[SKManaged class] fetchRequestWithPredicate:builder.predicate entityName:builder.entityName]
       managedObjectContext:managed.managedObjectContext
         sectionNameKeyPath:nil
                  cacheName:nil];
