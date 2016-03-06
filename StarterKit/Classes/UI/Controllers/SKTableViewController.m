@@ -19,12 +19,7 @@
 #import <HexColors/HexColors.h>
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "SKManaged.h"
-#import "UIScrollView+UzysAnimatedGifPullToRefresh.h"
 #import <RKDropdownAlert/RKDropdownAlert.h>
-
-#define IS_IOS7 (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1 && floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1)
-#define IS_IOS8  ([[[UIDevice currentDevice] systemVersion] compare:@"8" options:NSNumericSearch] != NSOrderedAscending)
-#define IS_IPHONE6PLUS ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) && [[UIScreen mainScreen] nativeScale] == 3.0f)
 
 @interface SKTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(nonatomic, strong) AMTumblrHud *shimmerHUD;
@@ -67,7 +62,7 @@
   _paginator.delegate = self;
   _cellMetadata = builder.cellMetadata;
   _predicate = builder.predicate;
-    
+
   _dequeueReusableCellBlock = builder.dequeueReusableCellBlock;
   _configureCellBlock = builder.configureCellBlock;
 
@@ -77,8 +72,7 @@
   }
 
   _paginateBlock = builder.paginateBlock;
-  _httpSessionManager = [[SKManagedHTTPSessionManager alloc]
-      initWithManagedObjectContext:[SKManaged sharedInstance].managedObjectContext];
+  _httpSessionManager = [[SKManagedHTTPSessionManager alloc] initWithManagedObjectContext:[SKManaged sharedInstance].managedObjectContext];
 }
 
 - (void)viewDidLoad {
@@ -88,7 +82,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  [self.tableView triggerPullToRefresh];
+  [self loadData];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -105,8 +99,9 @@
 }
 
 - (void)setupTableView {
-
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+  self.tableView.emptyDataSetSource = self;
+  self.tableView.emptyDataSetDelegate = self;
 
   for (Class clazz in self.cellMetadata) {
     [self.tableView registerClass:clazz
@@ -114,10 +109,12 @@
   }
 
   self.tableView.backgroundColor = [UIColor clearColor];
+  [self setupDataSource];
+  [self setupRefreshControl];
+  [self setupLoadMore];
+}
 
-  self.tableView.emptyDataSetSource = self;
-  self.tableView.emptyDataSetDelegate = self;
-
+- (void)setupDataSource {
   @weakify(self);
   self.dataSource = [SKFetchedResultsDataSource createWithBuilder:^(SKFetchedResultsDataSourceBuilder *builder) {
     @strongify(self);
@@ -127,33 +124,22 @@
     builder.dequeueReusableCellBlock = self.dequeueReusableCellBlock;
     builder.configureCellBlock = self.configureCellBlock;
   }];
+}
 
+- (void)setupLoadMore {
+  @weakify(self);
   [self.tableView addLoadMoreActionHandler:^{
         @strongify(self);
         [self loadMoreData];
       } ProgressImagesGifName:@"Frameworks/StarterKit.framework/StarterKit.bundle/spinner_dropbox@2x.gif"
                       LoadingImagesGifName:@"Frameworks/StarterKit.framework/StarterKit.bundle/Preloader_10@2x.gif"
                    ProgressScrollThreshold:60];
+}
 
-  [self.tableView addPullToRefreshActionHandler:^{
-        @strongify(self);
-        [self refreshData];
-      } ProgressImagesGifName:@"Frameworks/StarterKit.framework/StarterKit.bundle/spinner_dropbox@2x.gif"
-                           LoadingImagesGifName:@"Frameworks/StarterKit.framework/StarterKit.bundle/Preloader_10@2x.gif"
-                        ProgressScrollThreshold:60
-  ];
-
-
-  // If you did not change scrollview inset, you don't need code below.
-  if (IS_IOS7) {
-    [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:52];
-  } else if (IS_IOS8) {
-    CGFloat landscapeTopInset = 32.0;
-    if (IS_IPHONE6PLUS) {
-      landscapeTopInset = 44.0;
-    }
-    [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:landscapeTopInset];
-  }
+- (void)setupRefreshControl {
+  self.refreshControl = [UIRefreshControl new];
+  self.refreshControl.backgroundColor = [UIColor clearColor];
+  [self.refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)setupShimmerHUD {
@@ -180,7 +166,7 @@
   }
 }
 
-- (void)shoudShowShimmerHUD {
+- (void)shouldShowShimmerHUD {
   if (self.paginator.isRefresh &&
       !self.paginator.hasDataLoaded &&
       [self.dataSource.fetchedResultsController.fetchedObjects count] <= 0) {
@@ -194,13 +180,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   id item = [self.dataSource itemAtIndexPath:indexPath];
   NSString *cellIdentifier = self.dequeueReusableCellBlock(item);
-//  @weakify(self);
-  return [tableView fd_heightForCellWithIdentifier:cellIdentifier
-                                  cacheByIndexPath:indexPath
-                                     configuration:^(SKTableViewCell *cell) {
-    // 配置 cell 的数据源，和 "cellForRow" 干的事一致，比如：
-//    @strongify(self);
-    [cell configureCellWithData:item];
+  // @weakify(self);
+  return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath
+    configuration:^(SKTableViewCell *cell) {
+      // 配置 cell 的数据源，和 "cellForRow" 干的事一致，比如：
+      // @strongify(self);
+      [cell configureCellWithData:item];
   }];
 }
 
@@ -209,7 +194,7 @@
 
 - (void)networkOnStart:(BOOL)isRefresh {
   if (isRefresh) {
-    [self shoudShowShimmerHUD];
+    [self shouldShowShimmerHUD];
   }
 }
 
@@ -225,26 +210,52 @@
 - (void)refreshData {
   AnyPromise *promise = [self.paginator refresh];
   if (promise) {
+    @weakify(self);
     promise.then(^(NSArray *result) {
-      if (!result || result.count <=0) {
+      if (!result || result.count <= 0) {
         [RKDropdownAlert title:@"" message:@"没有最新数据"];
       }
     }).catch(^(NSError *error) {
+      @strongify(self);
       [self setupNetworkError:error isRefresh:YES];
     }).finally(^{
+      @strongify(self);
       [self endRefresh];
     });
     return;
   }
   self.paginator.loading = NO;
   self.paginator.refresh = NO;
-  [self endRefresh];
+  [self.tableView reloadEmptyDataSet];
+  [self shouldShowShimmerHUD];
 }
 
 - (void)endRefresh {
-  [self.tableView stopPullToRefreshAnimation];
+  [self.refreshControl endRefreshing];
   [self.tableView reloadEmptyDataSet];
-  [self shoudShowShimmerHUD];
+  [self shouldShowShimmerHUD];
+}
+
+- (void)loadData {
+  AnyPromise *promise = [self.paginator refresh];
+  if (promise) {
+    @weakify(self);
+    promise.then(^(NSArray *result) {
+      // Left Blank
+    }).catch(^(NSError *error) {
+      @strongify(self);
+      [self setupNetworkError:error isRefresh:NO];
+    }).finally(^{
+      @strongify(self);
+      [self.tableView reloadEmptyDataSet];
+      [self shouldShowShimmerHUD];
+    });
+    return;
+  }
+  self.paginator.loading = NO;
+  self.paginator.refresh = NO;
+  [self.tableView reloadEmptyDataSet];
+  [self shouldShowShimmerHUD];
 }
 
 - (void)loadMoreData {
@@ -252,7 +263,7 @@
   if (promise) {
     @weakify(self);
     promise.then(^(NSArray *result) {
-      if (!result || result.count <=0) {
+      if (!result || result.count <= 0) {
         [RKDropdownAlert title:@"" message:@"没有更多数据"];
       }
     }).catch(^(NSError *error) {
