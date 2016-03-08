@@ -14,6 +14,7 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 @interface SKTableViewController : TGRFetchedResultsTableViewController <SKPaginatorDelegate>
 
 @property(nonatomic, strong) SKManagedHTTPSessionManager *httpSessionManager;
+@property(nonatomic, strong, readonly) SKPaginator *paginator;
 
 - (void)setupTableView;
 

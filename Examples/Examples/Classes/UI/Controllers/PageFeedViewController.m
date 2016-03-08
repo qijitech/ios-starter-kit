@@ -20,7 +20,7 @@
       builder.entityName = @"Feed";
       builder.modelOfClass = [Feed class];
 
-      builder.dequeueReusableCellBlock = ^NSString *(Feed *item) {
+      builder.dequeueReusableCellBlock = ^NSString *(Feed *item, NSIndexPath *indexPath) {
         if (item.images && item.images.count > 0) {
           return [SKFeedPictureTableViewCell cellIdentifier];
         }

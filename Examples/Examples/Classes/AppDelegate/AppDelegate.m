@@ -15,10 +15,10 @@
 #import "TestViewController.h"
 #import "AuthController.h"
 
-#if DEBUG
+//#if DEBUG
 #import <FLEX/FLEXManager.h>
 #import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
-#endif
+//#endif
 
 @interface AppDelegate ()
 

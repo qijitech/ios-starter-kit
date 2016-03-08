@@ -14,8 +14,9 @@ PODS:
   - AFNetworking/Security (2.6.3)
   - AFNetworking/Serialization (2.6.3)
   - AnimatedGIFImageSerialization (0.2.0)
+  - DGActivityIndicatorView (2.0)
   - DZNEmptyDataSet (1.7.3)
-  - FLEX (2.2.0)
+  - FLEX (2.3.0)
   - HexColors (3.0.0)
   - libextobjc (0.4.1):
     - libextobjc/EXTADT (= 0.4.1)
@@ -100,14 +101,15 @@ PODS:
   - Overcoat/PromiseKit/NSURLSession (3.2.1):
     - Overcoat/NSURLSession
     - PromiseKit/CorePromise (> 2)
-  - PromiseKit/CorePromise (3.0.2)
+  - PromiseKit/CorePromise (3.0.3)
   - RKDropdownAlert (0.3.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
-  - StarterKit (0.1.0):
+  - StarterKit (0.2.0):
     - AFNetworkActivityLogger (~> 2.0.4)
     - AnimatedGIFImageSerialization (~> 0.2.0)
+    - DGActivityIndicatorView
     - DZNEmptyDataSet (~> 1.7.3)
     - FLEX
     - HexColors (~> 3.0.0)
@@ -123,7 +125,7 @@ PODS:
     - SDWebImage (~> 3.7)
     - TGRDataSource-qijitech
     - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
-  - TGRDataSource-qijitech (0.3)
+  - TGRDataSource-qijitech (0.4)
   - UITableView+FDTemplateLayoutCell (1.4)
 
 DEPENDENCIES:
@@ -131,14 +133,15 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   StarterKit:
-    :path: "."
+    :path: .
 
 SPEC CHECKSUMS:
   AFNetworkActivityLogger: 121486778117d53b3ab1c61d264b88081d0c3eee
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AnimatedGIFImageSerialization: b0f0cfe71eac1ee45a3d57ae533c23b8e6f29501
+  DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
   DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
-  FLEX: bc8a4fb887ed5d3cdf7c2f3bd665f7bb1647cc58
+  FLEX: ba80ea13d2c784e85e616137fd4eff164781e364
   HexColors: 8b83e3fe90c0d466dae7b98c9d22da95799f99cb
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
@@ -147,11 +150,11 @@ SPEC CHECKSUMS:
   MMPlaceHolder: 40212b9dfe8760134b1b2fce3232f0d46200178f
   MTLManagedObjectAdapter: f369edc1226fde2061fe894bd87f256e60cd8f88
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
-  PromiseKit: ab1a380f7a30cf8cce663a2411e8b3580b10313d
+  PromiseKit: 00ec2a219bf5ad2833f95977698e921932b8dfd3
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  StarterKit: 4ca3f7cb49e7aa39dd2156eb77e7ed56a0da76bf
-  TGRDataSource-qijitech: 992d354048c624db8e524d0e763b21030a2e646e
+  StarterKit: 576ce6225a758163ae21fc1f45614a309823dae4
+  TGRDataSource-qijitech: e914f54bf7454093e8dfca13907ec9674bd33268
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 
 PODFILE CHECKSUM: f4f5ecaaa410f6266c54d7307a1b40ba1fd51e19

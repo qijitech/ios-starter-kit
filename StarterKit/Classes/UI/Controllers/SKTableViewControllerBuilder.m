@@ -12,8 +12,9 @@
 - (TGRDataSourceDequeueReusableCellBlock)dequeueReusableCellBlock {
   if (!_dequeueReusableCellBlock) {
     @weakify(self);
-    _dequeueReusableCellBlock = ^NSString *(id item) {
+    _dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
       @strongify(self);
+
       Class clazz = self.cellMetadata[0];
       return [clazz cellIdentifier];
     };

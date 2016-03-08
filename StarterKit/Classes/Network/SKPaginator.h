@@ -8,7 +8,7 @@
 @protocol SKPaginatorDelegate <NSObject>
 @required
 - (void)networkOnStart:(BOOL)isRefresh;
-- (AnyPromise *)paginate:(NSDictionary *)parameters;
+- (AnyPromise *)paginate:(NSMutableDictionary *)parameters;
 @end
 
 @interface SKPaginator : NSObject
@@ -16,6 +16,9 @@
 @property(nonatomic, assign, readonly) BOOL hasDataLoaded;
 @property(nonatomic, assign, getter=isRefresh) BOOL refresh;
 @property(nonatomic, assign, getter=isLoading) BOOL loading;
+@property(nonatomic, assign) BOOL hasMorePages;
+
+@property(nonatomic, assign, readonly) NSUInteger pageSize;
 
 @property(nonatomic, weak) id <SKPaginatorDelegate> delegate;
 - (AnyPromise *)refresh;
@@ -25,7 +28,6 @@
 @interface SKPagedPaginator : SKPaginator
 @property(nonatomic, assign, readonly) NSUInteger firstPage;
 @property(nonatomic, assign, readonly) NSUInteger nextPage;
-@property(nonatomic, assign, readonly) NSUInteger pageSize;
 @end
 
 @interface SKKeyPaginator : SKPaginator

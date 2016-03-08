@@ -10,7 +10,7 @@
 #define Profile_h
 
 //开启DEBUG-调试工具
-#define DEBUG 1
+#define DEBUG 0
 
 static NSString *const kBaseURL = @"http://fakerapi.qiji.tech/";
 static NSString *const kAccept = @"application/vnd.fakerapi.v1+json";

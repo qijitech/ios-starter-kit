@@ -20,6 +20,7 @@
 
 // optional
 @property(nonatomic, strong) SKPaginator *paginator;
+@property(nonatomic, copy) NSString *cellReuseIdentifier;
 @property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
 @property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
 @property(nonatomic, copy) NSPredicate *predicate;

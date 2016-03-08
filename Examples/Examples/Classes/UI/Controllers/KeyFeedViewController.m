@@ -5,6 +5,8 @@
 
 #import <StarterKit/SKTableViewControllerBuilder.h>
 #import <libextobjc/EXTScope.h>
+#import <StarterKit/SKLoadMoreTableViewCell.h>
+#import <TGRDataSource_qijitech/TGRFetchedResultsDataSource.h>
 #import "KeyFeedViewController.h"
 #import "SKFeedTableViewCell.h"
 #import "Feed.h"
@@ -24,14 +26,20 @@
       builder.entityName = @"Feed";
       builder.modelOfClass = [Feed class];
 
-      builder.dequeueReusableCellBlock = ^NSString *(Feed *item) {
+      @weakify(self);
+      builder.dequeueReusableCellBlock = ^NSString *(Feed *item, NSIndexPath *indexPath) {
+        @strongify(self)
+        id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[indexPath.section];
+        NSUInteger numbers = [sectionInfo numberOfObjects];
+        if (self.paginator.hasMorePages && indexPath.item == numbers - 1) {
+          return [SKLoadMoreTableViewCell cellIdentifier];
+        }
         if (item.images && item.images.count > 0) {
           return [SKFeedPictureTableViewCell cellIdentifier];
         }
         return [SKFeedTableViewCell cellIdentifier];
       };
 
-      @weakify(self);
       builder.paginateBlock = ^(NSDictionary *parameters) {
         @strongify(self)
         return [self.httpSessionManager fetchFeedsWithId:parameters];

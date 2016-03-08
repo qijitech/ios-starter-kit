@@ -11,9 +11,17 @@
 
 @interface SKPaginator ()
 @property(nonatomic, assign) BOOL hasDataLoaded;
+@property(nonatomic, assign) NSUInteger pageSize;
 @end
 
 @implementation SKPaginator
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _pageSize = [SKNetworkConfig sharedInstance].perPage;
+    }
+    return self;
+}
 
 - (void)setLoading:(BOOL)loading {
   if (self.isLoading == loading) {
@@ -45,14 +53,12 @@
 @interface SKPagedPaginator ()
 @property(nonatomic, assign) NSUInteger firstPage;
 @property(nonatomic, assign) NSUInteger nextPage;
-@property(nonatomic, assign) NSUInteger pageSize;
 @end
 
 @implementation SKPagedPaginator
 
 - (instancetype)init {
   if (self = [super init]) {
-    _pageSize = [SKNetworkConfig sharedInstance].perPage;
     _firstPage = 1;
   }
   return self;
@@ -69,7 +75,7 @@
   }
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
     NSDictionary *parameters = @{@"page" : @(self.firstPage),@"page_size" : @(self.pageSize)};
-    return [self paginate:parameters];
+    return [self paginate:parameters isRefresh:YES];
   }
 
   return nil;
@@ -86,25 +92,28 @@
   }
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
     NSDictionary *parameters = @{@"page" : @(self.nextPage),@"page_size" : @(self.pageSize)};
-    return [self paginate:parameters];
+    return [self paginate:parameters isRefresh:NO];
   }
 
   return nil;
 }
 
-- (AnyPromise *)paginate:(NSDictionary *)parameters {
+- (AnyPromise *)paginate:(NSDictionary *)parameters isRefresh:(BOOL)isRefresh {
   if (!self.delegate || ![self.delegate respondsToSelector:@selector(paginate:)]) {
     return nil;
   }
-  AnyPromise *promise = [self.delegate paginate:parameters];
+  AnyPromise *promise = [self.delegate paginate:[parameters mutableCopy]];
   if (promise) {
     @weakify(self);
     return promise.then(^(OVCResponse *response) {
       @strongify(self);
       NSArray *result = response.result;
+      self.hasDataLoaded = YES;
       if (result && result.count >= self.pageSize) {
-        self.hasDataLoaded = YES;
         self.nextPage += 1;
+        self.hasMorePages = YES;
+      } else{
+        self.hasMorePages = NO || isRefresh;
       }
       return result;
     }).finally(^{
@@ -150,7 +159,7 @@
     if (identifier) {
       parameters = [parameters mtl_dictionaryByAddingEntriesFromDictionary:@{@"since-id": [identifier stringValue]}];
     }
-    return [self paginate:parameters];
+    return [self paginate:parameters isRefresh:YES];
   }
 
   return nil;
@@ -169,21 +178,30 @@
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
     NSNumber *identifier = [[SKManaged sharedInstance] firstModelIdentifier:self.entityName];
     NSAssert(identifier, @"loadMore should not be called when the cache is empty");
-    NSDictionary *parameters = @{@"max-id": [identifier stringValue]};
-    return [self paginate:parameters];
+    NSDictionary *parameters = @{@"max-id": [identifier stringValue],@"page_size" : @(self.pageSize)};
+    return [self paginate:parameters isRefresh:false];
   }
 
   return nil;
 }
 
-- (AnyPromise *)paginate:(NSDictionary *)parameters {
+- (AnyPromise *)paginate:(NSDictionary *)parameters isRefresh:(BOOL)isRefresh {
   if (!self.delegate || ![self.delegate respondsToSelector:@selector(paginate:)]) {
     return nil;
   }
-  AnyPromise *promise = [self.delegate paginate:parameters];
+  AnyPromise *promise = [self.delegate paginate:[parameters mutableCopy]];
   if (promise) {
+    @weakify(self);
     return promise.then(^(OVCResponse *response) {
-      return response.result;
+      NSArray *result = response.result;
+      self.hasDataLoaded = YES;
+      @strongify(self);
+      if (result && result.count >= self.pageSize) {
+        self.hasMorePages = YES;
+      } else {
+        self.hasMorePages = NO || isRefresh;
+      }
+      return result;
     }).finally(^{
       self.refresh = NO;
       self.loading = NO;

@@ -15,22 +15,23 @@
 #import "SKTableViewControllerBuilder.h"
 #import <libextobjc/EXTScope.h>
 #import <Overcoat/OVCResponse.h>
-#import "UIScrollView+UzysAnimatedGifLoadMore.h"
 #import <HexColors/HexColors.h>
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "SKManaged.h"
 #import <RKDropdownAlert/RKDropdownAlert.h>
+#import "SKLoadMoreTableViewCell.h"
 
 @interface SKTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(nonatomic, strong) AMTumblrHud *shimmerHUD;
 
 @property(nonatomic, copy) NSString *entityName;
 @property(nonatomic, strong) Class modelOfClass;
-@property(nonatomic, strong) NSArray *cellMetadata;
+@property(nonatomic, strong) NSMutableArray *cellMetadata;
 @property(nonatomic, strong) SKPaginator *paginator;
 @property(nonatomic, strong) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
 
 // optional
+@property(nonatomic, copy) NSString *cellReuseIdentifier;
 @property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
 @property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
 @property(nonatomic, copy) NSPredicate *predicate;
@@ -53,16 +54,19 @@
   NSParameterAssert(builder.cellMetadata);
   NSParameterAssert(builder.paginator);
 
-  NSParameterAssert(builder.dequeueReusableCellBlock);
   NSParameterAssert(builder.configureCellBlock);
 
   _entityName = builder.entityName;
   _modelOfClass = builder.modelOfClass;
   _paginator = builder.paginator;
   _paginator.delegate = self;
-  _cellMetadata = builder.cellMetadata;
-  _predicate = builder.predicate;
+  _cellMetadata = [builder.cellMetadata mutableCopy];
 
+  [self.cellMetadata addObject:[SKLoadMoreTableViewCell class]];
+    
+  _predicate = builder.predicate;
+  
+  _cellReuseIdentifier = builder.cellReuseIdentifier;
   _dequeueReusableCellBlock = builder.dequeueReusableCellBlock;
   _configureCellBlock = builder.configureCellBlock;
 
@@ -103,6 +107,8 @@
   self.tableView.emptyDataSetSource = self;
   self.tableView.emptyDataSetDelegate = self;
 
+  self.tableView.delegate = self;
+    
   for (Class clazz in self.cellMetadata) {
     [self.tableView registerClass:clazz
            forCellReuseIdentifier:[clazz cellIdentifier]];
@@ -111,7 +117,6 @@
   self.tableView.backgroundColor = [UIColor clearColor];
   [self setupDataSource];
   [self setupRefreshControl];
-  [self setupLoadMore];
 }
 
 - (void)setupDataSource {
@@ -124,16 +129,6 @@
     builder.dequeueReusableCellBlock = self.dequeueReusableCellBlock;
     builder.configureCellBlock = self.configureCellBlock;
   }];
-}
-
-- (void)setupLoadMore {
-  @weakify(self);
-  [self.tableView addLoadMoreActionHandler:^{
-        @strongify(self);
-        [self loadMoreData];
-      } ProgressImagesGifName:@"Frameworks/StarterKit.framework/StarterKit.bundle/spinner_dropbox@2x.gif"
-                      LoadingImagesGifName:@"Frameworks/StarterKit.framework/StarterKit.bundle/Preloader_10@2x.gif"
-                   ProgressScrollThreshold:60];
 }
 
 - (void)setupRefreshControl {
@@ -174,12 +169,28 @@
     return;
   }
   [self hideShimmerHUD];
+}
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
+  NSUInteger numbers = [sectionInfo numberOfObjects];
+  if (self.paginator.hasMorePages) {
+    numbers += 1;
+  }
+  return numbers;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[indexPath.section];
+  NSUInteger numbers = [sectionInfo numberOfObjects];
+  if (self.paginator.hasMorePages && indexPath.item == numbers - 1) {
+    [self loadMoreData];
+  }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   id item = [self.dataSource itemAtIndexPath:indexPath];
-  NSString *cellIdentifier = self.dequeueReusableCellBlock(item);
+  NSString *cellIdentifier = self.dequeueReusableCellBlock(item, indexPath);
   // @weakify(self);
   return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath
     configuration:^(SKTableViewCell *cell) {
@@ -270,8 +281,9 @@
       @strongify(self);
       [self setupNetworkError:error isRefresh:NO];
     }).finally(^{
-      @strongify(self);
-      [self.tableView stopLoadMoreAnimation];
+        // TODO
+//      @strongify(self);
+//      [self.tableView stopLoadMoreAnimation];
     });
     return;
   }
