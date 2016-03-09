@@ -18,6 +18,20 @@
   return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setupViews];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setupViews];
+    }
+    return self;
+}
+
 - (void)updateConstraints {
   if (!self.didSetupConstraints) {
     self.didSetupConstraints = YES;
@@ -26,14 +40,14 @@
   [super updateConstraints];
 }
 
-- (void)layoutSubviews {
-  [super layoutSubviews];
+//- (void)layoutSubviews {
+//  [super layoutSubviews];
 
   // Make sure the contentView does a layout pass here so that its subviews have their frames set, which we
   // need to use to set the preferredMaxLayoutWidth below.
-  [self setNeedsLayout];
-  [self layoutIfNeeded];
-}
+//  [self setNeedsLayout];
+//  [self layoutIfNeeded];
+//}
 
 // Initialization code
 - (void)setupViews {
