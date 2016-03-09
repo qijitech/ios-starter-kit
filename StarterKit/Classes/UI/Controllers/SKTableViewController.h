@@ -18,8 +18,8 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 
 - (void)setupTableView;
 
-- (void)showShimmerHUD;
-- (void)hideShimmerHUD;
+- (void)showIndicatorView;
+- (void)hideIndicatorView;
 
 - (void)refreshData;
 - (void)loadMoreData;

@@ -11,7 +11,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 static CGFloat const kIndicatorViewMargin = 40.F;
 
 @interface SKLoadMoreTableViewCell ()
-@property(nonatomic, strong) UIActivityIndicatorView *indicatorView;
+@property(nonatomic, strong) DGActivityIndicatorView *indicatorView;
 
 @property BOOL didSetupConstraints;
 @end

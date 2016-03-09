@@ -25,4 +25,3 @@ FOUNDATION_EXPORT const unsigned char StarterKitVersionString[];
 #import "SKTableViewController.h"
 #import "SKTableViewControllerBuilder.h"
 #import "SKViewController.h"
-#import "AMTumblrHud.h"

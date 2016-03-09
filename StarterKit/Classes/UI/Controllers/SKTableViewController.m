@@ -7,7 +7,6 @@
 #import <Masonry/MASConstraintMaker.h>
 #import <Masonry/View+MASAdditions.h>
 #import "SKTableViewController.h"
-#import "AMTumblrHud.h"
 #import "SKTableViewCell.h"
 #import "SKErrorResponseModel.h"
 #import "SKFetchedResultsDataSource.h"
@@ -16,13 +15,17 @@
 #import <libextobjc/EXTScope.h>
 #import <Overcoat/OVCResponse.h>
 #import <HexColors/HexColors.h>
+#import <DGActivityIndicatorView/DGActivityIndicatorView.h>
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "SKManaged.h"
 #import <RKDropdownAlert/RKDropdownAlert.h>
 #import "SKLoadMoreTableViewCell.h"
 
+static CGFloat const kIndicatorViewSize = 40.F;
+#define kShowHideAnimateDuration 0.2
+
 @interface SKTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
-@property(nonatomic, strong) AMTumblrHud *shimmerHUD;
+@property(nonatomic, strong) DGActivityIndicatorView *indicatorView;
 
 @property(nonatomic, copy) NSString *entityName;
 @property(nonatomic, strong) Class modelOfClass;
@@ -137,47 +140,50 @@
   [self.refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)setupShimmerHUD {
-  AMTumblrHud *shimmerHUD = [[AMTumblrHud alloc] initWithFrame:CGRectZero];
-  shimmerHUD.hudColor = [UIColor redColor];
-  [self.view addSubview:shimmerHUD];
-  [shimmerHUD mas_makeConstraints:^(MASConstraintMaker *make) {
+#pragma mark - IndicatorView Methods
+
+- (void)setupIndicatorView {
+  self.indicatorView = [[DGActivityIndicatorView alloc]
+                        initWithType:DGActivityIndicatorAnimationTypeBallScale
+                           tintColor:[UIColor redColor]
+                                size:kIndicatorViewSize];
+  [self.view addSubview:self.indicatorView];
+  [self.indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
     make.center.mas_equalTo(self.view);
-    make.size.mas_equalTo(CGSizeMake(55, 20));
   }];
-  self.shimmerHUD = shimmerHUD;
 }
 
-- (void)showShimmerHUD {
-  [self setupShimmerHUD];
-  [self.shimmerHUD showAnimated:YES];
+- (void)showIndicatorView {
+  [self setupIndicatorView];
+  [self.indicatorView startAnimating];
   [self.tableView reloadEmptyDataSet];
 }
 
-- (void)hideShimmerHUD {
-  if (_shimmerHUD) {
-    [self.shimmerHUD hide];
-    _shimmerHUD = nil;
+- (void)hideIndicatorView {
+  if (_indicatorView) {
+    [self.indicatorView stopAnimating];
+    [self.indicatorView removeFromSuperview];
+    _indicatorView = nil;
   }
 }
 
-- (void)shouldShowShimmerHUD {
+- (void)shouldShowIndicatorView {
   if (self.paginator.isRefresh &&
       !self.paginator.hasDataLoaded &&
       [self.dataSource.fetchedResultsController.fetchedObjects count] <= 0) {
-    [self showShimmerHUD];
+    [self showIndicatorView];
     return;
   }
-  [self hideShimmerHUD];
+  [self hideIndicatorView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
   NSUInteger numbers = [sectionInfo numberOfObjects];
-  if (self.paginator.hasMorePages) {
-    numbers += 1;
-  }
-  return numbers;
+//  if (self.paginator.hasMorePages) {
+//    numbers += 1;
+//  }
+  return numbers + 1;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -205,7 +211,7 @@
 
 - (void)networkOnStart:(BOOL)isRefresh {
   if (isRefresh) {
-    [self shouldShowShimmerHUD];
+    [self shouldShowIndicatorView];
   }
 }
 
@@ -238,13 +244,13 @@
   self.paginator.loading = NO;
   self.paginator.refresh = NO;
   [self.tableView reloadEmptyDataSet];
-  [self shouldShowShimmerHUD];
+  [self shouldShowIndicatorView];
 }
 
 - (void)endRefresh {
   [self.refreshControl endRefreshing];
   [self.tableView reloadEmptyDataSet];
-  [self shouldShowShimmerHUD];
+  [self shouldShowIndicatorView];
 }
 
 - (void)loadData {
@@ -259,14 +265,14 @@
     }).finally(^{
       @strongify(self);
       [self.tableView reloadEmptyDataSet];
-      [self shouldShowShimmerHUD];
+      [self shouldShowIndicatorView];
     });
     return;
   }
   self.paginator.loading = NO;
   self.paginator.refresh = NO;
   [self.tableView reloadEmptyDataSet];
-  [self shouldShowShimmerHUD];
+  [self shouldShowIndicatorView];
 }
 
 - (void)loadMoreData {
@@ -282,8 +288,8 @@
       [self setupNetworkError:error isRefresh:NO];
     }).finally(^{
         // TODO
-//      @strongify(self);
-//      [self.tableView stopLoadMoreAnimation];
+      @strongify(self);
+      [self.tableView reloadEmptyDataSet];
     });
     return;
   }
