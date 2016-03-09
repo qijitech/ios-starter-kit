@@ -130,6 +130,14 @@ static CGFloat const kIndicatorViewSize = 40.F;
     builder.entityName = [self entityName];
     builder.predicate = [self predicate];
     builder.dequeueReusableCellBlock = self.dequeueReusableCellBlock;
+    builder.dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
+      id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[indexPath.section];
+      NSUInteger numbers = [sectionInfo numberOfObjects];
+      if (self.paginator.hasMorePages && indexPath.item == numbers - 1) {
+        return [SKLoadMoreTableViewCell cellIdentifier];
+      }
+      return self.dequeueReusableCellBlock(item, indexPath);
+    };
     builder.configureCellBlock = self.configureCellBlock;
   }];
 }
