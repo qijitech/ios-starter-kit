@@ -4,7 +4,6 @@
 //
 
 #import "SKManaged.h"
-#import "SKNetworkConfig.h"
 
 
 static NSString *const kIdentifierKey = @"identifier";
@@ -25,20 +24,22 @@ static NSString *const kIdentifierKey = @"identifier";
   return sharedInstance;
 }
 
-+ (NSFetchRequest *)fetchRequestEntityName:(NSString *)entityName {
-  return [[self class] fetchRequestWithPredicate:nil
-                                      entityName:entityName];
-}
-
 + (NSFetchRequest *)fetchRequestWithPredicate:(NSPredicate *)predicate
                                    entityName:(NSString *)entityName {
-  return [[self class] fetchRequestWithPredicate:predicate
-                                      entityName:entityName
-                                  fetchBatchSize:[SKNetworkConfig sharedInstance].perPage];
+  return [[self class] fetchRequestWithPredicate:predicate entityName:entityName sortDescriptors:nil];
 }
 
 + (NSFetchRequest *)fetchRequestWithPredicate:(NSPredicate *)predicate
                                    entityName:(NSString *)entityName
+                              sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
+  return [[self class] fetchRequestWithPredicate:predicate
+                                      entityName:entityName
+                                 sortDescriptors:sortDescriptors fetchBatchSize:nil];
+}
+
++ (NSFetchRequest *)fetchRequestWithPredicate:(NSPredicate *)predicate
+                                   entityName:(NSString *)entityName
+                              sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors
                                fetchBatchSize:(NSUInteger)fetchBatchSize {
   NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
   [fetchRequest setFetchBatchSize:fetchBatchSize];
@@ -47,40 +48,51 @@ static NSString *const kIdentifierKey = @"identifier";
     [fetchRequest setPredicate:predicate];
   }
 
-  NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:kIdentifierKey
-                                                               ascending:NO];
-  [fetchRequest setSortDescriptors:@[descriptor]];
-
-  return fetchRequest;
-}
-
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName
-                   sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
-  NSFetchRequest *fetchRequest = [[self class] fetchRequestEntityName:entityName];
-
   if (sortDescriptors) {
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    NSMutableArray<NSSortDescriptor *> *descriptors = [NSMutableArray new];
+    for (NSDictionary *sortDescriptor in sortDescriptors) {
+      NSString *key = sortDescriptor[@"key"];
+      BOOL ascending = [sortDescriptor[@"ascending"] boolValue];
+      NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:key ascending:ascending];
+      [descriptors addObject:descriptor];
+    }
+    [fetchRequest setSortDescriptors:descriptors];
   } else {
     NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:kIdentifierKey
                                                                  ascending:NO];
     [fetchRequest setSortDescriptors:@[descriptor]];
   }
+  return fetchRequest;
+}
 
+- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+                         predicate:(NSPredicate *)predicate
+                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
+  NSFetchRequest *fetchRequest = [[self class] fetchRequestWithPredicate:predicate
+                                                              entityName:entityName
+                                                         sortDescriptors:sortDescriptors];
   [fetchRequest setResultType:NSDictionaryResultType];
   [fetchRequest setPropertiesToFetch:@[kIdentifierKey]];
   [fetchRequest setFetchLimit:1];
-
   NSDictionary *result = [[self.managedObjectContext executeFetchRequest:fetchRequest
                                                                    error:NULL] firstObject];
   return result[kIdentifierKey];
 }
 
 - (NSNumber *)lastModelIdentifier:(NSString *)entityName
-                  sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
-  NSFetchRequest *fetchRequest = [[self class] fetchRequestEntityName:entityName];
+                        predicate:(NSPredicate *)predicate
+                  sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
+  NSFetchRequest *fetchRequest = [[self class] fetchRequestWithPredicate:predicate entityName:entityName];
 
   if (sortDescriptors) {
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    NSMutableArray<NSSortDescriptor *> *descriptors = [NSMutableArray new];
+    for (NSDictionary *sortDescriptor in sortDescriptors) {
+      NSString *key = sortDescriptor[@"key"];
+      BOOL ascending = [sortDescriptor[@"ascending"] boolValue];
+      NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:key ascending:!ascending];
+      [descriptors addObject:descriptor];
+    }
+    [fetchRequest setSortDescriptors:descriptors];
   } else {
     NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:kIdentifierKey
                                                                  ascending:YES];

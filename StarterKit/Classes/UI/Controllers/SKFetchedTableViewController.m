@@ -5,7 +5,6 @@
 
 #import "SKFetchedTableViewController.h"
 #import <libextobjc/EXTScope.h>
-#import "SKTableViewCell.h"
 #import "SKFetchedResultsDataSource.h"
 #import "SKFetchedResultsDataSourceBuilder.h"
 #import "SKLoadMoreTableViewCell.h"
@@ -17,8 +16,8 @@
 @property(nonatomic, strong) SKManagedHTTPSessionManager *httpSessionManager;
 
 @property(nonatomic, copy) NSString *entityName;
-@property(nonatomic, copy) NSPredicate *predicate;
-@property(nonatomic, copy) NSArray<NSSortDescriptor *> *sortDescriptors;
+@property(nonatomic, strong) NSPredicate *predicate;
+@property(nonatomic, strong) NSArray<NSDictionary *> *sortDescriptors;
 
 @property(strong, nonatomic) NSMutableIndexSet *insertedSections;
 @property(strong, nonatomic) NSMutableIndexSet *deletedSections;
@@ -57,6 +56,7 @@
     builder.modelOfClass = [self modelOfClass];
     builder.entityName = [self entityName];
     builder.predicate = [self predicate];
+    builder.sortDescriptors = [self sortDescriptors];
     builder.dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
       NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
       if (self.canLoadMore && self.paginator.hasMorePages && indexPath.item == numbers - 1) {
@@ -75,7 +75,7 @@
   return [self.dataSource itemAtIndexPath:indexPath];
 }
 
-- (NSUInteger)numberOfObjectsWithSection:(NSUInteger)section {
+- (NSUInteger)numberOfObjectsWithSection:(NSInteger)section {
   id <NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
   return [sectionInfo numberOfObjects];
 }
@@ -85,12 +85,17 @@
 }
 
 - (NSNumber *)lastModelIdentifier:(NSString *)entityName
-                  sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
-  return [[SKManaged sharedInstance] lastModelIdentifier:entityName sortDescriptors:sortDescriptors];
+                        predicate:(NSPredicate *)predicate
+                  sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
+  return [[SKManaged sharedInstance] lastModelIdentifier:entityName
+                                               predicate:predicate sortDescriptors:sortDescriptors];
 }
+
 - (NSNumber *)firstModelIdentifier:(NSString *)entityName
-                   sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
-  return [[SKManaged sharedInstance] firstModelIdentifier:entityName sortDescriptors:sortDescriptors];
+                         predicate:(NSPredicate *)predicate
+                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
+  return [[SKManaged sharedInstance] firstModelIdentifier:entityName
+                                                predicate:predicate sortDescriptors:sortDescriptors];
 }
 
 #pragma mark - Properties

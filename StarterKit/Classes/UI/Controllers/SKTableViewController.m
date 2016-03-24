@@ -34,7 +34,7 @@
   return [self.dataSource itemAtIndexPath:indexPath];
 }
 
-- (NSUInteger)numberOfObjectsWithSection:(NSUInteger)section {
+- (NSUInteger)numberOfObjectsWithSection:(NSInteger)section {
   return self.dataSource.items.count;
 }
 
@@ -43,7 +43,8 @@
 }
 
 - (NSNumber *)lastModelIdentifier:(NSString *)entityName
-                  sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
+                        predicate:(NSPredicate *)predicate
+                  sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   NSArray *items = self.dataSource.items;
   NSUInteger count = items.count;
   if (count <= 0) {
@@ -51,13 +52,15 @@
   }
   id item = items[(count - 1)];
   if ([item isKindOfClass:[SKModel class]]) {
-    SKModel *model = (SKModel *)item;
+    SKModel *model = (SKModel *) item;
     return model.identifier;
   }
   return nil;
 }
+
 - (NSNumber *)firstModelIdentifier:(NSString *)entityName
-                   sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
+                         predicate:(NSPredicate *)predicate
+                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
 //  if (self.dataSource.items.count <= 0) {
 //    return nil;
 //  }
@@ -74,7 +77,8 @@
   self.dataSource = [SKArrayDataSource createWithBuilder:^(SKArrayDataSourceBuilder *builder) {
     @strongify(self);
     builder.dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
-      NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
+      NSInteger section = indexPath.section;
+      NSUInteger numbers = [self numberOfObjectsWithSection:section];
       if (self.canLoadMore && self.paginator.hasMorePages && indexPath.item == numbers - 1) {
         return [SKLoadMoreTableViewCell cellIdentifier];
       }

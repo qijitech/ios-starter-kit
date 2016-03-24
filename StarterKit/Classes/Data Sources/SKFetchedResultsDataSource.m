@@ -38,8 +38,13 @@ static NSString * const kIdentifierKey = @"identifier";
   NSParameterAssert(builder.configureCellBlock);
 
   SKManaged *managed = [SKManaged sharedInstance];
+
+  NSFetchRequest *fetchRequest = [SKManaged fetchRequestWithPredicate:builder.predicate
+                                                           entityName:builder.entityName
+                                                      sortDescriptors:builder.sortDescriptors
+                                                       fetchBatchSize:nil];
   NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
-      initWithFetchRequest:[[SKManaged class] fetchRequestWithPredicate:builder.predicate entityName:builder.entityName]
+      initWithFetchRequest:fetchRequest
       managedObjectContext:managed.managedObjectContext
         sectionNameKeyPath:nil
                  cacheName:nil];

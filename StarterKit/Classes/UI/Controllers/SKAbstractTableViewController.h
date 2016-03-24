@@ -33,7 +33,7 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 @property(nonatomic, assign, readonly) BOOL canLoadMore;
 
 // for internal
-- (NSUInteger)numberOfObjectsWithSection:(NSUInteger )section;
+- (NSUInteger)numberOfObjectsWithSection:(NSInteger )section;
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
 - (NSUInteger)numberOfObjects;
 - (void)cancelAllRequests;

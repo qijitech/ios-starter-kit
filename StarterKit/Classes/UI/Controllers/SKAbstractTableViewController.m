@@ -81,6 +81,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
   if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
     ((SKKeyPaginator *) _paginator).entityName = builder.entityName;
     ((SKKeyPaginator *) _paginator).sortDescriptors = builder.sortDescriptors;
+    ((SKKeyPaginator *) _paginator).predicate = builder.predicate;
   }
   _paginateBlock = builder.paginateBlock;
 }
@@ -125,7 +126,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)setupDataSource {
 }
 
-- (NSUInteger)numberOfObjectsWithSection:(NSUInteger )section {
+- (NSUInteger)numberOfObjectsWithSection:(NSInteger)section {
   return 0;
 }
 
@@ -141,12 +142,14 @@ static CGFloat const kIndicatorViewSize = 40.F;
 }
 
 - (NSNumber *)lastModelIdentifier:(NSString *)entityName
-                  sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
+                        predicate:(NSPredicate *)predicate
+                  sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   return nil;
 }
 
 - (NSNumber *)firstModelIdentifier:(NSString *)entityName
-                   sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
+                         predicate:(NSPredicate *)predicate
+                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   return nil;
 }
 
@@ -170,9 +173,9 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
 - (void)setupIndicatorView {
   self.indicatorView = [[DGActivityIndicatorView alloc]
-                        initWithType:DGActivityIndicatorAnimationTypeBallScale
-                           tintColor:[UIColor redColor]
-                                size:kIndicatorViewSize];
+      initWithType:DGActivityIndicatorAnimationTypeBallScale
+         tintColor:[UIColor redColor]
+              size:kIndicatorViewSize];
   [self.view addSubview:self.indicatorView];
   [self.indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
     make.center.mas_equalTo(self.view);
@@ -229,11 +232,11 @@ static CGFloat const kIndicatorViewSize = 40.F;
   }
   // @weakify(self);
   return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath
-    configuration:^(SKTableViewCell *cell) {
-      // 配置 cell 的数据源，和 "cellForRow" 干的事一致，比如：
-      // @strongify(self);
-      [cell configureCellWithData:item];
-  }];
+                                     configuration:^(SKTableViewCell *cell) {
+                                       // 配置 cell 的数据源，和 "cellForRow" 干的事一致，比如：
+                                       // @strongify(self);
+                                       [cell configureCellWithData:item];
+                                     }];
 }
 
 # pragma mark - SKPaginatorDelegate
@@ -331,16 +334,16 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
 #pragma mark - Empty Methods
 
-NSString * const kStarterKitEmptyTitle = @"Nothing Here";
-NSString * const kStarterKitEmptySubtitle = @"We couldn't find anything. Tap the button to take your first image";
-NSString * const kStarterKitErrorTitle = @"No Connection";
-NSString * const kStarterKitErrorSubtitle = @"We could not establish a connection with our servers. Please try again when you are connected to the internet.";
+NSString *const kStarterKitEmptyTitle = @"Nothing Here";
+NSString *const kStarterKitEmptySubtitle = @"We couldn't find anything. Tap the button to take your first image";
+NSString *const kStarterKitErrorTitle = @"No Connection";
+NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection with our servers. Please try again when you are connected to the internet.";
 
 - (NSString *)emptyImage {
   if (self.paginator.hasError) {
-    return  @"Frameworks/StarterKit.framework/StarterKit.bundle/ic_starter_network_error";
+    return @"Frameworks/StarterKit.framework/StarterKit.bundle/ic_starter_network_error";
   }
-  return  @"Frameworks/StarterKit.framework/StarterKit.bundle/ic_starter_empty";
+  return @"Frameworks/StarterKit.framework/StarterKit.bundle/ic_starter_empty";
 }
 
 - (NSString *)emptyTitle {

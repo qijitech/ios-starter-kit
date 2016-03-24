@@ -13,19 +13,24 @@
 
 + (SKManaged *)sharedInstance;
 
-+ (NSFetchRequest *)fetchRequestEntityName:(NSString *)entityName;
-
 + (NSFetchRequest *)fetchRequestWithPredicate:(NSPredicate *)predicate
                                    entityName:(NSString *)entityName;
 
 + (NSFetchRequest *)fetchRequestWithPredicate:(NSPredicate *)predicate
                                    entityName:(NSString *)entityName
+                              sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors;
+
++ (NSFetchRequest *)fetchRequestWithPredicate:(NSPredicate *)predicate
+                                   entityName:(NSString *)entityName
+                              sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors
                                fetchBatchSize:(NSUInteger)fetchBatchSize;
 
 - (NSNumber *)firstModelIdentifier:(NSString *)entityName
+                         predicate:(NSPredicate *)predicate
                    sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors;
 
 - (NSNumber *)lastModelIdentifier:(NSString *)entityName
+                        predicate:(NSPredicate *)predicate
                   sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors;
 
 @end

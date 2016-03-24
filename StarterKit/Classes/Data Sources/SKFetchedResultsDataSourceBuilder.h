@@ -12,6 +12,8 @@
 @property(nonatomic, strong) Class modelOfClass;
 @property(nonatomic, copy) NSString *entityName;
 @property(nonatomic, copy) NSPredicate *predicate;
+@property(nonatomic, copy) NSArray<NSDictionary *> *sortDescriptors;
+
 @property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
 @property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
 

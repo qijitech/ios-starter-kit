@@ -14,8 +14,8 @@
 @property(nonatomic, strong, readonly) SKManagedHTTPSessionManager *httpSessionManager;
 
 @property(nonatomic, copy, readonly) NSString *entityName;
-@property(nonatomic, copy, readonly) NSPredicate *predicate;
-@property(nonatomic, copy, readonly) NSArray<NSSortDescriptor *> *sortDescriptors;
+@property(nonatomic, strong, readonly) NSPredicate *predicate;
+@property(nonatomic, strong, readonly) NSArray<NSDictionary *> *sortDescriptors;
 
 /**
  The data source used by this view controller.

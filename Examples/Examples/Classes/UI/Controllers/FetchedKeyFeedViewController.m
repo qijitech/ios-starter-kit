@@ -20,7 +20,13 @@
       builder.cellMetadata = @[[SKFeedTableViewCell class], [SKFeedPictureTableViewCell class]];
       builder.entityName = @"Feed";
       builder.modelOfClass = [Feed class];
-
+      NSMutableArray *sortDescriptors = [NSMutableArray new];
+      NSDictionary *sortDescriptor = @{
+        @"key":@"identifier",
+        @"ascending":@"NO",
+      };
+      [sortDescriptors addObject:sortDescriptor];
+      builder.sortDescriptors = [sortDescriptors copy];
       builder.dequeueReusableCellBlock = ^NSString *(Feed *item, NSIndexPath *indexPath) {
         if (item.images && item.images.count > 0) {
           return [SKFeedPictureTableViewCell cellIdentifier];

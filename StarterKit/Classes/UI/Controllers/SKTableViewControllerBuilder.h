@@ -19,8 +19,8 @@
 
 // for fetched property
 @property(nonatomic, copy) NSString *entityName;
-@property(nonatomic, copy) NSPredicate *predicate;
-@property(nonatomic, copy) NSArray<NSSortDescriptor *> *sortDescriptors;
+@property(nonatomic, strong) NSPredicate *predicate;
+@property(nonatomic, strong) NSArray<NSDictionary *> *sortDescriptors;
 
 // optional
 @property(nonatomic, strong) SKPaginator *paginator;
