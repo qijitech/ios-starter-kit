@@ -125,19 +125,21 @@ static CGFloat const kIndicatorViewSize = 40.F;
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   self.tableView.emptyDataSetSource = self;
   self.tableView.emptyDataSetDelegate = self;
-
-  self.tableView.delegate = self;
-    
-  for (Class clazz in self.cellMetadata) {
-    [self.tableView registerClass:clazz
-           forCellReuseIdentifier:[clazz cellIdentifier]];
-  }
-
   self.tableView.backgroundColor = [UIColor clearColor];
+
+  [self registerClassCellReuseIdentifier];
+
   [self setupDataSource];
 
   if (_canRefresh) {
     [self setupRefreshControl];
+  }
+}
+
+- (void)registerClassCellReuseIdentifier {
+  for (Class clazz in self.cellMetadata) {
+    [self.tableView registerClass:clazz
+           forCellReuseIdentifier:[clazz cellIdentifier]];
   }
 }
 
@@ -337,6 +339,8 @@ static CGFloat const kIndicatorViewSize = 40.F;
   id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
   return [sectionInfo numberOfObjects];
 }
+
+#pragma mark - Empty Methods
 
 NSString * const kStarterKitEmptyTitle = @"Nothing Here";
 NSString * const kStarterKitEmptySubtitle = @"We couldn't find anything. Tap the button to take your first image";
