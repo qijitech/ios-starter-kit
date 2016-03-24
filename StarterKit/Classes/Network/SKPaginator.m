@@ -18,7 +18,8 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _pageSize = [SKNetworkConfig sharedInstance].perPage;
+      _pageSize = [SKNetworkConfig sharedInstance].perPage;
+      self.hasMorePages = YES;
     }
     return self;
 }
@@ -31,7 +32,7 @@
 }
 
 - (void)setRefresh:(BOOL)refresh {
-  if (self.refresh == refresh) {
+  if (self.isRefresh == refresh) {
     return;
   }
   _refresh = refresh;
@@ -60,6 +61,7 @@
 - (instancetype)init {
   if (self = [super init]) {
     _firstPage = 1;
+    self.hasMorePages = YES;
   }
   return self;
 }

@@ -13,6 +13,8 @@
   NSParameterAssert(block);
   SKTableViewControllerBuilder *builder = [[SKTableViewControllerBuilder alloc] init];
   builder.paginator = [[SKKeyPaginator alloc] init];
+  builder.canRefresh = YES;
+  builder.canLoadMore = YES;
   block(builder);
   [self initWithBuilder:builder];
 }

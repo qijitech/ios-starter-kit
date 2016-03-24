@@ -4,7 +4,7 @@
 //
 
 #import "SKErrorResponseModel.h"
-
+#import <Overcoat/OVCResponse.h>
 
 @implementation SKErrorResponseModel
 
@@ -17,4 +17,13 @@
   };
 }
 
++ (NSString *)buildMessageWithNetworkError:(NSError *)error {
+  NSDictionary *userInfo = [error userInfo];
+  if (userInfo[@"NSUnderlyingError"]) {
+    return userInfo[@"NSLocalizedDescription"];
+  }
+  OVCResponse *response = userInfo[@"OVCResponse"];
+  SKErrorResponseModel *errorModel = response.result;
+  return errorModel.message;
+}
 @end

@@ -10,4 +10,6 @@
 @property(nonatomic, copy, readonly) NSNumber *statusCode;
 @property(nonatomic, copy, readonly) NSString *message;
 
++ (NSString *)buildMessageWithNetworkError:(NSError *)error;
+
 @end

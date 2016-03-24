@@ -24,7 +24,6 @@
       builder.cellMetadata = @[[SKFeedTableViewCell class], [SKFeedPictureTableViewCell class]];
       builder.entityName = @"Feed";
       builder.modelOfClass = [Feed class];
-
       @weakify(self);
       builder.dequeueReusableCellBlock = ^NSString *(Feed *item, NSIndexPath *indexPath) {
         if (item.images && item.images.count > 0) {

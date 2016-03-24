@@ -15,7 +15,7 @@
 // required
 @property(nonatomic, copy) NSString *entityName;
 @property(nonatomic, strong) Class modelOfClass;
-@property (nonatomic, strong) NSArray *cellMetadata;
+@property(nonatomic, strong) NSArray *cellMetadata;
 @property(nonatomic, strong) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
 
 // optional
@@ -24,6 +24,12 @@
 @property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
 @property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
 @property(nonatomic, copy) NSPredicate *predicate;
+
+// empty settings
+
+// for refresh
+@property(nonatomic, assign) BOOL canRefresh;
+@property(nonatomic, assign) BOOL canLoadMore;
 
 
 @end

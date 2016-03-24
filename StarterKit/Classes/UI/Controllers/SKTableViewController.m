@@ -13,7 +13,6 @@
 #import "SKFetchedResultsDataSourceBuilder.h"
 #import "SKTableViewControllerBuilder.h"
 #import <libextobjc/EXTScope.h>
-#import <Overcoat/OVCResponse.h>
 #import <HexColors/HexColors.h>
 #import <DGActivityIndicatorView/DGActivityIndicatorView.h>
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
@@ -39,6 +38,8 @@ static CGFloat const kIndicatorViewSize = 40.F;
 @property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
 @property(nonatomic, copy) NSPredicate *predicate;
 
+@property(nonatomic, assign) BOOL canRefresh;
+@property(nonatomic, assign) BOOL canLoadMore;
 @end
 
 @implementation SKTableViewController
@@ -73,6 +74,9 @@ static CGFloat const kIndicatorViewSize = 40.F;
   _dequeueReusableCellBlock = builder.dequeueReusableCellBlock;
   _configureCellBlock = builder.configureCellBlock;
 
+  _canRefresh = builder.canRefresh;
+  _canLoadMore = builder.canLoadMore;
+
   // for core data entity name
   if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
     ((SKKeyPaginator *) _paginator).entityName = builder.entityName;
@@ -100,7 +104,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
   }
 
   if (self.refreshControl && self.refreshControl.isRefreshing) {
-    [self.refreshControl endRefreshing];
+    [self updateView:YES];
   }
 }
 
@@ -123,7 +127,10 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
   self.tableView.backgroundColor = [UIColor clearColor];
   [self setupDataSource];
-  [self setupRefreshControl];
+
+  if (_canRefresh) {
+    [self setupRefreshControl];
+  }
 }
 
 - (void)setupDataSource {
@@ -133,12 +140,13 @@ static CGFloat const kIndicatorViewSize = 40.F;
     builder.modelOfClass = [self modelOfClass];
     builder.entityName = [self entityName];
     builder.predicate = [self predicate];
-    builder.dequeueReusableCellBlock = self.dequeueReusableCellBlock;
     builder.dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
-      id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[indexPath.section];
-      NSUInteger numbers = [sectionInfo numberOfObjects];
-      if (self.paginator.hasMorePages && indexPath.item == numbers - 1) {
+      NSUInteger numbers = [self numberOfObjects:indexPath];
+      if (self.canLoadMore && self.paginator.hasMorePages && indexPath.item == numbers - 1) {
         return [SKLoadMoreTableViewCell cellIdentifier];
+      }
+      if (self.cellReuseIdentifier) {
+        return self.cellReuseIdentifier;
       }
       return self.dequeueReusableCellBlock(item, indexPath);
     };
@@ -190,22 +198,40 @@ static CGFloat const kIndicatorViewSize = 40.F;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
-  NSUInteger numbers = [sectionInfo numberOfObjects];
-  return numbers + 1;
+  NSUInteger numbers = [self numberOfObjectsWithSection:section];
+  if (_canLoadMore && self.paginator.hasMorePages) {
+    return numbers + 1;
+  }
+  return numbers;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
   id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[indexPath.section];
   NSUInteger numbers = [sectionInfo numberOfObjects];
-  if (self.paginator.hasMorePages && indexPath.item == numbers - 1) {
+  if (_canLoadMore && self.paginator.hasMorePages && indexPath.item == numbers - 1) {
     [self loadMoreData];
   }
+}
+
+- (NSUInteger)numberOfObjects:(NSIndexPath *)indexPath {
+  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[indexPath.section];
+  return [sectionInfo numberOfObjects];
+}
+
+- (NSUInteger)numberOfObjectsWithSection:(NSInteger )section {
+  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
+  return [sectionInfo numberOfObjects];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   id item = [self.dataSource itemAtIndexPath:indexPath];
   NSString *cellIdentifier = self.dequeueReusableCellBlock(item, indexPath);
+  if (_canLoadMore && self.paginator.hasMorePages) {
+    NSUInteger numbers = [self numberOfObjects:indexPath];
+    if (indexPath.item == numbers - 1) {
+      return 80;
+    }
+  }
   // @weakify(self);
   return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath
     configuration:^(SKTableViewCell *cell) {
@@ -214,7 +240,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
       [cell configureCellWithData:item];
   }];
 }
-
 
 # pragma mark - SKPaginatorDelegate
 
@@ -243,23 +268,14 @@ static CGFloat const kIndicatorViewSize = 40.F;
       }
     }).catch(^(NSError *error) {
       @strongify(self);
-      [self setupNetworkError:error isRefresh:YES];
+      [self buildNetworkError:error isRefresh:YES];
     }).finally(^{
       @strongify(self);
-      [self endRefresh];
+      [self updateView:YES];
     });
     return;
   }
-  self.paginator.loading = NO;
-  self.paginator.refresh = NO;
-  [self.tableView reloadEmptyDataSet];
-  [self shouldShowIndicatorView];
-}
-
-- (void)endRefresh {
-  [self.refreshControl endRefreshing];
-  [self.tableView reloadEmptyDataSet];
-  [self shouldShowIndicatorView];
+  [self updateView:YES];
 }
 
 - (void)loadData {
@@ -270,18 +286,14 @@ static CGFloat const kIndicatorViewSize = 40.F;
       // Left Blank
     }).catch(^(NSError *error) {
       @strongify(self);
-      [self setupNetworkError:error isRefresh:NO];
+      [self buildNetworkError:error isRefresh:NO];
     }).finally(^{
       @strongify(self);
-      [self.tableView reloadEmptyDataSet];
-      [self shouldShowIndicatorView];
+      [self updateView:NO];
     });
     return;
   }
-  self.paginator.loading = NO;
-  self.paginator.refresh = NO;
-  [self.tableView reloadEmptyDataSet];
-  [self shouldShowIndicatorView];
+  [self updateView:NO];
 }
 
 - (void)loadMoreData {
@@ -294,25 +306,28 @@ static CGFloat const kIndicatorViewSize = 40.F;
       }
     }).catch(^(NSError *error) {
       @strongify(self);
-      [self setupNetworkError:error isRefresh:NO];
+      [self buildNetworkError:error isRefresh:NO];
     }).finally(^{
-        // TODO
       @strongify(self);
-      [self.tableView reloadEmptyDataSet];
+      [self updateView:NO];
     });
     return;
   }
+  [self updateView:NO];
 }
 
-- (void)setupNetworkError:(NSError *)error isRefresh:(BOOL)isRefresh {
-  NSDictionary *userInfo = [error userInfo];
-  if (userInfo[@"NSUnderlyingError"]) {
-    [SKToastUtil toastWithText:userInfo[@"NSLocalizedDescription"]];
-    return;
+- (void)updateView:(BOOL)isRefresh {
+  if (isRefresh && _canRefresh) {
+    [self.refreshControl endRefreshing];
   }
-  OVCResponse *response = userInfo[@"OVCResponse"];
-  SKErrorResponseModel *errorModel = response.result;
-  [SKToastUtil toastWithText:errorModel.message];
+  self.paginator.loading = NO;
+  self.paginator.refresh = NO;
+  [self.tableView reloadEmptyDataSet];
+  [self shouldShowIndicatorView];
+}
+
+- (void)buildNetworkError:(NSError *)error isRefresh:(BOOL)isRefresh {
+  [SKToastUtil toastWithText:[SKErrorResponseModel buildMessageWithNetworkError:error]];
 }
 
 #pragma mark - DZNEmptyDataSetSource Methods
@@ -373,17 +388,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
   return [UIImage imageNamed:imageName];
 }
 
-- (CAAnimation *)imageAnimationForEmptyDataSet:(UIScrollView *)scrollView {
-  CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
-  animation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-  animation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI_2, 0.0, 0.0, 1.0)];
-  animation.duration = 0.25;
-  animation.cumulative = YES;
-  animation.repeatCount = MAXFLOAT;
-
-  return animation;
-}
-
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
   NSString *text = nil;
   UIFont *font = nil;
@@ -398,18 +402,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
   if (textColor) [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
 
   return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
-- (UIImage *)buttonBackgroundImageForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
-  NSString *imageName = @"Frameworks/StarterKit.framework/StarterKit.bundle/button_background_kickstarter";
-
-  if (state == UIControlStateNormal) imageName = [imageName stringByAppendingString:@"_normal"];
-  if (state == UIControlStateHighlighted) imageName = [imageName stringByAppendingString:@"_highlight"];
-
-  UIEdgeInsets capInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
-  UIEdgeInsets rectInsets = UIEdgeInsetsZero;
-
-  return [[[UIImage imageNamed:imageName] resizableImageWithCapInsets:capInsets resizingMode:UIImageResizingModeStretch] imageWithAlignmentRectInsets:rectInsets];
 }
 
 - (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView {
@@ -431,7 +423,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 }
 
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
-  return YES;
+  return NO;
 }
 
 - (BOOL)emptyDataSetShouldAnimateImageView:(UIScrollView *)scrollView {
