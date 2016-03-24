@@ -22,8 +22,10 @@
                                    entityName:(NSString *)entityName
                                fetchBatchSize:(NSUInteger)fetchBatchSize;
 
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName;
+- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+                   sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors;
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName;
+- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+                  sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors;
 
 @end

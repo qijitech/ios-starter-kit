@@ -16,9 +16,9 @@
 @interface SKFetchedTableViewController ()
 @property(nonatomic, strong) SKManagedHTTPSessionManager *httpSessionManager;
 
-@property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
-@property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
+@property(nonatomic, copy) NSString *entityName;
 @property(nonatomic, copy) NSPredicate *predicate;
+@property(nonatomic, copy) NSArray<NSSortDescriptor *> *sortDescriptors;
 
 @property(strong, nonatomic) NSMutableIndexSet *insertedSections;
 @property(strong, nonatomic) NSMutableIndexSet *deletedSections;
@@ -32,6 +32,8 @@
 - (void)initWithBuilder:(SKTableViewControllerBuilder *)builder {
   NSParameterAssert(builder);
   _predicate = builder.predicate;
+  _entityName = builder.entityName;
+  _sortDescriptors = builder.sortDescriptors;
   [super initWithBuilder:builder];
 }
 
@@ -82,11 +84,13 @@
   return [self.dataSource.fetchedResultsController.fetchedObjects count];
 }
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName {
-  return [[SKManaged sharedInstance] lastModelIdentifier:entityName];
+- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+                  sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
+  return [[SKManaged sharedInstance] lastModelIdentifier:entityName sortDescriptors:sortDescriptors];
 }
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName {
-  return [[SKManaged sharedInstance] firstModelIdentifier:entityName];
+- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+                   sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
+  return [[SKManaged sharedInstance] firstModelIdentifier:entityName sortDescriptors:sortDescriptors];
 }
 
 #pragma mark - Properties

@@ -13,17 +13,20 @@
 @interface SKTableViewControllerBuilder : NSObject
 
 // required
-@property(nonatomic, copy) NSString *entityName;
 @property(nonatomic, strong) Class modelOfClass;
 @property(nonatomic, strong) NSArray *cellMetadata;
 @property(nonatomic, strong) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
+
+// for fetched property
+@property(nonatomic, copy) NSString *entityName;
+@property(nonatomic, copy) NSPredicate *predicate;
+@property(nonatomic, copy) NSArray<NSSortDescriptor *> *sortDescriptors;
 
 // optional
 @property(nonatomic, strong) SKPaginator *paginator;
 @property(nonatomic, copy) NSString *cellReuseIdentifier;
 @property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
 @property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
-@property(nonatomic, copy) NSPredicate *predicate;
 
 // empty settings
 @property(nonatomic, strong) UIColor *titleColor;

@@ -42,7 +42,8 @@
   return self.dataSource.items.count;
 }
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName {
+- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+                  sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
   NSArray *items = self.dataSource.items;
   NSUInteger count = items.count;
   if (count <= 0) {
@@ -55,7 +56,8 @@
   }
   return nil;
 }
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName {
+- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+                   sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
 //  if (self.dataSource.items.count <= 0) {
 //    return nil;
 //  }
@@ -71,7 +73,6 @@
   @weakify(self);
   self.dataSource = [SKArrayDataSource createWithBuilder:^(SKArrayDataSourceBuilder *builder) {
     @strongify(self);
-    builder.entityName = [self entityName];
     builder.dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
       NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
       if (self.canLoadMore && self.paginator.hasMorePages && indexPath.item == numbers - 1) {

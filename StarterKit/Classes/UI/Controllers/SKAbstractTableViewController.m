@@ -21,7 +21,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
 @interface SKAbstractTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(nonatomic, strong) DGActivityIndicatorView *indicatorView;
 
-@property(nonatomic, copy) NSString *entityName;
 @property(nonatomic, strong) Class modelOfClass;
 @property(nonatomic, strong) NSMutableArray *cellMetadata;
 @property(nonatomic, strong) SKPaginator *paginator;
@@ -59,7 +58,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
   NSParameterAssert(builder.configureCellBlock);
 
-  _entityName = builder.entityName;
   _modelOfClass = builder.modelOfClass;
   _paginator = builder.paginator;
   _paginator.delegate = self;
@@ -72,7 +70,9 @@ static CGFloat const kIndicatorViewSize = 40.F;
   _configureCellBlock = builder.configureCellBlock;
 
   _titleColor = builder.titleColor;
+  _titleFont = builder.titleFont;
   _subtitleColor = builder.subtitleColor;
+  _subtitleFont = builder.subtitleFont;
 
   _canRefresh = builder.canRefresh;
   _canLoadMore = builder.canLoadMore;
@@ -80,6 +80,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
   // for core data entity name
   if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
     ((SKKeyPaginator *) _paginator).entityName = builder.entityName;
+    ((SKKeyPaginator *) _paginator).sortDescriptors = builder.sortDescriptors;
   }
   _paginateBlock = builder.paginateBlock;
 }
@@ -139,11 +140,13 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)cancelAllRequests {
 }
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName {
+- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+                  sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
   return nil;
 }
 
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName {
+- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+                   sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
   return nil;
 }
 

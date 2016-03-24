@@ -10,8 +10,8 @@
 - (void)networkOnStart:(BOOL)isRefresh;
 - (AnyPromise *)paginate:(NSMutableDictionary *)parameters;
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName;
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName;
+- (NSNumber *)lastModelIdentifier:(NSString *)entityName sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors;
+- (NSNumber *)firstModelIdentifier:(NSString *)entityName sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors;
 @end
 
 @interface SKPaginator : NSObject
@@ -36,7 +36,6 @@
 @interface SKKeyPaginator : SKPaginator
 
 @property(nonatomic, assign) NSString *entityName;
-
-- (instancetype)initWithEntityName:(NSString *)entityName;
+@property(nonatomic, copy) NSArray<NSSortDescriptor *> *sortDescriptors;
 
 @end

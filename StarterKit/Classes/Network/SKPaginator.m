@@ -136,13 +136,6 @@
 
 @implementation SKKeyPaginator
 
-- (instancetype)initWithEntityName:(NSString *)entityName {
-  if (self = [super init]) {
-    _entityName = entityName;
-  }
-  return self;
-}
-
 - (AnyPromise *)refresh {
   if (self.refresh || self.loading) {
     return nil;
@@ -155,8 +148,8 @@
 
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
     NSDictionary *parameters = @{};
-    if ([self.delegate respondsToSelector:@selector(firstModelIdentifier:)]) {
-      NSNumber *identifier = [self.delegate firstModelIdentifier:self.entityName];
+    if ([self.delegate respondsToSelector:@selector(firstModelIdentifier:sortDescriptors:)]) {
+      NSNumber *identifier = [self.delegate firstModelIdentifier:self.entityName sortDescriptors:self.sortDescriptors];
       if (identifier) {
         parameters = [parameters mtl_dictionaryByAddingEntriesFromDictionary:@{@"since-id": [identifier stringValue]}];
       }
@@ -179,8 +172,8 @@
 
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
     NSNumber *identifier;
-    if ([self.delegate respondsToSelector:@selector(lastModelIdentifier:)]) {
-      identifier = [self.delegate lastModelIdentifier:self.entityName];
+    if ([self.delegate respondsToSelector:@selector(lastModelIdentifier:sortDescriptors:)]) {
+      identifier = [self.delegate lastModelIdentifier:self.entityName sortDescriptors:self.sortDescriptors];
     }
     NSAssert(identifier, @"loadMore should not be called when the cache is empty");
     NSDictionary *parameters = @{@"max-id": [identifier stringValue],@"page_size" : @(self.pageSize)};

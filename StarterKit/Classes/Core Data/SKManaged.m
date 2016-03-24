@@ -54,12 +54,17 @@ static NSString *const kIdentifierKey = @"identifier";
   return fetchRequest;
 }
 
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName {
+- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+                   sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
   NSFetchRequest *fetchRequest = [[self class] fetchRequestEntityName:entityName];
 
-  NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:kIdentifierKey
-                                                               ascending:NO];
-  [fetchRequest setSortDescriptors:@[descriptor]];
+  if (sortDescriptors) {
+    [fetchRequest setSortDescriptors:sortDescriptors];
+  } else {
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:kIdentifierKey
+                                                                 ascending:NO];
+    [fetchRequest setSortDescriptors:@[descriptor]];
+  }
 
   [fetchRequest setResultType:NSDictionaryResultType];
   [fetchRequest setPropertiesToFetch:@[kIdentifierKey]];
@@ -70,12 +75,17 @@ static NSString *const kIdentifierKey = @"identifier";
   return result[kIdentifierKey];
 }
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName {
+- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+                  sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
   NSFetchRequest *fetchRequest = [[self class] fetchRequestEntityName:entityName];
 
-  NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:kIdentifierKey
-                                                               ascending:YES];
-  [fetchRequest setSortDescriptors:@[descriptor]];
+  if (sortDescriptors) {
+    [fetchRequest setSortDescriptors:sortDescriptors];
+  } else {
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:kIdentifierKey
+                                                                 ascending:YES];
+    [fetchRequest setSortDescriptors:@[descriptor]];
+  }
 
   [fetchRequest setResultType:NSDictionaryResultType];
   [fetchRequest setPropertiesToFetch:@[kIdentifierKey]];

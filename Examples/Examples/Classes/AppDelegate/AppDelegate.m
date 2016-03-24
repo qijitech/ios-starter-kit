@@ -41,10 +41,10 @@
     [SKNetworkConfig sharedInstance].accept = kBaseURL;
 
 //    AuthController *controller = [[AuthController alloc] init];
-//    FetchedKeyFeedViewController *controller = [[FetchedKeyFeedViewController alloc] init];
+    FetchedKeyFeedViewController *controller = [[FetchedKeyFeedViewController alloc] init];
 //    FetchedPageFeedViewController *controller = [[FetchedPageFeedViewController alloc] init];
 //    KeyFeedViewController *controller = [[KeyFeedViewController alloc] init];
-    PageFeedViewController *controller = [[PageFeedViewController alloc] init];
+//    PageFeedViewController *controller = [[PageFeedViewController alloc] init];
 //    MasonryViewController *controller = [[MasonryViewController alloc] init];
 //    TestViewController *controller = [[TestViewController alloc] init];
 

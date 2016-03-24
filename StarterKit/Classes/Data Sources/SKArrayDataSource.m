@@ -21,7 +21,6 @@
 
 - (instancetype)initWithBuilder:(SKArrayDataSourceBuilder *)builder {
   NSParameterAssert(builder);
-  NSParameterAssert(builder.entityName);
   NSParameterAssert(builder.dequeueReusableCellBlock);
   NSParameterAssert(builder.configureCellBlock);
 

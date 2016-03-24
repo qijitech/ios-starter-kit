@@ -15,7 +15,6 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 
 @property(nonatomic, strong, readonly) SKPaginator *paginator;
 
-@property(nonatomic, copy, readonly) NSString *entityName;
 @property(nonatomic, strong, readonly) Class modelOfClass;
 @property(nonatomic, strong, readonly) NSMutableArray *cellMetadata;
 @property(nonatomic, strong, readonly) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
