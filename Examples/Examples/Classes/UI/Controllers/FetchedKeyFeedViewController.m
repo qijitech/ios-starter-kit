@@ -1,17 +1,18 @@
 //
-// Created by Hammer on 1/23/16.
+// Created by 杨玉刚 on 3/24/16.
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import "PageFeedViewController.h"
-#import <StarterKit/SKTableViewControllerBuilder.h>
-#import "Feed.h"
-#import "SKHTTPSessionManager+Example.h"
-#import "SKFeedTableViewCell.h"
-#import "SKFeedPictureTableViewCell.h"
-#import <libextobjc/EXTScope.h>
+#import "FetchedKeyFeedViewController.h"
 
-@implementation PageFeedViewController
+#import <StarterKit/SKTableViewControllerBuilder.h>
+#import <libextobjc/EXTScope.h>
+#import "SKFeedTableViewCell.h"
+#import "Feed.h"
+#import "SKFeedPictureTableViewCell.h"
+#import "SKManagedHTTPSessionManager+Example.h"
+
+@implementation FetchedKeyFeedViewController
 
 - (id)init {
   if (self = [super init]) {
@@ -30,7 +31,7 @@
       @weakify(self);
       builder.paginateBlock = ^(NSDictionary *parameters) {
         @strongify(self)
-        return [self.httpSessionManager fetchFeeds:parameters];
+        return [self.httpSessionManager fetchFeedsWithId:parameters];
       };
     }];
   }

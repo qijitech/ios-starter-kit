@@ -11,6 +11,7 @@
 #import "SKLoadMoreTableViewCell.h"
 #import "SKManaged.h"
 #import "SKManagedHTTPSessionManager.h"
+#import "SKTableViewControllerBuilder.h"
 
 @interface SKFetchedTableViewController ()
 @property(nonatomic, strong) SKManagedHTTPSessionManager *httpSessionManager;
@@ -27,6 +28,12 @@
 @end
 
 @implementation SKFetchedTableViewController
+
+- (void)initWithBuilder:(SKTableViewControllerBuilder *)builder {
+  NSParameterAssert(builder);
+  _predicate = builder.predicate;
+  [super initWithBuilder:builder];
+}
 
 - (SKManagedHTTPSessionManager *)httpSessionManager {
   if (!_httpSessionManager) {
@@ -66,12 +73,12 @@
   return [self.dataSource itemAtIndexPath:indexPath];
 }
 
-- (NSUInteger)numberOfObjectsWithSection:(NSInteger)section {
+- (NSUInteger)numberOfObjectsWithSection:(NSUInteger)section {
   id <NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
   return [sectionInfo numberOfObjects];
 }
 
-- (NSUInteger)total {
+- (NSUInteger)numberOfObjects {
   return [self.dataSource.fetchedResultsController.fetchedObjects count];
 }
 

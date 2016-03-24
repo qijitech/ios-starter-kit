@@ -10,7 +10,7 @@
 #import <StarterKit/SKManagedHTTPSessionManager.h>
 #import <Overcoat/OVCHTTPSessionManager+PromiseKit.h>
 
-@interface SKManagedHTTPSessionManager (Network)
+@interface SKManagedHTTPSessionManager (Example)
 
 - (AnyPromise *)fetchFeeds:(NSDictionary *)parameters;
 - (AnyPromise *)fetchFeedsWithId:(NSDictionary *)parameters;

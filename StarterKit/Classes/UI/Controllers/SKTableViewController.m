@@ -34,11 +34,11 @@
   return [self.dataSource itemAtIndexPath:indexPath];
 }
 
-- (NSUInteger)numberOfObjectsWithSection:(NSInteger)section {
+- (NSUInteger)numberOfObjectsWithSection:(NSUInteger)section {
   return self.dataSource.items.count;
 }
 
-- (NSUInteger)total {
+- (NSUInteger)numberOfObjects {
   return self.dataSource.items.count;
 }
 

@@ -8,12 +8,13 @@
 
 #import <StarterKit/SKHTTPSessionManager.h>
 
-@interface SKHTTPSessionManager (Auth)
+@interface SKHTTPSessionManager (Example)
 
 - (AnyPromise *)register:(NSDictionary *)parameters;
 
 - (AnyPromise *)login:(NSDictionary *)parameters;
 
+- (AnyPromise *)fetchFeeds:(NSDictionary *)parameters;
 - (AnyPromise *)fetchFeedsWithId:(NSDictionary *)parameters;
 
 @end

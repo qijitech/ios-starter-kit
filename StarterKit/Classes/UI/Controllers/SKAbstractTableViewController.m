@@ -11,14 +11,12 @@
 #import <HexColors/HexColors.h>
 #import <DGActivityIndicatorView/DGActivityIndicatorView.h>
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
-#import "SKTableViewCell.h"
 #import "SKErrorResponseModel.h"
 #import "SKTableViewControllerBuilder.h"
 #import "SKLoadMoreTableViewCell.h"
 #import "SKToastUtil.h"
 
 static CGFloat const kIndicatorViewSize = 40.F;
-#define kShowHideAnimateDuration 0.2
 
 @interface SKAbstractTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(nonatomic, strong) DGActivityIndicatorView *indicatorView;
@@ -33,7 +31,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
 @property(nonatomic, copy) NSString *cellReuseIdentifier;
 @property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
 @property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
-@property(nonatomic, copy) NSPredicate *predicate;
 
 @property(nonatomic, strong) UIColor *titleColor;
 @property(nonatomic, strong) UIFont *titleFont;
@@ -69,9 +66,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
   _cellMetadata = [builder.cellMetadata mutableCopy];
 
   [self.cellMetadata addObject:[SKLoadMoreTableViewCell class]];
-    
-  _predicate = builder.predicate;
-  
+
   _cellReuseIdentifier = builder.cellReuseIdentifier;
   _dequeueReusableCellBlock = builder.dequeueReusableCellBlock;
   _configureCellBlock = builder.configureCellBlock;
@@ -129,6 +124,29 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)setupDataSource {
 }
 
+- (NSUInteger)numberOfObjectsWithSection:(NSUInteger )section {
+  return 0;
+}
+
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath {
+  return nil;
+}
+
+- (NSUInteger)numberOfObjects {
+  return 0;
+}
+
+- (void)cancelAllRequests {
+}
+
+- (NSNumber *)lastModelIdentifier:(NSString *)entityName {
+  return nil;
+}
+
+- (NSNumber *)firstModelIdentifier:(NSString *)entityName {
+  return nil;
+}
+
 - (void)onDataLoaded:(NSArray *)data isRefresh:(BOOL)isRefresh {
 }
 
@@ -175,7 +193,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)shouldShowIndicatorView {
   if (self.paginator.isRefresh &&
       !self.paginator.hasDataLoaded &&
-      [self total] <= 0) {
+      [self numberOfObjects] <= 0) {
     [self showIndicatorView];
     return;
   }

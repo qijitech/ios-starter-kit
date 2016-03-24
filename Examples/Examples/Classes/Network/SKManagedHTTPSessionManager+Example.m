@@ -6,11 +6,11 @@
 //  Copyright © 2016 奇迹空间. All rights reserved.
 //
 
-#import "SKManagedHTTPSessionManager+Network.h"
+#import "SKManagedHTTPSessionManager+Example.h"
 #import <Overcoat/OVCHTTPSessionManager+PromiseKit.h>
 #import "Feed.h"
 
-@implementation SKManagedHTTPSessionManager (Network)
+@implementation SKManagedHTTPSessionManager (Example)
 
 - (AnyPromise *)fetchFeeds:(NSDictionary *)parameters {
   return [self GET:@"/feedsWithPage" parameters:parameters];

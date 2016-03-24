@@ -10,7 +10,7 @@
 #import "SKFeedTableViewCell.h"
 #import "Feed.h"
 #import "SKFeedPictureTableViewCell.h"
-#import "SKHTTPSessionManager+Auth.h"
+#import "SKHTTPSessionManager+Example.h"
 
 @interface KeyFeedViewController ()
 

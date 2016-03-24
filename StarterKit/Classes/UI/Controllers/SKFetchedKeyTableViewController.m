@@ -16,7 +16,7 @@
   builder.canRefresh = YES;
   builder.canLoadMore = YES;
   block(builder);
-  [self initWithBuilder:builder];
+  [super initWithBuilder:builder];
 }
 
 @end

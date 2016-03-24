@@ -7,7 +7,7 @@
 #import <StarterKit/SKAccountManager.h>
 #import "AuthController.h"
 
-#import "SKHTTPSessionManager+Auth.h"
+#import "SKHTTPSessionManager+Example.h"
 #import "User.h"
 
 @interface AuthController () <SKAccountManagerDelegate>

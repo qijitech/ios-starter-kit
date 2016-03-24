@@ -1,17 +1,17 @@
 //
-// Created by Hammer on 1/23/16.
+// Created by 杨玉刚 on 3/24/16.
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import "PageFeedViewController.h"
+#import "FetchedPageFeedViewController.h"
 #import <StarterKit/SKTableViewControllerBuilder.h>
 #import "Feed.h"
-#import "SKHTTPSessionManager+Example.h"
+#import "SKManagedHTTPSessionManager+Example.h"
 #import "SKFeedTableViewCell.h"
 #import "SKFeedPictureTableViewCell.h"
 #import <libextobjc/EXTScope.h>
 
-@implementation PageFeedViewController
+@implementation FetchedPageFeedViewController
 
 - (id)init {
   if (self = [super init]) {

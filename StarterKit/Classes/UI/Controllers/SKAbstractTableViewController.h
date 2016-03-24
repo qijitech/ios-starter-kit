@@ -24,7 +24,6 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 @property(nonatomic, copy, readonly) NSString *cellReuseIdentifier;
 @property(nonatomic, copy, readonly) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
 @property(nonatomic, copy, readonly) TGRDataSourceCellBlock configureCellBlock;
-@property(nonatomic, copy, readonly) NSPredicate *predicate;
 
 @property(nonatomic, strong, readonly) UIColor *titleColor;
 @property(nonatomic, strong, readonly) UIFont *titleFont;
@@ -34,12 +33,12 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 @property(nonatomic, assign, readonly) BOOL canRefresh;
 @property(nonatomic, assign, readonly) BOOL canLoadMore;
 
-- (NSUInteger)numberOfObjectsWithSection:(NSInteger )section;
+// for internal
+- (NSUInteger)numberOfObjectsWithSection:(NSUInteger )section;
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
-- (NSUInteger)total;
+- (NSUInteger)numberOfObjects;
 - (void)cancelAllRequests;
 - (void)onDataLoaded:(NSArray *)data isRefresh:(BOOL)isRefresh;
-
 - (void)setupTableView;
 - (void)setupDataSource;
 
@@ -52,7 +51,7 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 - (void)createWithBuilder:(SKTableViewControllerBuilderBlock )block;
 - (void)initWithBuilder:(SKTableViewControllerBuilder *)builder;
 
-// for empty
+// for empty 可继承实现
 - (NSString *)emptyTitle;
 - (NSString *)emptySubtitle;
 - (NSString *)emptyImage;

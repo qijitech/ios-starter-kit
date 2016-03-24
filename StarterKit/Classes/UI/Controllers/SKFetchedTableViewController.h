@@ -13,6 +13,8 @@
 
 @property(nonatomic, strong, readonly) SKManagedHTTPSessionManager *httpSessionManager;
 
+@property(nonatomic, copy, readonly) NSPredicate *predicate;
+
 /**
  The data source used by this view controller.
  */

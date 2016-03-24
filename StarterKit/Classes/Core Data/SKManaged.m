@@ -58,7 +58,7 @@ static NSString *const kIdentifierKey = @"identifier";
   NSFetchRequest *fetchRequest = [[self class] fetchRequestEntityName:entityName];
 
   NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:kIdentifierKey
-                                                               ascending:YES];
+                                                               ascending:NO];
   [fetchRequest setSortDescriptors:@[descriptor]];
 
   [fetchRequest setResultType:NSDictionaryResultType];
@@ -72,6 +72,10 @@ static NSString *const kIdentifierKey = @"identifier";
 
 - (NSNumber *)lastModelIdentifier:(NSString *)entityName {
   NSFetchRequest *fetchRequest = [[self class] fetchRequestEntityName:entityName];
+
+  NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:kIdentifierKey
+                                                               ascending:YES];
+  [fetchRequest setSortDescriptors:@[descriptor]];
 
   [fetchRequest setResultType:NSDictionaryResultType];
   [fetchRequest setPropertiesToFetch:@[kIdentifierKey]];

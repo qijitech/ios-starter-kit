@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "Profile.h"
 #import "KeyFeedViewController.h"
+#import "FetchedKeyFeedViewController.h"
+#import "FetchedPageFeedViewController.h"
 #import "PageFeedViewController.h"
 #import "MasonryViewController.h"
 #import "TestViewController.h"
@@ -39,8 +41,10 @@
     [SKNetworkConfig sharedInstance].accept = kBaseURL;
 
 //    AuthController *controller = [[AuthController alloc] init];
-    KeyFeedViewController *controller = [[KeyFeedViewController alloc] init];
-//    PageFeedViewController *controller = [[PageFeedViewController alloc] init];
+//    FetchedKeyFeedViewController *controller = [[FetchedKeyFeedViewController alloc] init];
+//    FetchedPageFeedViewController *controller = [[FetchedPageFeedViewController alloc] init];
+//    KeyFeedViewController *controller = [[KeyFeedViewController alloc] init];
+    PageFeedViewController *controller = [[PageFeedViewController alloc] init];
 //    MasonryViewController *controller = [[MasonryViewController alloc] init];
 //    TestViewController *controller = [[TestViewController alloc] init];
 
