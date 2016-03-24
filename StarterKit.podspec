@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "StarterKit"
-  s.version          = "0.2.2"
+  s.version          = "0.2.3"
   s.summary          = "ios starter kit."
 
 # This description is used to generate tags and improve search results.
