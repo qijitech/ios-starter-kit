@@ -57,6 +57,7 @@ PODS:
     - Mantle/extobjc (= 2.0.6)
   - Mantle/extobjc (2.0.6)
   - Masonry (0.6.4)
+  - MaterialControls (1.0.2)
   - MBProgressHUD (0.9.2)
   - MMPlaceHolder (1.9)
   - MTLManagedObjectAdapter (1.0.1):
@@ -102,11 +103,10 @@ PODS:
     - Overcoat/NSURLSession
     - PromiseKit/CorePromise (> 2)
   - PromiseKit/CorePromise (3.0.3)
-  - RKDropdownAlert (0.3.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
-  - StarterKit (0.2.0):
+  - StarterKit (0.2.2):
     - AFNetworkActivityLogger (~> 2.0.4)
     - AnimatedGIFImageSerialization (~> 0.2.0)
     - DGActivityIndicatorView
@@ -116,12 +116,12 @@ PODS:
     - libextobjc
     - Mantle (~> 2.0)
     - Masonry (~> 0.6.4)
+    - MaterialControls (~> 1.0.2)
     - MBProgressHUD
     - MMPlaceHolder
     - Overcoat
     - Overcoat/CoreData
     - Overcoat/PromiseKit
-    - RKDropdownAlert
     - SDWebImage (~> 3.7)
     - TGRDataSource-qijitech
     - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
@@ -146,14 +146,14 @@ SPEC CHECKSUMS:
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MaterialControls: bdeeb94aa049b73f70739a5514be137d2d45c08a
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MMPlaceHolder: 40212b9dfe8760134b1b2fce3232f0d46200178f
   MTLManagedObjectAdapter: f369edc1226fde2061fe894bd87f256e60cd8f88
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
   PromiseKit: 00ec2a219bf5ad2833f95977698e921932b8dfd3
-  RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  StarterKit: 576ce6225a758163ae21fc1f45614a309823dae4
+  StarterKit: 2a101e2a0cd513b20887f2327cef346103900a18
   TGRDataSource-qijitech: e914f54bf7454093e8dfca13907ec9674bd33268
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 

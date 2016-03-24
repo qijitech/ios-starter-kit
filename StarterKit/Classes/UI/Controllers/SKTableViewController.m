@@ -18,8 +18,8 @@
 #import <DGActivityIndicatorView/DGActivityIndicatorView.h>
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "SKManaged.h"
-#import <RKDropdownAlert/RKDropdownAlert.h>
 #import "SKLoadMoreTableViewCell.h"
+#import "SKToastUtil.h"
 
 static CGFloat const kIndicatorViewSize = 40.F;
 #define kShowHideAnimateDuration 0.2
@@ -97,6 +97,10 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
   if ([self isMovingFromParentViewController]) {
     [self cancelAllRequests];
+  }
+
+  if (self.refreshControl && self.refreshControl.isRefreshing) {
+    [self.refreshControl endRefreshing];
   }
 }
 
@@ -188,9 +192,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
   NSUInteger numbers = [sectionInfo numberOfObjects];
-//  if (self.paginator.hasMorePages) {
-//    numbers += 1;
-//  }
   return numbers + 1;
 }
 
@@ -238,7 +239,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
     @weakify(self);
     promise.then(^(NSArray *result) {
       if (!result || result.count <= 0) {
-        [RKDropdownAlert title:@"" message:@"没有最新数据"];
+        [SKToastUtil toastWithText:@"没有最新数据"];
       }
     }).catch(^(NSError *error) {
       @strongify(self);
@@ -289,7 +290,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
     @weakify(self);
     promise.then(^(NSArray *result) {
       if (!result || result.count <= 0) {
-        [RKDropdownAlert title:@"" message:@"没有更多数据"];
+        [SKToastUtil toastWithText:@"没有更多数据"];
       }
     }).catch(^(NSError *error) {
       @strongify(self);
@@ -306,12 +307,12 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)setupNetworkError:(NSError *)error isRefresh:(BOOL)isRefresh {
   NSDictionary *userInfo = [error userInfo];
   if (userInfo[@"NSUnderlyingError"]) {
-    [RKDropdownAlert title:@"" message:userInfo[@"NSLocalizedDescription"]];
+    [SKToastUtil toastWithText:userInfo[@"NSLocalizedDescription"]];
     return;
   }
   OVCResponse *response = userInfo[@"OVCResponse"];
   SKErrorResponseModel *errorModel = response.result;
-  [RKDropdownAlert title:@"" message:errorModel.message];
+  [SKToastUtil toastWithText:errorModel.message];
 }
 
 #pragma mark - DZNEmptyDataSetSource Methods

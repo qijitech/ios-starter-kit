@@ -52,12 +52,12 @@ Pod::Spec.new do |s|
   s.dependency 'DZNEmptyDataSet', '~> 1.7.3'
   s.dependency 'HexColors', '~> 3.0.0'
   s.dependency 'AnimatedGIFImageSerialization', '~> 0.2.0'
-  s.dependency 'RKDropdownAlert'
   s.dependency 'MBProgressHUD'
   s.dependency 'FLEX'
   s.dependency 'MMPlaceHolder'
   s.dependency 'SDWebImage', '~>3.7'
   s.dependency 'AFNetworkActivityLogger', '~> 2.0.4'
   s.dependency 'DGActivityIndicatorView'
+  s.dependency 'MaterialControls', '~> 1.0.2'
 
 end
