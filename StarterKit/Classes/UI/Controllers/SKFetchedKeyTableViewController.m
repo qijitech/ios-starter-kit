@@ -1,11 +1,13 @@
 //
-// Created by 杨玉刚 on 3/24/16.
+// Created by Hammer on 1/19/16.
+// Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import "SKKeyTableViewController.h"
+#import "SKFetchedKeyTableViewController.h"
 #import "SKTableViewControllerBuilder.h"
 
-@implementation SKKeyTableViewController
+
+@implementation SKFetchedKeyTableViewController
 
 - (void)createWithBuilder:(SKTableViewControllerBuilderBlock)block {
   NSParameterAssert(block);

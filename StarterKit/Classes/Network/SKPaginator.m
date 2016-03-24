@@ -155,9 +155,11 @@
 
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
     NSDictionary *parameters = @{};
-    NSNumber *identifier = [[SKManaged sharedInstance] lastModelIdentifier:self.entityName];
-    if (identifier) {
-      parameters = [parameters mtl_dictionaryByAddingEntriesFromDictionary:@{@"since-id": [identifier stringValue]}];
+    if ([self.delegate respondsToSelector:@selector(lastModelIdentifier:)]) {
+      NSNumber *identifier = [self.delegate lastModelIdentifier:self.entityName];
+      if (identifier) {
+        parameters = [parameters mtl_dictionaryByAddingEntriesFromDictionary:@{@"since-id": [identifier stringValue]}];
+      }
     }
     return [self paginate:parameters isRefresh:YES];
   }
@@ -176,7 +178,10 @@
   }
 
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
-    NSNumber *identifier = [[SKManaged sharedInstance] firstModelIdentifier:self.entityName];
+    NSNumber *identifier;
+    if ([self.delegate respondsToSelector:@selector(lastModelIdentifier:)]) {
+      identifier = [self.delegate firstModelIdentifier:self.entityName];
+    }
     NSAssert(identifier, @"loadMore should not be called when the cache is empty");
     NSDictionary *parameters = @{@"max-id": [identifier stringValue],@"page_size" : @(self.pageSize)};
     return [self paginate:parameters isRefresh:false];

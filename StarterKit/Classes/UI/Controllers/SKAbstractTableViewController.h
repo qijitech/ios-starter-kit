@@ -38,6 +38,7 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
 - (NSUInteger)total;
 - (void)cancelAllRequests;
+- (void)onDataLoaded:(NSArray *)data isRefresh:(BOOL)isRefresh;
 
 - (void)setupTableView;
 - (void)setupDataSource;

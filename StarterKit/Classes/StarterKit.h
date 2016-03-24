@@ -20,7 +20,7 @@ FOUNDATION_EXPORT const unsigned char StarterKitVersionString[];
 #import "SKNetworkConfig.h"
 #import "SKPaginator.h"
 #import "SKTableViewCell.h"
-#import "SKKeyTableViewController.h"
+#import "SKFetchedKeyTableViewController.h"
 #import "SKPageTableViewController.h"
 #import "SKAbstractTableViewController.h"
 #import "SKTableViewControllerBuilder.h"

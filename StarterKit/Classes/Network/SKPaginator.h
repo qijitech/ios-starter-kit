@@ -9,6 +9,9 @@
 @required
 - (void)networkOnStart:(BOOL)isRefresh;
 - (AnyPromise *)paginate:(NSMutableDictionary *)parameters;
+
+- (NSNumber *)lastModelIdentifier:(NSString *)entityName;
+- (NSNumber *)firstModelIdentifier:(NSString *)entityName;
 @end
 
 @interface SKPaginator : NSObject

@@ -9,6 +9,7 @@
 #import <Overcoat/OVCHTTPSessionManager+PromiseKit.h>
 #import "SKHTTPSessionManager+Auth.h"
 #import "User.h"
+#import "Feed.h"
 
 @implementation SKHTTPSessionManager (Auth)
 
@@ -20,10 +21,15 @@
   return [self POST:@"/auth/login" parameters:parameters];
 }
 
+- (AnyPromise *)fetchFeedsWithId:(NSDictionary *)parameters {
+  return [self GET:@"/feeds" parameters:parameters];
+}
+
 + (NSDictionary *)modelClassesByResourcePath {
   return @{
       @"auth/register" : [User class],
       @"auth/login" : [User class],
+      @"feeds" : [Feed class],
   };
 }
 

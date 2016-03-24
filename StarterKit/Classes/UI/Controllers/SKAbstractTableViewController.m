@@ -129,6 +129,9 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)setupDataSource {
 }
 
+- (void)onDataLoaded:(NSArray *)data isRefresh:(BOOL)isRefresh {
+}
+
 - (void)registerClassCellReuseIdentifier {
   for (Class clazz in self.cellMetadata) {
     [self.tableView registerClass:clazz
@@ -234,6 +237,8 @@ static CGFloat const kIndicatorViewSize = 40.F;
   if (promise) {
     @weakify(self);
     promise.then(^(NSArray *result) {
+      @strongify(self);
+      [self onDataLoaded:result isRefresh:YES];
       if (!result || result.count <= 0) {
         [SKToastUtil toastWithText:@"没有最新数据"];
       }
@@ -255,6 +260,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
     @weakify(self);
     promise.then(^(NSArray *result) {
       // Left Blank
+      [self onDataLoaded:result isRefresh:NO];
     }).catch(^(NSError *error) {
       @strongify(self);
       [self buildNetworkError:error isRefresh:NO];
@@ -272,6 +278,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
   if (promise) {
     @weakify(self);
     promise.then(^(NSArray *result) {
+      [self onDataLoaded:result isRefresh:NO];
       if (!result || result.count <= 0) {
         [SKToastUtil toastWithText:@"没有更多数据"];
       }

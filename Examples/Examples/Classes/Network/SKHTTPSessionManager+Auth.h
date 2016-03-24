@@ -14,5 +14,6 @@
 
 - (AnyPromise *)login:(NSDictionary *)parameters;
 
+- (AnyPromise *)fetchFeedsWithId:(NSDictionary *)parameters;
 
 @end

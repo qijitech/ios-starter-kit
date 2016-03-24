@@ -75,6 +75,12 @@
   return [self.dataSource.fetchedResultsController.fetchedObjects count];
 }
 
+- (NSNumber *)lastModelIdentifier:(NSString *)entityName {
+  return [[SKManaged sharedInstance] lastModelIdentifier:entityName];
+}
+- (NSNumber *)firstModelIdentifier:(NSString *)entityName {
+  return [[SKManaged sharedInstance] firstModelIdentifier:entityName];
+}
 
 #pragma mark - Properties
 
