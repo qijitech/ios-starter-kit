@@ -5,9 +5,9 @@
 
 #import <UIKit/UIKit.h>
 #import <TGRDataSource_qijitech/TGRDataSource.h>
-#import "SKTableViewController.h"
+#import "SKAbstractTableViewController.h"
 
-@class SKTableViewController;
+@class SKAbstractTableViewController;
 @class SKPaginator;
 
 @interface SKTableViewControllerBuilder : NSObject

@@ -3,7 +3,7 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import "SKTableViewController.h"
+#import "SKAbstractTableViewController.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import <Masonry/MASConstraintMaker.h>
 #import <Masonry/View+MASAdditions.h>
@@ -13,17 +13,14 @@
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "SKTableViewCell.h"
 #import "SKErrorResponseModel.h"
-#import "SKFetchedResultsDataSource.h"
-#import "SKFetchedResultsDataSourceBuilder.h"
 #import "SKTableViewControllerBuilder.h"
-#import "SKManaged.h"
 #import "SKLoadMoreTableViewCell.h"
 #import "SKToastUtil.h"
 
 static CGFloat const kIndicatorViewSize = 40.F;
 #define kShowHideAnimateDuration 0.2
 
-@interface SKTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface SKAbstractTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(nonatomic, strong) DGActivityIndicatorView *indicatorView;
 
 @property(nonatomic, copy) NSString *entityName;
@@ -47,7 +44,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 @property(nonatomic, assign) BOOL canLoadMore;
 @end
 
-@implementation SKTableViewController
+@implementation SKAbstractTableViewController
 
 - (void)createWithBuilder:(SKTableViewControllerBuilderBlock)block {
   NSParameterAssert(block);
@@ -89,9 +86,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
   if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
     ((SKKeyPaginator *) _paginator).entityName = builder.entityName;
   }
-
   _paginateBlock = builder.paginateBlock;
-  _httpSessionManager = [[SKManagedHTTPSessionManager alloc] initWithManagedObjectContext:[SKManaged sharedInstance].managedObjectContext];
 }
 
 - (void)viewDidLoad {
@@ -116,11 +111,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
   }
 }
 
-- (void)cancelAllRequests {
-  [self.httpSessionManager invalidateSessionCancelingTasks:YES];
-  _httpSessionManager = nil;
-}
-
 - (void)setupTableView {
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   self.tableView.emptyDataSetSource = self;
@@ -136,32 +126,14 @@ static CGFloat const kIndicatorViewSize = 40.F;
   }
 }
 
+- (void)setupDataSource {
+}
+
 - (void)registerClassCellReuseIdentifier {
   for (Class clazz in self.cellMetadata) {
     [self.tableView registerClass:clazz
            forCellReuseIdentifier:[clazz cellIdentifier]];
   }
-}
-
-- (void)setupDataSource {
-  @weakify(self);
-  self.dataSource = [SKFetchedResultsDataSource createWithBuilder:^(SKFetchedResultsDataSourceBuilder *builder) {
-    @strongify(self);
-    builder.modelOfClass = [self modelOfClass];
-    builder.entityName = [self entityName];
-    builder.predicate = [self predicate];
-    builder.dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
-      NSUInteger numbers = [self numberOfObjects:indexPath];
-      if (self.canLoadMore && self.paginator.hasMorePages && indexPath.item == numbers - 1) {
-        return [SKLoadMoreTableViewCell cellIdentifier];
-      }
-      if (self.cellReuseIdentifier) {
-        return self.cellReuseIdentifier;
-      }
-      return self.dequeueReusableCellBlock(item, indexPath);
-    };
-    builder.configureCellBlock = self.configureCellBlock;
-  }];
 }
 
 - (void)setupRefreshControl {
@@ -200,7 +172,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)shouldShowIndicatorView {
   if (self.paginator.isRefresh &&
       !self.paginator.hasDataLoaded &&
-      [self.dataSource.fetchedResultsController.fetchedObjects count] <= 0) {
+      [self total] <= 0) {
     [self showIndicatorView];
     return;
   }
@@ -216,18 +188,17 @@ static CGFloat const kIndicatorViewSize = 40.F;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[indexPath.section];
-  NSUInteger numbers = [sectionInfo numberOfObjects];
+  NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
   if (_canLoadMore && self.paginator.hasMorePages && indexPath.item == numbers - 1) {
     [self loadMoreData];
   }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  id item = [self.dataSource itemAtIndexPath:indexPath];
+  id item = [self itemAtIndexPath:indexPath];
   NSString *cellIdentifier = self.dequeueReusableCellBlock(item, indexPath);
   if (_canLoadMore && self.paginator.hasMorePages) {
-    NSUInteger numbers = [self numberOfObjects:indexPath];
+    NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
     if (indexPath.item == numbers - 1) {
       return 80;
     }
@@ -328,16 +299,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
 - (void)buildNetworkError:(NSError *)error isRefresh:(BOOL)isRefresh {
   [SKToastUtil toastWithText:[SKErrorResponseModel buildMessageWithNetworkError:error]];
-}
-
-- (NSUInteger)numberOfObjects:(NSIndexPath *)indexPath {
-  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[indexPath.section];
-  return [sectionInfo numberOfObjects];
-}
-
-- (NSUInteger)numberOfObjectsWithSection:(NSInteger )section {
-  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
-  return [sectionInfo numberOfObjects];
 }
 
 #pragma mark - Empty Methods

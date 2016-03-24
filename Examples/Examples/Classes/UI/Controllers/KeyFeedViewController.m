@@ -32,7 +32,7 @@
         return [SKFeedTableViewCell cellIdentifier];
       };
 
-      builder.paginateBlock = ^(NSDictionary *parameters) {
+      builder.paginateBlock = ^AnyPromise*(NSDictionary *parameters) {
         @strongify(self)
         return [self.httpSessionManager fetchFeedsWithId:parameters];
       };

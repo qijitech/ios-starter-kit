@@ -1,0 +1,59 @@
+//
+// Created by Hammer on 1/19/16.
+// Copyright (c) 2016 奇迹空间. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import <TGRDataSource_qijitech/TGRFetchedResultsDataSource.h>
+#import "SKPaginator.h"
+
+@class SKTableViewControllerBuilder;
+
+typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *builder);
+
+@interface SKAbstractTableViewController : UITableViewController <SKPaginatorDelegate>
+
+@property(nonatomic, strong, readonly) SKPaginator *paginator;
+
+@property(nonatomic, copy, readonly) NSString *entityName;
+@property(nonatomic, strong, readonly) Class modelOfClass;
+@property(nonatomic, strong, readonly) NSMutableArray *cellMetadata;
+@property(nonatomic, strong, readonly) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
+
+// optional
+@property(nonatomic, copy, readonly) NSString *cellReuseIdentifier;
+@property(nonatomic, copy, readonly) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
+@property(nonatomic, copy, readonly) TGRDataSourceCellBlock configureCellBlock;
+@property(nonatomic, copy, readonly) NSPredicate *predicate;
+
+@property(nonatomic, strong, readonly) UIColor *titleColor;
+@property(nonatomic, strong, readonly) UIFont *titleFont;
+@property(nonatomic, strong, readonly) UIColor *subtitleColor;
+@property(nonatomic, strong, readonly) UIFont *subtitleFont;
+
+@property(nonatomic, assign, readonly) BOOL canRefresh;
+@property(nonatomic, assign, readonly) BOOL canLoadMore;
+
+- (NSUInteger)numberOfObjectsWithSection:(NSInteger )section;
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath;
+- (NSUInteger)total;
+- (void)cancelAllRequests;
+
+- (void)setupTableView;
+- (void)setupDataSource;
+
+- (void)showIndicatorView;
+- (void)hideIndicatorView;
+
+- (void)refreshData;
+- (void)loadMoreData;
+
+- (void)createWithBuilder:(SKTableViewControllerBuilderBlock )block;
+- (void)initWithBuilder:(SKTableViewControllerBuilder *)builder;
+
+// for empty
+- (NSString *)emptyTitle;
+- (NSString *)emptySubtitle;
+- (NSString *)emptyImage;
+
+@end

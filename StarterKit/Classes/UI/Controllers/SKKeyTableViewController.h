@@ -3,7 +3,7 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import "SKTableViewController.h"
+#import "SKManagedTableViewController.h"
 
-@interface SKKeyTableViewController : SKTableViewController
+@interface SKKeyTableViewController : SKManagedTableViewController
 @end
