@@ -56,14 +56,14 @@
   return nil;
 }
 - (NSNumber *)firstModelIdentifier:(NSString *)entityName {
-  if (self.dataSource.items.count <= 0) {
-    return nil;
-  }
-  id item = self.dataSource.items[0];
-  if ([item isKindOfClass:[SKModel class]]) {
-    SKModel *model = (SKModel *)item;
-    return model.identifier;
-  }
+//  if (self.dataSource.items.count <= 0) {
+//    return nil;
+//  }
+//  id item = self.dataSource.items[0];
+//  if ([item isKindOfClass:[SKModel class]]) {
+//    SKModel *model = (SKModel *)item;
+//    return model.identifier;
+//  }
   return nil;
 }
 

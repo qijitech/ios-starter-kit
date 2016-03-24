@@ -3,8 +3,8 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import <StarterKit/SKPageTableViewController.h>
+#import <StarterKit/SKFetchedPageTableViewController.h>
 
 
-@interface PageFeedViewController : SKPageTableViewController
+@interface PageFeedViewController : SKFetchedPageTableViewController
 @end

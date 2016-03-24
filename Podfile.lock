@@ -123,9 +123,9 @@ PODS:
     - Overcoat/CoreData
     - Overcoat/PromiseKit
     - SDWebImage (~> 3.7)
-    - TGRDataSource-qijitech
+    - TGRDataSource-qijitech (~> 0.5)
     - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
-  - TGRDataSource-qijitech (0.4)
+  - TGRDataSource-qijitech (0.5)
   - UITableView+FDTemplateLayoutCell (1.4)
 
 DEPENDENCIES:
@@ -153,8 +153,8 @@ SPEC CHECKSUMS:
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
   PromiseKit: 00ec2a219bf5ad2833f95977698e921932b8dfd3
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  StarterKit: 2a101e2a0cd513b20887f2327cef346103900a18
-  TGRDataSource-qijitech: e914f54bf7454093e8dfca13907ec9674bd33268
+  StarterKit: a46360038c542c75d97939fa3c836780e400f726
+  TGRDataSource-qijitech: 3fe9272fa72e954a93a55ac4692b7e042efeafd4
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 
 PODFILE CHECKSUM: f4f5ecaaa410f6266c54d7307a1b40ba1fd51e19

@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
   s.dependency 'Overcoat'
   s.dependency 'Overcoat/CoreData'
   s.dependency 'Overcoat/PromiseKit'
-  s.dependency 'TGRDataSource-qijitech'
+  s.dependency 'TGRDataSource-qijitech', '~> 0.5'
   s.dependency 'libextobjc'
   s.dependency 'Mantle', '~> 2.0'
   s.dependency 'Masonry', '~> 0.6.4'

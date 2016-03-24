@@ -3,7 +3,7 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import "SKManagedTableViewController.h"
+#import "SKFetchedTableViewController.h"
 #import <libextobjc/EXTScope.h>
 #import "SKTableViewCell.h"
 #import "SKFetchedResultsDataSource.h"
@@ -12,7 +12,7 @@
 #import "SKManaged.h"
 #import "SKManagedHTTPSessionManager.h"
 
-@interface SKManagedTableViewController ()
+@interface SKFetchedTableViewController ()
 @property(nonatomic, strong) SKManagedHTTPSessionManager *httpSessionManager;
 
 @property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
@@ -26,7 +26,7 @@
 @property(strong, nonatomic) NSMutableArray *updatedRows;
 @end
 
-@implementation SKManagedTableViewController
+@implementation SKFetchedTableViewController
 
 - (SKManagedHTTPSessionManager *)httpSessionManager {
   if (!_httpSessionManager) {

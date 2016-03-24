@@ -9,7 +9,7 @@
 
 @class SKManagedHTTPSessionManager;
 
-@interface SKManagedTableViewController : SKAbstractTableViewController <NSFetchedResultsControllerDelegate>
+@interface SKFetchedTableViewController : SKAbstractTableViewController <NSFetchedResultsControllerDelegate>
 
 @property(nonatomic, strong, readonly) SKManagedHTTPSessionManager *httpSessionManager;
 

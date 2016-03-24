@@ -33,11 +33,11 @@
 }
 
 - (void)addItems:(NSArray *)data isRefresh:(BOOL)isRefresh {
-  if (isRefresh) {
+  if (isRefresh && data && data.count > 0) {
     [self.data removeAllObjects];
   }
   [self.data addObjectsFromArray:data];
-  [self addAll:self.data];
+  [self updateData:self.data];
 }
 
 @end

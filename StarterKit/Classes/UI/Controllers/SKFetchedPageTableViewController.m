@@ -1,11 +1,13 @@
 //
-// Created by 杨玉刚 on 3/24/16.
+// Created by Hammer on 1/19/16.
+// Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import "SKPageTableViewController.h"
+#import "SKFetchedPageTableViewController.h"
 #import "SKTableViewControllerBuilder.h"
 
-@implementation SKPageTableViewController
+
+@implementation SKFetchedPageTableViewController
 
 - (void)createWithBuilder:(SKTableViewControllerBuilderBlock)block {
   NSParameterAssert(block);
@@ -14,7 +16,7 @@
   builder.canRefresh = YES;
   builder.canLoadMore = YES;
   block(builder);
-  [self initWithBuilder:builder];
+  [self initWithBuilder:builder];  
 }
 
 @end

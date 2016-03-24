@@ -5,5 +5,6 @@
 
 #import "SKFetchedTableViewController.h"
 
-@interface SKFetchedKeyTableViewController : SKFetchedTableViewController
+@interface SKFetchedPageTableViewController : SKFetchedTableViewController
+
 @end
