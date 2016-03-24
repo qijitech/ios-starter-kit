@@ -12,11 +12,11 @@
 @end
 
 @interface SKPaginator : NSObject
-
 @property(nonatomic, assign, readonly) BOOL hasDataLoaded;
 @property(nonatomic, assign, getter=isRefresh) BOOL refresh;
 @property(nonatomic, assign, getter=isLoading) BOOL loading;
 @property(nonatomic, assign) BOOL hasMorePages;
+@property(nonatomic, assign) BOOL hasError;
 
 @property(nonatomic, assign, readonly) NSUInteger pageSize;
 

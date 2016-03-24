@@ -27,4 +27,9 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 - (void)createWithBuilder:(SKTableViewControllerBuilderBlock )block;
 - (void)initWithBuilder:(SKTableViewControllerBuilder *)builder;
 
+// for empty
+- (NSString *)emptyTitle;
+- (NSString *)emptySubtitle;
+- (NSString *)emptyImage;
+
 @end

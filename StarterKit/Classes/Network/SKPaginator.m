@@ -129,8 +129,6 @@
 /////////////////////////////
 /////////////////////////////
 
-
-
 /////////////////////////////
 /////////////////////////////
 @interface SKKeyPaginator ()
@@ -203,7 +201,10 @@
       } else {
         self.hasMorePages = NO || isRefresh;
       }
+      self.hasError = NO;
       return result;
+    }).catch(^(NSError *error){
+      self.hasError = YES;
     }).finally(^{
       self.refresh = NO;
       self.loading = NO;

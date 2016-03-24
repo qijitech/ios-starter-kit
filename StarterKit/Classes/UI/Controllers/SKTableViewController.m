@@ -38,6 +38,11 @@ static CGFloat const kIndicatorViewSize = 40.F;
 @property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
 @property(nonatomic, copy) NSPredicate *predicate;
 
+@property(nonatomic, strong) UIColor *titleColor;
+@property(nonatomic, strong) UIFont *titleFont;
+@property(nonatomic, strong) UIColor *subtitleColor;
+@property(nonatomic, strong) UIFont *subtitleFont;
+
 @property(nonatomic, assign) BOOL canRefresh;
 @property(nonatomic, assign) BOOL canLoadMore;
 @end
@@ -73,6 +78,9 @@ static CGFloat const kIndicatorViewSize = 40.F;
   _cellReuseIdentifier = builder.cellReuseIdentifier;
   _dequeueReusableCellBlock = builder.dequeueReusableCellBlock;
   _configureCellBlock = builder.configureCellBlock;
+
+  _titleColor = builder.titleColor;
+  _subtitleColor = builder.subtitleColor;
 
   _canRefresh = builder.canRefresh;
   _canLoadMore = builder.canLoadMore;
@@ -213,16 +221,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
   }
 }
 
-- (NSUInteger)numberOfObjects:(NSIndexPath *)indexPath {
-  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[indexPath.section];
-  return [sectionInfo numberOfObjects];
-}
-
-- (NSUInteger)numberOfObjectsWithSection:(NSInteger )section {
-  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
-  return [sectionInfo numberOfObjects];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   id item = [self.dataSource itemAtIndexPath:indexPath];
   NSString *cellIdentifier = self.dequeueReusableCellBlock(item, indexPath);
@@ -330,78 +328,65 @@ static CGFloat const kIndicatorViewSize = 40.F;
   [SKToastUtil toastWithText:[SKErrorResponseModel buildMessageWithNetworkError:error]];
 }
 
+- (NSUInteger)numberOfObjects:(NSIndexPath *)indexPath {
+  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[indexPath.section];
+  return [sectionInfo numberOfObjects];
+}
+
+- (NSUInteger)numberOfObjectsWithSection:(NSInteger )section {
+  id<NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
+  return [sectionInfo numberOfObjects];
+}
+
+NSString * const kStarterKitEmptyTitle = @"Nothing Here";
+NSString * const kStarterKitEmptySubtitle = @"We couldn't find anything. Tap the button to take your first image";
+NSString * const kStarterKitErrorTitle = @"No Connection";
+NSString * const kStarterKitErrorSubtitle = @"We could not establish a connection with our servers. Please try again when you are connected to the internet.";
+
+- (NSString *)emptyImage {
+  if (self.paginator.hasError) {
+    return  @"Frameworks/StarterKit.framework/StarterKit.bundle/ic_starter_network_error";
+  }
+  return  @"Frameworks/StarterKit.framework/StarterKit.bundle/ic_starter_empty";
+}
+
+- (NSString *)emptyTitle {
+  return self.paginator.hasError ? kStarterKitErrorTitle : kStarterKitEmptyTitle;
+}
+
+- (NSString *)emptySubtitle {
+  return self.paginator.hasError ? kStarterKitErrorSubtitle : kStarterKitEmptySubtitle;
+}
+
 #pragma mark - DZNEmptyDataSetSource Methods
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
   NSMutableDictionary *attributes = [NSMutableDictionary new];
-
-  NSString *text = nil;
-  UIFont *font = nil;
-  UIColor *textColor = nil;
-
-  text = @"No Photos";
-  font = [UIFont boldSystemFontOfSize:17.0];
-  textColor = [UIColor hx_colorWithHexString:@"545454"];
-
-  if (!text) {
-    return nil;
-  }
-
+  NSString *text = [self emptyTitle];
+  UIFont *font = self.titleFont ? self.titleFont : [UIFont boldSystemFontOfSize:17.0];
+  UIColor *textColor = self.titleColor ? self.titleColor : [UIColor hx_colorWithHexString:@"545454"];
   if (font) [attributes setObject:font forKey:NSFontAttributeName];
   if (textColor) [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
-
   return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
-  NSString *text = nil;
-  UIFont *font = nil;
-  UIColor *textColor = nil;
-
+  NSString *text = self.emptySubtitle;
+  UIFont *font = self.subtitleFont ? self.subtitleFont : [UIFont boldSystemFontOfSize:15.0];
+  UIColor *textColor = self.subtitleColor ? self.subtitleColor : [UIColor hx_colorWithHexString:@"545454"];
   NSMutableDictionary *attributes = [NSMutableDictionary new];
-
   NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
   paragraph.lineBreakMode = NSLineBreakByWordWrapping;
   paragraph.alignment = NSTextAlignmentCenter;
-
-  text = @"Get started by uploading a photo.";
-  font = [UIFont boldSystemFontOfSize:15.0];
-  textColor = [UIColor hx_colorWithHexString:@"545454"];
-
-  if (!text) {
-    return nil;
-  }
-
   if (font) [attributes setObject:font forKey:NSFontAttributeName];
   if (textColor) [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
   if (paragraph) [attributes setObject:paragraph forKey:NSParagraphStyleAttributeName];
-
   NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
-
   return attributedString;
-
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-  NSString *imageName = @"Frameworks/StarterKit.framework/StarterKit.bundle/placeholder";
-
-  return [UIImage imageNamed:imageName];
-}
-
-- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
-  NSString *text = nil;
-  UIFont *font = nil;
-  UIColor *textColor = nil;
-
-  if (!text) {
-    return nil;
-  }
-
-  NSMutableDictionary *attributes = [NSMutableDictionary new];
-  if (font) [attributes setObject:font forKey:NSFontAttributeName];
-  if (textColor) [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
-
-  return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+  return [UIImage imageNamed:self.emptyImage];
 }
 
 - (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView {
@@ -437,6 +422,5 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
   [self refreshData];
 }
-
 
 @end

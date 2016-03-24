@@ -3,7 +3,7 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <TGRDataSource_qijitech/TGRDataSource.h>
 #import "SKTableViewController.h"
 
@@ -26,6 +26,10 @@
 @property(nonatomic, copy) NSPredicate *predicate;
 
 // empty settings
+@property(nonatomic, strong) UIColor *titleColor;
+@property(nonatomic, strong) UIFont *titleFont;
+@property(nonatomic, strong) UIColor *subtitleColor;
+@property(nonatomic, strong) UIFont *subtitleFont;
 
 // for refresh
 @property(nonatomic, assign) BOOL canRefresh;
