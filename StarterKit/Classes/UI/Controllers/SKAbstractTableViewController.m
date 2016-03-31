@@ -377,7 +377,6 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
   return NO;
 }
 
-
 - (BOOL)isLoadMoreOrEmptyCell:(NSIndexPath *)indexPath {
   NSInteger num = [self tableView:self.tableView numberOfRowsInSection:indexPath.section];
   return self.canLoadMore && num >= self.paginator.pageSize && indexPath.item == num - 1;
@@ -406,6 +405,8 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+  // load more and load more empty
   if ([self isLoadMoreOrEmptyCell:indexPath]) {
     NSString *cellIdentifier = [SKLoadMoreTableViewCell cellIdentifier];
     if (!self.paginator.hasMorePages || self.paginator.hasError) {
@@ -415,18 +416,15 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
     if ([cell isKindOfClass:[SKLoadMoreEmptyTableViewCell class]]) {
       SKLoadMoreEmptyTableViewCell *emptyCell = (SKLoadMoreEmptyTableViewCell *) cell;
       emptyCell.error = self.paginator.error;
+    } else {
+      [cell configureCellWithData:nil];
     }
     return cell;
   }
+  // normal
   id item = [self itemAtIndexPath:indexPath];
   NSString *cellIdentifier = [self cellReuseIdentifier:item indexPath:indexPath];
   SKTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-  if ([cell isKindOfClass:[SKLoadMoreEmptyTableViewCell class]]) {
-    SKLoadMoreEmptyTableViewCell *emptyCell = (SKLoadMoreEmptyTableViewCell *) cell;
-    emptyCell.error = self.paginator.error;
-    return cell;
-  }
-  [cell configureCellWithData:item];
   if (![self configureCell:cell withItem:item]) {
     [cell configureCellWithData:item];
   }
