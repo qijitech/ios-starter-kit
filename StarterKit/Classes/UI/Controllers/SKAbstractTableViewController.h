@@ -13,6 +13,7 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 
 @interface SKAbstractTableViewController : UITableViewController <SKPaginatorDelegate>
 
+@property(nonatomic, assign, readonly) NSUInteger pageSize;
 @property(nonatomic, strong, readonly) SKPaginator *paginator;
 
 @property(nonatomic, strong, readonly) Class modelOfClass;

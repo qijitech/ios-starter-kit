@@ -15,11 +15,13 @@
 #import "SKTableViewControllerBuilder.h"
 #import "SKLoadMoreTableViewCell.h"
 #import "SKToastUtil.h"
+#import "SKNetworkConfig.h"
 
 static CGFloat const kIndicatorViewSize = 40.F;
 
 @interface SKAbstractTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(nonatomic, strong) DGActivityIndicatorView *indicatorView;
+@property(nonatomic, assign) NSUInteger pageSize;
 
 @property(nonatomic, strong) Class modelOfClass;
 @property(nonatomic, strong) NSMutableArray *cellMetadata;
@@ -58,6 +60,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
   NSParameterAssert(builder.configureCellBlock);
 
+  _pageSize = [SKNetworkConfig sharedInstance].perPage;
   _modelOfClass = builder.modelOfClass;
   _paginator = builder.paginator;
   _paginator.delegate = self;
@@ -208,7 +211,8 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   NSUInteger numbers = [self numberOfObjectsWithSection:section];
-  if (_canLoadMore && self.paginator.hasMorePages) {
+  if (_canLoadMore && self.paginator.hasMorePages &&
+      [self numberOfObjects] > _pageSize) {
     return numbers + 1;
   }
   return numbers;
@@ -216,7 +220,8 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
   NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
-  if (_canLoadMore && self.paginator.hasMorePages && indexPath.item == numbers - 1) {
+  if (_canLoadMore && self.paginator.hasMorePages &&
+      [self numberOfObjects] > _pageSize && indexPath.item == numbers - 1) {
     [self loadMoreData];
   }
 }
@@ -224,7 +229,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   id item = [self itemAtIndexPath:indexPath];
   NSString *cellIdentifier = self.dequeueReusableCellBlock(item, indexPath);
-  if (_canLoadMore && self.paginator.hasMorePages) {
+  if (_canLoadMore && self.paginator.hasMorePages && [self numberOfObjects] > _pageSize) {
     NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
     if (indexPath.item == numbers - 1) {
       return 80;
@@ -404,7 +409,7 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
 }
 
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
-  return NO;
+  return YES;
 }
 
 - (BOOL)emptyDataSetShouldAnimateImageView:(UIScrollView *)scrollView {

@@ -59,7 +59,8 @@
     builder.sortDescriptors = [self sortDescriptors];
     builder.dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
       NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
-      if (self.canLoadMore && self.paginator.hasMorePages && indexPath.item == numbers - 1) {
+      if (self.canLoadMore && self.paginator.hasMorePages &&
+          [self numberOfObjects] > self.pageSize && indexPath.item == numbers - 1) {
         return [SKLoadMoreTableViewCell cellIdentifier];
       }
       if (self.cellReuseIdentifier) {
