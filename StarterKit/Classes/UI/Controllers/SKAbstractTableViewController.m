@@ -16,8 +16,6 @@
 #import "SKLoadMoreTableViewCell.h"
 #import "SKLoadMoreEmptyTableViewCell.h"
 #import "SKToastUtil.h"
-#import "SKNetworkConfig.h"
-#import "SKTableViewCell.h"
 
 static CGFloat const kIndicatorViewSize = 40.F;
 
@@ -164,8 +162,8 @@ static CGFloat const kIndicatorViewSize = 40.F;
 }
 
 - (NSString *)buildReusableCellBlock:(NSIndexPath *)indexPath item:(id)item {
-  NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
-  if (self.canLoadMore && [self numberOfObjects] > self.paginator.pageSize && indexPath.item == numbers - 1) {
+  NSInteger num = [self tableView:self.tableView numberOfRowsInSection:indexPath.section];
+  if (self.canLoadMore && num >= self.paginator.pageSize && indexPath.item == num - 2) {
     if (self.paginator.hasError || !self.paginator.hasMorePages) {
       return [SKLoadMoreEmptyTableViewCell cellIdentifier];
     } else if (self.paginator.hasMorePages) {
@@ -243,28 +241,27 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   NSUInteger numbers = [self numberOfObjectsWithSection:section];
-  if (_canLoadMore && [self numberOfObjects] > self.paginator.pageSize) {
+  if (_canLoadMore && numbers >= self.paginator.pageSize) {
     return numbers + 1;
   }
   return numbers;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
-  if (_canLoadMore && self.paginator.hasMorePages &&
-      [self numberOfObjects] > self.paginator.pageSize && indexPath.item == numbers - 1) {
+  NSInteger num = [self tableView:tableView numberOfRowsInSection:indexPath.section];
+  if (_canLoadMore && self.paginator.hasMorePages && num >= self.paginator.pageSize && indexPath.item == num - 2) {
     [self loadMoreData];
   }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   id item = [self itemAtIndexPath:indexPath];
-  if (_canLoadMore && [self numberOfObjects] > self.paginator.pageSize &&
-      indexPath.item == ([self numberOfObjectsWithSection:indexPath.section] - 1)) {
+  NSString *cellIdentifier = self.dequeueReusableCellBlock(item, indexPath);
+  if ([[SKLoadMoreTableViewCell cellIdentifier] isEqualToString:cellIdentifier] ||
+      [[SKLoadMoreEmptyTableViewCell cellIdentifier] isEqualToString:cellIdentifier]) {
     return self.loadMoreHeight;
   }
 
-  NSString *cellIdentifier = self.dequeueReusableCellBlock(item, indexPath);
   // @weakify(self);
   return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath
                                      configuration:^(SKTableViewCell *cell) {

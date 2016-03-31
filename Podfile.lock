@@ -106,7 +106,7 @@ PODS:
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
-  - StarterKit (0.2.2):
+  - StarterKit (0.2.4):
     - AFNetworkActivityLogger (~> 2.0.4)
     - AnimatedGIFImageSerialization (~> 0.2.0)
     - DGActivityIndicatorView
@@ -153,7 +153,7 @@ SPEC CHECKSUMS:
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
   PromiseKit: 00ec2a219bf5ad2833f95977698e921932b8dfd3
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  StarterKit: a46360038c542c75d97939fa3c836780e400f726
+  StarterKit: cac1b4018e428c7ae69bded90f5cc8337c1034e0
   TGRDataSource-qijitech: 3fe9272fa72e954a93a55ac4692b7e042efeafd4
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 
