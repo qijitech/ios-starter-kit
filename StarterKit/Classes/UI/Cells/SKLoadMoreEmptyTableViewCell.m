@@ -42,6 +42,8 @@
   _error = error;
   if (error) {
     self.label.text = [SKErrorResponseModel buildMessageWithNetworkError:error];
+  } else {
+    self.label.text = @"没有更多数据";
   }
   [self updateConstraintsIfNeeded];
   [self setNeedsUpdateConstraints];

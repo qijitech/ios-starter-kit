@@ -16,22 +16,18 @@
 #import "SKLoadMoreTableViewCell.h"
 #import "SKLoadMoreEmptyTableViewCell.h"
 #import "SKToastUtil.h"
+#import "NSObject+Abstract.h"
 
 static CGFloat const kIndicatorViewSize = 40.F;
 
 @interface SKAbstractTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(nonatomic, strong) DGActivityIndicatorView *indicatorView;
 
-@property(nonatomic, strong) Class modelOfClass;
 @property(nonatomic, strong) NSMutableArray *cellMetadata;
 @property(nonatomic, strong) SKPaginator *paginator;
 @property(nonatomic, strong) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
 
 // optional
-@property(nonatomic, copy) NSString *cellReuseIdentifier;
-@property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
-@property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
-
 @property(nonatomic, strong) UIColor *titleColor;
 @property(nonatomic, strong) UIFont *titleFont;
 @property(nonatomic, strong) UIColor *subtitleColor;
@@ -53,21 +49,12 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
 - (void)initWithBuilder:(SKTableViewControllerBuilder *)builder {
   NSParameterAssert(builder);
-  NSParameterAssert(builder.entityName);
-  NSParameterAssert(builder.modelOfClass);
   NSParameterAssert(builder.cellMetadata);
   NSParameterAssert(builder.paginator);
 
-  NSParameterAssert(builder.configureCellBlock);
-
-  _modelOfClass = builder.modelOfClass;
   _paginator = builder.paginator;
   _paginator.delegate = self;
   _cellMetadata = [builder.cellMetadata mutableCopy];
-
-  _cellReuseIdentifier = builder.cellReuseIdentifier;
-  _dequeueReusableCellBlock = builder.dequeueReusableCellBlock;
-  _configureCellBlock = builder.configureCellBlock;
 
   _titleColor = builder.titleColor;
   _titleFont = builder.titleFont;
@@ -124,26 +111,9 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
   [self registerClassCellReuseIdentifier];
 
-  [self setupDataSource];
-
   if (_canRefresh) {
     [self setupRefreshControl];
   }
-}
-
-- (void)setupDataSource {
-}
-
-- (NSUInteger)numberOfObjectsWithSection:(NSInteger)section {
-  return 0;
-}
-
-- (id)itemAtIndexPath:(NSIndexPath *)indexPath {
-  return nil;
-}
-
-- (NSUInteger)numberOfObjects {
-  return 0;
 }
 
 - (void)cancelAllRequests {
@@ -160,31 +130,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
                    sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   return nil;
 }
-
-- (NSString *)buildReusableCellBlock:(NSIndexPath *)indexPath item:(id)item {
-  NSInteger num = [self tableView:self.tableView numberOfRowsInSection:indexPath.section];
-  if (self.canLoadMore && num >= self.paginator.pageSize && indexPath.item == num - 2) {
-    if (self.paginator.hasError || !self.paginator.hasMorePages) {
-      return [SKLoadMoreEmptyTableViewCell cellIdentifier];
-    } else if (self.paginator.hasMorePages) {
-      return [SKLoadMoreTableViewCell cellIdentifier];
-    }
-  }
-  if (self.cellReuseIdentifier) {
-    return self.cellReuseIdentifier;
-  }
-  return self.dequeueReusableCellBlock(item, indexPath);
-}
-
-- (void)buildConfigureCellBlock:(SKTableViewCell *)cell item:(id)item {
-  if ([cell isKindOfClass:[SKLoadMoreEmptyTableViewCell class]]) {
-    SKLoadMoreEmptyTableViewCell *loadMoreEmptyTableViewCell = (SKLoadMoreEmptyTableViewCell *)cell;
-    loadMoreEmptyTableViewCell.error = self.paginator.error;
-    return;
-  }
-  self.configureCellBlock(cell, item);
-}
-
 
 - (void)onDataLoaded:(NSArray *)data isRefresh:(BOOL)isRefresh {
 }
@@ -232,44 +177,13 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)shouldShowIndicatorView {
   if (self.paginator.isRefresh &&
       !self.paginator.hasDataLoaded &&
-      [self numberOfObjects] <= 0) {
+      [self tableView:self.tableView numberOfRowsInSection:0] <= 0) {
     [self showIndicatorView];
     return;
   }
   [self hideIndicatorView];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NSUInteger numbers = [self numberOfObjectsWithSection:section];
-  if (_canLoadMore && numbers >= self.paginator.pageSize) {
-    return numbers + 1;
-  }
-  return numbers;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSInteger num = [self tableView:tableView numberOfRowsInSection:indexPath.section];
-  if (_canLoadMore && self.paginator.hasMorePages && num >= self.paginator.pageSize && indexPath.item == num - 2) {
-    [self loadMoreData];
-  }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  id item = [self itemAtIndexPath:indexPath];
-  NSString *cellIdentifier = self.dequeueReusableCellBlock(item, indexPath);
-  if ([[SKLoadMoreTableViewCell cellIdentifier] isEqualToString:cellIdentifier] ||
-      [[SKLoadMoreEmptyTableViewCell cellIdentifier] isEqualToString:cellIdentifier]) {
-    return self.loadMoreHeight;
-  }
-
-  // @weakify(self);
-  return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath
-                                     configuration:^(SKTableViewCell *cell) {
-                                       // 配置 cell 的数据源，和 "cellForRow" 干的事一致，比如：
-                                       // @strongify(self);
-                                       [cell configureCellWithData:item];
-                                     }];
-}
 
 # pragma mark - SKPaginatorDelegate
 
@@ -277,6 +191,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
   if (isRefresh) {
     [self shouldShowIndicatorView];
   }
+  [self.tableView reloadData];
 }
 
 - (AnyPromise *)paginate:(NSDictionary *)parameters {
@@ -456,4 +371,99 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
   [self refreshData];
 }
 
+
+
+- (BOOL)configureCell:(SKTableViewCell *)cell withItem:(id)item {
+  return NO;
+}
+
+
+- (BOOL)isLoadMoreOrEmptyCell:(NSIndexPath *)indexPath {
+  NSInteger num = [self tableView:self.tableView numberOfRowsInSection:indexPath.section];
+  return self.canLoadMore && num >= self.paginator.pageSize && indexPath.item == num - 1;
+}
+
+- (NSString *)cellReuseIdentifier:(id)item indexPath:(NSIndexPath *)indexPath {
+  Class clazz = self.cellMetadata[0];
+  return [clazz cellIdentifier];
+}
+
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath {
+  [self subclassResponsibility:_cmd];
+  return nil;
+}
+
+- (NSIndexPath *)indexPathForItem:(id)item {
+  [self subclassResponsibility:_cmd];
+  return nil;
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  [self subclassResponsibility:_cmd];
+  return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  if ([self isLoadMoreOrEmptyCell:indexPath]) {
+    NSString *cellIdentifier = [SKLoadMoreTableViewCell cellIdentifier];
+    if (!self.paginator.hasMorePages || self.paginator.hasError) {
+      cellIdentifier = [SKLoadMoreEmptyTableViewCell cellIdentifier];
+    }
+    SKTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    if ([cell isKindOfClass:[SKLoadMoreEmptyTableViewCell class]]) {
+      SKLoadMoreEmptyTableViewCell *emptyCell = (SKLoadMoreEmptyTableViewCell *) cell;
+      emptyCell.error = self.paginator.error;
+    }
+    return cell;
+  }
+  id item = [self itemAtIndexPath:indexPath];
+  NSString *cellIdentifier = [self cellReuseIdentifier:item indexPath:indexPath];
+  SKTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+  if ([cell isKindOfClass:[SKLoadMoreEmptyTableViewCell class]]) {
+    SKLoadMoreEmptyTableViewCell *emptyCell = (SKLoadMoreEmptyTableViewCell *) cell;
+    emptyCell.error = self.paginator.error;
+    return cell;
+  }
+  [cell configureCellWithData:item];
+  if (![self configureCell:cell withItem:item]) {
+    [cell configureCellWithData:item];
+  }
+  return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  if ([self isLoadMoreOrEmptyCell:indexPath]) {
+    return self.loadMoreHeight;
+  }
+  id item = [self itemAtIndexPath:indexPath];
+  NSString *cellIdentifier = [self cellReuseIdentifier:item indexPath:indexPath];
+  // @weakify(self);
+  return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath
+                                     configuration:^(SKTableViewCell *cell) {
+                                       // 配置 cell 的数据源，和 "cellForRow" 干的事一致，比如：
+                                       // @strongify(self);
+                                       [cell configureCellWithData:item];
+                                     }];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  NSInteger num = [self tableView:tableView numberOfRowsInSection:indexPath.section];
+  if (_canLoadMore && self.paginator.hasMorePages &&
+      !self.paginator.isLoading && !self.paginator.hasError &&
+      num >= self.paginator.pageSize && indexPath.item == num - 1) {
+    [self loadMoreData];
+  }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  if ([self isLoadMoreOrEmptyCell:indexPath]) {
+    if (self.paginator.hasMorePages) {
+      [self loadMoreData];
+    }
+  }
+}
 @end

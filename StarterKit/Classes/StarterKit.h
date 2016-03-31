@@ -12,8 +12,6 @@ FOUNDATION_EXPORT double StarterKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char StarterKitVersionString[];
 
 #import "SKManaged.h"
-#import "SKFetchedResultsDataSource.h"
-#import "SKFetchedResultsDataSourceBuilder.h"
 #import "SKErrorResponseModel.h"
 #import "SKModel.h"
 #import "SKManagedHTTPSessionManager.h"

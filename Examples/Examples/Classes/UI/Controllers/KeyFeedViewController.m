@@ -25,21 +25,20 @@
       builder.entityName = @"Feed";
       builder.modelOfClass = [Feed class];
       @weakify(self);
-      builder.dequeueReusableCellBlock = ^NSString *(Feed *item, NSIndexPath *indexPath) {
-        if (item.images && item.images.count > 0) {
-          return [SKFeedPictureTableViewCell cellIdentifier];
-        }
-        return [SKFeedTableViewCell cellIdentifier];
-      };
-
       builder.paginateBlock = ^AnyPromise*(NSDictionary *parameters) {
         @strongify(self)
         return [self.httpSessionManager fetchFeedsWithId:parameters];
       };
-
     }];
   }
   return self;
+}
+
+- (NSString *)cellReuseIdentifier:(Feed *)item indexPath:(NSIndexPath *)indexPath {
+  if (item.images && item.images.count > 0) {
+    return [SKFeedPictureTableViewCell cellIdentifier];
+  }
+  return [SKFeedTableViewCell cellIdentifier];
 }
 
 @end

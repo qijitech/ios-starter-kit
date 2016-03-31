@@ -141,6 +141,9 @@
     return nil;
   }
   if (self.delegate && [self.delegate respondsToSelector:@selector(networkOnStart:)]) {
+    self.hasMorePages = YES;
+    self.error = nil;
+    self.hasError = NO;
     self.refresh = YES;
     self.loading = YES;
     [self.delegate networkOnStart:YES];
@@ -165,6 +168,9 @@
     return nil;
   }
   if (self.delegate && [self.delegate respondsToSelector:@selector(networkOnStart:)]) {
+    self.hasMorePages = YES;
+    self.error = nil;
+    self.hasError = NO;
     self.refresh = NO;
     self.loading = YES;
     [self.delegate networkOnStart:NO];

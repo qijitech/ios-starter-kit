@@ -4,7 +4,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TGRDataSource_qijitech/TGRFetchedResultsDataSource.h>
 #import "SKPaginator.h"
 
 @class SKTableViewControllerBuilder;
@@ -16,33 +15,23 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 
 @property(nonatomic, strong, readonly) SKPaginator *paginator;
 
-@property(nonatomic, strong, readonly) Class modelOfClass;
 @property(nonatomic, strong, readonly) NSMutableArray *cellMetadata;
 @property(nonatomic, strong, readonly) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
 
-// optional
-@property(nonatomic, copy, readonly) NSString *cellReuseIdentifier;
-@property(nonatomic, copy, readonly) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
-@property(nonatomic, copy, readonly) TGRDataSourceCellBlock configureCellBlock;
-
+// empty properties
 @property(nonatomic, strong, readonly) UIColor *titleColor;
 @property(nonatomic, strong, readonly) UIFont *titleFont;
 @property(nonatomic, strong, readonly) UIColor *subtitleColor;
 @property(nonatomic, strong, readonly) UIFont *subtitleFont;
 
+// load properties
 @property(nonatomic, assign, readonly) BOOL canRefresh;
 @property(nonatomic, assign, readonly) BOOL canLoadMore;
 
 // for internal
-- (NSUInteger)numberOfObjectsWithSection:(NSInteger )section;
-- (id)itemAtIndexPath:(NSIndexPath *)indexPath;
-- (NSUInteger)numberOfObjects;
 - (void)cancelAllRequests;
 - (void)onDataLoaded:(NSArray *)data isRefresh:(BOOL)isRefresh;
 - (void)setupTableView;
-- (void)setupDataSource;
-- (NSString *)buildReusableCellBlock:(NSIndexPath *)indexPath item:(id)item;
-- (void)buildConfigureCellBlock:(SKTableViewCell *)cell item:(id)item;
 
 - (void)showIndicatorView;
 - (void)hideIndicatorView;
@@ -57,5 +46,18 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 - (NSString *)emptyTitle;
 - (NSString *)emptySubtitle;
 - (NSString *)emptyImage;
+
+- (BOOL)isLoadMoreOrEmptyCell:(NSIndexPath *)indexPath;
+- (BOOL)configureCell:(SKTableViewCell *) cell withItem:(id)item;
+- (NSString *)cellReuseIdentifier:(id)item indexPath:(NSIndexPath *)indexPath;
+
+/**
+ Returns a data source item in a particular location.
+ */
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath;
+/**
+ Returns the location for the specified data source item.
+ */
+- (NSIndexPath *)indexPathForItem:(id)item;
 
 @end

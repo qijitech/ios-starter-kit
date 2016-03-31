@@ -5,19 +5,19 @@
 
 #import "SKTableViewController.h"
 #import "SKHTTPSessionManager.h"
-#import <libextobjc/EXTScope.h>
-#import "SKTableViewCell.h"
-#import "SKLoadMoreTableViewCell.h"
-#import "SKLoadMoreEmptyTableViewCell.h"
-#import "SKArrayDataSourceBuilder.h"
 #import "SKModel.h"
 
 @interface SKTableViewController()
-
+@property (copy, nonatomic) NSMutableArray *items;
 @property(nonatomic, strong) SKHTTPSessionManager *httpSessionManager;
 @end
 
 @implementation SKTableViewController
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  _items = [NSMutableArray new];
+}
 
 - (SKHTTPSessionManager *)httpSessionManager {
   if (!_httpSessionManager) {
@@ -31,27 +31,14 @@
   _httpSessionManager = nil;
 }
 
-- (id)itemAtIndexPath:(NSIndexPath *)indexPath {
-  return [self.dataSource itemAtIndexPath:indexPath];
-}
-
-- (NSUInteger)numberOfObjectsWithSection:(NSInteger)section {
-  return self.dataSource.items.count;
-}
-
-- (NSUInteger)numberOfObjects {
-  return self.dataSource.items.count;
-}
-
 - (NSNumber *)lastModelIdentifier:(NSString *)entityName
                         predicate:(NSPredicate *)predicate
                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
-  NSArray *items = self.dataSource.items;
-  NSUInteger count = items.count;
+  NSUInteger count = self.items.count;
   if (count <= 0) {
     return nil;
   }
-  id item = items[(count - 1)];
+  id item = self.items[(count - 1)];
   if ([item isKindOfClass:[SKModel class]]) {
     SKModel *model = (SKModel *) item;
     return model.identifier;
@@ -62,41 +49,41 @@
 - (NSNumber *)firstModelIdentifier:(NSString *)entityName
                          predicate:(NSPredicate *)predicate
                    sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
-//  if (self.dataSource.items.count <= 0) {
-//    return nil;
-//  }
-//  id item = self.dataSource.items[0];
-//  if ([item isKindOfClass:[SKModel class]]) {
-//    SKModel *model = (SKModel *)item;
-//    return model.identifier;
-//  }
   return nil;
 }
 
-- (void)setupDataSource {
-  @weakify(self);
-  self.dataSource = [SKArrayDataSource createWithBuilder:^(SKArrayDataSourceBuilder *builder) {
-    @strongify(self);
-    builder.dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
-      return [self buildReusableCellBlock:indexPath item:item];
-    };
-    builder.configureCellBlock = ^(SKTableViewCell *cell, id item) {
-      [self buildConfigureCellBlock:cell item:item];
-    };
-  }];
-}
-
 - (void)onDataLoaded:(NSArray *)data isRefresh:(BOOL)isRefresh {
-  [self.dataSource addItems:data isRefresh:isRefresh];
+  if (isRefresh && data && data.count > 0) {
+    [self.items removeAllObjects];
+  }
+  [self.items addObjectsFromArray:data];
   [self.tableView reloadData];
 }
 
-- (void)setDataSource:(SKArrayDataSource *)dataSource {
-  if (_dataSource != dataSource) {
-    _dataSource = dataSource;
-    self.tableView.dataSource = dataSource;
-    [self.tableView reloadData];
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  NSInteger numberOfObjects = self.items.count;
+  if (self.canLoadMore && numberOfObjects >= self.paginator.pageSize) {
+    return numberOfObjects + 1;
   }
+  return numberOfObjects;
+}
+
+#pragma mark - SKAbstractTableViewController
+
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath {
+  return self.items[(NSUInteger)indexPath.row];
+}
+
+- (NSIndexPath *)indexPathForItem:(id)item {
+  NSIndexPath *indexPath = nil;
+  NSUInteger index = [self.items indexOfObject:item];
+
+  if (index != NSNotFound) {
+    indexPath = [NSIndexPath indexPathForRow:(NSInteger)index inSection:0];
+  }
+  return indexPath;
 }
 
 @end

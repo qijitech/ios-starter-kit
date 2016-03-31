@@ -6,4 +6,5 @@
 #import <StarterKit/SKFetchedKeyTableViewController.h>
 
 @interface FetchedKeyFeedViewController : SKFetchedKeyTableViewController
+
 @end

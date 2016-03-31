@@ -4,7 +4,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TGRDataSource_qijitech/TGRDataSource.h>
 #import "SKAbstractTableViewController.h"
 
 @class SKAbstractTableViewController;
@@ -13,20 +12,17 @@
 @interface SKTableViewControllerBuilder : NSObject
 
 // required
-@property(nonatomic, strong) Class modelOfClass;
 @property(nonatomic, strong) NSArray *cellMetadata;
 @property(nonatomic, strong) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
 
 // for fetched property
+@property(nonatomic, strong) Class modelOfClass;
 @property(nonatomic, copy) NSString *entityName;
 @property(nonatomic, strong) NSPredicate *predicate;
 @property(nonatomic, strong) NSArray<NSDictionary *> *sortDescriptors;
 
 // optional
 @property(nonatomic, strong) SKPaginator *paginator;
-@property(nonatomic, copy) NSString *cellReuseIdentifier;
-@property(nonatomic, copy) TGRDataSourceDequeueReusableCellBlock dequeueReusableCellBlock;
-@property(nonatomic, copy) TGRDataSourceCellBlock configureCellBlock;
 
 // empty settings
 @property(nonatomic, strong) UIColor *titleColor;
@@ -38,6 +34,5 @@
 @property(nonatomic, assign) NSUInteger loadMoreHeight;
 @property(nonatomic, assign) BOOL canRefresh;
 @property(nonatomic, assign) BOOL canLoadMore;
-
 
 @end

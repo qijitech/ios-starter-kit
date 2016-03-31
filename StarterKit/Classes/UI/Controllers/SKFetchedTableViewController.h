@@ -11,16 +11,17 @@
 
 @interface SKFetchedTableViewController : SKAbstractTableViewController <NSFetchedResultsControllerDelegate>
 
+/**
+ The `NSFetchedResultsController` object managed by this data source.
+ */
+@property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
+
 @property(nonatomic, strong, readonly) SKManagedHTTPSessionManager *httpSessionManager;
 
+@property(nonatomic, strong, readonly) Class modelOfClass;
 @property(nonatomic, copy, readonly) NSString *entityName;
 @property(nonatomic, strong, readonly) NSPredicate *predicate;
 @property(nonatomic, strong, readonly) NSArray<NSDictionary *> *sortDescriptors;
-
-/**
- The data source used by this view controller.
- */
-@property(strong, nonatomic) TGRFetchedResultsDataSource *dataSource;
 
 /**
  Maximum number of changes in the fetched results controller that will be animated. Default is 100.

@@ -4,19 +4,16 @@
 //
 
 #import "SKFetchedTableViewController.h"
-#import <libextobjc/EXTScope.h>
-#import "SKFetchedResultsDataSource.h"
-#import "SKFetchedResultsDataSourceBuilder.h"
-#import "SKLoadMoreTableViewCell.h"
-#import "SKLoadMoreEmptyTableViewCell.h"
 #import "SKManaged.h"
 #import "SKManagedHTTPSessionManager.h"
 #import "SKTableViewControllerBuilder.h"
-#import "SKView.h"
 
 @interface SKFetchedTableViewController ()
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
 @property(nonatomic, strong) SKManagedHTTPSessionManager *httpSessionManager;
 
+@property(nonatomic, strong) Class modelOfClass;
 @property(nonatomic, copy) NSString *entityName;
 @property(nonatomic, strong) NSPredicate *predicate;
 @property(nonatomic, strong) NSArray<NSDictionary *> *sortDescriptors;
@@ -32,10 +29,31 @@
 
 - (void)initWithBuilder:(SKTableViewControllerBuilder *)builder {
   NSParameterAssert(builder);
+  NSParameterAssert(builder.entityName);
+  NSParameterAssert(builder.modelOfClass);
+
+  _modelOfClass = builder.modelOfClass;
   _predicate = builder.predicate;
   _entityName = builder.entityName;
   _sortDescriptors = builder.sortDescriptors;
   [super initWithBuilder:builder];
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  SKManaged *managed = [SKManaged sharedInstance];
+
+  NSFetchRequest *fetchRequest = [SKManaged fetchRequestWithPredicate:self.predicate
+                                                           entityName:self.entityName
+                                                      sortDescriptors:self.sortDescriptors
+                                                       fetchBatchSize:nil];
+  self.fetchedResultsController = [[NSFetchedResultsController alloc]
+      initWithFetchRequest:fetchRequest
+      managedObjectContext:managed.managedObjectContext
+        sectionNameKeyPath:nil
+                 cacheName:nil];
+  self.fetchedResultsController.delegate = self;
+  [self performFetch];
 }
 
 - (SKManagedHTTPSessionManager *)httpSessionManager {
@@ -49,36 +67,6 @@
 - (void)cancelAllRequests {
   [self.httpSessionManager invalidateSessionCancelingTasks:YES];
   _httpSessionManager = nil;
-}
-
-- (void)setupDataSource {
-  @weakify(self);
-  self.dataSource = [SKFetchedResultsDataSource createWithBuilder:^(SKFetchedResultsDataSourceBuilder *builder) {
-    @strongify(self);
-    builder.modelOfClass = [self modelOfClass];
-    builder.entityName = [self entityName];
-    builder.predicate = [self predicate];
-    builder.sortDescriptors = [self sortDescriptors];
-    builder.dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
-      return [self buildReusableCellBlock:indexPath item:item];
-    };
-    builder.configureCellBlock = ^(SKTableViewCell *cell, id item) {
-      [self buildConfigureCellBlock:cell item:item];
-    };
-  }];
-}
-
-- (id)itemAtIndexPath:(NSIndexPath *)indexPath {
-  return [self.dataSource itemAtIndexPath:indexPath];
-}
-
-- (NSUInteger)numberOfObjectsWithSection:(NSInteger)section {
-  id <NSFetchedResultsSectionInfo> sectionInfo = self.dataSource.fetchedResultsController.sections[section];
-  return [sectionInfo numberOfObjects];
-}
-
-- (NSUInteger)numberOfObjects {
-  return [self.dataSource.fetchedResultsController.fetchedObjects count];
 }
 
 - (NSNumber *)lastModelIdentifier:(NSString *)entityName
@@ -97,16 +85,6 @@
 
 #pragma mark - Properties
 
-- (void)setDataSource:(TGRFetchedResultsDataSource *)dataSource {
-  if (_dataSource != dataSource) {
-    _dataSource.fetchedResultsController.delegate = nil;
-    _dataSource = dataSource;
-    _dataSource.fetchedResultsController.delegate = self;
-    self.tableView.dataSource = dataSource;
-    [self performFetch];
-  }
-}
-
 #pragma mark - Lifecycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -120,11 +98,9 @@
 }
 
 - (void)performFetch {
-  if (self.dataSource) {
-    NSError *error = nil;
-    [self.dataSource.fetchedResultsController performFetch:&error];
-    NSAssert(error == nil, @"%@ performFetch: %@", self, error);
-  }
+  NSError *error = nil;
+  [self.fetchedResultsController performFetch:&error];
+  NSAssert(error == nil, @"%@ performFetch: %@", self, error);
   [self.tableView reloadData];
 }
 
@@ -237,6 +213,31 @@
     _updatedRows = [[NSMutableArray alloc] init];
   }
   return _updatedRows;
+}
+
+
+
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath {
+  return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
+- (NSIndexPath *)indexPathForItem:(id)item {
+  return [self.fetchedResultsController indexPathForObject:item];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return [self.fetchedResultsController.sections count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections[section];
+  NSUInteger numberOfObjects = [sectionInfo numberOfObjects];
+  if (self.canLoadMore && numberOfObjects >= self.paginator.pageSize) {
+    return numberOfObjects + 1;
+  }
+  return numberOfObjects;
 }
 
 @end

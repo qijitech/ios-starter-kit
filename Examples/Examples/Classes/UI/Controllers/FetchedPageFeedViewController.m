@@ -20,13 +20,6 @@
       builder.entityName = @"Feed";
       builder.modelOfClass = [Feed class];
 
-      builder.dequeueReusableCellBlock = ^NSString *(Feed *item, NSIndexPath *indexPath) {
-        if (item.images && item.images.count > 0) {
-          return [SKFeedPictureTableViewCell cellIdentifier];
-        }
-        return [SKFeedTableViewCell cellIdentifier];
-      };
-
       @weakify(self);
       builder.paginateBlock = ^(NSDictionary *parameters) {
         @strongify(self)
@@ -35,6 +28,13 @@
     }];
   }
   return self;
+}
+
+- (NSString *)cellReuseIdentifier:(Feed *)item indexPath:(NSIndexPath *)indexPath {
+  if (item.images && item.images.count > 0) {
+    return [SKFeedPictureTableViewCell cellIdentifier];
+  }
+  return [SKFeedTableViewCell cellIdentifier];
 }
 
 @end

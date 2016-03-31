@@ -5,17 +5,16 @@
 
 #import <Foundation/Foundation.h>
 #import "SKAbstractTableViewController.h"
-#import "SKArrayDataSource.h"
 
 @class SKHTTPSessionManager;
 
 @interface SKTableViewController : SKAbstractTableViewController
 
-@property(nonatomic, strong, readonly) SKHTTPSessionManager *httpSessionManager;
-
 /**
- The data source used by this view controller.
+ The items managed by this data source.
  */
-@property(strong, nonatomic) SKArrayDataSource *dataSource;
+@property (copy, nonatomic, readonly) NSMutableArray *items;
+
+@property(nonatomic, strong, readonly) SKHTTPSessionManager *httpSessionManager;
 
 @end
