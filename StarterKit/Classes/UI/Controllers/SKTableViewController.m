@@ -8,6 +8,7 @@
 #import <libextobjc/EXTScope.h>
 #import "SKTableViewCell.h"
 #import "SKLoadMoreTableViewCell.h"
+#import "SKLoadMoreEmptyTableViewCell.h"
 #import "SKArrayDataSourceBuilder.h"
 #import "SKModel.h"
 
@@ -77,18 +78,11 @@
   self.dataSource = [SKArrayDataSource createWithBuilder:^(SKArrayDataSourceBuilder *builder) {
     @strongify(self);
     builder.dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
-      NSInteger section = indexPath.section;
-      NSUInteger numbers = [self numberOfObjectsWithSection:section];
-      if (self.canLoadMore && self.paginator.hasMorePages &&
-          [self numberOfObjects] > self.pageSize && indexPath.item == numbers - 1) {
-        return [SKLoadMoreTableViewCell cellIdentifier];
-      }
-      if (self.cellReuseIdentifier) {
-        return self.cellReuseIdentifier;
-      }
-      return self.dequeueReusableCellBlock(item, indexPath);
+      return [self buildReusableCellBlock:indexPath item:item];
     };
-    builder.configureCellBlock = self.configureCellBlock;
+    builder.configureCellBlock = ^(SKTableViewCell *cell, id item) {
+      [self buildConfigureCellBlock:cell item:item];
+    };
   }];
 }
 

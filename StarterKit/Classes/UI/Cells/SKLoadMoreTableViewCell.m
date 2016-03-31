@@ -41,7 +41,6 @@ static CGFloat const kIndicatorViewMargin = 40.F;
       make.bottom.equalTo(self.contentView.mas_bottom);
       make.topMargin.mas_equalTo(kIndicatorViewMargin);
       make.bottom.mas_equalTo(kIndicatorViewMargin);
-
     }];
   }
 

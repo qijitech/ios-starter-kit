@@ -24,6 +24,7 @@
 @property(nonatomic, assign, getter=isLoading) BOOL loading;
 @property(nonatomic, assign) BOOL hasMorePages;
 @property(nonatomic, assign) BOOL hasError;
+@property(nonatomic, strong) NSError *error;
 
 @property(nonatomic, assign, readonly) NSUInteger pageSize;
 

@@ -8,9 +8,11 @@
 #import "SKFetchedResultsDataSource.h"
 #import "SKFetchedResultsDataSourceBuilder.h"
 #import "SKLoadMoreTableViewCell.h"
+#import "SKLoadMoreEmptyTableViewCell.h"
 #import "SKManaged.h"
 #import "SKManagedHTTPSessionManager.h"
 #import "SKTableViewControllerBuilder.h"
+#import "SKView.h"
 
 @interface SKFetchedTableViewController ()
 @property(nonatomic, strong) SKManagedHTTPSessionManager *httpSessionManager;
@@ -58,17 +60,11 @@
     builder.predicate = [self predicate];
     builder.sortDescriptors = [self sortDescriptors];
     builder.dequeueReusableCellBlock = ^NSString *(id item, NSIndexPath *indexPath) {
-      NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
-      if (self.canLoadMore && self.paginator.hasMorePages &&
-          [self numberOfObjects] > self.pageSize && indexPath.item == numbers - 1) {
-        return [SKLoadMoreTableViewCell cellIdentifier];
-      }
-      if (self.cellReuseIdentifier) {
-        return self.cellReuseIdentifier;
-      }
-      return self.dequeueReusableCellBlock(item, indexPath);
+      return [self buildReusableCellBlock:indexPath item:item];
     };
-    builder.configureCellBlock = self.configureCellBlock;
+    builder.configureCellBlock = ^(SKTableViewCell *cell, id item) {
+      [self buildConfigureCellBlock:cell item:item];
+    };
   }];
 }
 

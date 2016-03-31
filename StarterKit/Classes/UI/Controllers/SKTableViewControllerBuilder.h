@@ -35,6 +35,7 @@
 @property(nonatomic, strong) UIFont *subtitleFont;
 
 // for refresh
+@property(nonatomic, assign) NSUInteger loadMoreHeight;
 @property(nonatomic, assign) BOOL canRefresh;
 @property(nonatomic, assign) BOOL canLoadMore;
 

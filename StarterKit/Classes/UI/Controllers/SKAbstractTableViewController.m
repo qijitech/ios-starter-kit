@@ -14,14 +14,15 @@
 #import "SKErrorResponseModel.h"
 #import "SKTableViewControllerBuilder.h"
 #import "SKLoadMoreTableViewCell.h"
+#import "SKLoadMoreEmptyTableViewCell.h"
 #import "SKToastUtil.h"
 #import "SKNetworkConfig.h"
+#import "SKTableViewCell.h"
 
 static CGFloat const kIndicatorViewSize = 40.F;
 
 @interface SKAbstractTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property(nonatomic, strong) DGActivityIndicatorView *indicatorView;
-@property(nonatomic, assign) NSUInteger pageSize;
 
 @property(nonatomic, strong) Class modelOfClass;
 @property(nonatomic, strong) NSMutableArray *cellMetadata;
@@ -38,6 +39,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 @property(nonatomic, strong) UIColor *subtitleColor;
 @property(nonatomic, strong) UIFont *subtitleFont;
 
+@property(nonatomic, assign) NSUInteger loadMoreHeight;
 @property(nonatomic, assign) BOOL canRefresh;
 @property(nonatomic, assign) BOOL canLoadMore;
 @end
@@ -60,13 +62,10 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
   NSParameterAssert(builder.configureCellBlock);
 
-  _pageSize = [SKNetworkConfig sharedInstance].perPage;
   _modelOfClass = builder.modelOfClass;
   _paginator = builder.paginator;
   _paginator.delegate = self;
   _cellMetadata = [builder.cellMetadata mutableCopy];
-
-  [self.cellMetadata addObject:[SKLoadMoreTableViewCell class]];
 
   _cellReuseIdentifier = builder.cellReuseIdentifier;
   _dequeueReusableCellBlock = builder.dequeueReusableCellBlock;
@@ -79,6 +78,12 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
   _canRefresh = builder.canRefresh;
   _canLoadMore = builder.canLoadMore;
+  _loadMoreHeight = builder.loadMoreHeight;
+
+  if (_canLoadMore) {
+    [self.cellMetadata addObject:[SKLoadMoreTableViewCell class]];
+    [self.cellMetadata addObject:[SKLoadMoreEmptyTableViewCell class]];
+  }
 
   // for core data entity name
   if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
@@ -156,6 +161,31 @@ static CGFloat const kIndicatorViewSize = 40.F;
   return nil;
 }
 
+- (NSString *)buildReusableCellBlock:(NSIndexPath *)indexPath item:(id)item {
+  NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
+  if (self.canLoadMore && [self numberOfObjects] > self.paginator.pageSize && indexPath.item == numbers - 1) {
+    if (self.paginator.hasError || !self.paginator.hasMorePages) {
+      return [SKLoadMoreEmptyTableViewCell cellIdentifier];
+    } else if (self.paginator.hasMorePages) {
+      return [SKLoadMoreTableViewCell cellIdentifier];
+    }
+  }
+  if (self.cellReuseIdentifier) {
+    return self.cellReuseIdentifier;
+  }
+  return self.dequeueReusableCellBlock(item, indexPath);
+}
+
+- (void)buildConfigureCellBlock:(SKTableViewCell *)cell item:(id)item {
+  if ([cell isKindOfClass:[SKLoadMoreEmptyTableViewCell class]]) {
+    SKLoadMoreEmptyTableViewCell *loadMoreEmptyTableViewCell = (SKLoadMoreEmptyTableViewCell *)cell;
+    loadMoreEmptyTableViewCell.error = self.paginator.error;
+    return;
+  }
+  self.configureCellBlock(cell, item);
+}
+
+
 - (void)onDataLoaded:(NSArray *)data isRefresh:(BOOL)isRefresh {
 }
 
@@ -211,8 +241,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   NSUInteger numbers = [self numberOfObjectsWithSection:section];
-  if (_canLoadMore && self.paginator.hasMorePages &&
-      [self numberOfObjects] > _pageSize) {
+  if (_canLoadMore && [self numberOfObjects] > self.paginator.pageSize) {
     return numbers + 1;
   }
   return numbers;
@@ -221,20 +250,19 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
   NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
   if (_canLoadMore && self.paginator.hasMorePages &&
-      [self numberOfObjects] > _pageSize && indexPath.item == numbers - 1) {
+      [self numberOfObjects] > self.paginator.pageSize && indexPath.item == numbers - 1) {
     [self loadMoreData];
   }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   id item = [self itemAtIndexPath:indexPath];
-  NSString *cellIdentifier = self.dequeueReusableCellBlock(item, indexPath);
-  if (_canLoadMore && self.paginator.hasMorePages && [self numberOfObjects] > _pageSize) {
-    NSUInteger numbers = [self numberOfObjectsWithSection:indexPath.section];
-    if (indexPath.item == numbers - 1) {
-      return 80;
-    }
+  if (_canLoadMore && [self numberOfObjects] > self.paginator.pageSize &&
+      indexPath.item == ([self numberOfObjectsWithSection:indexPath.section] - 1)) {
+    return self.loadMoreHeight;
   }
+
+  NSString *cellIdentifier = self.dequeueReusableCellBlock(item, indexPath);
   // @weakify(self);
   return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath
                                      configuration:^(SKTableViewCell *cell) {
@@ -267,13 +295,14 @@ static CGFloat const kIndicatorViewSize = 40.F;
     @weakify(self);
     promise.then(^(NSArray *result) {
       @strongify(self);
+      if (self.paginator.hasError) {
+        [self buildNetworkError:self.paginator.error isRefresh:YES];
+        return;
+      }
       [self onDataLoaded:result isRefresh:YES];
       if (!result || result.count <= 0) {
         [SKToastUtil toastWithText:@"没有最新数据"];
       }
-    }).catch(^(NSError *error) {
-      @strongify(self);
-      [self buildNetworkError:error isRefresh:YES];
     }).finally(^{
       @strongify(self);
       [self updateView:YES];
@@ -289,10 +318,11 @@ static CGFloat const kIndicatorViewSize = 40.F;
     @weakify(self);
     promise.then(^(NSArray *result) {
       // Left Blank
+      if (self.paginator.hasError) {
+        [self buildNetworkError:self.paginator.error isRefresh:YES];
+        return;
+      }
       [self onDataLoaded:result isRefresh:NO];
-    }).catch(^(NSError *error) {
-      @strongify(self);
-      [self buildNetworkError:error isRefresh:NO];
     }).finally(^{
       @strongify(self);
       [self updateView:NO];

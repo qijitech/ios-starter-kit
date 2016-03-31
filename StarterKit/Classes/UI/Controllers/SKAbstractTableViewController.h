@@ -8,12 +8,12 @@
 #import "SKPaginator.h"
 
 @class SKTableViewControllerBuilder;
+@class SKTableViewCell;
 
 typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *builder);
 
 @interface SKAbstractTableViewController : UITableViewController <SKPaginatorDelegate>
 
-@property(nonatomic, assign, readonly) NSUInteger pageSize;
 @property(nonatomic, strong, readonly) SKPaginator *paginator;
 
 @property(nonatomic, strong, readonly) Class modelOfClass;
@@ -41,6 +41,8 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 - (void)onDataLoaded:(NSArray *)data isRefresh:(BOOL)isRefresh;
 - (void)setupTableView;
 - (void)setupDataSource;
+- (NSString *)buildReusableCellBlock:(NSIndexPath *)indexPath item:(id)item;
+- (void)buildConfigureCellBlock:(SKTableViewCell *)cell item:(id)item;
 
 - (void)showIndicatorView;
 - (void)hideIndicatorView;

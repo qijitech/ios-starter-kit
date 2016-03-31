@@ -114,7 +114,7 @@
       if (result && result.count >= self.pageSize) {
         self.nextPage += 1;
         self.hasMorePages = YES;
-      } else{
+      } else {
         self.hasMorePages = NO || isRefresh;
       }
       return result;
@@ -200,9 +200,11 @@
         self.hasMorePages = NO || isRefresh;
       }
       self.hasError = NO;
+      self.error = nil;
       return result;
     }).catch(^(NSError *error){
       self.hasError = YES;
+      self.error = error;
     }).finally(^{
       self.refresh = NO;
       self.loading = NO;
