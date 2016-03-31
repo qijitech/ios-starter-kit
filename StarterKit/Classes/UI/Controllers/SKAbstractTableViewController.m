@@ -337,13 +337,16 @@ static CGFloat const kIndicatorViewSize = 40.F;
   if (promise) {
     @weakify(self);
     promise.then(^(NSArray *result) {
+      if (self.paginator.hasError) {
+        [self.tableView reloadData];
+        [self buildNetworkError:self.paginator.error isRefresh:NO];
+        return;
+      }
       [self onDataLoaded:result isRefresh:NO];
       if (!result || result.count <= 0) {
+        [self.tableView reloadData];
         [SKToastUtil toastWithText:@"没有更多数据"];
       }
-    }).catch(^(NSError *error) {
-      @strongify(self);
-      [self buildNetworkError:error isRefresh:NO];
     }).finally(^{
       @strongify(self);
       [self updateView:NO];
