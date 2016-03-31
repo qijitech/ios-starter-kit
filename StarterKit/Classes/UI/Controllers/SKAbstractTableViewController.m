@@ -101,7 +101,9 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  [self loadData];
+  if (!self.paginator.hasDataLoaded) {
+    [self loadData];
+  }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
