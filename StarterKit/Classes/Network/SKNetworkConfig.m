@@ -23,4 +23,32 @@ static NSUInteger const kPaginatorPerPage = 20;
   return _perPage <= 0 ? kPaginatorPerPage : _perPage;
 }
 
+- (NSString *)paramSinceId {
+  if (!_paramSinceId) {
+    _paramSinceId = @"since-id";
+  }
+  return _paramSinceId;
+}
+
+- (NSString *)paramMaxId {
+  if (!_paramMaxId) {
+    _paramMaxId = @"max-id";
+  }
+  return _paramMaxId;
+}
+
+- (NSString *)paramPageSize {
+  if (!_paramPageSize) {
+    _paramPageSize = @"page_size";
+  }
+  return _paramPageSize;
+}
+
+- (NSString *)paramPage {
+  if (!_paramPage) {
+    _paramPage = @"page";
+  }
+  return _paramPage;
+}
+
 @end

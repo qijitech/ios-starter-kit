@@ -19,6 +19,11 @@
 @end
 
 @interface SKPaginator : NSObject
+@property (nonatomic, copy, readonly) NSString *paramPageSize;
+@property (nonatomic, copy, readonly) NSString *paramMaxId;
+@property (nonatomic, copy, readonly) NSString *paramSinceId;
+@property (nonatomic, copy, readonly) NSString *paramPage;
+
 @property(nonatomic, assign, readonly) BOOL hasDataLoaded;
 @property(nonatomic, assign, getter=isRefresh) BOOL refresh;
 @property(nonatomic, assign, getter=isLoading) BOOL loading;

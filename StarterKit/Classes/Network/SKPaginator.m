@@ -12,6 +12,10 @@
 @interface SKPaginator ()
 @property(nonatomic, assign) BOOL hasDataLoaded;
 @property(nonatomic, assign) NSUInteger pageSize;
+@property (nonatomic, copy) NSString *paramPageSize;
+@property (nonatomic, copy) NSString *paramMaxId;
+@property (nonatomic, copy) NSString *paramSinceId;
+@property (nonatomic, copy) NSString *paramPage;
 @end
 
 @implementation SKPaginator
@@ -19,6 +23,9 @@
 - (instancetype)init {
     if (self = [super init]) {
       _pageSize = [SKNetworkConfig sharedInstance].perPage;
+      _paramPageSize = [SKNetworkConfig sharedInstance].paramPageSize;
+      _paramSinceId = [SKNetworkConfig sharedInstance].paramSinceId;
+      _paramMaxId = [SKNetworkConfig sharedInstance].paramMaxId;
       self.hasMorePages = YES;
     }
     return self;
@@ -76,7 +83,7 @@
     [self.delegate networkOnStart:YES];
   }
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
-    NSDictionary *parameters = @{@"page" : @(self.firstPage),@"page_size" : @(self.pageSize)};
+    NSDictionary *parameters = @{self.paramPage : @(self.firstPage),self.paramPageSize : @(self.pageSize)};
     return [self paginate:parameters isRefresh:YES];
   }
 
@@ -93,7 +100,7 @@
     [self.delegate networkOnStart:NO];
   }
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
-    NSDictionary *parameters = @{@"page" : @(self.nextPage),@"page_size" : @(self.pageSize)};
+    NSDictionary *parameters = @{self.paramPage : @(self.nextPage),self.paramPageSize : @(self.pageSize)};
     return [self paginate:parameters isRefresh:NO];
   }
 
@@ -154,7 +161,7 @@
     if ([self.delegate respondsToSelector:@selector(firstModelIdentifier:predicate:sortDescriptors:)]) {
       NSNumber *identifier = [self.delegate firstModelIdentifier:self.entityName predicate:self.predicate sortDescriptors:self.sortDescriptors];
       if (identifier) {
-        parameters = [parameters mtl_dictionaryByAddingEntriesFromDictionary:@{@"since-id": [identifier stringValue]}];
+        parameters = [parameters mtl_dictionaryByAddingEntriesFromDictionary:@{self.paramSinceId: [identifier stringValue]}];
       }
     }
     return [self paginate:parameters isRefresh:YES];
@@ -181,8 +188,9 @@
     if ([self.delegate respondsToSelector:@selector(lastModelIdentifier:predicate:sortDescriptors:)]) {
       identifier = [self.delegate lastModelIdentifier:self.entityName predicate:self.predicate sortDescriptors:self.sortDescriptors];
     }
+
     NSAssert(identifier, @"loadMore should not be called when the cache is empty");
-    NSDictionary *parameters = @{@"max-id": [identifier stringValue],@"page_size" : @(self.pageSize)};
+    NSDictionary *parameters = @{self.paramMaxId: [identifier stringValue],self.paramPageSize : @(self.pageSize)};
     return [self paginate:parameters isRefresh:false];
   }
 
