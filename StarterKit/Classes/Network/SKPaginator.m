@@ -111,7 +111,7 @@
   if (!self.delegate || ![self.delegate respondsToSelector:@selector(paginate:)]) {
     return nil;
   }
-  AnyPromise *promise = [self.delegate paginate:[parameters mutableCopy]];
+  AnyPromise *promise = [self.delegate paginate:parameters];
   if (promise) {
     @weakify(self);
     return promise.then(^(OVCResponse *response) {

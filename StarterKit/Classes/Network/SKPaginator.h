@@ -8,7 +8,7 @@
 @protocol SKPaginatorDelegate <NSObject>
 @required
 - (void)networkOnStart:(BOOL)isRefresh;
-- (AnyPromise *)paginate:(NSMutableDictionary *)parameters;
+- (AnyPromise *)paginate:(NSDictionary *)parameters;
 
 - (NSNumber *)lastModelIdentifier:(NSString *)entityName
                         predicate:(NSPredicate *)predicate
