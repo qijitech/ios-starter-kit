@@ -6,26 +6,53 @@
 #import "SKAccountManager.h"
 #import "SKNetworkConfig.h"
 
-
 @implementation SKSessionConfiguration
 
-+ (NSURLSessionConfiguration *)defaultSessionConfiguration {
-  NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-
-  NSString *token = [SKAccountManager defaultAccountManager].token;
-  NSString *Authorization = [NSString stringWithFormat:@"Bearer %@", token];
-  NSDictionary *HTTPAdditionalHeaders = @{
++ (NSDictionary *)commonHeader {
+  return @{
       @"Content-Encoding" : @"gzip",
-      @"version-code" : [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleVersionKey],
-      @"version-name" : [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleVersionKey],
+      @"version-code" : [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *) kCFBundleVersionKey],
+      @"version-name" : [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *) kCFBundleVersionKey],
       @"device" : @"device", // 待定
       @"platform" : @"iOS",
       @"channel" : @"channel", // 待定
-      @"Authorization" : Authorization,
-      @"Accept" : [SKNetworkConfig sharedInstance].accept,
   };
-  [configuration setHTTPAdditionalHeaders:HTTPAdditionalHeaders];
+}
 
++ (NSURLSessionConfiguration *)defaultSessionConfiguration {
+  NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+  NSDictionary *headers = [self commonHeader];
+  NSMutableDictionary *mutableDictionary = [headers mutableCopy];
+
+  if ([SKNetworkConfig sharedInstance].accept) {
+    mutableDictionary[@"Accept"] = [SKNetworkConfig sharedInstance].accept;
+  }
+
+  SKAccountManager *manager = [SKAccountManager defaultAccountManager];
+  if ([manager isLoggedIn]) {
+    mutableDictionary[@"Authorization"] = [NSString stringWithFormat:@"Bearer %@", manager.token];
+  } else {
+    mutableDictionary[@"Authorization"] = nil;
+  }
+  [configuration setHTTPAdditionalHeaders:[mutableDictionary copy]];
+  return configuration;
+}
+
++ (NSURLSessionConfiguration *)updateSessionConfigurationWithToken:(NSString *)token {
+  NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+  NSDictionary *headers = [self commonHeader];
+  NSMutableDictionary *mutableDictionary = [headers mutableCopy];
+
+  if ([SKNetworkConfig sharedInstance].accept) {
+    mutableDictionary[@"Accept"] = [SKNetworkConfig sharedInstance].accept;
+  }
+
+  if (token) {
+    mutableDictionary[@"Authorization"] = [NSString stringWithFormat:@"Bearer %@", token];
+  } else {
+    mutableDictionary[@"Authorization"] = nil;
+  }
+  [configuration setHTTPAdditionalHeaders:[mutableDictionary copy]];
   return configuration;
 }
 

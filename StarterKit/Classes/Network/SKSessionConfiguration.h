@@ -9,4 +9,6 @@
 
 + (NSURLSessionConfiguration *)defaultSessionConfiguration;
 
++ (NSURLSessionConfiguration *)updateSessionConfigurationWithToken:(NSString *)token;
+
 @end
