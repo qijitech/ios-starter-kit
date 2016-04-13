@@ -22,6 +22,9 @@
   if (userInfo[@"NSUnderlyingError"]) {
     return userInfo[@"NSLocalizedDescription"];
   }
+  if (userInfo[@"NSLocalizedFailureReason"]) {
+    return userInfo[@"NSLocalizedFailureReason"];
+  }
   OVCResponse *response = userInfo[@"OVCResponse"];
   SKErrorResponseModel *errorModel = response.result;
   return errorModel.message;
