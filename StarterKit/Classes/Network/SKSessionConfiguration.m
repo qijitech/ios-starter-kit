@@ -19,7 +19,7 @@
   };
 }
 
-- (NSURLSessionConfiguration *)defaultSessionConfiguration {
++ (NSURLSessionConfiguration *)defaultSessionConfiguration {
   NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
   NSDictionary *headers = [[self class] commonHeader];
   NSMutableDictionary *mutableDictionary = [headers mutableCopy];
