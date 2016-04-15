@@ -19,9 +19,9 @@
   };
 }
 
-+ (NSURLSessionConfiguration *)defaultSessionConfiguration {
+- (NSURLSessionConfiguration *)defaultSessionConfiguration {
   NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-  NSDictionary *headers = [self commonHeader];
+  NSDictionary *headers = [[self class] commonHeader];
   NSMutableDictionary *mutableDictionary = [headers mutableCopy];
 
   if ([SKNetworkConfig sharedInstance].accept) {
@@ -37,24 +37,5 @@
   [configuration setHTTPAdditionalHeaders:[mutableDictionary copy]];
   return configuration;
 }
-
-+ (NSURLSessionConfiguration *)updateSessionConfigurationWithToken:(NSString *)token {
-  NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-  NSDictionary *headers = [self commonHeader];
-  NSMutableDictionary *mutableDictionary = [headers mutableCopy];
-
-  if ([SKNetworkConfig sharedInstance].accept) {
-    mutableDictionary[@"Accept"] = [SKNetworkConfig sharedInstance].accept;
-  }
-
-  if (token) {
-    mutableDictionary[@"Authorization"] = [NSString stringWithFormat:@"Bearer %@", token];
-  } else {
-    mutableDictionary[@"Authorization"] = nil;
-  }
-  [configuration setHTTPAdditionalHeaders:[mutableDictionary copy]];
-  return configuration;
-}
-
 
 @end

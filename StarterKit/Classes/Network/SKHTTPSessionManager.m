@@ -12,7 +12,7 @@
 - (instancetype)init {
 
   if (self = [super initWithBaseURL:[NSURL URLWithString:[SKNetworkConfig sharedInstance].baseUrl]
-               sessionConfiguration:[SKSessionConfiguration defaultSessionConfiguration]]) {
+               sessionConfiguration:[[SKSessionConfiguration new] defaultSessionConfiguration]]) {
 
   }
   return self;

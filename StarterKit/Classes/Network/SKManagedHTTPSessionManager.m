@@ -13,7 +13,7 @@
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)context {
   if (self = [super initWithBaseURL:[NSURL URLWithString:[SKNetworkConfig sharedInstance].baseUrl]
                managedObjectContext:context
-               sessionConfiguration:[SKSessionConfiguration defaultSessionConfiguration]]) {
+               sessionConfiguration:[[SKSessionConfiguration new] defaultSessionConfiguration]]) {
 
   }
   return self;

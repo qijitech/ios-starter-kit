@@ -7,8 +7,6 @@
 
 @interface SKSessionConfiguration : NSObject
 
-+ (NSURLSessionConfiguration *)defaultSessionConfiguration;
-
-+ (NSURLSessionConfiguration *)updateSessionConfigurationWithToken:(NSString *)token;
+- (NSURLSessionConfiguration *)defaultSessionConfiguration;
 
 @end
