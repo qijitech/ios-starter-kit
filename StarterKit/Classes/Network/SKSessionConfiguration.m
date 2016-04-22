@@ -13,7 +13,7 @@
       @"Content-Encoding" : @"gzip",
       @"version-code" : [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *) kCFBundleVersionKey],
       @"version-name" : [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *) kCFBundleVersionKey],
-      @"device" : @"device", // 待定
+      @"device" : [[[UIDevice currentDevice] identifierForVendor] UUIDString],
       @"platform" : @"iOS",
       @"channel" : @"channel", // 待定
   };
