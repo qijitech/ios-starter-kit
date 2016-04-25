@@ -23,6 +23,7 @@
 - (instancetype)init {
     if (self = [super init]) {
       _pageSize = [SKNetworkConfig sharedInstance].perPage;
+      _paramPage = [SKNetworkConfig sharedInstance].paramPage;
       _paramPageSize = [SKNetworkConfig sharedInstance].paramPageSize;
       _paramSinceId = [SKNetworkConfig sharedInstance].paramSinceId;
       _paramMaxId = [SKNetworkConfig sharedInstance].paramMaxId;
