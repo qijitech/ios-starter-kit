@@ -32,19 +32,19 @@ static NSString *kAccountDefaultsKey = @"Account";
   return self;
 }
 
-- (AnyPromise *)login:(NSDictionary *)parameters {
-  if (self.delegate && [self.delegate respondsToSelector:@selector(login:)]) {
+- (AnyPromise *)signin:(NSDictionary *)parameters {
+  if (self.delegate && [self.delegate respondsToSelector:@selector(signin:)]) {
     self.request = YES;
-    AnyPromise *promise = [self.delegate login:parameters];
+    AnyPromise *promise = [self.delegate signin:parameters];
     return [self handleAnyPromise:promise];
   }
   return nil;
 }
 
-- (AnyPromise *)register:(NSDictionary *)parameters {
-  if (self.delegate && [self.delegate respondsToSelector:@selector(register:)]) {
+- (AnyPromise *)signup:(NSDictionary *)parameters {
+  if (self.delegate && [self.delegate respondsToSelector:@selector(signup:)]) {
     self.request = YES;
-    AnyPromise *promise = [self.delegate register:parameters];
+    AnyPromise *promise = [self.delegate signup:parameters];
     return [self handleAnyPromise:promise];
   }
   return nil;

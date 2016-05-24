@@ -24,7 +24,7 @@
   NSDictionary *parameters = @{@"phone" : @"18612184602", @"password" : @"123456"};
   SKAccountManager *accountManager = [SKAccountManager defaultAccountManager];  
   accountManager.delegate = self;
-  [accountManager login:parameters].then(^(User *user) {
+  [accountManager signin:parameters].then(^(User *user) {
     NSLog(@"%@", user);
   }).catch(^(NSError *error) {
     NSLog(@"=====%@", error);
@@ -39,7 +39,7 @@
   _sessionManager = nil;
 }
 
-- (AnyPromise *)login:(NSDictionary *)parameters {
+- (AnyPromise *)signin:(NSDictionary *)parameters {
   return [self.sessionManager login:parameters];
 }
 

@@ -9,8 +9,11 @@
 
 @protocol SKAccountManagerDelegate <NSObject>
 @optional
-- (AnyPromise *)login:(NSDictionary *)parameters;
-- (AnyPromise *)register:(NSDictionary *)parameters;
+// 登录
+- (AnyPromise *)signin:(NSDictionary *)parameters;
+
+// 注册
+- (AnyPromise *)signup:(NSDictionary *)parameters;
 @end
 
 @interface SKAccountManager : NSObject
@@ -21,9 +24,11 @@
 
 + (SKAccountManager *)defaultAccountManager;
 
-- (AnyPromise *)login:(NSDictionary *)parameters;
+// 登录
+- (AnyPromise *)signin:(NSDictionary *)parameters;
 
-- (AnyPromise *)register:(NSDictionary *)parameters;
+// 注册
+- (AnyPromise *)signup:(NSDictionary *)parameters;
 
 - (BOOL)updateAccount:(SKAccountModel *)accountModel;
 
