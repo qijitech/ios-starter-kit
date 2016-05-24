@@ -12,4 +12,6 @@
 
 + (NSString *)buildMessageWithNetworkError:(NSError *)error;
 
++ (NSString *)buildMessageWithNetworkStatus:(NSError *)error;
+
 @end
