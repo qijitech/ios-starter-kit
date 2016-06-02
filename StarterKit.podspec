@@ -41,9 +41,9 @@ Pod::Spec.new do |s|
 
   # s.dependency 'AFNetworking', '~> 2.3'
 
-  s.dependency 'Overcoat'
-  s.dependency 'Overcoat/CoreData'
-  s.dependency 'Overcoat/PromiseKit'
+  s.dependency 'Overcoat', '~> 4.0.0-beta.2'
+  s.dependency 'Overcoat+CoreData', '~> 4.0.0-beta.2'
+  s.dependency 'Overcoat+PromiseKit', '~> 4.0.0-beta.2'
   s.dependency 'libextobjc'
   s.dependency 'Mantle', '~> 2.0'
   s.dependency 'Masonry', '~> 0.6.4'
@@ -55,7 +55,7 @@ Pod::Spec.new do |s|
   s.dependency 'FLEX'
   s.dependency 'MMPlaceHolder'
   s.dependency 'SDWebImage', '~>3.7'
-  s.dependency 'AFNetworkActivityLogger', '~> 2.0.4'
+# s.dependency 'AFNetworkActivityLogger', '~> 2.0.4'
   s.dependency 'DGActivityIndicatorView'
   s.dependency 'MaterialControls', '~> 1.0.2'
 

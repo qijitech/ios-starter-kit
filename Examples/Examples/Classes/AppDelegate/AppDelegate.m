@@ -19,7 +19,7 @@
 
 //#if DEBUG
 #import <FLEX/FLEXManager.h>
-#import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
+//#import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
 //#endif
 
 @interface AppDelegate ()
@@ -57,8 +57,8 @@
     [self setupFLEXManager];
 
 #ifdef DEBUG
-    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
-    [[AFNetworkActivityLogger sharedLogger] startLogging];
+//    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+//    [[AFNetworkActivityLogger sharedLogger] startLogging];
 #endif
 
     return YES;

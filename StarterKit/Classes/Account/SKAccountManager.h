@@ -3,8 +3,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <PromiseKit/AnyPromise.h>
 
-@class AnyPromise;
 @class SKAccountModel;
 
 @protocol SKAccountManagerDelegate <NSObject>

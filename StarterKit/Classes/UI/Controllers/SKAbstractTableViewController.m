@@ -36,6 +36,8 @@ static CGFloat const kIndicatorViewSize = 40.F;
 @property(nonatomic, assign) NSUInteger loadMoreHeight;
 @property(nonatomic, assign) BOOL canRefresh;
 @property(nonatomic, assign) BOOL canLoadMore;
+
+@property(nonatomic, strong) NSError *error;
 @end
 
 @implementation SKAbstractTableViewController
@@ -209,6 +211,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
     @weakify(self);
     promise.then(^(NSArray *result) {
       @strongify(self);
+      self.error = nil;
       if (self.paginator.hasError) {
         [self buildNetworkError:self.paginator.error isRefresh:YES];
         return;
@@ -217,6 +220,10 @@ static CGFloat const kIndicatorViewSize = 40.F;
       if (!result || result.count <= 0) {
         [SKToastUtil toastWithText:@"没有最新数据"];
       }
+    }).catch(^(NSError *error) {
+      @strongify(self);
+      self.error = error;
+      [self updateView:NO];
     }).finally(^{
       @strongify(self);
       [self updateView:YES];
@@ -231,12 +238,17 @@ static CGFloat const kIndicatorViewSize = 40.F;
   if (promise) {
     @weakify(self);
     promise.then(^(NSArray *result) {
-      // Left Blank
+      @strongify(self);
+      self.error = nil;
       if (self.paginator.hasError) {
         [self buildNetworkError:self.paginator.error isRefresh:YES];
         return;
       }
       [self onDataLoaded:result isRefresh:NO];
+    }).catch(^(NSError *error) {
+      @strongify(self);
+      self.error = error;
+      [self updateView:NO];
     }).finally(^{
       @strongify(self);
       [self updateView:NO];
@@ -251,6 +263,8 @@ static CGFloat const kIndicatorViewSize = 40.F;
   if (promise) {
     @weakify(self);
     promise.then(^(NSArray *result) {
+      @strongify(self);
+      self.error = nil;
       if (self.paginator.hasError) {
         [self.tableView reloadData];
         [self buildNetworkError:self.paginator.error isRefresh:NO];
@@ -261,6 +275,10 @@ static CGFloat const kIndicatorViewSize = 40.F;
         [self.tableView reloadData];
         [SKToastUtil toastWithText:@"没有更多数据"];
       }
+    }).catch(^(NSError *error) {
+      @strongify(self);
+      self.error = error;
+      [self updateView:NO];
     }).finally(^{
       @strongify(self);
       [self updateView:NO];
@@ -299,10 +317,16 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
 }
 
 - (NSString *)emptyTitle {
+  if (self.error) {
+    return [SKErrorResponseModel buildMessageWithNetworkError:self.error];
+  }
   return self.paginator.hasError ? kStarterKitErrorTitle : kStarterKitEmptyTitle;
 }
 
 - (NSString *)emptySubtitle {
+  if (self.error) {
+    return @"";
+  }
   return self.paginator.hasError ? kStarterKitErrorSubtitle : kStarterKitEmptySubtitle;
 }
 

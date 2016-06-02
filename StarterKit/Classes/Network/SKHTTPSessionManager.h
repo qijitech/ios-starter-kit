@@ -3,7 +3,7 @@
 //
 
 #import <Overcoat/OVCHTTPSessionManager.h>
-#import <PromiseKit/PromiseKit.h>
+#import <OvercoatPromiseKit/OVCHTTPSessionManager+PromiseKit.h>
 
 @interface SKHTTPSessionManager : OVCHTTPSessionManager
 

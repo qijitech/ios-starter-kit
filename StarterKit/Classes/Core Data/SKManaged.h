@@ -4,7 +4,7 @@
 //
 
 #import <CoreData/CoreData.h>
-#import <Overcoat/OVCManagedStore.h>
+#import <OvercoatCoreData/OVCManagedStore.h>
 
 @interface SKManaged : NSObject
 

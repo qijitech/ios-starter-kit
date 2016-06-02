@@ -2,7 +2,6 @@
 // Created by Hammer on 1/31/16.
 //
 
-#import <PromiseKit/PromiseKit.h>
 #import <libextobjc/EXTScope.h>
 #import <Overcoat/OVCResponse.h>
 #import "SKAccountManager.h"

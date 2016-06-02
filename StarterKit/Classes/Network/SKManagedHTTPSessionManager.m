@@ -19,8 +19,8 @@
   return self;
 }
 
-+ (OVC_NULLABLE Class)errorModelClass {
-  return [SKErrorResponseModel class];
++ (OVC_NULLABLE Class)errorModelClassesByResourcePath {
+  return @{@"**": [SKErrorResponseModel class]};
 }
 
 @end

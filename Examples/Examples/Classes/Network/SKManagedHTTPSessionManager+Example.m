@@ -7,17 +7,16 @@
 //
 
 #import "SKManagedHTTPSessionManager+Example.h"
-#import <Overcoat/OVCHTTPSessionManager+PromiseKit.h>
 #import "Feed.h"
 
 @implementation SKManagedHTTPSessionManager (Example)
 
 - (AnyPromise *)fetchFeeds:(NSDictionary *)parameters {
-  return [self GET:@"/feedsWithPage" parameters:parameters];
+  return [self pmk_GET:@"/feedsWithPage" parameters:parameters];
 }
 
 - (AnyPromise *)fetchFeedsWithId:(NSDictionary *)parameters {
-  return [self GET:@"/feeds" parameters:parameters];
+  return [self pmk_GET:@"/feeds" parameters:parameters];
 }
 
 #pragma mark - OVCHTTPSessionManager

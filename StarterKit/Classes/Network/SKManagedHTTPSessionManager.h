@@ -3,8 +3,8 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import <Overcoat/OVCManagedHTTPSessionManager.h>
-#import <PromiseKit/PromiseKit.h>
+#import <OvercoatCoreData/OVCManagedHTTPSessionManager.h>
+#import <OvercoatPromiseKit/OVCHTTPSessionManager+PromiseKit.h>
 
 @interface SKManagedHTTPSessionManager : OVCManagedHTTPSessionManager
 
