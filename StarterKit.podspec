@@ -39,15 +39,13 @@ Pod::Spec.new do |s|
   s.public_header_files = 'StarterKit/Classes/**/*.h'
   s.frameworks = 'UIKit', 'MapKit', 'MobileCoreServices', 'SystemConfiguration'
 
-  # s.dependency 'AFNetworking', '~> 2.3'
-
   s.dependency 'Overcoat', '~> 4.0.0-beta.2'
   s.dependency 'Overcoat+CoreData', '~> 4.0.0-beta.2'
   s.dependency 'Overcoat+PromiseKit', '~> 4.0.0-beta.2'
   s.dependency 'libextobjc'
   s.dependency 'Mantle', '~> 2.0'
   s.dependency 'Masonry', '~> 0.6.4'
-  s.dependency 'UITableView+FDTemplateLayoutCell', '~> 1.4.beta'
+  s.dependency 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta'
   s.dependency 'DZNEmptyDataSet', '~> 1.7.3'
   s.dependency 'HexColors', '~> 3.0.0'
   s.dependency 'AnimatedGIFImageSerialization', '~> 0.2.0'
@@ -55,7 +53,6 @@ Pod::Spec.new do |s|
   s.dependency 'FLEX'
   s.dependency 'MMPlaceHolder'
   s.dependency 'SDWebImage', '~>3.7'
-# s.dependency 'AFNetworkActivityLogger', '~> 2.0.4'
   s.dependency 'DGActivityIndicatorView'
   s.dependency 'MaterialControls', '~> 1.0.2'
 

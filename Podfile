@@ -9,7 +9,8 @@ inhibit_all_warnings!
 workspace 'StarterKit'
 
 target 'Examples' do
-  pod "StarterKit", :path => "."
+  pod 'StarterKit', :path => '.'
+  # pod 'AFNetworkActivityLogger', :git => 'https://github.com/AFNetworking/AFNetworkActivityLogger.git', :branch => '3_0_0'
 end
 
 xcodeproj 'Examples/Examples.xcodeproj'

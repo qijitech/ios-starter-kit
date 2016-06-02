@@ -88,7 +88,7 @@ PODS:
     - Overcoat+CoreData (~> 4.0.0-beta.2)
     - Overcoat+PromiseKit (~> 4.0.0-beta.2)
     - SDWebImage (~> 3.7)
-    - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
+    - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
   - UITableView+FDTemplateLayoutCell (1.5.beta)
 
 DEPENDENCIES:
@@ -117,9 +117,9 @@ SPEC CHECKSUMS:
   Overcoat+PromiseKit: 9f989a3d9bc8b07f576673be9bd85a3207399fbf
   PromiseKit: 1db024241265f428137a9f3c00ff9590740c4be6
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  StarterKit: 50edbdf98196aaf3463a003d5d60cb6aab831df2
+  StarterKit: 8f25f18d9672735364cb7b9f7a0c569b18944541
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
 
-PODFILE CHECKSUM: f4f5ecaaa410f6266c54d7307a1b40ba1fd51e19
+PODFILE CHECKSUM: 9af07e16a2e350b625f770c437331d6c76d0547c
 
 COCOAPODS: 1.0.0

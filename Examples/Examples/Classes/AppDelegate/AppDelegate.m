@@ -32,19 +32,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor grayColor];
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  self.window.backgroundColor = [UIColor grayColor];
 
-
-    // init network config
-    [SKNetworkConfig sharedInstance].baseUrl = kBaseURL;
-    [SKNetworkConfig sharedInstance].accept = kBaseURL;
+  // init network config
+  [SKNetworkConfig sharedInstance].baseUrl = kBaseURL;
+  [SKNetworkConfig sharedInstance].accept = kBaseURL;
 
 //    AuthController *controller = [[AuthController alloc] init];
-//    FetchedKeyFeedViewController *controller = [[FetchedKeyFeedViewController alloc] init];
+    FetchedKeyFeedViewController *controller = [[FetchedKeyFeedViewController alloc] init];
 //    FetchedPageFeedViewController *controller = [[FetchedPageFeedViewController alloc] init];
 //    KeyFeedViewController *controller = [[KeyFeedViewController alloc] init];
-    PageFeedViewController *controller = [[PageFeedViewController alloc] init];
+//    PageFeedViewController *controller = [[PageFeedViewController alloc] init];
 //    MasonryViewController *controller = [[MasonryViewController alloc] init];
 //    TestViewController *controller = [[TestViewController alloc] init];
 
