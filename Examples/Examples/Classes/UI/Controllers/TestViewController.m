@@ -83,7 +83,6 @@
   // make constraints
   [self.pictureView mas_makeConstraints:^(MASConstraintMaker *make) {
     make.top.equalTo(self.view).offset(100);
-    make.height.equalTo(@(120));
     make.left.right.equalTo(self.view).insets(UIEdgeInsetsMake(10, 10, 10, 10));
   }];
 }
