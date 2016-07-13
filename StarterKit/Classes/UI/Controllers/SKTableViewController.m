@@ -9,6 +9,7 @@
 
 @interface SKTableViewController()
 @property (copy, nonatomic) NSMutableArray *items;
+@property (copy, nonatomic) NSMutableArray *localItems;
 @property(nonatomic, strong) SKHTTPSessionManager *httpSessionManager;
 @end
 
@@ -56,6 +57,11 @@
   if (isRefresh && data && data.count > 0) {
     [self.items removeAllObjects];
   }
+  
+  if (self.items.count <= 0 && self.localItems) {
+    [self.items addObjectsFromArray:self.localItems];
+  }
+  
   [self.items addObjectsFromArray:data];
   [self.tableView reloadData];
 }
@@ -84,6 +90,10 @@
     indexPath = [NSIndexPath indexPathForRow:(NSInteger)index inSection:0];
   }
   return indexPath;
+}
+
+- (void)addLocalItems:(NSMutableArray *)localItems {
+  _localItems = localItems;
 }
 
 @end
