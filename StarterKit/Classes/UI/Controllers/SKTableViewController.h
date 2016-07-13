@@ -19,4 +19,6 @@
 
 @property(nonatomic, strong, readonly) SKHTTPSessionManager *httpSessionManager;
 
+- (void)addLocalItems:(NSMutableArray *)localItems;
+
 @end
