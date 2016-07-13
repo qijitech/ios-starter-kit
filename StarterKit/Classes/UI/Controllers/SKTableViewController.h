@@ -15,10 +15,10 @@
  */
 @property (copy, nonatomic, readonly) NSMutableArray *items;
 
-@property (copy, nonatomic, readonly) NSMutableArray *localItems;
+@property (copy, nonatomic, readonly) NSArray *localItems;
 
 @property(nonatomic, strong, readonly) SKHTTPSessionManager *httpSessionManager;
 
-- (void)addLocalItems:(NSMutableArray *)localItems;
+- (void)addLocalItems:(NSArray *)localItems;
 
 @end

@@ -9,7 +9,7 @@
 
 @interface SKTableViewController()
 @property (copy, nonatomic) NSMutableArray *items;
-@property (copy, nonatomic) NSMutableArray *localItems;
+@property (copy, nonatomic) NSArray *localItems;
 @property(nonatomic, strong) SKHTTPSessionManager *httpSessionManager;
 @end
 
@@ -92,7 +92,7 @@
   return indexPath;
 }
 
-- (void)addLocalItems:(NSMutableArray *)localItems {
+- (void)addLocalItems:(NSArray *)localItems {
   _localItems = localItems;
 }
 
