@@ -149,7 +149,7 @@ static NSUInteger const kPhotoColumns = 3;
     UIImageView *imageView = self.imageViews[idx];
     imageView.hidden = NO;
     [imageView sd_setImageWithURL:obj
-                 placeholderImage:[UIImage imageNamed:@"placehold_feeds_thumb"]];
+                 placeholderImage:[UIImage imageNamed:@"placeholder_feeds_thumb"]];
     [self addSubview:imageView];
   }];
 
