@@ -9,11 +9,17 @@
 /* Begin PBXBuildFile section */
 		22B960A039C9F44ED8392ADE /* QJView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96E6D81BB6F21CA7165BE /* QJView.m */; };
 		22B9626B379FB387EBD4475F /* QJKeyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9648A115557856F9EE909 /* QJKeyTableViewController.m */; };
+		22B9637D78879AB410960C6F /* QJModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9632D717CFB055A4961AC /* QJModel.m */; };
+		22B9643A39007C4CD0190D68 /* QJImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96E18030C098751CF2D32 /* QJImage.m */; };
 		22B9647B6CEBA315DBDC22D6 /* QJFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B966840EF56366B2CF608D /* QJFeedsViewController.m */; };
 		22B96595BBE0134EDA090C2A /* UIColor+QJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B961DB64E5C58D1A5C9F79 /* UIColor+QJ.m */; };
 		22B965DB481A13CA527A9996 /* QJFeedsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9613DEB0F95F608F21912 /* QJFeedsTableViewCell.m */; };
 		22B965E884EDF015D3F73E59 /* QJConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96A151C43F92380A2B02B /* QJConstants.m */; };
 		22B96668959D09AED7F76F1C /* QJConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96B50D950404DB8F566E4 /* QJConfig.m */; };
+		22B9698F11C55EB19A95462D /* QJComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96453C3C406BE416A3E86 /* QJComment.m */; };
+		22B96BCA13D9DF3A60500880 /* QJUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B964FE799B32440CAAC452 /* QJUserInfo.m */; };
+		22B96C39226C8365E2B5851A /* QJUserToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9678ABF168C4CC3A0E1C1 /* QJUserToken.m */; };
+		22B96C473457854F76E73D48 /* QJCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9673EAE97B5E2CDC9B28E /* QJCategory.m */; };
 		22B96CE41322A487EB234716 /* QJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9684A59BEAD15B6B32EF4 /* QJUser.m */; };
 		22B96D0E4D77FB49719E614E /* QJFeedBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B962A387431B9296028323 /* QJFeedBottomView.m */; };
 		531838311C51FFD000A38298 /* StarterKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 531838301C51FFD000A38298 /* StarterKit.podspec */; };
@@ -23,21 +29,27 @@
 		5361ED2D1C4D38DB0048F4AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED2C1C4D38DB0048F4AC /* Assets.xcassets */; };
 		53DC5E491C528D3E009A3CCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DC5E471C528D3E009A3CCD /* LaunchScreen.storyboard */; };
 		806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670EAC56A3AC0AC2618440 /* AppDelegate.m */; };
-		80670937B0A866667C9D90BA /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670139B1FE7F382A36FFB0 /* BaseModel.m */; };
 		E29066E7936A453BB96B67F5 /* Pods_Examples.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4E5AEFC4EA7887301CA6E /* Pods_Examples.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		22B960192A8B7051E3A60BA7 /* QJFeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedsViewController.h; sourceTree = "<group>"; };
 		22B9609686CDCADB3D97CED4 /* QJConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJConfig.h; sourceTree = "<group>"; };
+		22B960F4C32E465C1A7A2858 /* QJComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJComment.h; sourceTree = "<group>"; };
 		22B9613DEB0F95F608F21912 /* QJFeedsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedsTableViewCell.m; sourceTree = "<group>"; };
 		22B961DB64E5C58D1A5C9F79 /* UIColor+QJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+QJ.m"; sourceTree = "<group>"; };
+		22B962295CB8722A3ADBD563 /* QJUserToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJUserToken.h; sourceTree = "<group>"; };
 		22B962A387431B9296028323 /* QJFeedBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedBottomView.m; sourceTree = "<group>"; };
+		22B9632D717CFB055A4961AC /* QJModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJModel.m; sourceTree = "<group>"; };
+		22B96453C3C406BE416A3E86 /* QJComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJComment.m; sourceTree = "<group>"; };
 		22B9648A115557856F9EE909 /* QJKeyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJKeyTableViewController.m; sourceTree = "<group>"; };
 		22B964D311D9523F2A0D088E /* QJFeedBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedBottomView.h; sourceTree = "<group>"; };
+		22B964FE799B32440CAAC452 /* QJUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJUserInfo.m; sourceTree = "<group>"; };
 		22B9654BE625BAB17277821A /* QJKeyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJKeyTableViewController.h; sourceTree = "<group>"; };
 		22B966840EF56366B2CF608D /* QJFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedsViewController.m; sourceTree = "<group>"; };
 		22B9670927DD1AE2FD085EA9 /* QJFeedsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedsTableViewCell.h; sourceTree = "<group>"; };
+		22B9673EAE97B5E2CDC9B28E /* QJCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJCategory.m; sourceTree = "<group>"; };
+		22B9678ABF168C4CC3A0E1C1 /* QJUserToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJUserToken.m; sourceTree = "<group>"; };
 		22B9684A59BEAD15B6B32EF4 /* QJUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJUser.m; sourceTree = "<group>"; };
 		22B96882D79510A6A182B65B /* QJView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJView.h; sourceTree = "<group>"; };
 		22B969DC56F3134E0157236E /* UIColor+QJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+QJ.h"; sourceTree = "<group>"; };
@@ -45,7 +57,12 @@
 		22B96B50D950404DB8F566E4 /* QJConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJConfig.m; sourceTree = "<group>"; };
 		22B96B7413EBAD5F3C0720FC /* QJUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJUser.h; sourceTree = "<group>"; };
 		22B96C3A27A5C642ECAABA6A /* QJConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJConstants.h; sourceTree = "<group>"; };
+		22B96C434A1C5ECDD7A0B8E1 /* QJCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJCategory.h; sourceTree = "<group>"; };
+		22B96CB28B6B9D7A7C7C8F27 /* QJModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJModel.h; sourceTree = "<group>"; };
+		22B96E18030C098751CF2D32 /* QJImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJImage.m; sourceTree = "<group>"; };
 		22B96E6D81BB6F21CA7165BE /* QJView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJView.m; sourceTree = "<group>"; };
+		22B96EED06B63DB76A5AC16C /* QJImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJImage.h; sourceTree = "<group>"; };
+		22B96F3A28F79FF73D081CE0 /* QJUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJUserInfo.h; sourceTree = "<group>"; };
 		531838301C51FFD000A38298 /* StarterKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = StarterKit.podspec; path = ../StarterKit.podspec; sourceTree = "<group>"; };
 		531838351C5233E700A38298 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		531838361C5233E700A38298 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -54,8 +71,6 @@
 		5361ED2C1C4D38DB0048F4AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5361ED311C4D38DB0048F4AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53DC5E481C528D3E009A3CCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		80670139B1FE7F382A36FFB0 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
-		80670ADC5F20F3D33878B41B /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		80670C252006DCC5078C5C8D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		80670EAC56A3AC0AC2618440 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8A3429AD3E96A3B3E69FEEFD /* Pods-Examples.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Examples.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Examples/Pods-Examples.release.xcconfig"; sourceTree = "<group>"; };
@@ -218,10 +233,20 @@
 		80670EDD8717CF8305AADDFE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				80670139B1FE7F382A36FFB0 /* BaseModel.m */,
-				80670ADC5F20F3D33878B41B /* BaseModel.h */,
 				22B9684A59BEAD15B6B32EF4 /* QJUser.m */,
 				22B96B7413EBAD5F3C0720FC /* QJUser.h */,
+				22B9673EAE97B5E2CDC9B28E /* QJCategory.m */,
+				22B96C434A1C5ECDD7A0B8E1 /* QJCategory.h */,
+				22B9632D717CFB055A4961AC /* QJModel.m */,
+				22B96CB28B6B9D7A7C7C8F27 /* QJModel.h */,
+				22B96E18030C098751CF2D32 /* QJImage.m */,
+				22B96EED06B63DB76A5AC16C /* QJImage.h */,
+				22B9678ABF168C4CC3A0E1C1 /* QJUserToken.m */,
+				22B962295CB8722A3ADBD563 /* QJUserToken.h */,
+				22B964FE799B32440CAAC452 /* QJUserInfo.m */,
+				22B96F3A28F79FF73D081CE0 /* QJUserInfo.h */,
+				22B96453C3C406BE416A3E86 /* QJComment.m */,
+				22B960F4C32E465C1A7A2858 /* QJComment.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,7 +392,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5361ED221C4D38DB0048F4AC /* main.m in Sources */,
-				80670937B0A866667C9D90BA /* BaseModel.m in Sources */,
 				531838381C5233E700A38298 /* README.md in Sources */,
 				806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */,
 				22B96668959D09AED7F76F1C /* QJConfig.m in Sources */,
@@ -379,6 +403,12 @@
 				22B96CE41322A487EB234716 /* QJUser.m in Sources */,
 				22B9647B6CEBA315DBDC22D6 /* QJFeedsViewController.m in Sources */,
 				22B9626B379FB387EBD4475F /* QJKeyTableViewController.m in Sources */,
+				22B96C473457854F76E73D48 /* QJCategory.m in Sources */,
+				22B9637D78879AB410960C6F /* QJModel.m in Sources */,
+				22B9643A39007C4CD0190D68 /* QJImage.m in Sources */,
+				22B96C39226C8365E2B5851A /* QJUserToken.m in Sources */,
+				22B96BCA13D9DF3A60500880 /* QJUserInfo.m in Sources */,
+				22B9698F11C55EB19A95462D /* QJComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

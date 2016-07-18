@@ -3,8 +3,15 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <StarterKit/SKAccountModel.h>
 
+@class QJUserInfo;
 
-@interface QJUser : NSObject
+@interface QJUser : SKAccountModel
+
+@property(nonatomic, copy) NSString *mobile;
+@property(nonatomic, copy) NSString *email;
+@property(nonatomic, strong) NSArray *userToken;
+@property(nonatomic, strong) QJUserInfo *userInfo;
+
 @end
