@@ -2,16 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "feed_views.pdf",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "avator@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "avator@3x.png",
       "scale" : "3x"
     }
   ],

@@ -25,14 +25,14 @@ static NSUInteger const kPaginatorPerPage = 20;
 
 - (NSString *)paramSinceId {
   if (!_paramSinceId) {
-    _paramSinceId = @"since-id";
+    _paramSinceId = @"since_id";
   }
   return _paramSinceId;
 }
 
 - (NSString *)paramMaxId {
   if (!_paramMaxId) {
-    _paramMaxId = @"max-id";
+    _paramMaxId = @"max_id";
   }
   return _paramMaxId;
 }

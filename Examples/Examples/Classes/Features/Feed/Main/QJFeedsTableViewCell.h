@@ -3,7 +3,12 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <StarterKit/SKTableViewCell.h>
 
-@interface QJFeedsTableViewCell : NSObject
+@protocol QJFeedUserViewDelegate;
+
+@interface QJFeedsTableViewCell : SKTableViewCell
+
+@property(nonatomic, weak) id <QJFeedUserViewDelegate> delegate;
+
 @end

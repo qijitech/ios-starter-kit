@@ -9,7 +9,7 @@
 @implementation QJConfig
 
 NSString *const kBaseURL = @"http://fakerapi.qiji.tech/";
-NSString *const kAccept = @"application/vnd.fakerapi.v1+json";
+NSString *const kAccept = @"application/vnd.fakerapi.v1.0+json";
 
 NSString *const kUmengAppKey = @"5784e374e0f55af78f003c53";
 NSString *const kUmengWechatAppId = @"wx8b96be3a8a040b62";

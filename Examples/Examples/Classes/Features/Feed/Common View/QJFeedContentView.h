@@ -5,6 +5,10 @@
 
 #import "QJView.h"
 
+@class QJPost;
 
-@implementation QJView
+@interface QJFeedContentView : QJView
+
+@property(nonatomic, strong) QJPost *post;
+
 @end

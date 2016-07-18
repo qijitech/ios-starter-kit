@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22B960254757262CC620386A /* QJNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96B0673C11408F22F4108 /* QJNetworkClient.m */; };
 		22B960A039C9F44ED8392ADE /* QJView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96E6D81BB6F21CA7165BE /* QJView.m */; };
+		22B960F8B66DB5EEA129B6B5 /* QJPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B966000B5924E036B1D5FF /* QJPost.m */; };
+		22B961DFEFA5D7935CFCA288 /* QJFeedUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9645F3547A381DFAEF4C8 /* QJFeedUserView.m */; };
 		22B9626B379FB387EBD4475F /* QJKeyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9648A115557856F9EE909 /* QJKeyTableViewController.m */; };
 		22B9637D78879AB410960C6F /* QJModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9632D717CFB055A4961AC /* QJModel.m */; };
 		22B9643A39007C4CD0190D68 /* QJImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96E18030C098751CF2D32 /* QJImage.m */; };
+		22B9645EA4437455C60858D6 /* QJFeedContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B964D3C6DDED8F3046FD84 /* QJFeedContentView.m */; };
 		22B9647B6CEBA315DBDC22D6 /* QJFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B966840EF56366B2CF608D /* QJFeedsViewController.m */; };
 		22B96595BBE0134EDA090C2A /* UIColor+QJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B961DB64E5C58D1A5C9F79 /* UIColor+QJ.m */; };
 		22B965DB481A13CA527A9996 /* QJFeedsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9613DEB0F95F608F21912 /* QJFeedsTableViewCell.m */; };
@@ -22,6 +26,8 @@
 		22B96C473457854F76E73D48 /* QJCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9673EAE97B5E2CDC9B28E /* QJCategory.m */; };
 		22B96CE41322A487EB234716 /* QJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9684A59BEAD15B6B32EF4 /* QJUser.m */; };
 		22B96D0E4D77FB49719E614E /* QJFeedBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B962A387431B9296028323 /* QJFeedBottomView.m */; };
+		22B96E32423A4C186FC0B2A3 /* QJFeedPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96B66F20AB18BA01864D1 /* QJFeedPhotoView.m */; };
+		22B96FFF53CDB4E1F6C99B8B /* QJHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96FC47F10AEFDAFEAF393 /* QJHTTPSessionManager.m */; };
 		531838311C51FFD000A38298 /* StarterKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 531838301C51FFD000A38298 /* StarterKit.podspec */; };
 		531838371C5233E700A38298 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 531838351C5233E700A38298 /* LICENSE */; };
 		531838381C5233E700A38298 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 531838361C5233E700A38298 /* README.md */; };
@@ -34,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		22B960192A8B7051E3A60BA7 /* QJFeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedsViewController.h; sourceTree = "<group>"; };
+		22B9601FD60F69DFF33A8BC0 /* QJPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJPost.h; sourceTree = "<group>"; };
 		22B9609686CDCADB3D97CED4 /* QJConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJConfig.h; sourceTree = "<group>"; };
 		22B960F4C32E465C1A7A2858 /* QJComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJComment.h; sourceTree = "<group>"; };
 		22B9613DEB0F95F608F21912 /* QJFeedsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedsTableViewCell.m; sourceTree = "<group>"; };
@@ -41,11 +48,15 @@
 		22B962295CB8722A3ADBD563 /* QJUserToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJUserToken.h; sourceTree = "<group>"; };
 		22B962A387431B9296028323 /* QJFeedBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedBottomView.m; sourceTree = "<group>"; };
 		22B9632D717CFB055A4961AC /* QJModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJModel.m; sourceTree = "<group>"; };
+		22B9634D6CB5952E1ADB14D1 /* QJFeedContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedContentView.h; sourceTree = "<group>"; };
 		22B96453C3C406BE416A3E86 /* QJComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJComment.m; sourceTree = "<group>"; };
+		22B9645F3547A381DFAEF4C8 /* QJFeedUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedUserView.m; sourceTree = "<group>"; };
 		22B9648A115557856F9EE909 /* QJKeyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJKeyTableViewController.m; sourceTree = "<group>"; };
 		22B964D311D9523F2A0D088E /* QJFeedBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedBottomView.h; sourceTree = "<group>"; };
+		22B964D3C6DDED8F3046FD84 /* QJFeedContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedContentView.m; sourceTree = "<group>"; };
 		22B964FE799B32440CAAC452 /* QJUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJUserInfo.m; sourceTree = "<group>"; };
 		22B9654BE625BAB17277821A /* QJKeyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJKeyTableViewController.h; sourceTree = "<group>"; };
+		22B966000B5924E036B1D5FF /* QJPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJPost.m; sourceTree = "<group>"; };
 		22B966840EF56366B2CF608D /* QJFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedsViewController.m; sourceTree = "<group>"; };
 		22B9670927DD1AE2FD085EA9 /* QJFeedsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedsTableViewCell.h; sourceTree = "<group>"; };
 		22B9673EAE97B5E2CDC9B28E /* QJCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJCategory.m; sourceTree = "<group>"; };
@@ -54,15 +65,22 @@
 		22B96882D79510A6A182B65B /* QJView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJView.h; sourceTree = "<group>"; };
 		22B969DC56F3134E0157236E /* UIColor+QJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+QJ.h"; sourceTree = "<group>"; };
 		22B96A151C43F92380A2B02B /* QJConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJConstants.m; sourceTree = "<group>"; };
+		22B96B0673C11408F22F4108 /* QJNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJNetworkClient.m; sourceTree = "<group>"; };
 		22B96B50D950404DB8F566E4 /* QJConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJConfig.m; sourceTree = "<group>"; };
+		22B96B66F20AB18BA01864D1 /* QJFeedPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedPhotoView.m; sourceTree = "<group>"; };
 		22B96B7413EBAD5F3C0720FC /* QJUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJUser.h; sourceTree = "<group>"; };
+		22B96B959D5582048D7DC3D0 /* QJHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJHTTPSessionManager.h; sourceTree = "<group>"; };
+		22B96BA2F5DA0F1741088AC1 /* QJNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJNetworkClient.h; sourceTree = "<group>"; };
 		22B96C3A27A5C642ECAABA6A /* QJConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJConstants.h; sourceTree = "<group>"; };
 		22B96C434A1C5ECDD7A0B8E1 /* QJCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJCategory.h; sourceTree = "<group>"; };
 		22B96CB28B6B9D7A7C7C8F27 /* QJModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJModel.h; sourceTree = "<group>"; };
+		22B96CEFA42ED5589972E692 /* QJFeedPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedPhotoView.h; sourceTree = "<group>"; };
 		22B96E18030C098751CF2D32 /* QJImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJImage.m; sourceTree = "<group>"; };
 		22B96E6D81BB6F21CA7165BE /* QJView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJView.m; sourceTree = "<group>"; };
 		22B96EED06B63DB76A5AC16C /* QJImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJImage.h; sourceTree = "<group>"; };
 		22B96F3A28F79FF73D081CE0 /* QJUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJUserInfo.h; sourceTree = "<group>"; };
+		22B96FC47F10AEFDAFEAF393 /* QJHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJHTTPSessionManager.m; sourceTree = "<group>"; };
+		22B96FF225FD9B946E8D725B /* QJFeedUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedUserView.h; sourceTree = "<group>"; };
 		531838301C51FFD000A38298 /* StarterKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = StarterKit.podspec; path = ../StarterKit.podspec; sourceTree = "<group>"; };
 		531838351C5233E700A38298 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		531838361C5233E700A38298 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -95,8 +113,25 @@
 			children = (
 				22B962A387431B9296028323 /* QJFeedBottomView.m */,
 				22B964D311D9523F2A0D088E /* QJFeedBottomView.h */,
+				22B964D3C6DDED8F3046FD84 /* QJFeedContentView.m */,
+				22B9634D6CB5952E1ADB14D1 /* QJFeedContentView.h */,
+				22B96B66F20AB18BA01864D1 /* QJFeedPhotoView.m */,
+				22B96CEFA42ED5589972E692 /* QJFeedPhotoView.h */,
+				22B9645F3547A381DFAEF4C8 /* QJFeedUserView.m */,
+				22B96FF225FD9B946E8D725B /* QJFeedUserView.h */,
 			);
 			path = "Common View";
+			sourceTree = "<group>";
+		};
+		22B968A3151DD5039E3F3688 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				22B96FC47F10AEFDAFEAF393 /* QJHTTPSessionManager.m */,
+				22B96B959D5582048D7DC3D0 /* QJHTTPSessionManager.h */,
+				22B96B0673C11408F22F4108 /* QJNetworkClient.m */,
+				22B96BA2F5DA0F1741088AC1 /* QJNetworkClient.h */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		22B96ACC70F2A411B6241116 /* Main */ = {
@@ -226,6 +261,7 @@
 				22B96B99C2545B0EBCD41A2E /* Constant */,
 				22B96E6A02C5AA7B99BEF3DC /* Features */,
 				22B96E4D8E4689883345B62F /* Utils */,
+				22B968A3151DD5039E3F3688 /* Network */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -247,6 +283,8 @@
 				22B96F3A28F79FF73D081CE0 /* QJUserInfo.h */,
 				22B96453C3C406BE416A3E86 /* QJComment.m */,
 				22B960F4C32E465C1A7A2858 /* QJComment.h */,
+				22B966000B5924E036B1D5FF /* QJPost.m */,
+				22B9601FD60F69DFF33A8BC0 /* QJPost.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,12 +313,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5361ED341C4D38DB0048F4AC /* Build configuration list for PBXNativeTarget "Examples" */;
 			buildPhases = (
-				16EFA6D1EEE7BD18F5D5D9B7 /* 📦 Check Pods Manifest.lock */,
+				16EFA6D1EEE7BD18F5D5D9B7 /* [CP] Check Pods Manifest.lock */,
 				5361ED191C4D38DB0048F4AC /* Sources */,
 				5361ED1A1C4D38DB0048F4AC /* Frameworks */,
 				5361ED1B1C4D38DB0048F4AC /* Resources */,
-				05B724206765E31D6EC3E0F4 /* 📦 Embed Pods Frameworks */,
-				09FD85A2CA91806C64EFE8CA /* 📦 Copy Pods Resources */,
+				05B724206765E31D6EC3E0F4 /* [CP] Embed Pods Frameworks */,
+				09FD85A2CA91806C64EFE8CA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -339,14 +377,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05B724206765E31D6EC3E0F4 /* 📦 Embed Pods Frameworks */ = {
+		05B724206765E31D6EC3E0F4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "\uD83D\uDCE6 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,14 +392,14 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Examples/Pods-Examples-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		09FD85A2CA91806C64EFE8CA /* 📦 Copy Pods Resources */ = {
+		09FD85A2CA91806C64EFE8CA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "\uD83D\uDCE6 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,14 +407,14 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Examples/Pods-Examples-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		16EFA6D1EEE7BD18F5D5D9B7 /* 📦 Check Pods Manifest.lock */ = {
+		16EFA6D1EEE7BD18F5D5D9B7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "\uD83D\uDCE6 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +447,12 @@
 				22B96C39226C8365E2B5851A /* QJUserToken.m in Sources */,
 				22B96BCA13D9DF3A60500880 /* QJUserInfo.m in Sources */,
 				22B9698F11C55EB19A95462D /* QJComment.m in Sources */,
+				22B960F8B66DB5EEA129B6B5 /* QJPost.m in Sources */,
+				22B9645EA4437455C60858D6 /* QJFeedContentView.m in Sources */,
+				22B96E32423A4C186FC0B2A3 /* QJFeedPhotoView.m in Sources */,
+				22B961DFEFA5D7935CFCA288 /* QJFeedUserView.m in Sources */,
+				22B96FFF53CDB4E1F6C99B8B /* QJHTTPSessionManager.m in Sources */,
+				22B960254757262CC620386A /* QJNetworkClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

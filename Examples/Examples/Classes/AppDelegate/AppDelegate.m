@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "QJConfig.h"
 #import "QJFeedsViewController.h"
+#import "UIColor+QJ.h"
 
 @interface AppDelegate ()
 
@@ -23,14 +24,15 @@
   // Override point for customization after application launch.
 
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  self.window.backgroundColor = [UIColor grayColor];
+  self.window.backgroundColor = [UIColor qj_backgroundColor];
 
   // init network config
   [SKNetworkConfig sharedInstance].baseUrl = kBaseURL;
   [SKNetworkConfig sharedInstance].accept = kBaseURL;
 
   QJFeedsViewController *rootController = [QJFeedsViewController new];
-  self.window.rootViewController = rootController;
+  UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:rootController];
+  self.window.rootViewController = navCtrl;
   [self.window makeKeyAndVisible];
 
   [self setupFLEXManager];

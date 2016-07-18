@@ -7,6 +7,8 @@ PODS:
   - AFNetworking/Security (3.1.0)
   - AFNetworking/Serialization (3.1.0)
   - AnimatedGIFImageSerialization (0.2.0)
+  - BFPaperButton (2.0.29):
+    - UIColor+BFPaperColors
   - DGActivityIndicatorView (2.0)
   - DZNEmptyDataSet (1.7.3)
   - FLEX (2.3.0)
@@ -89,9 +91,11 @@ PODS:
     - Overcoat+PromiseKit (~> 4.0.0-beta.2)
     - SDWebImage (~> 3.7)
     - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
+  - UIColor+BFPaperColors (1.7.2)
   - UITableView+FDTemplateLayoutCell (1.5.beta)
 
 DEPENDENCIES:
+  - BFPaperButton
   - StarterKit (from `.`)
 
 EXTERNAL SOURCES:
@@ -101,6 +105,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AnimatedGIFImageSerialization: b0f0cfe71eac1ee45a3d57ae533c23b8e6f29501
+  BFPaperButton: 7df738f2e749a9a4edd3e043f0621ee02215e417
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
   DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
   FLEX: ba80ea13d2c784e85e616137fd4eff164781e364
@@ -118,8 +123,9 @@ SPEC CHECKSUMS:
   PromiseKit: 1db024241265f428137a9f3c00ff9590740c4be6
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   StarterKit: 8f25f18d9672735364cb7b9f7a0c569b18944541
+  UIColor+BFPaperColors: 03101fe6c10ed00c6daae7c26553f1de41500853
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
 
-PODFILE CHECKSUM: 9af07e16a2e350b625f770c437331d6c76d0547c
+PODFILE CHECKSUM: cfd8c89d7190b8e683214662024eb346e45852a2
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.0.1

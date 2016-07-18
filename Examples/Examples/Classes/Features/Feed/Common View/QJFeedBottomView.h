@@ -3,8 +3,13 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "QJView.h"
 
+@class QJPost;
 
-@interface QJFeedBottomView : NSObject
+@interface QJFeedBottomView : QJView
+
+@property(nonatomic, strong) QJPost *post;
+@property(nonatomic) BOOL shouldHideLocation;
+
 @end
