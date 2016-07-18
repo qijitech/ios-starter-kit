@@ -7,86 +7,56 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22B967192D536F1CBDC93519 /* FetchedKeyFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B963EB2E18F1A4E8005A2B /* FetchedKeyFeedViewController.m */; };
-		22B96AD5F0125D17529B0A39 /* FetchedPageFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96B03B40943D2DD8C979E /* FetchedPageFeedViewController.m */; };
+		22B960A039C9F44ED8392ADE /* QJView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96E6D81BB6F21CA7165BE /* QJView.m */; };
+		22B9626B379FB387EBD4475F /* QJKeyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9648A115557856F9EE909 /* QJKeyTableViewController.m */; };
+		22B9647B6CEBA315DBDC22D6 /* QJFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B966840EF56366B2CF608D /* QJFeedsViewController.m */; };
+		22B96595BBE0134EDA090C2A /* UIColor+QJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B961DB64E5C58D1A5C9F79 /* UIColor+QJ.m */; };
+		22B965DB481A13CA527A9996 /* QJFeedsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9613DEB0F95F608F21912 /* QJFeedsTableViewCell.m */; };
+		22B965E884EDF015D3F73E59 /* QJConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96A151C43F92380A2B02B /* QJConstants.m */; };
+		22B96668959D09AED7F76F1C /* QJConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B96B50D950404DB8F566E4 /* QJConfig.m */; };
+		22B96CE41322A487EB234716 /* QJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9684A59BEAD15B6B32EF4 /* QJUser.m */; };
+		22B96D0E4D77FB49719E614E /* QJFeedBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B962A387431B9296028323 /* QJFeedBottomView.m */; };
 		531838311C51FFD000A38298 /* StarterKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 531838301C51FFD000A38298 /* StarterKit.podspec */; };
-		531838341C52335400A38298 /* Feed.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 531838331C52335400A38298 /* Feed.xcdatamodel */; };
 		531838371C5233E700A38298 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 531838351C5233E700A38298 /* LICENSE */; };
 		531838381C5233E700A38298 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 531838361C5233E700A38298 /* README.md */; };
-		535CD01E1C5DD433009FBE56 /* SKHTTPSessionManager+Example.m in Sources */ = {isa = PBXBuildFile; fileRef = 535CD01D1C5DD433009FBE56 /* SKHTTPSessionManager+Example.m */; };
 		5361ED221C4D38DB0048F4AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5361ED211C4D38DB0048F4AC /* main.m */; };
 		5361ED2D1C4D38DB0048F4AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED2C1C4D38DB0048F4AC /* Assets.xcassets */; };
-		5363E4191C5249B3002F946C /* SKManagedHTTPSessionManager+Example.m in Sources */ = {isa = PBXBuildFile; fileRef = 5363E4181C5249B3002F946C /* SKManagedHTTPSessionManager+Example.m */; };
 		53DC5E491C528D3E009A3CCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DC5E471C528D3E009A3CCD /* LaunchScreen.storyboard */; };
-		8067003FD0886C0EB5C7B3B4 /* KeyFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670BE07A9A96DDD5E606B3 /* KeyFeedViewController.m */; };
 		806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670EAC56A3AC0AC2618440 /* AppDelegate.m */; };
-		8067036617A5B87A664A55A4 /* PageFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670876A86DD784AB939172 /* PageFeedViewController.m */; };
-		806703E9ACC6B57B4E73FAFC /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670E873A00CD2A29C33FD3 /* Feed.m */; };
-		8067084873D07CA944488073 /* SKFeedContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067098FAD997AA81BFE700D /* SKFeedContentView.m */; };
 		80670937B0A866667C9D90BA /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670139B1FE7F382A36FFB0 /* BaseModel.m */; };
-		80670944C5B1B0C135A23490 /* SKFeedPictureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 806703483087F6C8664BA2C0 /* SKFeedPictureTableViewCell.m */; };
-		8067094936B539FB124268C6 /* SKFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670676E6154E1CD042CB54 /* SKFeedTableViewCell.m */; };
-		8067095040B5B6759572AF7E /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670B123D183CE7A0F29B77 /* Image.m */; };
-		80670B2572297D47B613B712 /* AuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806709D2A0B7002551380F96 /* AuthController.m */; };
-		80670C463D5E71092139187B /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8067022EE76DD957C0E3C4C2 /* BaseTableViewCell.m */; };
-		80670CCB829A2DA289202D70 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 806701E05F4FF849F88E2B91 /* User.m */; };
-		80670CCCCA2C2D485351EAB8 /* SKUserSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670728E5CEBAE3F31FE0B0 /* SKUserSimpleView.m */; };
-		80670F6D1EB110321EA184E8 /* SKPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670D4EAFD2A7A4CE530157 /* SKPictureView.m */; };
-		80670FD5D4C3ADDAC38E6FE9 /* MasonryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806708750105D94D0F09080B /* MasonryViewController.m */; };
-		80670FFAF9294D4BD45F4A5A /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806701E91C4BC7ED9FDBB707 /* TestViewController.m */; };
 		E29066E7936A453BB96B67F5 /* Pods_Examples.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4E5AEFC4EA7887301CA6E /* Pods_Examples.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		22B96157E4CFAE21319CF020 /* FetchedPageFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchedPageFeedViewController.h; sourceTree = "<group>"; };
-		22B963EB2E18F1A4E8005A2B /* FetchedKeyFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchedKeyFeedViewController.m; sourceTree = "<group>"; };
-		22B9674186CEDC2F9BA91FEC /* FetchedKeyFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchedKeyFeedViewController.h; sourceTree = "<group>"; };
-		22B96B03B40943D2DD8C979E /* FetchedPageFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchedPageFeedViewController.m; sourceTree = "<group>"; };
+		22B960192A8B7051E3A60BA7 /* QJFeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedsViewController.h; sourceTree = "<group>"; };
+		22B9609686CDCADB3D97CED4 /* QJConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJConfig.h; sourceTree = "<group>"; };
+		22B9613DEB0F95F608F21912 /* QJFeedsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedsTableViewCell.m; sourceTree = "<group>"; };
+		22B961DB64E5C58D1A5C9F79 /* UIColor+QJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+QJ.m"; sourceTree = "<group>"; };
+		22B962A387431B9296028323 /* QJFeedBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedBottomView.m; sourceTree = "<group>"; };
+		22B9648A115557856F9EE909 /* QJKeyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJKeyTableViewController.m; sourceTree = "<group>"; };
+		22B964D311D9523F2A0D088E /* QJFeedBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedBottomView.h; sourceTree = "<group>"; };
+		22B9654BE625BAB17277821A /* QJKeyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJKeyTableViewController.h; sourceTree = "<group>"; };
+		22B966840EF56366B2CF608D /* QJFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedsViewController.m; sourceTree = "<group>"; };
+		22B9670927DD1AE2FD085EA9 /* QJFeedsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedsTableViewCell.h; sourceTree = "<group>"; };
+		22B9684A59BEAD15B6B32EF4 /* QJUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJUser.m; sourceTree = "<group>"; };
+		22B96882D79510A6A182B65B /* QJView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJView.h; sourceTree = "<group>"; };
+		22B969DC56F3134E0157236E /* UIColor+QJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+QJ.h"; sourceTree = "<group>"; };
+		22B96A151C43F92380A2B02B /* QJConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJConstants.m; sourceTree = "<group>"; };
+		22B96B50D950404DB8F566E4 /* QJConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJConfig.m; sourceTree = "<group>"; };
+		22B96B7413EBAD5F3C0720FC /* QJUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJUser.h; sourceTree = "<group>"; };
+		22B96C3A27A5C642ECAABA6A /* QJConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJConstants.h; sourceTree = "<group>"; };
+		22B96E6D81BB6F21CA7165BE /* QJView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJView.m; sourceTree = "<group>"; };
 		531838301C51FFD000A38298 /* StarterKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = StarterKit.podspec; path = ../StarterKit.podspec; sourceTree = "<group>"; };
-		531838321C52324400A38298 /* Profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
-		531838331C52335400A38298 /* Feed.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Feed.xcdatamodel; sourceTree = "<group>"; };
 		531838351C5233E700A38298 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		531838361C5233E700A38298 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		535CD01C1C5DD433009FBE56 /* SKHTTPSessionManager+Example.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKHTTPSessionManager+Example.h"; sourceTree = "<group>"; };
-		535CD01D1C5DD433009FBE56 /* SKHTTPSessionManager+Example.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKHTTPSessionManager+Example.m"; sourceTree = "<group>"; };
 		5361ED1D1C4D38DB0048F4AC /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5361ED211C4D38DB0048F4AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5361ED2C1C4D38DB0048F4AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5361ED311C4D38DB0048F4AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5363E4171C5249B3002F946C /* SKManagedHTTPSessionManager+Example.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKManagedHTTPSessionManager+Example.h"; sourceTree = "<group>"; };
-		5363E4181C5249B3002F946C /* SKManagedHTTPSessionManager+Example.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKManagedHTTPSessionManager+Example.m"; sourceTree = "<group>"; };
 		53DC5E481C528D3E009A3CCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		806700CE38456EF92CB6CC16 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		80670139B1FE7F382A36FFB0 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
-		806701E05F4FF849F88E2B91 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		806701E91C4BC7ED9FDBB707 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		8067022EE76DD957C0E3C4C2 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
-		806703483087F6C8664BA2C0 /* SKFeedPictureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFeedPictureTableViewCell.m; sourceTree = "<group>"; };
-		806703E20CC2FDF0C2828389 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
-		806704D2E7242366FCAEE3C2 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
-		806704DFE17FFCA49DC283A5 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		80670501411CD9FB8777B2C3 /* MasonryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasonryViewController.h; sourceTree = "<group>"; };
-		8067061B74E4DCF9F79204E6 /* SKFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFeedTableViewCell.h; sourceTree = "<group>"; };
-		80670676E6154E1CD042CB54 /* SKFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFeedTableViewCell.m; sourceTree = "<group>"; };
-		806706779E7D8E7A87C9B804 /* SKUserSimpleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKUserSimpleView.h; sourceTree = "<group>"; };
-		806706BB1D9A43F5AA487F24 /* KeyFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFeedViewController.h; sourceTree = "<group>"; };
-		80670728E5CEBAE3F31FE0B0 /* SKUserSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKUserSimpleView.m; sourceTree = "<group>"; };
-		8067079775885E0207E988CC /* SKFeedPictureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFeedPictureTableViewCell.h; sourceTree = "<group>"; };
-		806708750105D94D0F09080B /* MasonryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasonryViewController.m; sourceTree = "<group>"; };
-		80670876A86DD784AB939172 /* PageFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageFeedViewController.m; sourceTree = "<group>"; };
-		8067098FAD997AA81BFE700D /* SKFeedContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFeedContentView.m; sourceTree = "<group>"; };
-		806709C77690F46E2E3DE6EB /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
-		806709D2A0B7002551380F96 /* AuthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthController.m; sourceTree = "<group>"; };
 		80670ADC5F20F3D33878B41B /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
-		80670B123D183CE7A0F29B77 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
-		80670BE07A9A96DDD5E606B3 /* KeyFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyFeedViewController.m; sourceTree = "<group>"; };
-		80670C003387E7347F822701 /* SKFeedContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFeedContentView.h; sourceTree = "<group>"; };
 		80670C252006DCC5078C5C8D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		80670D05437C06894E7A544B /* SKPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPictureView.h; sourceTree = "<group>"; };
-		80670D4EAFD2A7A4CE530157 /* SKPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPictureView.m; sourceTree = "<group>"; };
-		80670DA20DA61A28215A9B0C /* AuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthController.h; sourceTree = "<group>"; };
-		80670E873A00CD2A29C33FD3 /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
-		80670E9DDB0C0F049047B62B /* PageFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageFeedViewController.h; sourceTree = "<group>"; };
 		80670EAC56A3AC0AC2618440 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8A3429AD3E96A3B3E69FEEFD /* Pods-Examples.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Examples.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Examples/Pods-Examples.release.xcconfig"; sourceTree = "<group>"; };
 		99C4E5AEFC4EA7887301CA6E /* Pods_Examples.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Examples.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +75,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22B9684E15B5BE4E247F016A /* Common View */ = {
+			isa = PBXGroup;
+			children = (
+				22B962A387431B9296028323 /* QJFeedBottomView.m */,
+				22B964D311D9523F2A0D088E /* QJFeedBottomView.h */,
+			);
+			path = "Common View";
+			sourceTree = "<group>";
+		};
+		22B96ACC70F2A411B6241116 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				22B9613DEB0F95F608F21912 /* QJFeedsTableViewCell.m */,
+				22B9670927DD1AE2FD085EA9 /* QJFeedsTableViewCell.h */,
+				22B966840EF56366B2CF608D /* QJFeedsViewController.m */,
+				22B960192A8B7051E3A60BA7 /* QJFeedsViewController.h */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		22B96B99C2545B0EBCD41A2E /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				22B96B50D950404DB8F566E4 /* QJConfig.m */,
+				22B9609686CDCADB3D97CED4 /* QJConfig.h */,
+				22B96A151C43F92380A2B02B /* QJConstants.m */,
+				22B96C3A27A5C642ECAABA6A /* QJConstants.h */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		22B96CEF10409C84E99D8CDE /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				22B96ACC70F2A411B6241116 /* Main */,
+				22B9684E15B5BE4E247F016A /* Common View */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		22B96D8D244E87B0304C4111 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				22B96E6D81BB6F21CA7165BE /* QJView.m */,
+				22B96882D79510A6A182B65B /* QJView.h */,
+				22B9648A115557856F9EE909 /* QJKeyTableViewController.m */,
+				22B9654BE625BAB17277821A /* QJKeyTableViewController.h */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		22B96E4D8E4689883345B62F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				22B961DB64E5C58D1A5C9F79 /* UIColor+QJ.m */,
+				22B969DC56F3134E0157236E /* UIColor+QJ.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		22B96E6A02C5AA7B99BEF3DC /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				22B96CEF10409C84E99D8CDE /* Feed */,
+				22B96D8D244E87B0304C4111 /* Base */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
 		5318382F1C51FFC500A38298 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,38 +194,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8067003A221BB369917ED458 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				5363E4171C5249B3002F946C /* SKManagedHTTPSessionManager+Example.h */,
-				5363E4181C5249B3002F946C /* SKManagedHTTPSessionManager+Example.m */,
-				535CD01C1C5DD433009FBE56 /* SKHTTPSessionManager+Example.h */,
-				535CD01D1C5DD433009FBE56 /* SKHTTPSessionManager+Example.m */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		806703DC15407B38856E2553 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				8067022EE76DD957C0E3C4C2 /* BaseTableViewCell.m */,
-				806704D2E7242366FCAEE3C2 /* BaseTableViewCell.h */,
-				80670676E6154E1CD042CB54 /* SKFeedTableViewCell.m */,
-				8067061B74E4DCF9F79204E6 /* SKFeedTableViewCell.h */,
-				806703483087F6C8664BA2C0 /* SKFeedPictureTableViewCell.m */,
-				8067079775885E0207E988CC /* SKFeedPictureTableViewCell.h */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		806704233B176224AF562461 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				80670EDA7D07D6ACCEAA197C /* Feed */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		806705CBC3DFE2116228881C /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,74 +203,25 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
-		8067089D9B2FB4F11288104F /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				806703DC15407B38856E2553 /* Cells */,
-				8067096C0B9AA2822B61B2F6 /* Controllers */,
-				806704233B176224AF562461 /* Views */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		8067096C0B9AA2822B61B2F6 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				80670BE07A9A96DDD5E606B3 /* KeyFeedViewController.m */,
-				806706BB1D9A43F5AA487F24 /* KeyFeedViewController.h */,
-				80670876A86DD784AB939172 /* PageFeedViewController.m */,
-				80670E9DDB0C0F049047B62B /* PageFeedViewController.h */,
-				806708750105D94D0F09080B /* MasonryViewController.m */,
-				80670501411CD9FB8777B2C3 /* MasonryViewController.h */,
-				806701E91C4BC7ED9FDBB707 /* TestViewController.m */,
-				806704DFE17FFCA49DC283A5 /* TestViewController.h */,
-				806709D2A0B7002551380F96 /* AuthController.m */,
-				80670DA20DA61A28215A9B0C /* AuthController.h */,
-				22B963EB2E18F1A4E8005A2B /* FetchedKeyFeedViewController.m */,
-				22B9674186CEDC2F9BA91FEC /* FetchedKeyFeedViewController.h */,
-				22B96B03B40943D2DD8C979E /* FetchedPageFeedViewController.m */,
-				22B96157E4CFAE21319CF020 /* FetchedPageFeedViewController.h */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		80670A59626EBDE4D7DC7014 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				80670EDD8717CF8305AADDFE /* Model */,
-				8067089D9B2FB4F11288104F /* UI */,
-				8067003A221BB369917ED458 /* Network */,
 				806705CBC3DFE2116228881C /* AppDelegate */,
-				531838321C52324400A38298 /* Profile.h */,
+				22B96B99C2545B0EBCD41A2E /* Constant */,
+				22B96E6A02C5AA7B99BEF3DC /* Features */,
+				22B96E4D8E4689883345B62F /* Utils */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		80670EDA7D07D6ACCEAA197C /* Feed */ = {
-			isa = PBXGroup;
-			children = (
-				80670728E5CEBAE3F31FE0B0 /* SKUserSimpleView.m */,
-				806706779E7D8E7A87C9B804 /* SKUserSimpleView.h */,
-				8067098FAD997AA81BFE700D /* SKFeedContentView.m */,
-				80670C003387E7347F822701 /* SKFeedContentView.h */,
-				80670D4EAFD2A7A4CE530157 /* SKPictureView.m */,
-				80670D05437C06894E7A544B /* SKPictureView.h */,
-			);
-			path = Feed;
 			sourceTree = "<group>";
 		};
 		80670EDD8717CF8305AADDFE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				531838331C52335400A38298 /* Feed.xcdatamodel */,
-				806701E05F4FF849F88E2B91 /* User.m */,
-				806700CE38456EF92CB6CC16 /* User.h */,
 				80670139B1FE7F382A36FFB0 /* BaseModel.m */,
 				80670ADC5F20F3D33878B41B /* BaseModel.h */,
-				80670E873A00CD2A29C33FD3 /* Feed.m */,
-				806709C77690F46E2E3DE6EB /* Feed.h */,
-				80670B123D183CE7A0F29B77 /* Image.m */,
-				806703E20CC2FDF0C2828389 /* Image.h */,
+				22B9684A59BEAD15B6B32EF4 /* QJUser.m */,
+				22B96B7413EBAD5F3C0720FC /* QJUser.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -363,7 +321,7 @@
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "\uD83D\uDCE6 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,7 +336,7 @@
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "\uD83D\uDCE6 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,7 +351,7 @@
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "\uD83D\uDCE6 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,29 +366,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				531838341C52335400A38298 /* Feed.xcdatamodel in Sources */,
 				5361ED221C4D38DB0048F4AC /* main.m in Sources */,
-				80670CCB829A2DA289202D70 /* User.m in Sources */,
 				80670937B0A866667C9D90BA /* BaseModel.m in Sources */,
-				806703E9ACC6B57B4E73FAFC /* Feed.m in Sources */,
-				5363E4191C5249B3002F946C /* SKManagedHTTPSessionManager+Example.m in Sources */,
-				8067095040B5B6759572AF7E /* Image.m in Sources */,
 				531838381C5233E700A38298 /* README.md in Sources */,
-				80670C463D5E71092139187B /* BaseTableViewCell.m in Sources */,
-				8067003FD0886C0EB5C7B3B4 /* KeyFeedViewController.m in Sources */,
 				806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */,
-				8067036617A5B87A664A55A4 /* PageFeedViewController.m in Sources */,
-				80670FD5D4C3ADDAC38E6FE9 /* MasonryViewController.m in Sources */,
-				80670CCCCA2C2D485351EAB8 /* SKUserSimpleView.m in Sources */,
-				8067084873D07CA944488073 /* SKFeedContentView.m in Sources */,
-				8067094936B539FB124268C6 /* SKFeedTableViewCell.m in Sources */,
-				535CD01E1C5DD433009FBE56 /* SKHTTPSessionManager+Example.m in Sources */,
-				80670F6D1EB110321EA184E8 /* SKPictureView.m in Sources */,
-				80670FFAF9294D4BD45F4A5A /* TestViewController.m in Sources */,
-				80670944C5B1B0C135A23490 /* SKFeedPictureTableViewCell.m in Sources */,
-				80670B2572297D47B613B712 /* AuthController.m in Sources */,
-				22B967192D536F1CBDC93519 /* FetchedKeyFeedViewController.m in Sources */,
-				22B96AD5F0125D17529B0A39 /* FetchedPageFeedViewController.m in Sources */,
+				22B96668959D09AED7F76F1C /* QJConfig.m in Sources */,
+				22B965E884EDF015D3F73E59 /* QJConstants.m in Sources */,
+				22B965DB481A13CA527A9996 /* QJFeedsTableViewCell.m in Sources */,
+				22B96D0E4D77FB49719E614E /* QJFeedBottomView.m in Sources */,
+				22B960A039C9F44ED8392ADE /* QJView.m in Sources */,
+				22B96595BBE0134EDA090C2A /* UIColor+QJ.m in Sources */,
+				22B96CE41322A487EB234716 /* QJUser.m in Sources */,
+				22B9647B6CEBA315DBDC22D6 /* QJFeedsViewController.m in Sources */,
+				22B9626B379FB387EBD4475F /* QJKeyTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
