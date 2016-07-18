@@ -21,7 +21,7 @@ static NSUInteger const kPhotoColumns = 3;
 
 @interface QJFeedPhotoView ()
 
-@property(nonatomic, assign) BOOL didSetupConstraints;
+@property(nonatomic) BOOL didSetupConstraints;
 @property(nonatomic, strong) NSArray *imageViews;
 
 @end

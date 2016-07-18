@@ -26,6 +26,9 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.backgroundColor = [UIColor qj_backgroundColor];
 
+  [[UIApplication sharedApplication] setStatusBarHidden:NO];
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
   // init network config
   [SKNetworkConfig sharedInstance].baseUrl = kBaseURL;
   [SKNetworkConfig sharedInstance].accept = kBaseURL;

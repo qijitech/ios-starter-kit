@@ -5,11 +5,13 @@
 
 #import <StarterKit/SKTableViewControllerBuilder.h>
 #import <libextobjc/EXTScope.h>
+#import <StarterKit/SKAccountManager.h>
 #import "QJFeedsViewController.h"
 #import "QJFeedUserView.h"
 #import "QJFeedsTableViewCell.h"
 #import "QJPost.h"
 #import "QJNetworkClient.h"
+#import "NavUtils.h"
 
 @interface QJFeedsViewController () <QJFeedUserViewDelegate>
 @property(nonatomic) BOOL isRefreshed;
@@ -34,6 +36,20 @@
     }];
   }
   return self;
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+      initWithImage:[UIImage imageNamed:@"ic_account"]
+              style:UIBarButtonItemStyleDone target:self
+             action:@selector(didAccountTapped)];
+}
+
+- (void)didAccountTapped {
+  if (![SKAccountManager defaultAccountManager].isLoggedIn) {
+    [NavUtils navLoginCtrl:self.navigationController];
+  }
 }
 
 - (BOOL)configureCell:(QJFeedsTableViewCell *)cell withItem:(id)item {
