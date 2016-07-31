@@ -118,10 +118,9 @@
     return promise.then(^(OVCResponse *response) {
       @strongify(self);
       NSArray *result = response.result;
-      self.hasDataLoaded = YES;
-      if (result && result.count >= self.pageSize) {
+      self.hasDataLoaded = result && result.count > 0;
+      if (self.hasDataLoaded >= self.pageSize) {
         self.nextPage += 1;
-        self.hasMorePages = YES;
       } else {
         self.hasMorePages = NO || isRefresh;
       }
@@ -207,9 +206,9 @@
     @weakify(self);
     return promise.then(^(OVCResponse *response) {
       NSArray *result = response.result;
-      self.hasDataLoaded = YES;
       @strongify(self);
-      if (result && result.count >= self.pageSize) {
+      self.hasDataLoaded = result && result.count > 0;
+      if (self.hasDataLoaded >= self.pageSize) {
         self.hasMorePages = YES;
       } else {
         self.hasMorePages = NO || isRefresh;
