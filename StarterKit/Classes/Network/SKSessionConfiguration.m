@@ -5,17 +5,19 @@
 #import "SKSessionConfiguration.h"
 #import "SKAccountManager.h"
 #import "SKNetworkConfig.h"
+#import "SKLocalizableUtils.h"
 
 @implementation SKSessionConfiguration
 
 + (NSDictionary *)commonHeader {
   return @{
       @"Content-Encoding" : @"gzip",
-      @"version-code" : [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *) kCFBundleVersionKey],
-      @"version-name" : [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *) kCFBundleVersionKey],
-      @"device" : [[[UIDevice currentDevice] identifierForVendor] UUIDString],
-      @"platform" : @"iOS",
-      @"channel" : @"channel", // 待定
+      @"X-Client-Build" : [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *) kCFBundleVersionKey],
+      @"X-Client-Version" : [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *) kCFBundleVersionKey],
+      @"X-Client" : [[[UIDevice currentDevice] identifierForVendor] UUIDString],
+      @"X-Client-Type" : @"iOS",
+      @"X-Client-Channel" : @"channel", // 待定
+      @"X-Language-Code" : [SKLocalizableUtils getPreferredLanguagesString],
   };
 }
 
