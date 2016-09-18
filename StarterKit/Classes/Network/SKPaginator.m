@@ -119,10 +119,10 @@
       @strongify(self);
       NSArray *result = response.result;
       self.hasDataLoaded = result && result.count > 0;
-        if (self.hasDataLoaded) {
-          if (!self.nextPage) {
-            self.nextPage = 1;
-          }
+      if (self.hasDataLoaded) {
+        if (!self.nextPage) {
+          self.nextPage = 1;
+        }
         self.nextPage += 1;
       } else {
         self.hasMorePages = NO || isRefresh;
