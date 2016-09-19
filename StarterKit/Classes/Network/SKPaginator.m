@@ -7,29 +7,28 @@
 #import <libextobjc/EXTScope.h>
 #import "SKPaginator.h"
 #import "SKNetworkConfig.h"
-#import "SKManaged.h"
 
 @interface SKPaginator ()
 @property(nonatomic, assign) BOOL hasDataLoaded;
 @property(nonatomic, assign) NSUInteger pageSize;
-@property (nonatomic, copy) NSString *paramPageSize;
-@property (nonatomic, copy) NSString *paramMaxId;
-@property (nonatomic, copy) NSString *paramSinceId;
-@property (nonatomic, copy) NSString *paramPage;
+@property(nonatomic, copy) NSString *paramPageSize;
+@property(nonatomic, copy) NSString *paramMaxId;
+@property(nonatomic, copy) NSString *paramSinceId;
+@property(nonatomic, copy) NSString *paramPage;
 @end
 
 @implementation SKPaginator
 
 - (instancetype)init {
-    if (self = [super init]) {
-      _pageSize = [SKNetworkConfig sharedInstance].perPage;
-      _paramPage = [SKNetworkConfig sharedInstance].paramPage;
-      _paramPageSize = [SKNetworkConfig sharedInstance].paramPageSize;
-      _paramSinceId = [SKNetworkConfig sharedInstance].paramSinceId;
-      _paramMaxId = [SKNetworkConfig sharedInstance].paramMaxId;
-      self.hasMorePages = YES;
-    }
-    return self;
+  if (self = [super init]) {
+    _pageSize = [SKNetworkConfig sharedInstance].perPage;
+    _paramPage = [SKNetworkConfig sharedInstance].paramPage;
+    _paramPageSize = [SKNetworkConfig sharedInstance].paramPageSize;
+    _paramSinceId = [SKNetworkConfig sharedInstance].paramSinceId;
+    _paramMaxId = [SKNetworkConfig sharedInstance].paramMaxId;
+    self.hasMorePages = YES;
+  }
+  return self;
 }
 
 - (void)setLoading:(BOOL)loading {
@@ -84,7 +83,7 @@
     [self.delegate networkOnStart:YES];
   }
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
-    NSDictionary *parameters = @{self.paramPage : @(self.firstPage),self.paramPageSize : @(self.pageSize)};
+    NSDictionary *parameters = @{self.paramPage : @(self.firstPage), self.paramPageSize : @(self.pageSize)};
     return [self paginate:parameters isRefresh:YES];
   }
 
@@ -101,7 +100,7 @@
     [self.delegate networkOnStart:NO];
   }
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
-    NSDictionary *parameters = @{self.paramPage : @(self.nextPage),self.paramPageSize : @(self.pageSize)};
+    NSDictionary *parameters = @{self.paramPage : @(self.nextPage), self.paramPageSize : @(self.pageSize)};
     return [self paginate:parameters isRefresh:NO];
   }
 
@@ -118,11 +117,16 @@
     return promise.then(^(OVCResponse *response) {
       @strongify(self);
       NSArray *result = response.result;
-      self.hasDataLoaded = result && result.count > 0;
-      if (self.hasDataLoaded >= self.pageSize) {
-        self.nextPage += 1;
+      self.hasDataLoaded = result && result.count >= 0;
+      if (self.hasDataLoaded) {
+        if (isRefresh) {
+          self.nextPage = self.firstPage + 1;
+        } else {
+          self.nextPage += 1;
+        }
+        self.hasMorePages = result.count >= self.pageSize;
       } else {
-        self.hasMorePages = NO || isRefresh;
+        self.hasMorePages = NO;
       }
       return result;
     }).finally(^{
@@ -161,7 +165,7 @@
     if ([self.delegate respondsToSelector:@selector(firstModelIdentifier:predicate:sortDescriptors:)]) {
       NSNumber *identifier = [self.delegate firstModelIdentifier:self.entityName predicate:self.predicate sortDescriptors:self.sortDescriptors];
       if (identifier) {
-        parameters = [parameters mtl_dictionaryByAddingEntriesFromDictionary:@{self.paramSinceId: [identifier stringValue]}];
+        parameters = [parameters mtl_dictionaryByAddingEntriesFromDictionary:@{self.paramSinceId : [identifier stringValue]}];
       }
     }
     return [self paginate:parameters isRefresh:YES];
@@ -190,7 +194,7 @@
     }
 
     NSAssert(identifier, @"loadMore should not be called when the cache is empty");
-    NSDictionary *parameters = @{self.paramMaxId: [identifier stringValue],self.paramPageSize : @(self.pageSize)};
+    NSDictionary *parameters = @{self.paramMaxId : [identifier stringValue], self.paramPageSize : @(self.pageSize)};
     return [self paginate:parameters isRefresh:false];
   }
 
@@ -207,16 +211,16 @@
     return promise.then(^(OVCResponse *response) {
       NSArray *result = response.result;
       @strongify(self);
-      self.hasDataLoaded = result && result.count > 0;
-      if (self.hasDataLoaded >= self.pageSize) {
-        self.hasMorePages = YES;
+      self.hasDataLoaded = result && result.count >= 0;
+      if (self.hasDataLoaded) {
+        self.hasMorePages = result.count >= self.pageSize;
       } else {
-        self.hasMorePages = NO || isRefresh;
+        self.hasMorePages = NO;
       }
       self.hasError = NO;
       self.error = nil;
       return result;
-    }).catch(^(NSError *error){
+    }).catch(^(NSError *error) {
       self.hasError = YES;
       self.error = error;
     }).finally(^{
