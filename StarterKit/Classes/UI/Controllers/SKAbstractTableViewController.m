@@ -4,6 +4,7 @@
 //
 
 #import "SKAbstractTableViewController.h"
+#import "SKPaginatorModel.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import <Masonry/MASConstraintMaker.h>
 #import <Masonry/View+MASAdditions.h>
@@ -17,6 +18,8 @@
 #import "SKLoadMoreEmptyTableViewCell.h"
 #import "SKToastUtil.h"
 #import "NSObject+Abstract.h"
+#import "SKKeyPaginator.h"
+#import "SKPagedPaginator.h"
 
 static CGFloat const kIndicatorViewSize = 40.F;
 
@@ -24,6 +27,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 @property(nonatomic, strong) DGActivityIndicatorView *indicatorView;
 
 @property(nonatomic, strong) NSMutableArray *cellMetadata;
+@property(nonatomic, strong) SKPaginatorModel *paginatorModel;
 @property(nonatomic, strong) SKPaginator *paginator;
 @property(nonatomic, strong) AnyPromise *(^paginateBlock)(NSDictionary *parameters);
 
@@ -78,6 +82,11 @@ static CGFloat const kIndicatorViewSize = 40.F;
     ((SKKeyPaginator *) _paginator).sortDescriptors = builder.sortDescriptors;
     ((SKKeyPaginator *) _paginator).predicate = builder.predicate;
   }
+
+  if ([_paginator isKindOfClass:[SKPagedPaginator class]]) {
+    ((SKPagedPaginator *) _paginator).resultClass = builder.modelOfClass;
+  }
+
   _paginateBlock = builder.paginateBlock;
 }
 
@@ -209,13 +218,15 @@ static CGFloat const kIndicatorViewSize = 40.F;
   AnyPromise *promise = [self.paginator refresh];
   if (promise) {
     @weakify(self);
-    promise.then(^(NSArray *result) {
+    promise.then(^(id response) {
       @strongify(self);
       self.error = nil;
       if (self.paginator.hasError) {
         [self buildNetworkError:self.paginator.error isRefresh:YES];
         return;
       }
+      NSArray *result = [self paresData:response];
+
       [self onDataLoaded:result isRefresh:YES];
       if (!result || result.count <= 0) {
         [SKToastUtil toastWithText:@"没有最新数据"];
@@ -237,13 +248,15 @@ static CGFloat const kIndicatorViewSize = 40.F;
   AnyPromise *promise = [self.paginator refresh];
   if (promise) {
     @weakify(self);
-    promise.then(^(NSArray *result) {
+    promise.then(^(id response) {
       @strongify(self);
       self.error = nil;
       if (self.paginator.hasError) {
         [self buildNetworkError:self.paginator.error isRefresh:YES];
         return;
       }
+
+      NSArray *result = [self paresData:response];
       [self onDataLoaded:result isRefresh:NO];
     }).catch(^(NSError *error) {
       @strongify(self);
@@ -262,7 +275,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
   AnyPromise *promise = [self.paginator loadMore];
   if (promise) {
     @weakify(self);
-    promise.then(^(NSArray *result) {
+    promise.then(^(id response) {
       @strongify(self);
       self.error = nil;
       if (self.paginator.hasError) {
@@ -270,6 +283,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
         [self buildNetworkError:self.paginator.error isRefresh:NO];
         return;
       }
+      NSArray *result = [self paresData:response];
       [self onDataLoaded:result isRefresh:NO];
       if (!result || result.count <= 0) {
         [self.tableView reloadData];
@@ -286,6 +300,16 @@ static CGFloat const kIndicatorViewSize = 40.F;
     return;
   }
   [self updateView:NO];
+}
+
+- (NSArray *)paresData:(id)response {
+  if ([response isKindOfClass:[SKPaginatorModel class]]) {
+    _paginatorModel = response;
+    return _paginatorModel.mData;
+  }/* else if ([data isKindOfClass:[NSArray class]]) {
+    return data;
+  }*/
+  return response;
 }
 
 - (void)updateView:(BOOL)isRefresh {

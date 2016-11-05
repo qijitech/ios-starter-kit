@@ -4,6 +4,7 @@
 
 #import "SKKeyTableViewController.h"
 #import "SKTableViewControllerBuilder.h"
+#import "SKKeyPaginator.h"
 
 @implementation SKKeyTableViewController
 

@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "QJConfig.h"
 #import "QJFeedsViewController.h"
+#import "QJFeedsPageViewController.h"
 #import "UIColor+QJ.h"
 
 @interface AppDelegate ()
@@ -34,7 +35,8 @@
   [SKNetworkConfig sharedInstance].accept = kBaseURL;
 
   QJFeedsViewController *rootController = [QJFeedsViewController new];
-  UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:rootController];
+  QJFeedsPageViewController *rootController2 = [QJFeedsPageViewController new];
+  UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:rootController2];
   self.window.rootViewController = navCtrl;
   [self.window makeKeyAndVisible];
 

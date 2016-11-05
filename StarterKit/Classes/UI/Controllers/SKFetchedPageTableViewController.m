@@ -5,7 +5,7 @@
 
 #import "SKFetchedPageTableViewController.h"
 #import "SKTableViewControllerBuilder.h"
-
+#import "SKPagedPaginator.h"
 
 @implementation SKFetchedPageTableViewController
 

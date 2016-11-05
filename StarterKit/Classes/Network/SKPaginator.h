@@ -24,7 +24,7 @@
 @property (nonatomic, copy, readonly) NSString *paramSinceId;
 @property (nonatomic, copy, readonly) NSString *paramPage;
 
-@property(nonatomic, assign, readonly) BOOL hasDataLoaded;
+@property(nonatomic, assign) BOOL hasDataLoaded;
 @property(nonatomic, assign, getter=isRefresh) BOOL refresh;
 @property(nonatomic, assign, getter=isLoading) BOOL loading;
 @property(nonatomic, assign) BOOL hasMorePages;
@@ -36,17 +36,4 @@
 @property(nonatomic, weak) id <SKPaginatorDelegate> delegate;
 - (AnyPromise *)refresh;
 - (AnyPromise *)loadMore;
-@end
-
-@interface SKPagedPaginator : SKPaginator
-@property(nonatomic, assign, readonly) NSUInteger firstPage;
-@property(nonatomic, assign, readonly) NSUInteger nextPage;
-@end
-
-@interface SKKeyPaginator : SKPaginator
-
-@property(nonatomic, strong) NSPredicate *predicate;
-@property(nonatomic, copy) NSString *entityName;
-@property(nonatomic, strong) NSArray<NSSortDescriptor *> *sortDescriptors;
-
 @end

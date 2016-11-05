@@ -8,5 +8,6 @@
 @interface SKHTTPSessionManager (NetworkClient)
 
 - (AnyPromise *)fetchFeeds:(NSDictionary *)parameters;
+- (AnyPromise *)fetchFeedsWithPages:(NSDictionary *)parameters;
 
 @end

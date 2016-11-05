@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7950422954E2AF8D420CBE62C9F723BA"
+               BlueprintIdentifier = "5766B835C16DBE48F20ED16A0DB57866"
                BuildableName = "StarterKit.bundle"
                BlueprintName = "StarterKit-StarterKit"
                ReferencedContainer = "container:../Pods/Pods.xcodeproj">

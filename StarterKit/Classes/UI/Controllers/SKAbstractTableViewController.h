@@ -8,10 +8,13 @@
 
 @class SKTableViewControllerBuilder;
 @class SKTableViewCell;
+@class SKPaginatorModel;
 
 typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *builder);
 
 @interface SKAbstractTableViewController : UITableViewController <SKPaginatorDelegate>
+
+@property(nonatomic, strong, readonly) SKPaginatorModel *paginatorModel;
 
 @property(nonatomic, strong, readonly) SKPaginator *paginator;
 

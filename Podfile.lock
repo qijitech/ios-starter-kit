@@ -70,7 +70,7 @@ PODS:
   - Overcoat+PromiseKit (4.0.0-beta.2):
     - Overcoat (~> 4.0.0-beta.2)
     - PromiseKit/CorePromise (> 2)
-  - PromiseKit/CorePromise (3.2.0)
+  - PromiseKit/CorePromise (3.5.1)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
@@ -120,7 +120,7 @@ SPEC CHECKSUMS:
   Overcoat: 2ddaa6d66edebc375f3e24a37974631d5aff7ebe
   Overcoat+CoreData: b1561512e9686f52692e86d4d3eeb97a1c1d6249
   Overcoat+PromiseKit: 9f989a3d9bc8b07f576673be9bd85a3207399fbf
-  PromiseKit: 1db024241265f428137a9f3c00ff9590740c4be6
+  PromiseKit: 99ea973444a4bff6c38ffb97fa1bb175e619bcf0
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   StarterKit: 8f25f18d9672735364cb7b9f7a0c569b18944541
   UIColor+BFPaperColors: 03101fe6c10ed00c6daae7c26553f1de41500853
@@ -128,4 +128,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d16286a17028b1a17a9cb96700ec9591c70f8d16
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1
