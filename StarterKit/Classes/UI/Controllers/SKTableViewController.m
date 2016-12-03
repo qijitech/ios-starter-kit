@@ -32,7 +32,7 @@
   _httpSessionManager = nil;
 }
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+- (NSString *)lastModelIdentifier:(NSString *)entityName
                         predicate:(NSPredicate *)predicate
                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   NSUInteger count = self.items.count;
@@ -42,12 +42,12 @@
   id item = self.items[(count - 1)];
   if ([item isKindOfClass:[SKModel class]]) {
     SKModel *model = (SKModel *) item;
-    return model.identifier;
+    return [model identifier];
   }
   return nil;
 }
 
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+- (NSString *)firstModelIdentifier:(NSString *)entityName
                          predicate:(NSPredicate *)predicate
                    sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   return nil;

@@ -65,7 +65,7 @@ static NSString *const kIdentifierKey = @"identifier";
   return fetchRequest;
 }
 
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+- (NSString *)firstModelIdentifier:(NSString *)entityName
                          predicate:(NSPredicate *)predicate
                    sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   NSFetchRequest *fetchRequest = [[self class] fetchRequestWithPredicate:predicate
@@ -79,7 +79,7 @@ static NSString *const kIdentifierKey = @"identifier";
   return result[kIdentifierKey];
 }
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+- (NSString *)lastModelIdentifier:(NSString *)entityName
                         predicate:(NSPredicate *)predicate
                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   NSFetchRequest *fetchRequest = [[self class] fetchRequestWithPredicate:predicate entityName:entityName];

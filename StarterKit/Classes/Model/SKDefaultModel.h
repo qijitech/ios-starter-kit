@@ -1,13 +1,12 @@
 //
-// Created by Hammer on 1/31/16.
+// Created by Hammer on 12/3/16.
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
 #import "SKModel.h"
 
-@interface SKAccountModel : SKModel <NSCoding>
+@interface SKDefaultModel : SKModel
 
 @property(nonatomic, copy) NSString *identifier;
-@property(nonatomic, copy) NSString *token;
 
 @end

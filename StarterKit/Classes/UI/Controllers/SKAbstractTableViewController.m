@@ -123,13 +123,13 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)cancelAllRequests {
 }
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+- (NSString *)lastModelIdentifier:(NSString *)entityName
                         predicate:(NSPredicate *)predicate
                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   return nil;
 }
 
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+- (NSString *)firstModelIdentifier:(NSString *)entityName
                          predicate:(NSPredicate *)predicate
                    sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   return nil;
@@ -300,7 +300,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (NSArray *)paresData:(id)response {
   if ([response isKindOfClass:[SKPaginatorModel class]]) {
     _paginatorModel = response;
-    return _paginatorModel.mData;
+    return [_paginatorModel data];
   }/* else if ([data isKindOfClass:[NSArray class]]) {
     return data;
   }*/
@@ -397,7 +397,7 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
 }
 
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
-  return YES;
+  return NO;
 }
 
 - (BOOL)emptyDataSetShouldAnimateImageView:(UIScrollView *)scrollView {

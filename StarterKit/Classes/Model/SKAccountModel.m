@@ -11,7 +11,17 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
+      @"identifier" : @"id",
       @"token" : @"token"
+  }];
+}
+
+// 针对特定的属性进行转换
++ (NSValueTransformer *)identifierJSONTransformer {
+  return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *identifier) {
+    return [identifier stringValue];
+  } reverseBlock:^id(NSString *identifier) {
+    return @[identifier];
   }];
 }
 
@@ -26,6 +36,14 @@
   self.identifier = [decoder decodeObjectForKey:@"identifier"];
   self.token = [decoder decodeObjectForKey:@"token"];
   return self;
+}
+
+- (NSString *)identifier {
+  return _identifier;
+}
+
+- (NSString *)paginatorKey {
+  return _identifier;
 }
 
 @end
