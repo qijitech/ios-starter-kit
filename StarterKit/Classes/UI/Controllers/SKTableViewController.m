@@ -42,7 +42,7 @@
   id item = self.items[(count - 1)];
   if ([item isKindOfClass:[SKModel class]]) {
     SKModel *model = (SKModel *) item;
-    return [model identifier];
+    return [model paginatorKey];
   }
   return nil;
 }
