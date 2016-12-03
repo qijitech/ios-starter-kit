@@ -69,11 +69,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NSInteger numberOfObjects = self.items.count;
-  if (self.canLoadMore && numberOfObjects >= self.paginator.pageSize) {
-    return numberOfObjects + 1;
-  }
-  return numberOfObjects;
+  return self.items.count;
 }
 
 #pragma mark - SKAbstractTableViewController
