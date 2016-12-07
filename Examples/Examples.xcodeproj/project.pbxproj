@@ -42,6 +42,7 @@
 		5361ED2D1C4D38DB0048F4AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5361ED2C1C4D38DB0048F4AC /* Assets.xcassets */; };
 		53DC5E491C528D3E009A3CCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DC5E471C528D3E009A3CCD /* LaunchScreen.storyboard */; };
 		806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670EAC56A3AC0AC2618440 /* AppDelegate.m */; };
+		A8CEBAFD1DF7ED1D00D6B709 /* QJPaginatorPost.m in Sources */ = {isa = PBXBuildFile; fileRef = A8CEBAFC1DF7ED1D00D6B709 /* QJPaginatorPost.m */; };
 		E29066E7936A453BB96B67F5 /* Pods_Examples.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4E5AEFC4EA7887301CA6E /* Pods_Examples.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,8 @@
 		80670EAC56A3AC0AC2618440 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8A3429AD3E96A3B3E69FEEFD /* Pods-Examples.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Examples.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Examples/Pods-Examples.release.xcconfig"; sourceTree = "<group>"; };
 		99C4E5AEFC4EA7887301CA6E /* Pods_Examples.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Examples.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8CEBAFB1DF7ED1D00D6B709 /* QJPaginatorPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJPaginatorPost.h; sourceTree = "<group>"; };
+		A8CEBAFC1DF7ED1D00D6B709 /* QJPaginatorPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJPaginatorPost.m; sourceTree = "<group>"; };
 		CBDD71DBC0C423DCD9396244 /* Pods-Examples.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Examples.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Examples/Pods-Examples.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -330,6 +333,8 @@
 				22B960F4C32E465C1A7A2858 /* QJComment.h */,
 				22B966000B5924E036B1D5FF /* QJPost.m */,
 				22B9601FD60F69DFF33A8BC0 /* QJPost.h */,
+				A8CEBAFB1DF7ED1D00D6B709 /* QJPaginatorPost.h */,
+				A8CEBAFC1DF7ED1D00D6B709 /* QJPaginatorPost.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -385,7 +390,7 @@
 				TargetAttributes = {
 					5361ED1C1C4D38DB0048F4AC = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = G345HV68GW;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -492,6 +497,7 @@
 				22B96C39226C8365E2B5851A /* QJUserToken.m in Sources */,
 				22B96BCA13D9DF3A60500880 /* QJUserInfo.m in Sources */,
 				22B9698F11C55EB19A95462D /* QJComment.m in Sources */,
+				A8CEBAFD1DF7ED1D00D6B709 /* QJPaginatorPost.m in Sources */,
 				22B960F8B66DB5EEA129B6B5 /* QJPost.m in Sources */,
 				22B9645EA4437455C60858D6 /* QJFeedContentView.m in Sources */,
 				22B96E32423A4C186FC0B2A3 /* QJFeedPhotoView.m in Sources */,
@@ -609,6 +615,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Examples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -625,6 +632,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Examples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

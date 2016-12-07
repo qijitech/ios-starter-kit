@@ -18,6 +18,7 @@
 #import "NSObject+Abstract.h"
 #import "SKKeyPaginator.h"
 #import "SKPagedPaginator.h"
+#import "SKPagedContractPaginator.h"
 #import "SKTableViewCell.h"
 #import "UITableView+SKRefreshControl.h"
 
@@ -78,6 +79,16 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
   if ([_paginator isKindOfClass:[SKPagedPaginator class]]) {
     ((SKPagedPaginator *) _paginator).resultClass = builder.modelOfClass;
+  }
+
+  if ([_paginator isKindOfClass:[SKPagedContractPaginator class]]) {
+    SKPagedContractPaginator *paginator = (SKPagedContractPaginator *)_paginator;
+    paginator.resultClass = builder.modelOfClass;
+    paginator.resultKeyValue = builder.resultKeyValue;
+    paginator.subResultKeyValue = builder.subResultKeyValue;
+    if (builder.paginatorModelOfClass) {
+      paginator.paginatorModelOfClass = builder.paginatorModelOfClass;
+    }
   }
 
   _paginateBlock = builder.paginateBlock;

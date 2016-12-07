@@ -10,6 +10,7 @@
 #import "QJFeedUserView.h"
 #import "QJFeedsTableViewCell.h"
 #import "QJPost.h"
+#import "QJPaginatorPost.h"
 #import "QJNetworkClient.h"
 #import "NavUtils.h"
 
@@ -24,7 +25,8 @@
     [self createWithBuilder:^(SKTableViewControllerBuilder *builder) {
       builder.cellMetadata = @[[QJFeedsTableViewCell class]];
       builder.modelOfClass = [QJPost class];
-
+      builder.paginatorModelOfClass = [QJPaginatorPost class];
+      builder.resultKeyValue = @"data";
       @weakify(self);
       builder.paginateBlock = ^(NSDictionary *parameters) {
         @strongify(self)
@@ -58,6 +60,7 @@
 }
 
 - (void)didAvatarTapped:(QJUserInfo *)userInfo {
+  [self contractModel];
 }
 
 @end
