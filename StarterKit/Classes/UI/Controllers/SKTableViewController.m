@@ -32,7 +32,7 @@
   _httpSessionManager = nil;
 }
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+- (NSString *)lastModelIdentifier:(NSString *)entityName
                         predicate:(NSPredicate *)predicate
                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   NSUInteger count = self.items.count;
@@ -42,12 +42,12 @@
   id item = self.items[(count - 1)];
   if ([item isKindOfClass:[SKModel class]]) {
     SKModel *model = (SKModel *) item;
-    return model.identifier;
+    return [model paginatorKey];
   }
   return nil;
 }
 
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+- (NSString *)firstModelIdentifier:(NSString *)entityName
                          predicate:(NSPredicate *)predicate
                    sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   return nil;
@@ -69,11 +69,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NSInteger numberOfObjects = self.items.count;
-  if (self.canLoadMore && numberOfObjects >= self.paginator.pageSize) {
-    return numberOfObjects + 1;
-  }
-  return numberOfObjects;
+  return self.items.count;
 }
 
 #pragma mark - SKAbstractTableViewController

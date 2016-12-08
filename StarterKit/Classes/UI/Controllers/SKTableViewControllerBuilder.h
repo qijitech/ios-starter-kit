@@ -24,6 +24,11 @@
 // optional
 @property(nonatomic, strong) SKPaginator *paginator;
 
+// for PaginatorContract
+@property(nonatomic, strong) Class paginatorModelOfClass;
+@property(nonatomic, copy) NSString *resultKeyValue;
+@property(nonatomic, copy) NSString *subResultKeyValue;
+
 // empty settings
 @property(nonatomic, strong) UIColor *titleColor;
 @property(nonatomic, strong) UIFont *titleFont;
@@ -31,7 +36,6 @@
 @property(nonatomic, strong) UIFont *subtitleFont;
 
 // for refresh
-@property(nonatomic, assign) NSUInteger loadMoreHeight;
 @property(nonatomic, assign) BOOL canRefresh;
 @property(nonatomic, assign) BOOL canLoadMore;
 

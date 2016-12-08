@@ -6,8 +6,12 @@
 #import <Mantle/Mantle.h>
 #import <MTLManagedObjectAdapter/MTLManagedObjectAdapter.h>
 
-@interface SKModel : MTLModel <MTLJSONSerializing, MTLManagedObjectSerializing>
+@protocol SKModelIdentifier <NSObject>
+- (NSString *)identifier;
+- (NSString *)paginatorKey;
+@end
 
-@property(nonatomic, strong) NSNumber *identifier;
+@interface SKModel : MTLModel <MTLJSONSerializing, MTLManagedObjectSerializing, SKModelIdentifier>
+
 
 @end

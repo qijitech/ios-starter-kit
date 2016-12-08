@@ -25,11 +25,11 @@
                               sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors
                                fetchBatchSize:(NSUInteger)fetchBatchSize;
 
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+- (NSString *)firstModelIdentifier:(NSString *)entityName
                          predicate:(NSPredicate *)predicate
                    sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors;
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+- (NSString *)lastModelIdentifier:(NSString *)entityName
                         predicate:(NSPredicate *)predicate
                   sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors;
 

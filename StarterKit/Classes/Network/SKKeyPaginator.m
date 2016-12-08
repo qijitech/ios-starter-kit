@@ -30,9 +30,9 @@
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
     NSDictionary *parameters = @{};
     if ([self.delegate respondsToSelector:@selector(firstModelIdentifier:predicate:sortDescriptors:)]) {
-      NSNumber *identifier = [self.delegate firstModelIdentifier:self.entityName predicate:self.predicate sortDescriptors:self.sortDescriptors];
+      NSString *identifier = [self.delegate firstModelIdentifier:self.entityName predicate:self.predicate sortDescriptors:self.sortDescriptors];
       if (identifier) {
-        parameters = [parameters mtl_dictionaryByAddingEntriesFromDictionary:@{self.paramSinceId : [identifier stringValue]}];
+        parameters = [parameters mtl_dictionaryByAddingEntriesFromDictionary:@{self.paramSinceId : identifier}];
       }
     }
     return [self paginate:parameters isRefresh:YES];
@@ -55,13 +55,13 @@
   }
 
   if (self.delegate && [self.delegate respondsToSelector:@selector(paginate:)]) {
-    NSNumber *identifier;
+    NSString *identifier;
     if ([self.delegate respondsToSelector:@selector(lastModelIdentifier:predicate:sortDescriptors:)]) {
       identifier = [self.delegate lastModelIdentifier:self.entityName predicate:self.predicate sortDescriptors:self.sortDescriptors];
     }
 
     NSAssert(identifier, @"loadMore should not be called when the cache is empty");
-    NSDictionary *parameters = @{self.paramMaxId : [identifier stringValue], self.paramPageSize : @(self.pageSize)};
+    NSDictionary *parameters = @{self.paramMaxId : identifier, self.paramPageSize : @(self.pageSize)};
     return [self paginate:parameters isRefresh:false];
   }
 

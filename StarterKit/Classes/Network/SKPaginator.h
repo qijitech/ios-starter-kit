@@ -10,10 +10,10 @@
 - (void)networkOnStart:(BOOL)isRefresh;
 - (AnyPromise *)paginate:(NSDictionary *)parameters;
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+- (NSString *)lastModelIdentifier:(NSString *)entityName
                         predicate:(NSPredicate *)predicate
                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors;
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+- (NSString *)firstModelIdentifier:(NSString *)entityName
                          predicate:(NSPredicate *)predicate
                    sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors;
 @end

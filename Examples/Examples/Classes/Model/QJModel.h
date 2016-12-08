@@ -3,7 +3,7 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-#import <StarterKit/SKModel.h>
+#import <StarterKit/SKDefaultModel.h>
 
-@interface QJModel : SKModel
+@interface QJModel : SKDefaultModel
 @end

@@ -69,14 +69,14 @@
   _httpSessionManager = nil;
 }
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+- (NSString *)lastModelIdentifier:(NSString *)entityName
                         predicate:(NSPredicate *)predicate
                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   return [[SKManaged sharedInstance] lastModelIdentifier:entityName
                                                predicate:predicate sortDescriptors:sortDescriptors];
 }
 
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+- (NSString *)firstModelIdentifier:(NSString *)entityName
                          predicate:(NSPredicate *)predicate
                    sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   return [[SKManaged sharedInstance] firstModelIdentifier:entityName

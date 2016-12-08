@@ -14,6 +14,7 @@ FOUNDATION_EXPORT const unsigned char StarterKitVersionString[];
 #import "SKManaged.h"
 #import "SKErrorResponseModel.h"
 #import "SKModel.h"
+#import "SKDefaultModel.h"
 #import "SKManagedHTTPSessionManager.h"
 #import "SKNetworkConfig.h"
 #import "SKPaginator.h"

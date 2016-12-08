@@ -14,12 +14,13 @@
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "SKErrorResponseModel.h"
 #import "SKTableViewControllerBuilder.h"
-#import "SKLoadMoreTableViewCell.h"
-#import "SKLoadMoreEmptyTableViewCell.h"
 #import "SKToastUtil.h"
 #import "NSObject+Abstract.h"
 #import "SKKeyPaginator.h"
 #import "SKPagedPaginator.h"
+#import "SKPagedContractPaginator.h"
+#import "SKTableViewCell.h"
+#import "UITableView+SKRefreshControl.h"
 
 static CGFloat const kIndicatorViewSize = 40.F;
 
@@ -37,7 +38,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
 @property(nonatomic, strong) UIColor *subtitleColor;
 @property(nonatomic, strong) UIFont *subtitleFont;
 
-@property(nonatomic, assign) NSUInteger loadMoreHeight;
 @property(nonatomic, assign) BOOL canRefresh;
 @property(nonatomic, assign) BOOL canLoadMore;
 
@@ -69,12 +69,6 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
   _canRefresh = builder.canRefresh;
   _canLoadMore = builder.canLoadMore;
-  _loadMoreHeight = builder.loadMoreHeight;
-
-  if (_canLoadMore) {
-    [self.cellMetadata addObject:[SKLoadMoreTableViewCell class]];
-    [self.cellMetadata addObject:[SKLoadMoreEmptyTableViewCell class]];
-  }
 
   // for core data entity name
   if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
@@ -85,6 +79,16 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
   if ([_paginator isKindOfClass:[SKPagedPaginator class]]) {
     ((SKPagedPaginator *) _paginator).resultClass = builder.modelOfClass;
+  }
+
+  if ([_paginator isKindOfClass:[SKPagedContractPaginator class]]) {
+    SKPagedContractPaginator *paginator = (SKPagedContractPaginator *)_paginator;
+    paginator.resultClass = builder.modelOfClass;
+    paginator.resultKeyValue = builder.resultKeyValue;
+    paginator.subResultKeyValue = builder.subResultKeyValue;
+    if (builder.paginatorModelOfClass) {
+      paginator.paginatorModelOfClass = builder.paginatorModelOfClass;
+    }
   }
 
   _paginateBlock = builder.paginateBlock;
@@ -130,13 +134,13 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (void)cancelAllRequests {
 }
 
-- (NSNumber *)lastModelIdentifier:(NSString *)entityName
+- (NSString *)lastModelIdentifier:(NSString *)entityName
                         predicate:(NSPredicate *)predicate
                   sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   return nil;
 }
 
-- (NSNumber *)firstModelIdentifier:(NSString *)entityName
+- (NSString *)firstModelIdentifier:(NSString *)entityName
                          predicate:(NSPredicate *)predicate
                    sortDescriptors:(NSArray<NSDictionary *> *)sortDescriptors {
   return nil;
@@ -153,9 +157,11 @@ static CGFloat const kIndicatorViewSize = 40.F;
 }
 
 - (void)setupRefreshControl {
-  self.refreshControl = [UIRefreshControl new];
-  self.refreshControl.backgroundColor = [UIColor clearColor];
-  [self.refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+  [self.tableView sk_addPullToRefresh:^{
+    [self refreshData];
+  } andInfiniteToRefresh:^{
+    [self loadMoreRequest];
+  }];
 }
 
 #pragma mark - IndicatorView Methods
@@ -305,7 +311,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 - (NSArray *)paresData:(id)response {
   if ([response isKindOfClass:[SKPaginatorModel class]]) {
     _paginatorModel = response;
-    return _paginatorModel.mData;
+    return [_paginatorModel data];
   }/* else if ([data isKindOfClass:[NSArray class]]) {
     return data;
   }*/
@@ -313,9 +319,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 }
 
 - (void)updateView:(BOOL)isRefresh {
-  if (isRefresh && _canRefresh) {
-    [self.refreshControl endRefreshing];
-  }
+  [self.tableView endRefresh];
   self.paginator.loading = NO;
   self.paginator.refresh = NO;
   [self.tableView reloadEmptyDataSet];
@@ -404,7 +408,7 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
 }
 
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
-  return YES;
+  return NO;
 }
 
 - (BOOL)emptyDataSetShouldAnimateImageView:(UIScrollView *)scrollView {
@@ -419,15 +423,8 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
   [self refreshData];
 }
 
-
-
 - (BOOL)configureCell:(SKTableViewCell *)cell withItem:(id)item {
   return NO;
-}
-
-- (BOOL)isLoadMoreOrEmptyCell:(NSIndexPath *)indexPath {
-  NSInteger num = [self tableView:self.tableView numberOfRowsInSection:indexPath.section];
-  return self.canLoadMore && num >= self.paginator.pageSize && indexPath.item == num - 1;
 }
 
 - (NSString *)cellReuseIdentifier:(id)item indexPath:(NSIndexPath *)indexPath {
@@ -453,22 +450,6 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-  // load more and load more empty
-  if ([self isLoadMoreOrEmptyCell:indexPath]) {
-    NSString *cellIdentifier = [SKLoadMoreTableViewCell cellIdentifier];
-    if (!self.paginator.hasMorePages || self.paginator.hasError) {
-      cellIdentifier = [SKLoadMoreEmptyTableViewCell cellIdentifier];
-    }
-    SKTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if ([cell isKindOfClass:[SKLoadMoreEmptyTableViewCell class]]) {
-      SKLoadMoreEmptyTableViewCell *emptyCell = (SKLoadMoreEmptyTableViewCell *) cell;
-      emptyCell.error = self.paginator.error;
-    } else {
-      [cell configureCellWithData:nil];
-    }
-    return cell;
-  }
   // normal
   id item = [self itemAtIndexPath:indexPath];
   NSString *cellIdentifier = [self cellReuseIdentifier:item indexPath:indexPath];
@@ -482,9 +463,6 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  if ([self isLoadMoreOrEmptyCell:indexPath]) {
-    return self.loadMoreHeight;
-  }
   id item = [self itemAtIndexPath:indexPath];
   NSString *cellIdentifier = [self cellReuseIdentifier:item indexPath:indexPath];
   // @weakify(self);
@@ -496,20 +474,13 @@ NSString *const kStarterKitErrorSubtitle = @"We could not establish a connection
                                      }];
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSInteger num = [self tableView:tableView numberOfRowsInSection:indexPath.section];
+- (void)loadMoreRequest {
   if (_canLoadMore && self.paginator.hasMorePages &&
-      !self.paginator.isLoading && !self.paginator.hasError &&
-      num >= self.paginator.pageSize && indexPath.item == num - 1) {
+      !self.paginator.isLoading && !self.paginator.hasError) {
     [self loadMoreData];
+  } else {
+    [self.tableView endRefresh];
   }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  if ([self isLoadMoreOrEmptyCell:indexPath]) {
-    if (self.paginator.hasMorePages) {
-      [self loadMoreData];
-    }
-  }
-}
 @end

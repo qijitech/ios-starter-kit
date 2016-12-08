@@ -8,14 +8,6 @@
 
 @implementation SKModel
 
-#pragma mark MTLJSONSerializing
-
-+ (NSDictionary *)JSONKeyPathsByPropertyKey {
-  return @{
-      @"identifier" : @"id",
-  };
-}
-
 #pragma mark MTLManagedObjectSerializing
 
 // The name of the Core Data entity that the receiver serializes to and

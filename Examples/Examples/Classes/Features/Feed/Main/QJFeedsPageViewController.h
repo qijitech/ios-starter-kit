@@ -3,8 +3,8 @@
 // Copyright (c) 2016 奇迹空间. All rights reserved.
 //
 
-
 #import "QJPageTableViewController.h"
+#import <StarterKit/SKPageContractTableViewController.h>
 
-@interface QJFeedsPageViewController : QJPageTableViewController
+@interface QJFeedsPageViewController : SKPageContractTableViewController
 @end

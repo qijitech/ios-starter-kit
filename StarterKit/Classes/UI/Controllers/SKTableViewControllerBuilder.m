@@ -9,11 +9,4 @@
 
 @implementation SKTableViewControllerBuilder
 
-- (NSUInteger)loadMoreHeight {
-  if (!_loadMoreHeight) {
-    _loadMoreHeight = 80;
-  }
-  return _loadMoreHeight;
-}
-
 @end

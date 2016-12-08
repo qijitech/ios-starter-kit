@@ -33,10 +33,11 @@
   // init network config
   [SKNetworkConfig sharedInstance].baseUrl = kBaseURL;
   [SKNetworkConfig sharedInstance].accept = kBaseURL;
+  [SKNetworkConfig sharedInstance].perPage = 5;
 
-  QJFeedsViewController *rootController = [QJFeedsViewController new];
-  QJFeedsPageViewController *rootController2 = [QJFeedsPageViewController new];
-  UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:rootController2];
+//  QJFeedsViewController *rootController = [QJFeedsViewController new];
+  QJFeedsPageViewController *rootController = [QJFeedsPageViewController new];
+  UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:rootController];
   self.window.rootViewController = navCtrl;
   [self.window makeKeyAndVisible];
 
