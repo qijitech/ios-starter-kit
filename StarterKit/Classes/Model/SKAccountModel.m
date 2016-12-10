@@ -10,10 +10,10 @@
 #pragma mark MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-  return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
+  return @{
       @"identifier" : @"id",
       @"token" : @"token"
-  }];
+  };
 }
 
 // 针对特定的属性进行转换
