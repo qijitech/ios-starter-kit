@@ -52,7 +52,7 @@ PODS:
     - Mantle/extobjc (= 2.0.7)
   - Mantle/extobjc (2.0.7)
   - Masonry (0.6.4)
-  - MaterialControls (1.0.2)
+  - MaterialControls (1.2.2)
   - MBProgressHUD (0.9.2)
   - MMPlaceHolder (1.9)
   - MTLManagedObjectAdapter (1.0.3):
@@ -83,7 +83,7 @@ PODS:
     - libextobjc
     - Mantle (~> 2.0)
     - Masonry (~> 0.6.4)
-    - MaterialControls (~> 1.0.2)
+    - MaterialControls (~> 1.2.2)
     - MBProgressHUD
     - MMPlaceHolder
     - Overcoat (~> 4.0.0-beta.2)
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   Mantle: bc40bb061d8c2c6fb48d5083e04d928c3b7f73d9
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
-  MaterialControls: bdeeb94aa049b73f70739a5514be137d2d45c08a
+  MaterialControls: 1c6b29e78d3a13d8dd6a67ed31b6d26eb5de8f72
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MMPlaceHolder: 40212b9dfe8760134b1b2fce3232f0d46200178f
   MTLManagedObjectAdapter: 631a53432675dcf03a9d90624afb3cececf54631
@@ -122,10 +122,10 @@ SPEC CHECKSUMS:
   Overcoat+PromiseKit: 9f989a3d9bc8b07f576673be9bd85a3207399fbf
   PromiseKit: 99ea973444a4bff6c38ffb97fa1bb175e619bcf0
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  StarterKit: 8f25f18d9672735364cb7b9f7a0c569b18944541
+  StarterKit: 91bfb9363b26f9646f22e603311582f964483253
   UIColor+BFPaperColors: 03101fe6c10ed00c6daae7c26553f1de41500853
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
 
 PODFILE CHECKSUM: d16286a17028b1a17a9cb96700ec9591c70f8d16
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0.beta.1
