@@ -43,7 +43,7 @@ Pod::Spec.new do |s|
   s.dependency 'Overcoat+CoreData', '~> 4.0.0-beta.2'
   s.dependency 'Overcoat+PromiseKit', '~> 4.0.0-beta.2'
   s.dependency 'libextobjc'
-  s.dependency 'Mantle', '~> 2.0'
+  s.dependency 'Mantle', '~> 2.1.0'
   s.dependency 'Masonry', '~> 0.6.4'
   s.dependency 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta'
   s.dependency 'DZNEmptyDataSet', '~> 1.7.3'

@@ -101,7 +101,7 @@
                 self.hasMorePages = NO;
             }
             return result;
-        }).finally(^{
+        }).always(^{
             self.refresh = NO;
             self.loading = NO;
         });

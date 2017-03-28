@@ -48,9 +48,9 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
-  - Mantle (2.0.7):
-    - Mantle/extobjc (= 2.0.7)
-  - Mantle/extobjc (2.0.7)
+  - Mantle (2.1.0):
+    - Mantle/extobjc (= 2.1.0)
+  - Mantle/extobjc (2.1.0)
   - Masonry (0.6.4)
   - MaterialControls (1.2.2)
   - MBProgressHUD (0.9.2)
@@ -70,7 +70,7 @@ PODS:
   - Overcoat+PromiseKit (4.0.0-beta.2):
     - Overcoat (~> 4.0.0-beta.2)
     - PromiseKit/CorePromise (> 2)
-  - PromiseKit/CorePromise (3.5.1)
+  - PromiseKit/CorePromise (4.1.7)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
@@ -81,7 +81,7 @@ PODS:
     - FLEX
     - HexColors (~> 3.0.0)
     - libextobjc
-    - Mantle (~> 2.0)
+    - Mantle (~> 2.1.0)
     - Masonry (~> 0.6.4)
     - MaterialControls (~> 1.2.2)
     - MBProgressHUD
@@ -111,7 +111,7 @@ SPEC CHECKSUMS:
   FLEX: ba80ea13d2c784e85e616137fd4eff164781e364
   HexColors: 8b83e3fe90c0d466dae7b98c9d22da95799f99cb
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  Mantle: bc40bb061d8c2c6fb48d5083e04d928c3b7f73d9
+  Mantle: 2fa750afa478cd625a94230fbf1c13462f29395b
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MaterialControls: 1c6b29e78d3a13d8dd6a67ed31b6d26eb5de8f72
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
@@ -120,12 +120,12 @@ SPEC CHECKSUMS:
   Overcoat: 2ddaa6d66edebc375f3e24a37974631d5aff7ebe
   Overcoat+CoreData: b1561512e9686f52692e86d4d3eeb97a1c1d6249
   Overcoat+PromiseKit: 9f989a3d9bc8b07f576673be9bd85a3207399fbf
-  PromiseKit: 99ea973444a4bff6c38ffb97fa1bb175e619bcf0
+  PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  StarterKit: 91bfb9363b26f9646f22e603311582f964483253
+  StarterKit: 3f5a1ec5b5f7e2565dc3b20a6053ada94ff959e2
   UIColor+BFPaperColors: 03101fe6c10ed00c6daae7c26553f1de41500853
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
 
-PODFILE CHECKSUM: d16286a17028b1a17a9cb96700ec9591c70f8d16
+PODFILE CHECKSUM: 051a8d126bf9ce536cd05c3818272dfd17599c34
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.2.0
