@@ -92,7 +92,7 @@ static NSString *kAccountDefaultsKey = @"Account";
         [self storeAccount:account];
       }
       return account;
-    }).finally(^{
+    }).always(^{
       self.request = NO;
     });
   }

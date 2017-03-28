@@ -90,7 +90,7 @@
     }).catch(^(NSError *error) {
       self.hasError = YES;
       self.error = error;
-    }).finally(^{
+    }).always(^{
       self.refresh = NO;
       self.loading = NO;
     });
