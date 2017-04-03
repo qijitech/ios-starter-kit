@@ -6,6 +6,7 @@
 #import "SKAccountManager.h"
 #import "SKNetworkConfig.h"
 #import "SKLocalizableUtils.h"
+#import "UIDevice+SKDeviceModel.h"
 
 @implementation SKSessionConfiguration
 
@@ -18,6 +19,8 @@
       @"X-Client-Type" : @"iOS",
       @"X-Client-Channel" : @"channel", // 待定
       @"X-Language-Code" : [SKLocalizableUtils getPreferredLanguagesString],
+      @"X-Client-System" : [NSString stringWithFormat:@"%.1f", [[[UIDevice currentDevice] systemVersion] floatValue]],
+      @"X-Client-Model" : [[UIDevice currentDevice] deviceModel],
   };
 }
 
