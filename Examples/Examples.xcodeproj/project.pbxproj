@@ -43,6 +43,10 @@
 		53DC5E491C528D3E009A3CCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DC5E471C528D3E009A3CCD /* LaunchScreen.storyboard */; };
 		806701B66B5952E673C98EB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80670EAC56A3AC0AC2618440 /* AppDelegate.m */; };
 		A8CEBAFD1DF7ED1D00D6B709 /* QJPaginatorPost.m in Sources */ = {isa = PBXBuildFile; fileRef = A8CEBAFC1DF7ED1D00D6B709 /* QJPaginatorPost.m */; };
+		A8FF45911E9B889E00436911 /* QJPageListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FF45901E9B889E00436911 /* QJPageListTableViewController.m */; };
+		A8FF45941E9B894500436911 /* QJFeedsPageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FF45931E9B894500436911 /* QJFeedsPageListViewController.m */; };
+		A8FF45971E9B8D5000436911 /* QJPageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FF45961E9B8D5000436911 /* QJPageListModel.m */; };
+		A8FF459A1E9B8DA700436911 /* QJFeedsPageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FF45991E9B8DA700436911 /* QJFeedsPageListTableViewCell.m */; };
 		E29066E7936A453BB96B67F5 /* Pods_Examples.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4E5AEFC4EA7887301CA6E /* Pods_Examples.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +121,14 @@
 		99C4E5AEFC4EA7887301CA6E /* Pods_Examples.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Examples.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8CEBAFB1DF7ED1D00D6B709 /* QJPaginatorPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJPaginatorPost.h; sourceTree = "<group>"; };
 		A8CEBAFC1DF7ED1D00D6B709 /* QJPaginatorPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJPaginatorPost.m; sourceTree = "<group>"; };
+		A8FF458F1E9B889E00436911 /* QJPageListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJPageListTableViewController.h; sourceTree = "<group>"; };
+		A8FF45901E9B889E00436911 /* QJPageListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJPageListTableViewController.m; sourceTree = "<group>"; };
+		A8FF45921E9B894500436911 /* QJFeedsPageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedsPageListViewController.h; sourceTree = "<group>"; };
+		A8FF45931E9B894500436911 /* QJFeedsPageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedsPageListViewController.m; sourceTree = "<group>"; };
+		A8FF45951E9B8D5000436911 /* QJPageListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJPageListModel.h; sourceTree = "<group>"; };
+		A8FF45961E9B8D5000436911 /* QJPageListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJPageListModel.m; sourceTree = "<group>"; };
+		A8FF45981E9B8DA700436911 /* QJFeedsPageListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QJFeedsPageListTableViewCell.h; sourceTree = "<group>"; };
+		A8FF45991E9B8DA700436911 /* QJFeedsPageListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QJFeedsPageListTableViewCell.m; sourceTree = "<group>"; };
 		CBDD71DBC0C423DCD9396244 /* Pods-Examples.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Examples.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Examples/Pods-Examples.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +194,10 @@
 				22B9670927DD1AE2FD085EA9 /* QJFeedsTableViewCell.h */,
 				22B966840EF56366B2CF608D /* QJFeedsViewController.m */,
 				22B960192A8B7051E3A60BA7 /* QJFeedsViewController.h */,
+				A8FF45921E9B894500436911 /* QJFeedsPageListViewController.h */,
+				A8FF45931E9B894500436911 /* QJFeedsPageListViewController.m */,
+				A8FF45981E9B8DA700436911 /* QJFeedsPageListTableViewCell.h */,
+				A8FF45991E9B8DA700436911 /* QJFeedsPageListTableViewCell.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -209,6 +225,8 @@
 		22B96D8D244E87B0304C4111 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				A8FF458F1E9B889E00436911 /* QJPageListTableViewController.h */,
+				A8FF45901E9B889E00436911 /* QJPageListTableViewController.m */,
 				22B96E6D81BB6F21CA7165BE /* QJView.m */,
 				22B96882D79510A6A182B65B /* QJView.h */,
 				22B9648A115557856F9EE909 /* QJKeyTableViewController.m */,
@@ -335,6 +353,8 @@
 				22B9601FD60F69DFF33A8BC0 /* QJPost.h */,
 				A8CEBAFB1DF7ED1D00D6B709 /* QJPaginatorPost.h */,
 				A8CEBAFC1DF7ED1D00D6B709 /* QJPaginatorPost.m */,
+				A8FF45951E9B8D5000436911 /* QJPageListModel.h */,
+				A8FF45961E9B8D5000436911 /* QJPageListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -502,12 +522,16 @@
 				22B9645EA4437455C60858D6 /* QJFeedContentView.m in Sources */,
 				22B96E32423A4C186FC0B2A3 /* QJFeedPhotoView.m in Sources */,
 				22B961DFEFA5D7935CFCA288 /* QJFeedUserView.m in Sources */,
+				A8FF45911E9B889E00436911 /* QJPageListTableViewController.m in Sources */,
 				22B96FFF53CDB4E1F6C99B8B /* QJHTTPSessionManager.m in Sources */,
 				22B960254757262CC620386A /* QJNetworkClient.m in Sources */,
 				51392E5F1DCE1227004E2E70 /* QJFeedsPageViewController.m in Sources */,
+				A8FF459A1E9B8DA700436911 /* QJFeedsPageListTableViewCell.m in Sources */,
 				22B9691AC1DB99C96CE36B16 /* QJLoginMobileView.m in Sources */,
+				A8FF45941E9B894500436911 /* QJFeedsPageListViewController.m in Sources */,
 				22B96CEBB78B31B0367064A3 /* QJMobileTextField.m in Sources */,
 				22B96210AED323B6B904E0B0 /* QJLoginThirdPartyView.m in Sources */,
+				A8FF45971E9B8D5000436911 /* QJPageListModel.m in Sources */,
 				22B96DF0EE8F165750CC73A6 /* QJLoginViewController.m in Sources */,
 				22B969048CE054890E58A2D2 /* NavUtils.m in Sources */,
 				22B96C76E5998FA1953A1581 /* QJPageTableViewController.m in Sources */,

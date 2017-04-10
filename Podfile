@@ -17,6 +17,10 @@ end
 xcodeproj 'Examples/Examples.xcodeproj'
 
 post_install do |installer|
+    rca_path = File.join __dir__, 'Pods', 'MTLManagedObjectAdapter'
+    ['EXTRuntimeExtensions', 'EXTScope', 'metamacros'].each do |header|
+        `grep -rl '"#{header}\\.h"' #{rca_path} | xargs sed -i '' 's/"#{header}\\.h"/<Mantle\\/#{header}.h>/g'`
+    end
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
             config.build_settings['SWIFT_VERSION'] = '3.0'

@@ -21,6 +21,7 @@
 #import "SKPagedContractPaginator.h"
 #import "SKTableViewCell.h"
 #import "UITableView+SKRefreshControl.h"
+#import "SKPagedListPaginator.h"
 
 static CGFloat const kIndicatorViewSize = 40.F;
 
@@ -89,6 +90,12 @@ static CGFloat const kIndicatorViewSize = 40.F;
     if (builder.paginatorModelOfClass) {
       paginator.paginatorModelOfClass = builder.paginatorModelOfClass;
     }
+  }
+
+  if ([_paginator isKindOfClass:[SKPagedListPaginator class]]) {
+    ((SKPagedListPaginator *) _paginator).resultClass = builder.modelOfClass;
+    ((SKPagedListPaginator *) _paginator).customPageSize = builder.customPageSize;
+    ((SKPagedListPaginator *) _paginator).customPageName = builder.customPageName;
   }
 
   _paginateBlock = builder.paginateBlock;

@@ -39,4 +39,8 @@
 @property(nonatomic, assign) BOOL canRefresh;
 @property(nonatomic, assign) BOOL canLoadMore;
 
+// for pagelist
+@property (nonatomic, copy) NSString *customPageSize;
+@property (nonatomic, copy) NSString *customPageName;
+
 @end
