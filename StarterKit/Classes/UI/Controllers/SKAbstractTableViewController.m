@@ -72,17 +72,17 @@ static CGFloat const kIndicatorViewSize = 40.F;
   self.canLoadMore = builder.canLoadMore;
 
   // for core data entity name
-  if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
+  if ([self.paginator isKindOfClass:[SKKeyPaginator class]]) {
     ((SKKeyPaginator *) self.paginator).entityName = builder.entityName;
     ((SKKeyPaginator *) self.paginator).sortDescriptors = builder.sortDescriptors;
     ((SKKeyPaginator *) self.paginator).predicate = builder.predicate;
   }
 
-  if ([_paginator isKindOfClass:[SKPagedPaginator class]]) {
+  if ([self.paginator isKindOfClass:[SKPagedPaginator class]]) {
     ((SKPagedPaginator *) self.paginator).resultClass = builder.modelOfClass;
   }
 
-  if ([_paginator isKindOfClass:[SKPagedContractPaginator class]]) {
+  if ([self.paginator isKindOfClass:[SKPagedContractPaginator class]]) {
     SKPagedContractPaginator *paginator = (SKPagedContractPaginator *)_paginator;
     paginator.resultClass = builder.modelOfClass;
     paginator.resultKeyValue = builder.resultKeyValue;
@@ -92,7 +92,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
     }
   }
 
-  if ([_paginator isKindOfClass:[SKPagedListPaginator class]]) {
+  if ([self.paginator isKindOfClass:[SKPagedListPaginator class]]) {
     ((SKPagedListPaginator *) self.paginator).resultClass = builder.modelOfClass;
     ((SKPagedListPaginator *) self.paginator).customPageSize = builder.customPageSize;
     ((SKPagedListPaginator *) self.paginator).customPageName = builder.customPageName;
@@ -164,9 +164,12 @@ static CGFloat const kIndicatorViewSize = 40.F;
 }
 
 - (void)setupRefreshControl {
+  @weakify(self);
   [self.tableView sk_addPullToRefresh:^{
+    @strongify(self);
     [self refreshData];
   } andInfiniteToRefresh:^{
+    @strongify(self);
     [self loadMoreRequest];
   }];
 }
