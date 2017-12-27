@@ -59,27 +59,27 @@ static CGFloat const kIndicatorViewSize = 40.F;
   NSParameterAssert(builder.cellMetadata);
   NSParameterAssert(builder.paginator);
 
-  _paginator = builder.paginator;
-  _paginator.delegate = self;
-  _cellMetadata = [builder.cellMetadata mutableCopy];
+  self.paginator = builder.paginator;
+  self.paginator.delegate = self;
+  self.cellMetadata = [builder.cellMetadata mutableCopy];
 
-  _titleColor = builder.titleColor;
-  _titleFont = builder.titleFont;
-  _subtitleColor = builder.subtitleColor;
-  _subtitleFont = builder.subtitleFont;
+  self.titleColor = builder.titleColor;
+  self.titleFont = builder.titleFont;
+  self.subtitleColor = builder.subtitleColor;
+  self.subtitleFont = builder.subtitleFont;
 
-  _canRefresh = builder.canRefresh;
-  _canLoadMore = builder.canLoadMore;
+  self.canRefresh = builder.canRefresh;
+  self.canLoadMore = builder.canLoadMore;
 
   // for core data entity name
   if ([_paginator isKindOfClass:[SKKeyPaginator class]]) {
-    ((SKKeyPaginator *) _paginator).entityName = builder.entityName;
-    ((SKKeyPaginator *) _paginator).sortDescriptors = builder.sortDescriptors;
-    ((SKKeyPaginator *) _paginator).predicate = builder.predicate;
+    ((SKKeyPaginator *) self.paginator).entityName = builder.entityName;
+    ((SKKeyPaginator *) self.paginator).sortDescriptors = builder.sortDescriptors;
+    ((SKKeyPaginator *) self.paginator).predicate = builder.predicate;
   }
 
   if ([_paginator isKindOfClass:[SKPagedPaginator class]]) {
-    ((SKPagedPaginator *) _paginator).resultClass = builder.modelOfClass;
+    ((SKPagedPaginator *) self.paginator).resultClass = builder.modelOfClass;
   }
 
   if ([_paginator isKindOfClass:[SKPagedContractPaginator class]]) {
@@ -93,12 +93,12 @@ static CGFloat const kIndicatorViewSize = 40.F;
   }
 
   if ([_paginator isKindOfClass:[SKPagedListPaginator class]]) {
-    ((SKPagedListPaginator *) _paginator).resultClass = builder.modelOfClass;
-    ((SKPagedListPaginator *) _paginator).customPageSize = builder.customPageSize;
-    ((SKPagedListPaginator *) _paginator).customPageName = builder.customPageName;
+    ((SKPagedListPaginator *) self.paginator).resultClass = builder.modelOfClass;
+    ((SKPagedListPaginator *) self.paginator).customPageSize = builder.customPageSize;
+    ((SKPagedListPaginator *) self.paginator).customPageName = builder.customPageName;
   }
 
-  _paginateBlock = builder.paginateBlock;
+  self.paginateBlock = builder.paginateBlock;
 }
 
 - (void)viewDidLoad {

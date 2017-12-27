@@ -32,10 +32,11 @@
   NSParameterAssert(builder.entityName);
   NSParameterAssert(builder.modelOfClass);
 
-  _modelOfClass = builder.modelOfClass;
-  _predicate = builder.predicate;
-  _entityName = builder.entityName;
-  _sortDescriptors = builder.sortDescriptors;
+  self.modelOfClass = builder.modelOfClass;
+  self.predicate = builder.predicate;
+  self.entityName = builder.entityName;
+  self.sortDescriptors = builder.sortDescriptors;
+  
   [super initWithBuilder:builder];
 }
 
