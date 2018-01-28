@@ -100,7 +100,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   StarterKit:
-    :path: "."
+    :path: .
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -122,10 +122,10 @@ SPEC CHECKSUMS:
   Overcoat+PromiseKit: 9f989a3d9bc8b07f576673be9bd85a3207399fbf
   PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  StarterKit: 3f5a1ec5b5f7e2565dc3b20a6053ada94ff959e2
+  StarterKit: 8a93e231a2db130c2423b84220c4dd80a4addf66
   UIColor+BFPaperColors: 03101fe6c10ed00c6daae7c26553f1de41500853
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
 
 PODFILE CHECKSUM: c67f1bf8161546cad7a5b2980e09effb3a1d6a31
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.4.0
