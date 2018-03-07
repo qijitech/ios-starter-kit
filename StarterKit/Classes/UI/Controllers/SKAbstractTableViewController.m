@@ -129,6 +129,12 @@ static CGFloat const kIndicatorViewSize = 40.F;
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   self.tableView.emptyDataSetSource = self;
   self.tableView.emptyDataSetDelegate = self;
+  
+  // 适配 iOS 11
+  self.tableView.estimatedRowHeight = 0;
+  self.tableView.estimatedSectionFooterHeight = 0;
+  self.tableView.estimatedSectionHeaderHeight = 0;
+
   self.tableView.backgroundColor = [UIColor clearColor];
 
   [self registerClassCellReuseIdentifier];
