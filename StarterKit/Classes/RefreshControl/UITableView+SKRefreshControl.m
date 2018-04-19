@@ -19,7 +19,7 @@ static const void *kSKRefreshControlKey = @"qijitech.SKRefreshControlKey";
 
   if (control == nil) {
     control = [[UIRefreshControl alloc] init];
-    control.tintColor = [UIColor grayColor];
+    control.tintColor = [UIColor whiteColor];
     [self addSubview:control];
     objc_setAssociatedObject(self, &kSKRefreshControlKey, control, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
   }
