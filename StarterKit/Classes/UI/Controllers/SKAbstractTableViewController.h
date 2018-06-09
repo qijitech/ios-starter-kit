@@ -45,6 +45,11 @@ typedef void (^SKTableViewControllerBuilderBlock)(SKTableViewControllerBuilder *
 - (void)createWithBuilder:(SKTableViewControllerBuilderBlock )block;
 - (void)initWithBuilder:(SKTableViewControllerBuilder *)builder;
 
+// for toast impl
+- (void)buildRefreshNoResponse;
+- (void)buildLoadMoreNoResponse;
+- (void)buildNetworkError:(NSError *)error isRefresh:(BOOL)isRefresh;
+
 // for empty 可继承实现
 - (NSString *)emptyTitle;
 - (NSString *)emptySubtitle;

@@ -251,7 +251,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
 
       [self onDataLoaded:result isRefresh:YES];
       if (!result || result.count <= 0) {
-        [SKToastUtil toastWithText:@"没有最新数据"];
+        [self buildRefreshNoResponse];
       }
     }).catch(^(NSError *error) {
       @strongify(self);
@@ -309,7 +309,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
       [self onDataLoaded:result isRefresh:NO];
       if (!result || result.count <= 0) {
         [self.tableView reloadData];
-        [SKToastUtil toastWithText:@"没有更多数据"];
+        [self buildLoadMoreNoResponse]
       }
     }).catch(^(NSError *error) {
       @strongify(self);
@@ -328,8 +328,8 @@ static CGFloat const kIndicatorViewSize = 40.F;
   if ([response isKindOfClass:[SKPaginatorModel class]]) {
     _paginatorModel = response;
     return [_paginatorModel data];
-  }/* else if ([data isKindOfClass:[NSArray class]]) {
-    return data;
+  }/* else if ([response isKindOfClass:[NSArray class]]) {
+    return response;
   }*/
   return response;
 }
@@ -340,6 +340,14 @@ static CGFloat const kIndicatorViewSize = 40.F;
   self.paginator.refresh = NO;
   [self.tableView reloadEmptyDataSet];
   [self shouldShowIndicatorView];
+}
+
+- (void)buildRefreshNoResponse {
+  [SKToastUtil toastWithText:@"没有更多数据"];
+}
+
+- (void)buildLoadMoreNoResponse {
+  [SKToastUtil toastWithText:@"没有更多数据"];
 }
 
 - (void)buildNetworkError:(NSError *)error isRefresh:(BOOL)isRefresh {
