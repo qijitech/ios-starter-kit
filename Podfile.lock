@@ -8,7 +8,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AnimatedGIFImageSerialization (0.2.0)
   - BFPaperButton (2.0.29):
-    - UIColor+BFPaperColors
+    - "UIColor+BFPaperColors"
   - DGActivityIndicatorView (2.0)
   - DZNEmptyDataSet (1.7.3)
   - FLEX (2.3.0)
@@ -22,8 +22,8 @@ PODS:
     - libextobjc/EXTScope (= 0.4.1)
     - libextobjc/EXTSelectorChecking (= 0.4.1)
     - libextobjc/EXTSynthesize (= 0.4.1)
-    - libextobjc/NSInvocation+EXT (= 0.4.1)
-    - libextobjc/NSMethodSignature+EXT (= 0.4.1)
+    - "libextobjc/NSInvocation+EXT (= 0.4.1)"
+    - "libextobjc/NSMethodSignature+EXT (= 0.4.1)"
     - libextobjc/RuntimeExtensions (= 0.4.1)
     - libextobjc/UmbrellaHeader (= 0.4.1)
   - libextobjc/EXTADT (0.4.1):
@@ -42,9 +42,9 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/EXTSynthesize (0.4.1):
     - libextobjc/RuntimeExtensions
-  - libextobjc/NSInvocation+EXT (0.4.1):
+  - "libextobjc/NSInvocation+EXT (0.4.1)":
     - libextobjc/RuntimeExtensions
-  - libextobjc/NSMethodSignature+EXT (0.4.1):
+  - "libextobjc/NSMethodSignature+EXT (0.4.1)":
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
@@ -64,16 +64,16 @@ PODS:
     - AFNetworking/NSURLSession (~> 3.0)
     - AFNetworking/Serialization (~> 3.0)
     - Mantle (~> 2.0)
-  - Overcoat+CoreData (4.0.0-beta.2):
+  - "Overcoat+CoreData (4.0.0-beta.2)":
     - MTLManagedObjectAdapter (> 1.0)
     - Overcoat (~> 4.0.0-beta.2)
-  - Overcoat+PromiseKit (4.0.0-beta.2):
+  - "Overcoat+PromiseKit (4.0.0-beta.2)":
     - Overcoat (~> 4.0.0-beta.2)
     - PromiseKit/CorePromise (> 2)
-  - PromiseKit/CorePromise (4.1.7)
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
+  - PromiseKit/CorePromise (6.2.8)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
   - StarterKit (0.2.5):
     - AnimatedGIFImageSerialization (~> 0.2.0)
     - DGActivityIndicatorView
@@ -87,20 +87,44 @@ PODS:
     - MBProgressHUD
     - MMPlaceHolder
     - Overcoat (~> 4.0.0-beta.2)
-    - Overcoat+CoreData (~> 4.0.0-beta.2)
-    - Overcoat+PromiseKit (~> 4.0.0-beta.2)
-    - SDWebImage (~> 3.7)
-    - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
-  - UIColor+BFPaperColors (1.7.2)
-  - UITableView+FDTemplateLayoutCell (1.5.beta)
+    - "Overcoat+CoreData (~> 4.0.0-beta.2)"
+    - "Overcoat+PromiseKit (~> 4.0.0-beta.2)"
+    - SDWebImage (~> 4.3.3)
+    - "UITableView+FDTemplateLayoutCell (~> 1.5.beta)"
+  - "UIColor+BFPaperColors (1.7.2)"
+  - "UITableView+FDTemplateLayoutCell (1.5.beta)"
 
 DEPENDENCIES:
   - BFPaperButton
   - StarterKit (from `.`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - AnimatedGIFImageSerialization
+    - BFPaperButton
+    - DGActivityIndicatorView
+    - DZNEmptyDataSet
+    - FLEX
+    - HexColors
+    - libextobjc
+    - Mantle
+    - Masonry
+    - MaterialControls
+    - MBProgressHUD
+    - MMPlaceHolder
+    - MTLManagedObjectAdapter
+    - Overcoat
+    - "Overcoat+CoreData"
+    - "Overcoat+PromiseKit"
+    - PromiseKit
+    - SDWebImage
+    - "UIColor+BFPaperColors"
+    - "UITableView+FDTemplateLayoutCell"
+
 EXTERNAL SOURCES:
   StarterKit:
-    :path: .
+    :path: "."
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -118,14 +142,14 @@ SPEC CHECKSUMS:
   MMPlaceHolder: 40212b9dfe8760134b1b2fce3232f0d46200178f
   MTLManagedObjectAdapter: 631a53432675dcf03a9d90624afb3cececf54631
   Overcoat: 2ddaa6d66edebc375f3e24a37974631d5aff7ebe
-  Overcoat+CoreData: b1561512e9686f52692e86d4d3eeb97a1c1d6249
-  Overcoat+PromiseKit: 9f989a3d9bc8b07f576673be9bd85a3207399fbf
-  PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  StarterKit: 8a93e231a2db130c2423b84220c4dd80a4addf66
-  UIColor+BFPaperColors: 03101fe6c10ed00c6daae7c26553f1de41500853
-  UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
+  "Overcoat+CoreData": b1561512e9686f52692e86d4d3eeb97a1c1d6249
+  "Overcoat+PromiseKit": 9f989a3d9bc8b07f576673be9bd85a3207399fbf
+  PromiseKit: 6788ce1a0ed5448b83d4aaf56b9fc49fb7647d32
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  StarterKit: f0cd70004f466ebe243d29ba0a64198e3be8d13b
+  "UIColor+BFPaperColors": 03101fe6c10ed00c6daae7c26553f1de41500853
+  "UITableView+FDTemplateLayoutCell": 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
 
-PODFILE CHECKSUM: c67f1bf8161546cad7a5b2980e09effb3a1d6a31
+PODFILE CHECKSUM: cc9e8f9f643324a13b1023c7bf66b5b2b1fab96b
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

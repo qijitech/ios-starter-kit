@@ -257,7 +257,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
       @strongify(self);
       self.error = error;
       [self updateView:NO];
-    }).always(^{
+    }).ensure(^{
       @strongify(self);
       [self updateView:YES];
     });
@@ -284,7 +284,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
       @strongify(self);
       self.error = error;
       [self updateView:NO];
-    }).always(^{
+    }).ensure(^{
       @strongify(self);
       [self updateView:NO];
     });
@@ -315,7 +315,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
       @strongify(self);
       self.error = error;
       [self updateView:NO];
-    }).always(^{
+    }).ensure(^{
       @strongify(self);
       [self updateView:NO];
     });

@@ -14,7 +14,7 @@ target 'Examples' do
     # pod 'AFNetworkActivityLogger', :git => 'https://github.com/AFNetworking/AFNetworkActivityLogger.git', :branch => '3_0_0'
 end
 
-xcodeproj 'Examples/Examples.xcodeproj'
+project 'Examples/Examples.xcodeproj'
 
 post_install do |installer|
     rca_path = File.join __dir__, 'Pods', 'MTLManagedObjectAdapter'
