@@ -309,7 +309,7 @@ static CGFloat const kIndicatorViewSize = 40.F;
       [self onDataLoaded:result isRefresh:NO];
       if (!result || result.count <= 0) {
         [self.tableView reloadData];
-        [self buildLoadMoreNoResponse]
+        [self buildLoadMoreNoResponse];
       }
     }).catch(^(NSError *error) {
       @strongify(self);
