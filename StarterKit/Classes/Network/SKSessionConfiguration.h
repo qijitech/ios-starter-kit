@@ -7,6 +7,8 @@
 
 @interface SKSessionConfiguration : NSObject
 
++ (NSDictionary *)commonHeader;
+
 + (NSURLSessionConfiguration *)defaultSessionConfiguration;
 
 @end
