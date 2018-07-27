@@ -16,7 +16,7 @@
       @"X-Client-Build" : [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *) kCFBundleVersionKey],
       @"X-Client-Version" : [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *) kCFBundleVersionKey],
       @"X-Client" : [[[UIDevice currentDevice] identifierForVendor] UUIDString],
-      @"X-Client-Type" : @"iOS",
+      @"X-Client-Type" : @"ios",
       @"X-Client-Channel" : @"channel", // 待定
       @"X-Language-Code" : [SKLocalizableUtils getPreferredLanguagesString],
       @"X-Client-System" : [NSString stringWithFormat:@"%.1f", [[[UIDevice currentDevice] systemVersion] floatValue]],
