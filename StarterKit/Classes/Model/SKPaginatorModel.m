@@ -19,7 +19,7 @@
 }
 
 - (bool)hasMorePages {
-  return self.currentPage < self.lastPage && self.size >= [self.perPage unsignedIntegerValue];
+  return /**self.currentPage.integerValue < self.lastPage.integerValue &&*/ self.size >= [self.perPage unsignedIntegerValue];
 }
 
 - (NSArray *)data {
