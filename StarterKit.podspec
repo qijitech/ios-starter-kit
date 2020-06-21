@@ -54,5 +54,6 @@ Pod::Spec.new do |s|
   s.dependency 'MMPlaceHolder'
   s.dependency 'SDWebImage', '~>4.3.3'
   s.dependency 'DGActivityIndicatorView'
+  s.dependency 'MaterialControls'
 
 end
